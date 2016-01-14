@@ -1,0 +1,8 @@
+If the git-setup.scene does not set up properly: 
+Switch to Visible Meta Files in Edit → Project Settings → Editor → Version Control Mode
+Switch to Force Text in Edit → Project Settings → Editor → Asset Serialization Mode
+
+
+The .gitignore is already made. 
+
+
