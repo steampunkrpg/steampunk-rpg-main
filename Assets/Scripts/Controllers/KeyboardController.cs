@@ -19,6 +19,7 @@ public class KeyboardController : IController {
         commands[keyCode] = command;
     }
 
+    // execute the keys pressed.
     public void Update()
     {
        KeyCode keyCode = FetchKey();
@@ -27,16 +28,18 @@ public class KeyboardController : IController {
        {
             commands[keyCode].Execute();
        }
-       
     }
 
+    // add input controls here
     private void ResetController()
     {
         AddCommand(KeyCode.W, new MoveUpCommand(playerGO));
     }
 
+    // return the key code of the button pressed
     private KeyCode FetchKey()
     {
+        // can change to array if needed for multiple inputs
         var keyCodes = System.Enum.GetNames(typeof(KeyCode)).Length;
         for (int i = 0; i < keyCodes; i++)
         {
