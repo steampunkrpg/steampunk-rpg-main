@@ -2,17 +2,17 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class AlchemistSelect : MonoBehaviour {
+public class RangerSelect : MonoBehaviour {
 
 	public float fadeSpeed;
-
+	
 	private bool isTextActive;
 	private Text classText, classDescription;
 	private Vector3 scaleOnMouseover, offset, originalScale, originalPosition;
 	
 	void Start() {
-		classText = GameObject.Find ("AlchemistSelectText").GetComponent<Text> ();
-		classDescription = GameObject.Find ("AlchemistDescriptionText").GetComponent<Text> ();
+		classText = GameObject.Find ("RangerSelectText").GetComponent<Text> ();
+		classDescription = GameObject.Find ("RangerDescriptionText").GetComponent<Text> ();
 
 		classText.color = Color.clear;
 		classDescription.color = Color.clear;
@@ -24,7 +24,7 @@ public class AlchemistSelect : MonoBehaviour {
 		originalPosition = transform.position;
 	}
 	
-	void Update () {
+	public void Update () {
 		FadeText ();
 	}
 	
@@ -32,7 +32,7 @@ public class AlchemistSelect : MonoBehaviour {
 		isTextActive = true;
 		
 		transform.localScale = transform.localScale + scaleOnMouseover;
-		offset = new Vector3 (transform.position.x, transform.localScale.y, transform.position.z);
+		offset = new Vector3 (transform.position.x, transform.localScale.y / 2, transform.position.z);
 		transform.position = offset;
 	}
 	
