@@ -5,7 +5,6 @@ public class GridGenerator : MonoBehaviour {
 
     // Variable that "stores" hexagon
     public GameObject Hexagon;
-    public static GameObject cube;  
 
     // Set grid width / height
     public int gridWidth = 5;
@@ -19,7 +18,7 @@ public class GridGenerator : MonoBehaviour {
     void setSizes()
     {
         hexWidth = Hexagon.GetComponent<Renderer>().bounds.size.x;
-        hexHeight = Hexagon.GetComponent<Renderer>().bounds.size.y;
+        hexHeight = Hexagon.GetComponent<Renderer>().bounds.size.z;
     }
 
     // Center hex grid (put first hexagon at (0, 0, 0))
@@ -76,9 +75,6 @@ public class GridGenerator : MonoBehaviour {
 	void Start () {
         setSizes();
         createGrid();
-        cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        cube.transform.position = new Vector3((-.055f * (((float)gridWidth) - .5f)), 0, .254f);
-        cube.transform.localScale = new Vector3(.015f, .015f, .015f);
     }
 	
 	// Update is called once per frame
