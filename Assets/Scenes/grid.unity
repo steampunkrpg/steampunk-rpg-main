@@ -370,6 +370,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68e1259dbbbd48244b83d5f513e0199d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hexagon: {fileID: 100000, guid: 4e791c7e6d0f01448af31867a9bf67a9, type: 3}
+  Hexagon: {fileID: 148572, guid: 7aac79d330a9dfc438c6cef1f8119474, type: 2}
   gridWidth: 5
   gridHeight: 5
