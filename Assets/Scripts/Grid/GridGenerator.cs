@@ -66,6 +66,7 @@ public class GridGenerator : MonoBehaviour {
                 Vector2 gridPos = new Vector2(x, y);
                 hexagon.transform.position = worldCoordinate(gridPos);
                 hexagon.transform.parent = hexGridParent.transform;
+                hexagon.transform.name = "Hex " + x + ", " + y;
                 i++;
             }
         }
