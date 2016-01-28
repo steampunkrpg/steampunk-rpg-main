@@ -24,7 +24,7 @@ public class RangerSelect : MonoBehaviour {
 		originalPosition = transform.position;
 	}
 	
-	public void Update () {
+	void Update () {
 		FadeText ();
 	}
 	
