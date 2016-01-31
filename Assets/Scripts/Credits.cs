@@ -4,8 +4,8 @@ using System.Collections;
 public class Credits : MonoBehaviour {
 
 	public GameObject mainCamera;
-	private float scrollingSpeed = 2.5f;
-	private static float LENGTH_OF_CREDITS = 65f;
+	private float scrollingSpeed = 30f;
+	private static float LENGTH_OF_CREDITS = 55f;
 
 	void Start() {
 		StartCoroutine ("endOfCredits");
@@ -20,6 +20,6 @@ public class Credits : MonoBehaviour {
 		yield return new WaitForSeconds (LENGTH_OF_CREDITS);
 		gameObject.GetComponent<AudioSource> ().Stop ();
 		Application.OpenURL ("http://web.cse.ohio-state.edu/~boggus/5912/");
-		Application.Quit ();		
+		Application.LoadLevel ("Menu_Scene");		
 	}
 }
