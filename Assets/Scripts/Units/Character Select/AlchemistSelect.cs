@@ -5,6 +5,8 @@ using System.Collections;
 public class AlchemistSelect : MonoBehaviour {
 
 	public float fadeSpeed;
+
+	private GameObject toggler;
 	private bool isTextActive;
 	private Text classText, classDescription;
 	private Vector3 scaleOnMouseover, offset, originalScale, originalPosition;
@@ -29,21 +31,27 @@ public class AlchemistSelect : MonoBehaviour {
 		FadeText();
 	}
 	
-	void OnMouseEnter()
-	{
-		isTextActive = true;
+	void OnMouseEnter () {
+		toggler = GameObject.Find ("UIToggler");
 		
-		transform.localScale = transform.localScale + scaleOnMouseover;
-		offset = new Vector3(transform.position.x, transform.localScale.y, transform.position.z);
-		transform.position = offset;
+		if (toggler == null) {
+			isTextActive = true;
+			
+			transform.localScale = transform.localScale + scaleOnMouseover;
+			offset = new Vector3 (transform.position.x, transform.localScale.y, transform.position.z);
+			transform.position = offset;
+		}
 	}
 	
-	void OnMouseExit()
-	{
-		isTextActive = false;
+	void OnMouseExit() {
+		toggler = GameObject.Find ("UIToggler");
 		
-		transform.position = originalPosition;
-		transform.localScale = originalScale;
+		if (toggler == null) {
+			isTextActive = false;
+			
+			transform.position = originalPosition;
+			transform.localScale = originalScale;
+		}
 	}
 	
 	void FadeText()
@@ -59,5 +67,12 @@ public class AlchemistSelect : MonoBehaviour {
 			classDescription.color = Color.Lerp(classDescription.color, Color.clear, fadeSpeed * Time.deltaTime);
 		}
 	}
-	
+
+	public void ResetAfterBack() {
+		//Reset scaling
+		isTextActive = false;
+		FadeText ();
+		transform.position = originalPosition;
+		transform.localScale = originalScale;
+	}
 }
