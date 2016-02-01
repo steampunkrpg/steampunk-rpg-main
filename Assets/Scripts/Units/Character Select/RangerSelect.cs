@@ -5,7 +5,8 @@ using System.Collections;
 public class RangerSelect : MonoBehaviour {
 
 	public float fadeSpeed;
-	
+
+	private GameObject toggler;
 	private bool isTextActive;
 	private Text classText, classDescription;
 	private Vector3 scaleOnMouseover, offset, originalScale, originalPosition;
@@ -24,23 +25,31 @@ public class RangerSelect : MonoBehaviour {
 		originalPosition = transform.position;
 	}
 	
-	public void Update () {
+	void Update () {
 		FadeText ();
 	}
 	
 	void OnMouseEnter () {
-		isTextActive = true;
+		toggler = GameObject.Find ("UIToggler");
 		
-		transform.localScale = transform.localScale + scaleOnMouseover;
-		offset = new Vector3 (transform.position.x, transform.localScale.y / 2, transform.position.z);
-		transform.position = offset;
+		if (toggler == null) {
+			isTextActive = true;
+			
+			transform.localScale = transform.localScale + scaleOnMouseover;
+			offset = new Vector3 (transform.position.x, transform.localScale.y / 2, transform.position.z);
+			transform.position = offset;
+		}
 	}
 	
 	void OnMouseExit() {
-		isTextActive = false;
+		toggler = GameObject.Find ("UIToggler");
 		
-		transform.position = originalPosition;
-		transform.localScale = originalScale;
+		if (toggler == null) {
+			isTextActive = false;
+			
+			transform.position = originalPosition;
+			transform.localScale = originalScale;
+		}
 	}
 	
 	void FadeText () {
@@ -52,5 +61,13 @@ public class RangerSelect : MonoBehaviour {
 			classText.color = Color.Lerp (classText.color, Color.clear, fadeSpeed * Time.deltaTime);
 			classDescription.color = Color.Lerp (classDescription.color, Color.clear, fadeSpeed * Time.deltaTime);
 		}
+	}
+
+	public void ResetAfterBack() {
+		//Reset scaling
+		isTextActive = false;
+		FadeText ();
+		transform.position = originalPosition;
+		transform.localScale = originalScale;
 	}
 }
