@@ -4,8 +4,8 @@ using System.Collections;
 public class Credits : MonoBehaviour {
 
 	public GameObject mainCamera;
-	private float scrollingSpeed = 30f;
-	private static float LENGTH_OF_CREDITS = 55f;
+	private float scrollingSpeed = 7f;
+	private static float LENGTH_OF_CREDITS = 25f;
 
 	void Start() {
 		StartCoroutine ("endOfCredits");
