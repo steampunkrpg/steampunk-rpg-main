@@ -10,7 +10,7 @@ public class LoadingBehavior : MonoBehaviour {
 	void Start ()
     {
         loadingView[1].enabled = false;
-        InvokeRepeating("ToggleViews", 4, 4);
+        InvokeRepeating("ToggleViews", 5, 5);
     }
 	
 	// Update is called once per frame
