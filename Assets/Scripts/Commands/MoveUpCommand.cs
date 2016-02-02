@@ -3,15 +3,18 @@ using UnityEngine;
 
 public class MoveUpCommand : ICommand {
 
-    IUnit iUnit;
+    Unit unit;
 
     public MoveUpCommand(GameObject gameObject)
     {
-        this.iUnit = gameObject.GetComponent("IUnit") as IUnit;
+        this.unit = gameObject.GetComponent("Unit") as Unit;
     }
 
     void ICommand.Execute()
     {
-        iUnit.MoveUp();
+        // if grid cell x is even do blah
+        unit.MoveNP();
+        // else do blah 2
+        unit.MoveZP();
     }
 }

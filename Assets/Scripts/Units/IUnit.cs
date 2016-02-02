@@ -6,10 +6,13 @@ public interface IUnit {
 
     void Update();
 
-    void MoveUp();
-    /**
-    void MoveRight();
-    void MoveDown();
-    void MoveLeft();
-    **/
+    // Z is zero
+    // N is negative
+    // P is positive
+    void MoveZN();
+    void MovePZ();
+    void MovePP();
+    void MoveZP();
+    void MoveNP();
+    void MoveNZ();
 }
