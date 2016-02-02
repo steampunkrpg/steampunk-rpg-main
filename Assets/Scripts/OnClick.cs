@@ -6,12 +6,13 @@ public class OnClick : MonoBehaviour {
 
 	public Slider loadingBar;
 	public GameObject loadingImage;
-
+	public GameObject buttonImage;
 
 	private AsyncOperation async;
 
 	public void ClickAsync(string sceneName)
 	{
+		buttonImage.SetActive (false);
 		loadingImage.SetActive(true);
 		StartCoroutine(LoadLevelWithBar(sceneName));
 	}
