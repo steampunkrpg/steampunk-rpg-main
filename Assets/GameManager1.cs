@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GameManager : MonoBehaviour {
+public class GameManager1 : MonoBehaviour {
 
     KeyboardController keyboardController;
     public GameObject playerGO;

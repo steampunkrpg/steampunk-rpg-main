@@ -6,6 +6,7 @@ public class ClassSelectManager : MonoBehaviour {
 	public bool isFocusing, classIsPicked;
 	public string className;
 
+	private AsyncOperation async;
 	private RaycastHit hit;
 	private Vector3 offset, startingLocation;
 	private Ray mouseRay;
@@ -75,6 +76,7 @@ public class ClassSelectManager : MonoBehaviour {
 	public void YesButton () {
 		areYouSurePanel.SetActive (false);
 		buildingCharacterPanel.SetActive (true);
+		ClickAsync ("Grid_Scene");
 		classIsPicked = true;
 	}
 
@@ -91,5 +93,20 @@ public class ClassSelectManager : MonoBehaviour {
 		areYouSurePanel.SetActive (false);
 
 		toggler.SetActive (false);
+	}
+
+	void ClickAsync(string sceneName)
+	{
+		StartCoroutine(LoadLevelWithBar(sceneName));
+	}
+
+
+	IEnumerator LoadLevelWithBar (string sceneName)
+	{
+		async = Application.LoadLevelAsync(sceneName);
+		while (!async.isDone)
+		{
+			yield return null;
+		}
 	}
 }
