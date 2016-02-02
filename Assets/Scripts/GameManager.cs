@@ -22,4 +22,31 @@ public class GameManager : MonoBehaviour {
 	public void InitGame() {
 
 	}
+
+    private KeyboardController keyboardController;
+    public GameObject currentUnit;
+
+    // Use this for initialization
+    void Start()
+    {
+
+        // todo - move controller creation to a controller factory?
+        // initialize controller
+        keyboardController = new KeyboardController(currentUnit);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+        if (Input.GetKey(KeyCode.R))
+        {
+            currentUnit.GetComponent<Unit>().SetUp(); 
+        }
+
+        // update controllers for mouse, keyboard, gamepad
+        keyboardController.Update();
+
+    }
+
 }
