@@ -174,7 +174,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Jared Headings
+  m_Text: Jared "Position 6" Headings
 --- !u!222 &53969915
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -367,7 +367,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Hiroki Witt
+  m_Text: Hiroki "Haroku" Witt
 --- !u!222 &418451740
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -463,7 +463,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Nikit Malkan
+  m_Text: Nikit "Nefari0uss" Malkan
 --- !u!222 &443286845
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2004,7 +2004,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Mike Alquist
+  m_Text: Mike "Mike" Alquist
 --- !u!222 &1010160175
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2307,7 +2307,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Chris Makepeace
+  m_Text: Chris "Peacemaker" Makepeace
 --- !u!222 &1361495801
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2403,7 +2403,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Caleb Underwood
+  m_Text: Caleb "Woody" Underwood
 --- !u!222 &1458786690
 CanvasRenderer:
   m_ObjectHideFlags: 0
