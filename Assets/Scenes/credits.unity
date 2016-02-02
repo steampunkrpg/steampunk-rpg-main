@@ -174,7 +174,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Jared Headings
+  m_Text: Jared "Position 6" Headings
 --- !u!222 &53969915
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -367,7 +367,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Hiroki Witt
+  m_Text: Hiroki "Haroku" Witt
 --- !u!222 &418451740
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -463,7 +463,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Nikit Malkan
+  m_Text: Nikit "Nefari0uss" Malkan
 --- !u!222 &443286845
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1671,7 +1671,7 @@ GameObject:
   - 222: {fileID: 584026794}
   - 114: {fileID: 584026793}
   m_Layer: 5
-  m_Name: SteamPunk RPG
+  m_Name: Deep Manatee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1708,7 +1708,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: STEAMPUNK RPG
+  m_Text: DEEP MANATEE STUDIOS
 --- !u!222 &584026794
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1786,7 +1786,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 617495949}
-  m_LocalRotation: {x: .408217937, y: -.234569728, z: .109381676, w: .875426054}
+  m_LocalRotation: {x: -.482963026, y: .22414355, z: -.129409358, w: -.83651638}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -2004,7 +2004,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Mike Alquist
+  m_Text: Mike "Mike" Alquist
 --- !u!222 &1010160175
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2173,7 +2173,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: fcf04af6905aa1f49a94eb650ebc0afa, type: 2}
+  - {fileID: 2100000, guid: ab3ab421d284b7a4f8cd81e15859aa1f, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -2213,8 +2213,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1216656234}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
-  m_LocalPosition: {x: -.454041421, y: 58.3767853, z: -33.2346878}
-  m_LocalScale: {x: 15, y: 10, z: .100000001}
+  m_LocalPosition: {x: -.454041421, y: 57.1699982, z: -33.2346878}
+  m_LocalScale: {x: 10, y: 12, z: .100000001}
   m_Children: []
   m_Father: {fileID: 1753009894}
   m_RootOrder: 2
@@ -2307,7 +2307,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Chris Makepeace
+  m_Text: Chris "Peacemaker" Makepeace
 --- !u!222 &1361495801
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2403,7 +2403,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Caleb Underwood
+  m_Text: Caleb "Woody" Underwood
 --- !u!222 &1458786690
 CanvasRenderer:
   m_ObjectHideFlags: 0

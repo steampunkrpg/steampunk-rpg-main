@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Caleb Underwood
+  m_Name: Chris Makepeace
   m_Shader: {fileID: 10, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
@@ -19,7 +19,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: 58941eb1adc28ca47a83652b67b25e84, type: 3}
+          m_Texture: {fileID: 2800000, guid: ae1d679415868964c90c75a3c77b54b3, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -133,7 +133,7 @@ Material:
       data:
         first:
           name: _Metallic
-        second: .88499999
+        second: 0
       data:
         first:
           name: _Emission
