@@ -3085,7 +3085,7 @@ GameObject:
   - 4: {fileID: 1067984869}
   - 114: {fileID: 1067984870}
   m_Layer: 0
-  m_Name: StatBuilder
+  m_Name: PickedClassBuilder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3111,7 +3111,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1067984868}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78038dee81a144bccbfb910017819a8e, type: 3}
+  m_Script: {fileID: 11500000, guid: 489afd8b1ae6d46c5823d3bbed528d4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1111430936
@@ -3282,6 +3282,7 @@ GameObject:
   - 135: {fileID: 1190675873}
   - 23: {fileID: 1190675872}
   - 114: {fileID: 1190675876}
+  - 114: {fileID: 1190675877}
   m_Layer: 0
   m_Name: Ranger
   m_TagString: CharacterClass
@@ -3358,6 +3359,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeSpeed: 7
+--- !u!114 &1190675877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1190675871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ad742f992dd94c29904002ebc2643f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  STR: 0
+  DEX: 0
+  INT: 0
+  HP: 0
+  DEF: 0
 --- !u!1 &1229627934
 GameObject:
   m_ObjectHideFlags: 0
@@ -5141,6 +5158,7 @@ GameObject:
   - 136: {fileID: 1640198115}
   - 23: {fileID: 1640198114}
   - 114: {fileID: 1640198118}
+  - 114: {fileID: 1640198119}
   m_Layer: 0
   m_Name: Alchemist
   m_TagString: CharacterClass
@@ -5218,6 +5236,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeSpeed: 7
+--- !u!114 &1640198119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1640198113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ad742f992dd94c29904002ebc2643f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  STR: 0
+  DEX: 0
+  INT: 0
+  HP: 0
+  DEF: 0
 --- !u!1 &1691758656
 GameObject:
   m_ObjectHideFlags: 0
@@ -5437,6 +5471,7 @@ GameObject:
   - 65: {fileID: 1835884732}
   - 23: {fileID: 1835884731}
   - 114: {fileID: 1835884735}
+  - 114: {fileID: 1835884736}
   m_Layer: 0
   m_Name: Vanguard
   m_TagString: CharacterClass
@@ -5516,6 +5551,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeSpeed: 7
+--- !u!114 &1835884736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1835884730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ad742f992dd94c29904002ebc2643f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  STR: 0
+  DEX: 0
+  INT: 0
+  HP: 0
+  DEF: 0
 --- !u!1 &2007216020
 GameObject:
   m_ObjectHideFlags: 0
