@@ -586,7 +586,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: 
   className: 
-  currentCell: {fileID: 0}
+  hex: {fileID: 0}
 --- !u!4 &1016348483 stripped
 Transform:
   m_PrefabParentObject: {fileID: 417026, guid: 14098f52fc4259d4786a320da3fa6140, type: 2}
@@ -720,7 +720,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08e4954a21226ef4db6d7d0a83a50987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentUnit: {fileID: 0}
 --- !u!4 &1269851465
 Transform:
   m_ObjectHideFlags: 0
