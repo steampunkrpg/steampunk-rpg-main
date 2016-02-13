@@ -8,7 +8,10 @@ public class GameManager : MonoBehaviour {
 
 	private List<Unit> units;
 
-	void Awake() {
+    private KeyboardController keyboardController;
+    public GameObject currentUnit;
+
+    void Awake() {
 		if (instance == null)
 			instance = this;
 		else if (instance != this)
@@ -19,21 +22,18 @@ public class GameManager : MonoBehaviour {
 		units = new List<Unit> ();
 	}
 
-	public void InitGame() {
-
-	}
-
-    private KeyboardController keyboardController;
-    public GameObject currentUnit;
-
     // Use this for initialization
     void Start()
     {
 
         // todo - move controller creation to a controller factory?
         // initialize controller
-        keyboardController = new KeyboardController(currentUnit);
+        keyboardController = new KeyboardController();
     }
+
+    public void InitGame() {
+
+	}
 
     // Update is called once per frame
     void Update()
@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour {
         }
 
         // update controllers for mouse, keyboard, gamepad
-        keyboardController.Update();
+        keyboardController.Update(currentUnit);
 
     }
 

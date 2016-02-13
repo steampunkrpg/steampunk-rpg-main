@@ -5,11 +5,9 @@ using System.Collections.Generic;
 public class KeyboardController : IController {
 
     Dictionary<KeyCode, ICommand> commands;
-    GameObject playerGO;
 
-    public KeyboardController(GameObject playerGO)
+    public KeyboardController()
     {
-        this.playerGO = playerGO;
         commands = new Dictionary<KeyCode, ICommand>();
         ResetController();
     }
@@ -20,20 +18,25 @@ public class KeyboardController : IController {
     }
 
     // execute the keys pressed.
-    public void Update()
+    public void Update(GameObject activePlayer)
     {
-       KeyCode keyCode = FetchKey();
+        KeyCode keyCode = FetchKey();
 
-       if (commands.ContainsKey(keyCode))
-       {
-            commands[keyCode].Execute();
-       }
+        if (commands.ContainsKey(keyCode))
+        {
+            commands[keyCode].Execute(activePlayer.GetComponent<Unit>() as Unit);
+        }
     }
 
     // add input controls here
     private void ResetController()
     {
-        AddCommand(KeyCode.W, new MoveUpCommand(playerGO));
+        AddCommand(KeyCode.E, new MoveNECommand());
+        AddCommand(KeyCode.W, new MoveNCommand());
+        AddCommand(KeyCode.Q, new MoveNWCommand());
+        AddCommand(KeyCode.A, new MoveSWCommand());
+        AddCommand(KeyCode.S, new MoveSCommand());
+        AddCommand(KeyCode.D, new MoveSECommand());
     }
 
     // return the key code of the button pressed

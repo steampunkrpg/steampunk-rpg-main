@@ -3,5 +3,5 @@ using System.Collections;
 
 public interface IController
 {
-    void Update(); 
+    void Update(GameObject currentUnit); 
 }

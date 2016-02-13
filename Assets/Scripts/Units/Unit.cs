@@ -5,7 +5,7 @@ using System;
 public class Unit : MonoBehaviour, IUnit
 {
     public String unitName, className;
-    public GridCell currentCell;
+    public GridCell hex;
 
     private const float PLAYER_HEIGHT = 0.5f;
 
@@ -13,12 +13,12 @@ public class Unit : MonoBehaviour, IUnit
     {
         get
         {
-            return currentCell;
+            return hex;
         }
 
         set
         {
-            currentCell = value;
+            hex = value;
         }
     }
 
@@ -34,46 +34,10 @@ public class Unit : MonoBehaviour, IUnit
     {
         transform.name = "I'm a unit!";
         //transform.parent = GameObject.Find("Unit Manager").transform;
-        currentCell = GameObject.Find("Hex 0, 0").GetComponent<GridCell>();
+        hex = GameObject.Find("Hex 0, 0").GetComponent<GridCell>();
         UpdatePosition();
     }
 
-    public void MoveZN()
-    {
-        CurrentCell.col--;
-        UpdatePosition();
-    }
-
-    public void MovePZ()
-    {
-        CurrentCell.row++;
-        UpdatePosition();
-    }
-
-    public void MovePP()
-    {
-        CurrentCell.row++;
-        CurrentCell.col++;
-        UpdatePosition();
-    }
-
-    public void MoveZP()
-    {
-        CurrentCell.col++;
-        UpdatePosition();
-    }
-
-    public void MoveNP()
-    {
-        CurrentCell.col++;
-        UpdatePosition();
-    }
-
-    public void MoveNZ()
-    {
-        CurrentCell.col--;
-        UpdatePosition();
-    }
 
     public void UpdatePosition()
     {
@@ -81,5 +45,41 @@ public class Unit : MonoBehaviour, IUnit
         position = CurrentCell.GetComponent<Renderer>().bounds.center;
         position.y = PLAYER_HEIGHT;
         transform.position = position;
+    }
+
+    public void MoveNE()
+    {
+        CurrentCell = CurrentCell.GetNeighbor(0);
+        UpdatePosition();
+    }
+
+    public void MoveN()
+    {
+        CurrentCell = CurrentCell.GetNeighbor(1);
+        UpdatePosition();
+    }
+
+    public void MoveNW()
+    {
+        CurrentCell = CurrentCell.GetNeighbor(2);
+        UpdatePosition();
+    }
+
+    public void MoveSW()
+    {
+        CurrentCell = CurrentCell.GetNeighbor(3);
+        UpdatePosition();
+    }
+
+    public void MoveS()
+    {
+        CurrentCell = CurrentCell.GetNeighbor(4);
+        UpdatePosition();
+    }
+
+    public void MoveSE()
+    {
+        CurrentCell = CurrentCell.GetNeighbor(5);
+        UpdatePosition();
     }
 }

@@ -1,0 +1,3 @@
+The type of grid system is an odd r type grid. The way to move is derived from the following link using offset coordinates. 
+http://www.redblobgames.com/grids/hexagons/
+
