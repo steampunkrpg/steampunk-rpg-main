@@ -1,15 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class GridCell : MonoBehaviour {
 
     public int col, row;
-
     Vector2[][] directions;
-
-
-    //
-
 
     void Start()
     {
@@ -42,12 +38,13 @@ public class GridCell : MonoBehaviour {
     public GridCell GetNeighbor(int direction)
     {
         var parity = row & 1;
-        Debug.Log("Parity: " + parity);
-
-        Debug.Log(directions.ToString());
-        //Debug.Log("Dir: " + directions[parity][0]);
         Vector2 dir = directions[parity][direction];
-        GridCell gridCell = GameObject.Find("Hex " + (int)(row + dir.x) + ", " + (int)(row + dir.y)).GetComponent<GridCell>() as GridCell;
+        try {
+            GridCell gridCell = GameObject.Find("Hex " + (int)(row + dir.x) + ", " + (int)(row + dir.y)).GetComponent<GridCell>() as GridCell;
+        } catch (NullReferenceException e)
+        {
+            // do nothing
+        }
         return gridCell;
     }
 }
