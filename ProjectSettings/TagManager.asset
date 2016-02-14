@@ -6,6 +6,8 @@ TagManager:
   tags:
   - CharacterClass
   - GridTile
+  - Unit
+  - Enemy
   layers:
   - Default
   - TransparentFX

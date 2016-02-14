@@ -11,6 +11,10 @@ public class HexTile : MonoBehaviour {
 	public HexTile SW_Tile;
 	public float[] pos;
 
+	public GameObject character;
+
+	public int SpawnP;
+
 	// Use this for initialization
 	void Start () {
 
@@ -20,6 +24,7 @@ public class HexTile : MonoBehaviour {
 	void Update () {
 	
 	}
+
 
 	public void FindNeighbors() {
 		float x = pos [1];
@@ -78,17 +83,17 @@ public class HexTile : MonoBehaviour {
 
 			y++;
 			tileName = "HexTile [" + y + "," + x + "]";
-			if (pos [1] != 99) {
+			if (pos [1] != 9) {
 				E_Tile = GameObject.Find (tileName).GetComponent<HexTile> ();
 			}
 
 			y++;
-			x--;
 			tileName = "HexTile [" + y + "," + x + "]";
 			if (pos [1] != 9 && pos[0] != 9) {
 				SE_Tile = GameObject.Find (tileName).GetComponent<HexTile> ();
 			}
-				
+
+			x--;
 			tileName = "HexTile [" + y + "," + x + "]";
 			if (pos [0] != 9) {
 				SW_Tile = GameObject.Find (tileName).GetComponent<HexTile> ();
