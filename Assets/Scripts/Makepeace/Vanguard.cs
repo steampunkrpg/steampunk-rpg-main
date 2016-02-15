@@ -4,10 +4,8 @@ using System.Collections.Generic;
 
 public class Vanguard : MonoBehaviour {
 
-	private Stats char_stat;
-
 	void Start() {
-		char_stat = this.gameObject.GetComponent<Stats> ();
+
 	}
 
 	void Update() {

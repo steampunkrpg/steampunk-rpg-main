@@ -128,6 +128,13 @@ public class GameManager : MonoBehaviour {
 			enemyL.Add (enemy.GetComponent<Enemy> ());
 		}
 
+		GameObject[] players = GameObject.FindGameObjectsWithTag ("Unit");
+		foreach (GameObject player in players) {
+			if (!playerL.Contains (player.GetComponent<Unit> ())) {
+				playerL.Add (player.GetComponent<Unit> ());
+			}
+		}
+
 		foreach (HexTile tile in tileL) {
 			if (tile.GetComponent<HexTile> ().SpawnP == 1) {
 				foreach (Unit player in playerL) {
