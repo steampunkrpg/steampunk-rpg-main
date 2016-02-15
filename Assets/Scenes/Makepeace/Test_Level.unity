@@ -408,6 +408,7 @@ MonoBehaviour:
   moving: 0
   char_class: {fileID: 0}
   char_stats: {fileID: 0}
+  movement: 0
 --- !u!1 &1080940004
 GameObject:
   m_ObjectHideFlags: 0
@@ -752,6 +753,14 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11416674, guid: 5bf252e94c403d148998967c51e74aa6, type: 2}
       propertyPath: SpawnP
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400470, guid: 5bf252e94c403d148998967c51e74aa6, type: 2}
+      propertyPath: mov_cost
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11420788, guid: 5bf252e94c403d148998967c51e74aa6, type: 2}
+      propertyPath: mov_cost
       value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []

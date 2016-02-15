@@ -24,17 +24,17 @@ public class Unit : MonoBehaviour {
 	bool ValidMove(int dir) {
 		switch (dir) {
 		case 1:
-			return (tile.NE_Tile != null && tile.NE_Tile.character == null);
+			return (tile.NW_Tile != null && tile.NW_Tile.character == null && movement >= tile.NW_Tile.mov_cost);
 		case 2:
-			return (tile.NW_Tile != null && tile.NW_Tile.character == null);
+			return (tile.NE_Tile != null && tile.NE_Tile.character == null&& movement >= tile.NE_Tile.mov_cost);
 		case 3:
-			return (tile.E_Tile != null && tile.E_Tile.character == null);
+			return (tile.E_Tile != null && tile.E_Tile.character == null && movement >= tile.E_Tile.mov_cost);
 		case 4:
-			return (tile.SE_Tile != null && tile.SE_Tile.character == null);
+			return (tile.SE_Tile != null && tile.SE_Tile.character == null && movement >= tile.SE_Tile.mov_cost);
 		case 5:
-			return (tile.SW_Tile != null && tile.SW_Tile.character == null);
+			return (tile.SW_Tile != null && tile.SW_Tile.character == null && movement >= tile.SW_Tile.mov_cost);
 		case 6:
-			return (tile.W_Tile != null && tile.W_Tile.character == null);
+			return (tile.W_Tile != null && tile.W_Tile.character == null && movement >= tile.W_Tile.mov_cost);
 		default:
 			return false;
 		}
@@ -75,7 +75,7 @@ public class Unit : MonoBehaviour {
 			}
 
 			moving = true;
-			movement--;
+			movement = movement - tile.mov_cost;
 		}
 
 		if (movement == 0) {
