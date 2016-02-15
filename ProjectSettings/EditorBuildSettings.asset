@@ -15,3 +15,5 @@ EditorBuildSettings:
     path: Assets/Scenes/Demo/Grid_Scene.unity
   - enabled: 1
     path: Assets/Scenes/Makepeace/Test_Level.unity
+  - enabled: 1
+    path: Assets/Scenes/Demo/World Map.unity
