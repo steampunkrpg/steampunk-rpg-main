@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GridGenerator : MonoBehaviour {
 
     // Variable that "stores" hexagon
-    public GameObject Hexagon;
+    public GameObject HexTile;
 
     // Set grid width / height
     public int gridWidth = 5;
@@ -15,10 +16,10 @@ public class GridGenerator : MonoBehaviour {
     private float hexHeight;
 
     // set height and width for tiles
-    void setSizes()
+    void setSizes()	
     {
-        hexWidth = Hexagon.GetComponent<Renderer>().bounds.size.x;
-        hexHeight = Hexagon.GetComponent<Renderer>().bounds.size.z;
+        hexWidth = HexTile.GetComponent<Renderer>().bounds.size.x;
+        hexHeight = HexTile.GetComponent<Renderer>().bounds.size.z;
     }
 
     // Center hex grid (put first hexagon at (0, 0, 0))
@@ -60,14 +61,16 @@ public class GridGenerator : MonoBehaviour {
             for (float y = 0; y < gridWidth; y++)
             {
                 // clone hexagon              
-                GameObject hexagon = (GameObject)Instantiate(Hexagon);
+				GameObject hextile = (GameObject)Instantiate(HexTile);
                 // position in grid
                 Vector2 gridPos = new Vector2(x, y);
-                hexagon.transform.position = worldCoordinate(gridPos);
-                hexagon.transform.parent = hexGridParent.transform;
-                hexagon.transform.name = "Hex " + x + ", " + y;
+                hextile.transform.position = worldCoordinate(gridPos);
+                hextile.transform.parent = hexGridParent.transform;
+				hextile.transform.name = "Hex [" + y + "," + x + "]";
+				hextile.GetComponent<HexTile> ().pos = new float[] { y, x };
                 i++;
-            }
+				//GameManager.instance.StartCoroutine ("AddTile",hextile);
+			}
         }
     }
 
