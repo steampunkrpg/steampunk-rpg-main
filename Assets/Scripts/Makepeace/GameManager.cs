@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour {
 	void Update() {
 		if (playersTurn) {
 			PlayerSelect ();
-			if (activePlayer != null && activePlayer.Active) {
+			if (activePlayer != null && activePlayer.Active && !activePlayer.moving) {
 				playerInput.ProvideAction (activePlayer);
 			}
 
@@ -66,6 +66,7 @@ public class GameManager : MonoBehaviour {
 
 				foreach (Enemy enemy in enemyL) {
 					enemy.Active = true;
+					enemy.ResetMovement ();
 				}
 			}
 		} else if (enemiesTurn) {
@@ -96,6 +97,7 @@ public class GameManager : MonoBehaviour {
 
 				foreach (Unit player in playerL) {
 					player.Active = true;
+					player.ResetMovement ();
 				}
 			}
 		} 

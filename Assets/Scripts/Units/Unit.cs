@@ -8,6 +8,7 @@ public class Unit : MonoBehaviour {
 
 	public GameObject char_class;
 	public Stats char_stats;
+	public float movement;
 
 	void Awake() {
 		char_stats = this.GetComponentInChildren<Stats> ();
@@ -17,6 +18,7 @@ public class Unit : MonoBehaviour {
 	public void InitPosition() {
 		this.transform.position = tile.transform.position;
 		this.transform.Translate (new Vector3 (0.0f, 0.5f, 0.0f));
+		movement = char_stats.MOV;
 	}
 
 	bool ValidMove(int dir) {
@@ -40,7 +42,7 @@ public class Unit : MonoBehaviour {
 
 	public void Move(int dir) {
 		bool validMove = ValidMove (dir);
-		if (validMove) {
+		if (validMove && movement != 0) {
 			tile.character = null;
 
 			switch (dir) {
@@ -73,6 +75,10 @@ public class Unit : MonoBehaviour {
 			}
 
 			moving = true;
+			movement--;
+		}
+
+		if (movement == 0) {
 			Active = false;
 		}
 	}
@@ -92,5 +98,9 @@ public class Unit : MonoBehaviour {
 
 	public void Death() {
 		Destroy (this);
+	}
+
+	public void ResetMovement() {
+		movement = char_stats.MOV;
 	}
 }
