@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class ClassSelectManager : MonoBehaviour {
@@ -6,6 +7,7 @@ public class ClassSelectManager : MonoBehaviour {
 	public bool isFocusing, classIsPicked;
 	public string className;
 
+	private SceneManager sceneManager;
 	private AsyncOperation async;
 	private RaycastHit hit;
 	private Vector3 offset, startingLocation;
@@ -76,8 +78,8 @@ public class ClassSelectManager : MonoBehaviour {
 	public void YesButton () {
 		areYouSurePanel.SetActive (false);
 		buildingCharacterPanel.SetActive (true);
-		ClickAsync ("Grid_Scene");
 		classIsPicked = true;
+		ClickAsync ("Test_Level");
 	}
 
 	//public for no
@@ -103,7 +105,7 @@ public class ClassSelectManager : MonoBehaviour {
 
 	IEnumerator LoadLevelWithBar (string sceneName)
 	{
-		async = Application.LoadLevelAsync(sceneName);
+		async = SceneManager.LoadSceneAsync(sceneName);
 		while (!async.isDone)
 		{
 			yield return null;

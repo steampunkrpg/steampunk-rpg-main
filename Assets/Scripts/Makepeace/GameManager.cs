@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour {
 	public List<Enemy> enemyL;
 	public Unit activePlayer;
 
-	public bool playersTurn = true;
+	public bool playersTurn;
 	private bool enemiesTurn;
 
 	void Awake() {
@@ -33,26 +33,28 @@ public class GameManager : MonoBehaviour {
 
 		playerInput = this.gameObject.GetComponent<PlayerKeyBoardInput> ();
 
-		InitGame ();
+		playersTurn = false;
+		enemiesTurn = false;
 	}
 
 	public void InitGame() {
 		enemyL = new List<Enemy> ();
 		tileL = new List<HexTile> ();
 
-		LoadLists();
+		LoadLists ();
+		playersTurn = true;
 	}
 
 	void Update() {
 		if (playersTurn) {
 			PlayerSelect ();
-			if (activePlayer != null) {
+			if (activePlayer != null && activePlayer.Active) {
 				playerInput.ProvideAction (activePlayer);
 			}
 
 			bool all_done = true;
 			for (int i = 0; i < playerL.Count; i++) {
-				if (playerL[i].Active) {
+				if (playerL [i].Active || playerL [i].moving) {
 					all_done = false;
 					break;
 				}
@@ -61,10 +63,33 @@ public class GameManager : MonoBehaviour {
 			if (all_done) {
 				playersTurn = false;
 				enemiesTurn = true;
-			}
-		}
 
-		//StartCoroutine (MoveEnemies ());
+				foreach (Enemy enemy in enemyL) {
+					enemy.Active = true;
+				}
+			}
+		} else if (enemiesTurn) {
+			bool all_done = true;
+
+			for (int i = 0; i < enemyL.Count; i++) {
+				if (enemyL [i].Active) {
+					enemyL [i].MoveEnemy ();
+				}
+					
+				if (enemyL [i].Active || enemyL [i].moving) {
+					all_done = false;
+				}
+			}
+
+			if (all_done) {
+				playersTurn = true;
+				enemiesTurn = false;
+
+				foreach (Unit player in playerL) {
+					player.Active = true;
+				}
+			}
+		} 
 	}
 		
 	void PlayerSelect() {
@@ -92,17 +117,14 @@ public class GameManager : MonoBehaviour {
 			enemyL.Add (enemy.GetComponent<Enemy> ());
 		}
 
-		GameObject[] players = GameObject.FindGameObjectsWithTag ("Unit");
-		foreach (GameObject player in players) {
-			playerL.Add (player.GetComponent<Unit> ());
-		}
-
 		foreach (HexTile tile in tileL) {
 			if (tile.GetComponent<HexTile> ().SpawnP == 1) {
 				foreach (Unit player in playerL) {
 					if (player.GetComponent<Unit> ().tile == null) {
 						tile.GetComponent<HexTile> ().character = player.gameObject;
 						player.GetComponent<Unit> ().tile = tile;
+						player.GetComponent<Unit> ().InitPosition ();
+						player.GetComponent<Unit>().Active = true;
 					}
 				}
 			} else if (tile.GetComponent<HexTile> ().SpawnP == 2) {
@@ -110,29 +132,14 @@ public class GameManager : MonoBehaviour {
 					if (enemy.GetComponent<Enemy> ().tile == null) {
 						tile.GetComponent<HexTile> ().character = enemy.gameObject;
 						enemy.GetComponent<Enemy> ().tile = tile;
+						enemy.GetComponent<Enemy> ().InitPosition ();
 					}
 				}
 			}
 		}
 	}
 
-	IEnumerator MoveEnemies() {
-		enemiesTurn = true;
-
-		yield return new WaitForSeconds (turnDelay);
-
-		if (enemyL.Count == 0) {
-			yield return new WaitForSeconds (turnDelay);
-		}
-
-		for (int i = 0; i < enemyL.Count; i++) {
-			enemyL [i].MoveEnemy ();
-
-			yield return new WaitForSeconds(turnDelay);
-		}
-
-		playersTurn = true;
-
-		enemiesTurn = false;
+	public void AddPlayer(Unit player) {
+		playerL.Add (player);
 	}
 }
