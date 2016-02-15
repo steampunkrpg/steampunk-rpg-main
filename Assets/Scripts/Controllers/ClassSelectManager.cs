@@ -76,8 +76,8 @@ public class ClassSelectManager : MonoBehaviour {
 	public void YesButton () {
 		areYouSurePanel.SetActive (false);
 		buildingCharacterPanel.SetActive (true);
-		ClickAsync ("Grid_Scene");
 		classIsPicked = true;
+		ClickAsync ("Test_Level");
 	}
 
 	//public for no

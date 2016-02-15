@@ -27,17 +27,17 @@ public class PickedClassBuilder : MonoBehaviour {
 			SetStats();
 
 			//transfers object to next scene
-			DontDestroyOnLoad (pickedClass);
+			//DontDestroyOnLoad (pickedClass);
 		}
 	}
 	
 	string GetSelectedClass () {
-		pickedClassName = csm.className;
+		pickedClassName = csm.className + "C";
 		return pickedClassName;
 	}
 	
 	void RandomizeStats () {
-		if (selectedClass == "Vanguard") {
+		if (selectedClass == "VanguardC") {
 			STRmin = 7.0f;
 			STRmax = 10.0f;
 			STRval = Random.Range(STRmin, STRmax);
@@ -106,7 +106,8 @@ public class PickedClassBuilder : MonoBehaviour {
 
 	void SetStats() {
 		pickedClass = GameObject.Find (pickedClassName);
-		pickedClass.GetComponent<Stats> ().SetStats (STRval, DEXval, INTval, HPval, DEFval);
+		pickedClass.GetComponentInChildren<Stats>().SetStats(STRval, DEXval, INTval, HPval, DEFval);
+		GameManager.instance.AddPlayer (pickedClass.GetComponentInChildren<Unit> ());
 	}
 }
 

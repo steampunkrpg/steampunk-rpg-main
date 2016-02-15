@@ -32,15 +32,14 @@ public class GameManager : MonoBehaviour {
 		enemyL = new List<Enemy> ();
 
 		playerInput = this.gameObject.GetComponent<PlayerKeyBoardInput> ();
-
-		InitGame ();
 	}
 
 	public void InitGame() {
 		enemyL = new List<Enemy> ();
 		tileL = new List<HexTile> ();
 
-		LoadLists();
+		LoadLists ();
+		playersTurn = true;
 	}
 
 	void Update() {
@@ -103,6 +102,8 @@ public class GameManager : MonoBehaviour {
 					if (player.GetComponent<Unit> ().tile == null) {
 						tile.GetComponent<HexTile> ().character = player.gameObject;
 						player.GetComponent<Unit> ().tile = tile;
+						player.GetComponent<Unit> ().InitPosition ();
+						player.GetComponent<Unit>().Active = true;
 					}
 				}
 			} else if (tile.GetComponent<HexTile> ().SpawnP == 2) {
@@ -110,10 +111,15 @@ public class GameManager : MonoBehaviour {
 					if (enemy.GetComponent<Enemy> ().tile == null) {
 						tile.GetComponent<HexTile> ().character = enemy.gameObject;
 						enemy.GetComponent<Enemy> ().tile = tile;
+						enemy.GetComponent<Enemy> ().InitPosition ();
 					}
 				}
 			}
 		}
+	}
+
+	public void AddPlayer(Unit player) {
+		playerL.Add (player);
 	}
 
 	IEnumerator MoveEnemies() {
