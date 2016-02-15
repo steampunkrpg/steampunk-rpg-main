@@ -8,8 +8,6 @@ public class Vanguard : MonoBehaviour {
 
 	void Start() {
 		char_stat = this.gameObject.GetComponent<Stats> ();
-
-		DontDestroyOnLoad (this);
 	}
 
 	void Update() {

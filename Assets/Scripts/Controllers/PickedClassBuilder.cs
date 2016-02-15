@@ -25,9 +25,6 @@ public class PickedClassBuilder : MonoBehaviour {
 			classFetched = true;
 			RandomizeStats();
 			SetStats();
-
-			//transfers object to next scene
-			//DontDestroyOnLoad (pickedClass);
 		}
 	}
 	
@@ -108,6 +105,7 @@ public class PickedClassBuilder : MonoBehaviour {
 		pickedClass = GameObject.Find (pickedClassName);
 		pickedClass.GetComponentInChildren<Stats>().SetStats(STRval, DEXval, INTval, HPval, DEFval);
 		GameManager.instance.AddPlayer (pickedClass.GetComponentInChildren<Unit> ());
+		pickedClass.GetComponent<Unit> ().DontDestroy ();
 	}
 }
 

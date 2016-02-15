@@ -175,6 +175,7 @@ MonoBehaviour:
   tile: {fileID: 0}
   Active: 0
   char_class: {fileID: 0}
+  char_stats: {fileID: 0}
 --- !u!1 &1080940004
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,7 +337,6 @@ GameObject:
   - 92: {fileID: 1167491359}
   - 124: {fileID: 1167491358}
   - 81: {fileID: 1167491357}
-  - 114: {fileID: 1167491362}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -411,18 +411,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &1167491362
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1167491356}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba7c1069fa2568d47bc8ddfe74e18efa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameManager: {fileID: 131926, guid: f2dea3cb7bce24a40b47ff1126391947, type: 2}
 --- !u!1 &1321377680
 GameObject:
   m_ObjectHideFlags: 0

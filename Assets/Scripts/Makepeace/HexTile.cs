@@ -100,8 +100,9 @@ public class HexTile : MonoBehaviour {
 			}
 
 			y--;
+			x--;
 			tileName = "HexTile [" + y + "," + x + "]";
-			if (pos [1] != 9) {
+			if (pos [1] != 0) {
 				W_Tile = GameObject.Find (tileName).GetComponent<HexTile> ();
 			}
 

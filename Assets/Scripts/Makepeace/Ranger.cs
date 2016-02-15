@@ -3,13 +3,13 @@ using System.Collections;
 
 public class Ranger : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
+	private Stats char_stat;
+
+	void Start() {
+		char_stat = this.gameObject.GetComponent<Stats> ();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	void Update() {
+
 	}
 }
