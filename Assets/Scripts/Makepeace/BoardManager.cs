@@ -69,7 +69,6 @@ public class BoardManager : MonoBehaviour {
 				hextile.transform.name = "HexTile [" + y + "," + x + "]";
 				hextile.GetComponent<HexTile> ().pos = new float[] { y, x };
 				i++;
-				GameManager.instance.AddTileToList (hextile);
 			}
 		}
 	}

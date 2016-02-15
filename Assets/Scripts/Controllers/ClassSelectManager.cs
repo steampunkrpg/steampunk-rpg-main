@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class ClassSelectManager : MonoBehaviour {
@@ -6,6 +7,7 @@ public class ClassSelectManager : MonoBehaviour {
 	public bool isFocusing, classIsPicked;
 	public string className;
 
+	private SceneManager sceneManager;
 	private AsyncOperation async;
 	private RaycastHit hit;
 	private Vector3 offset, startingLocation;
@@ -30,7 +32,7 @@ public class ClassSelectManager : MonoBehaviour {
 		buildingCharacterPanel.SetActive (false);
 
 		startingLocation = mainCamera.transform.position;
-		offset = new Vector3 (0.0f, 0.6f, -1.5f);
+		offset = new Vector3 (0.0f, 0.6f, -2.0f);
 	}
 
 	void Update (){
@@ -43,7 +45,7 @@ public class ClassSelectManager : MonoBehaviour {
 			mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 			
 			if (Physics.Raycast(mouseRay, out hit)){
-				if (hit.collider.tag.Equals("CharacterClass")){
+				if (hit.collider.tag.Equals("CharacterClass") && !isFocusing){
 					className = hit.collider.name;
 
 					title.SetActive(false);
@@ -76,8 +78,8 @@ public class ClassSelectManager : MonoBehaviour {
 	public void YesButton () {
 		areYouSurePanel.SetActive (false);
 		buildingCharacterPanel.SetActive (true);
-		ClickAsync ("Grid_Scene");
 		classIsPicked = true;
+		ClickAsync ("Test_Level");
 	}
 
 	//public for no
@@ -103,7 +105,7 @@ public class ClassSelectManager : MonoBehaviour {
 
 	IEnumerator LoadLevelWithBar (string sceneName)
 	{
-		async = Application.LoadLevelAsync(sceneName);
+		async = SceneManager.LoadSceneAsync(sceneName);
 		while (!async.isDone)
 		{
 			yield return null;

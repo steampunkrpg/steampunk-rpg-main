@@ -2,14 +2,14 @@
 using System.Collections;
 using System;
 
-public class PlayerScript : Unit {
+public class PlayerScript :MonoBehaviour {
 
-    public override void MoveUp()
+    public void MoveUp()
     {
         transform.position = new Vector3(transform.position.x - 1, transform.position.y, transform.position.z);
     }
 
-    public override void Update()
+    public void Update()
     {
         throw new NotImplementedException();
     }
