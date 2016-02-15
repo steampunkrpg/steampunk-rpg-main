@@ -5,5 +5,7 @@ public class InitializeGame : MonoBehaviour {
 
 	void Start() {
 		GameManager.instance.InitGame ();
+
+
 	}
 }

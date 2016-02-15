@@ -1477,7 +1477,7 @@ GameObject:
   - 114: {fileID: 720889268}
   m_Layer: 0
   m_Name: Class
-  m_TagString: Untagged
+  m_TagString: Class
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3357,6 +3357,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tile: {fileID: 0}
   Active: 0
+  moving: 0
   char_class: {fileID: 868519534}
   char_stats: {fileID: 0}
 --- !u!1 &868519534
@@ -3370,7 +3371,7 @@ GameObject:
   - 114: {fileID: 868519536}
   m_Layer: 0
   m_Name: Class
-  m_TagString: Untagged
+  m_TagString: Class
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3564,6 +3565,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tile: {fileID: 0}
   Active: 0
+  moving: 0
   char_class: {fileID: 720889266}
   char_stats: {fileID: 0}
 --- !u!1 &975629861
@@ -6383,7 +6385,7 @@ GameObject:
   - 114: {fileID: 1430710975}
   m_Layer: 0
   m_Name: Class
-  m_TagString: Untagged
+  m_TagString: Class
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7066,6 +7068,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tile: {fileID: 0}
   Active: 0
+  moving: 0
   char_class: {fileID: 1430710973}
   char_stats: {fileID: 0}
 --- !u!65 &2020711258

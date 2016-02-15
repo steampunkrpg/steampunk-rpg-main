@@ -88,4 +88,8 @@ public class Unit : MonoBehaviour {
 	public void DontDestroy() {
 		DontDestroyOnLoad (this);
 	}
+
+	public void Death() {
+		Destroy (this);
+	}
 }
