@@ -22,24 +22,25 @@ public class Unit : MonoBehaviour {
 	bool ValidMove(int dir) {
 		switch (dir) {
 		case 1:
-			return (tile.NE_Tile != null && tile.character != null);
+			return (tile.NE_Tile != null && tile.NE_Tile.character == null);
 		case 2:
-			return (tile.NW_Tile != null && tile.character != null);
+			return (tile.NW_Tile != null && tile.NW_Tile.character == null);
 		case 3:
-			return (tile.E_Tile != null && tile.character != null);
+			return (tile.E_Tile != null && tile.E_Tile.character == null);
 		case 4:
-			return (tile.SE_Tile != null && tile.character != null);
+			return (tile.SE_Tile != null && tile.SE_Tile.character == null);
 		case 5:
-			return (tile.SW_Tile != null && tile.character != null);
+			return (tile.SW_Tile != null && tile.SW_Tile.character == null);
 		case 6:
-			return (tile.W_Tile != null && tile.character != null);
+			return (tile.W_Tile != null && tile.W_Tile.character == null);
 		default:
 			return false;
 		}
 	}
 
 	public void Move(int dir) {
-		if (ValidMove (dir)) {
+		bool validMove = ValidMove (dir);
+		if (validMove) {
 			tile.character = null;
 
 			switch (dir) {

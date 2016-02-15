@@ -73,7 +73,16 @@ public class GameManager : MonoBehaviour {
 
 			for (int i = 0; i < enemyL.Count; i++) {
 				if (enemyL [i].Active) {
-					enemyL [i].MoveEnemy ();
+					bool aEnemyMoving = false;
+					for (int j = 0; j < enemyL.Count; j++) {
+						if (enemyL [j].moving) {
+							aEnemyMoving = true;
+						}
+					}
+
+					if (!aEnemyMoving) {
+						enemyL [i].MoveEnemy ();
+					}
 				}
 					
 				if (enemyL [i].Active || enemyL [i].moving) {
@@ -120,7 +129,7 @@ public class GameManager : MonoBehaviour {
 		foreach (HexTile tile in tileL) {
 			if (tile.GetComponent<HexTile> ().SpawnP == 1) {
 				foreach (Unit player in playerL) {
-					if (player.GetComponent<Unit> ().tile == null) {
+					if (player.GetComponent<Unit> ().tile == null && tile.GetComponent<HexTile> ().character == null) {
 						tile.GetComponent<HexTile> ().character = player.gameObject;
 						player.GetComponent<Unit> ().tile = tile;
 						player.GetComponent<Unit> ().InitPosition ();
@@ -129,7 +138,7 @@ public class GameManager : MonoBehaviour {
 				}
 			} else if (tile.GetComponent<HexTile> ().SpawnP == 2) {
 				foreach (Enemy enemy in enemyL) {
-					if (enemy.GetComponent<Enemy> ().tile == null) {
+					if (enemy.GetComponent<Enemy> ().tile == null && tile.GetComponent<HexTile> ().character == null) {
 						tile.GetComponent<HexTile> ().character = enemy.gameObject;
 						enemy.GetComponent<Enemy> ().tile = tile;
 						enemy.GetComponent<Enemy> ().InitPosition ();
