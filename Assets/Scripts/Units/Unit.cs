@@ -8,6 +8,7 @@ public class Unit : MonoBehaviour {
 
 	public GameObject char_class;
 	public Stats char_stats;
+	public float movement;
 
 	void Awake() {
 		char_stats = this.GetComponentInChildren<Stats> ();
@@ -17,29 +18,31 @@ public class Unit : MonoBehaviour {
 	public void InitPosition() {
 		this.transform.position = tile.transform.position;
 		this.transform.Translate (new Vector3 (0.0f, 0.5f, 0.0f));
+		movement = char_stats.MOV;
 	}
 
 	bool ValidMove(int dir) {
 		switch (dir) {
 		case 1:
-			return (tile.NE_Tile != null && tile.character != null);
+			return (tile.NW_Tile != null && tile.NW_Tile.character == null && movement >= tile.NW_Tile.mov_cost);
 		case 2:
-			return (tile.NW_Tile != null && tile.character != null);
+			return (tile.NE_Tile != null && tile.NE_Tile.character == null&& movement >= tile.NE_Tile.mov_cost);
 		case 3:
-			return (tile.E_Tile != null && tile.character != null);
+			return (tile.E_Tile != null && tile.E_Tile.character == null && movement >= tile.E_Tile.mov_cost);
 		case 4:
-			return (tile.SE_Tile != null && tile.character != null);
+			return (tile.SE_Tile != null && tile.SE_Tile.character == null && movement >= tile.SE_Tile.mov_cost);
 		case 5:
-			return (tile.SW_Tile != null && tile.character != null);
+			return (tile.SW_Tile != null && tile.SW_Tile.character == null && movement >= tile.SW_Tile.mov_cost);
 		case 6:
-			return (tile.W_Tile != null && tile.character != null);
+			return (tile.W_Tile != null && tile.W_Tile.character == null && movement >= tile.W_Tile.mov_cost);
 		default:
 			return false;
 		}
 	}
 
 	public void Move(int dir) {
-		if (ValidMove (dir)) {
+		bool validMove = ValidMove (dir);
+		if (validMove && movement != 0) {
 			tile.character = null;
 
 			switch (dir) {
@@ -72,6 +75,10 @@ public class Unit : MonoBehaviour {
 			}
 
 			moving = true;
+			movement = movement - tile.mov_cost;
+		}
+
+		if (movement == 0) {
 			Active = false;
 		}
 	}
@@ -87,5 +94,13 @@ public class Unit : MonoBehaviour {
 
 	public void DontDestroy() {
 		DontDestroyOnLoad (this);
+	}
+
+	public void Death() {
+		Destroy (this);
+	}
+
+	public void ResetMovement() {
+		movement = char_stats.MOV;
 	}
 }

@@ -1,16 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class InitializeGame : MonoBehaviour {
+public class EnemyStatBuilder : MonoBehaviour {
 
 	private float STRmin, STRmax, DEXmin, DEXmax, INTmin, INTmax, HPmin, HPmax, 
 	DEFmin, DEFmax, STRval, DEXval, INTval, HPval, DEFval;
 
-	void Start() {
-		GameManager.instance.InitGame ();
-		InitializeStats ();
-	}
-
+	// Use this for initialization
 	public void InitializeStats() {
 		for (int i = 0; i < GameManager.instance.enemyL.Count; i++) {
 			RandomizeStats ();

@@ -8,6 +8,7 @@ TagManager:
   - GridTile
   - Unit
   - Enemy
+  - Class
   layers:
   - Default
   - TransparentFX

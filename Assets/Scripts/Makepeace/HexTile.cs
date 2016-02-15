@@ -10,6 +10,7 @@ public class HexTile : MonoBehaviour {
 	public HexTile SE_Tile;
 	public HexTile SW_Tile;
 	public float[] pos;
+	public float mov_cost = 1;
 
 	public GameObject character;
 

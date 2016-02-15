@@ -853,6 +853,7 @@ MonoBehaviour:
   INT: 0
   HP: 0
   DEF: 0
+  MOV: 0
 --- !u!1 &283192749
 GameObject:
   m_ObjectHideFlags: 0
@@ -1477,7 +1478,7 @@ GameObject:
   - 114: {fileID: 720889268}
   m_Layer: 0
   m_Name: Class
-  m_TagString: Untagged
+  m_TagString: Class
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1718,7 +1719,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 798279973}
   m_LocalRotation: {x: 0.7071066, y: 0, z: 0, w: -0.70710695}
-  m_LocalPosition: {x: 0, y: 1.2, z: 0}
+  m_LocalPosition: {x: 0, y: 1.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 896343}
@@ -3357,8 +3358,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tile: {fileID: 0}
   Active: 0
+  moving: 0
   char_class: {fileID: 868519534}
   char_stats: {fileID: 0}
+  movement: 0
 --- !u!1 &868519534
 GameObject:
   m_ObjectHideFlags: 0
@@ -3370,7 +3373,7 @@ GameObject:
   - 114: {fileID: 868519536}
   m_Layer: 0
   m_Name: Class
-  m_TagString: Untagged
+  m_TagString: Class
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3564,8 +3567,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tile: {fileID: 0}
   Active: 0
+  moving: 0
   char_class: {fileID: 720889266}
   char_stats: {fileID: 0}
+  movement: 0
 --- !u!1 &975629861
 GameObject:
   m_ObjectHideFlags: 0
@@ -4512,7 +4517,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1328920373}
   m_LocalRotation: {x: 0.7071066, y: 0, z: 0, w: -0.70710695}
-  m_LocalPosition: {x: 0, y: 1.2, z: 0}
+  m_LocalPosition: {x: 0, y: 1.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1308254206}
@@ -6104,6 +6109,7 @@ MonoBehaviour:
   INT: 0
   HP: 0
   DEF: 0
+  MOV: 0
 --- !u!1 &1365392137
 GameObject:
   m_ObjectHideFlags: 0
@@ -6383,7 +6389,7 @@ GameObject:
   - 114: {fileID: 1430710975}
   m_Layer: 0
   m_Name: Class
-  m_TagString: Untagged
+  m_TagString: Class
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7066,8 +7072,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tile: {fileID: 0}
   Active: 0
+  moving: 0
   char_class: {fileID: 1430710973}
   char_stats: {fileID: 0}
+  movement: 0
 --- !u!65 &2020711258
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7391,3 +7399,4 @@ MonoBehaviour:
   INT: 0
   HP: 0
   DEF: 0
+  MOV: 0

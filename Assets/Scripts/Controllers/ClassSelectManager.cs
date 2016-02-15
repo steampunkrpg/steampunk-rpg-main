@@ -32,7 +32,7 @@ public class ClassSelectManager : MonoBehaviour {
 		buildingCharacterPanel.SetActive (false);
 
 		startingLocation = mainCamera.transform.position;
-		offset = new Vector3 (0.0f, 0.6f, -1.5f);
+		offset = new Vector3 (0.0f, 0.6f, -2.0f);
 	}
 
 	void Update (){
@@ -45,7 +45,7 @@ public class ClassSelectManager : MonoBehaviour {
 			mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 			
 			if (Physics.Raycast(mouseRay, out hit)){
-				if (hit.collider.tag.Equals("CharacterClass")){
+				if (hit.collider.tag.Equals("CharacterClass") && !isFocusing){
 					className = hit.collider.name;
 
 					title.SetActive(false);
