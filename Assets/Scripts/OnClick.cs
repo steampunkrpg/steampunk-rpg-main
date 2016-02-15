@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using UnityEngine.UI;
 
@@ -20,7 +21,7 @@ public class OnClick : MonoBehaviour {
 
 	IEnumerator LoadLevelWithBar (string sceneName)
 	{
-		async = Application.LoadLevelAsync(sceneName);
+		async = SceneManager.LoadSceneAsync(sceneName);
 		while (!async.isDone)
 		{
 			loadingBar.value = async.progress;

@@ -4,12 +4,19 @@ using System.Collections;
 public class Unit : MonoBehaviour {
 	public HexTile tile;
 	public bool Active;
+	public bool moving;
 
-	void Start() {
+	public GameObject char_class;
+	public Stats char_stats;
+
+	void Awake() {
+		char_stats = this.GetComponentInChildren<Stats> ();
+		Active = false;
+	}
+
+	public void InitPosition() {
 		this.transform.position = tile.transform.position;
-		this.transform.Translate(new Vector3 (0.0f, 0.5f, 0.0f));
-
-		Active = true;
+		this.transform.Translate (new Vector3 (0.0f, 0.5f, 0.0f));
 	}
 
 	bool ValidMove(int dir) {
@@ -64,13 +71,21 @@ public class Unit : MonoBehaviour {
 				break;
 			}
 
+			moving = true;
 			Active = false;
 		}
 	}
 
 	void Update() {
-		if (this.transform.position.x != tile.transform.position.x || this.transform.position.z != tile.transform.position.z) {
+		if ((Active || moving) && (this.transform.position.x != tile.transform.position.x || this.transform.position.z != tile.transform.position.z)) {
 			this.transform.position = Vector3.MoveTowards (this.transform.position, new Vector3(tile.transform.position.x, this.transform.position.y, tile.transform.position.z), 3 * Time.deltaTime);
+			if (this.transform.position.x == tile.transform.position.x && this.transform.position.z == tile.transform.position.z) {
+				moving = false;
+			}
 		}
+	}
+
+	public void DontDestroy() {
+		DontDestroyOnLoad (this);
 	}
 }
