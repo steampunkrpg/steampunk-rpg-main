@@ -453,7 +453,7 @@ MonoBehaviour:
   tile: {fileID: 0}
   Active: 0
   moving: 0
-  char_class: {fileID: 0}
+  char_class: {fileID: 1407478584}
   char_stats: {fileID: 0}
   movement: 0
 --- !u!1 &1080940004

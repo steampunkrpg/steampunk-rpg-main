@@ -69,7 +69,7 @@ public class GridGenerator : MonoBehaviour {
 				hextile.transform.name = "Hex [" + y + "," + x + "]";
 				hextile.GetComponent<HexTile> ().pos = new float[] { y, x };
                 i++;
-				GameManager.instance.StartCoroutine ("AddTile",hextile);
+				//GameManager.instance.StartCoroutine ("AddTile",hextile);
 			}
         }
     }
