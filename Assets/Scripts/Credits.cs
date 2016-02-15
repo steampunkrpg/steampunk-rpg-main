@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class Credits : MonoBehaviour {
@@ -20,6 +21,6 @@ public class Credits : MonoBehaviour {
 		yield return new WaitForSeconds (LENGTH_OF_CREDITS);
 		gameObject.GetComponent<AudioSource> ().Stop ();
 		Application.OpenURL ("http://web.cse.ohio-state.edu/~boggus/5912/");
-		Application.LoadLevel ("Menu_Scene");		
+		SceneManager.LoadScene ("Menu_Scene");		
 	}
 }
