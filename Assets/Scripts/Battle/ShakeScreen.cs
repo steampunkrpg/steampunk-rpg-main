@@ -22,7 +22,7 @@ public class ShakeScreen : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (AdjustArrows.runDeepSix)
+        if (BattleCommands.runDeepSix)
         {
             timeElapsed += Time.deltaTime;
             if (goingUp)

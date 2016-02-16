@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class AdjustArrows : MonoBehaviour {
+public class BattleCommands : MonoBehaviour {
 
     public RawImage arrow1;
     public RawImage arrow2;
@@ -10,6 +10,7 @@ public class AdjustArrows : MonoBehaviour {
     public GameObject commandMenu;
     public GameObject commandBackground;
     public static bool runDeepSix = false;
+    public Text damageText;
     DrawDamage damageWriter;
 
 	// Use this for initialization
@@ -18,7 +19,7 @@ public class AdjustArrows : MonoBehaviour {
         arrow2.enabled = false;
         onFirst = true;
         runDeepSix = false;
-        damageWriter = new DrawDamage();
+        damageWriter = new DrawDamage(damageText);
 	}
 	
 	// Update is called once per frame
