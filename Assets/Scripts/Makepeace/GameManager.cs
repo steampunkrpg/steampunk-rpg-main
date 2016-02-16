@@ -49,9 +49,11 @@ public class GameManager : MonoBehaviour {
 		if (playersTurn) {
 			PlayerSelect ();
 			if (activePlayer != null && activePlayer.Active) {
-				activePlayer.gameObject.GetComponent<ParticleSystem> ().Play();
-			} else if (activePlayer != null && !activePlayer.Active) {
-				activePlayer.gameObject.GetComponent<ParticleSystem> ().Stop();
+				if (!activePlayer.GetComponentInChildren<ParticleSystem> ().isPlaying) {
+					activePlayer.GetComponentInChildren<ParticleSystem> ().Play (true);
+				}
+			} else if (activePlayer != null && !activePlayer.Active && !activePlayer.moving) {
+				activePlayer.GetComponentInChildren<ParticleSystem> ().Stop(true);
 			}
 
 			if (activePlayer != null && activePlayer.Active && !activePlayer.moving) {
@@ -69,6 +71,7 @@ public class GameManager : MonoBehaviour {
 			if (all_done) {
 				playersTurn = false;
 				enemiesTurn = true;
+				activePlayer = null;
 
 				foreach (Enemy enemy in enemyL) {
 					enemy.Active = true;
@@ -115,6 +118,9 @@ public class GameManager : MonoBehaviour {
 
 			if (Physics.Raycast (mouseRay, out hit)) {
 				if (hit.collider.tag.Equals ("Unit")) {
+					if (activePlayer != null) {
+						activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
+					}
 					activePlayer = hit.collider.gameObject.GetComponent<Unit>();
 				}
 			}

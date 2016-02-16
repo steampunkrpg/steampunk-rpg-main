@@ -8,10 +8,10 @@ public class InitializeGame : MonoBehaviour {
 
 	void Start() {
 		GameManager.instance.InitGame ();
-		InitializeStats ();
+		InitializeLists ();
 	}
 
-	public void InitializeStats() {
+	public void InitializeLists() {
 		for (int i = 0; i < GameManager.instance.enemyL.Count; i++) {
 			RandomizeStats ();
 			GameManager.instance.enemyL [i].GetComponentInChildren<Stats> ().SetStats (STRval, DEXval, INTval, HPval, DEFval, 2.0f);
