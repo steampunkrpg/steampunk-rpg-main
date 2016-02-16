@@ -48,6 +48,12 @@ public class GameManager : MonoBehaviour {
 	void Update() {
 		if (playersTurn) {
 			PlayerSelect ();
+			if (activePlayer != null && activePlayer.Active) {
+				activePlayer.gameObject.GetComponent<ParticleSystem> ().Play();
+			} else if (activePlayer != null && !activePlayer.Active) {
+				activePlayer.gameObject.GetComponent<ParticleSystem> ().Stop();
+			}
+
 			if (activePlayer != null && activePlayer.Active && !activePlayer.moving) {
 				playerInput.ProvideAction (activePlayer);
 			}
