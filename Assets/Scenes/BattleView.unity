@@ -863,6 +863,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 224: {fileID: 1652634296}
+  - 114: {fileID: 1652634297}
   m_Layer: 5
   m_Name: CommandMenu
   m_TagString: Untagged
@@ -892,6 +893,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -0.0000076293945}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1652634297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1652634295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 208a4916a46770847a3fc82be82f9f30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arrow1: {fileID: 1752624444}
+  arrow2: {fileID: 1362577917}
+  onFirst: 0
+  commandMenu: {fileID: 1652634295}
+  commandBackground: {fileID: 1012673425}
+  damageText: {fileID: 1818335148}
 --- !u!1 &1752624442
 GameObject:
   m_ObjectHideFlags: 0
@@ -1029,7 +1047,6 @@ GameObject:
   - 224: {fileID: 1811007163}
   - 222: {fileID: 1811007165}
   - 114: {fileID: 1811007164}
-  - 114: {fileID: 1811007166}
   m_Layer: 5
   m_Name: Command Text
   m_TagString: Untagged
@@ -1093,22 +1110,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1811007162}
---- !u!114 &1811007166
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1811007162}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 208a4916a46770847a3fc82be82f9f30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  arrow1: {fileID: 1752624444}
-  arrow2: {fileID: 1362577917}
-  onFirst: 0
-  commandMenu: {fileID: 1652634295}
-  commandBackground: {fileID: 1012673425}
 --- !u!1 &1818335146
 GameObject:
   m_ObjectHideFlags: 0
@@ -1126,7 +1127,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1818335147
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1141,7 +1142,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 259, y: 96}
+  m_AnchoredPosition: {x: 259, y: 118.9}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1818335148

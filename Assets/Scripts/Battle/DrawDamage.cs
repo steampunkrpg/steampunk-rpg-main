@@ -9,9 +9,14 @@ public class DrawDamage : MonoBehaviour {
     private float timeElapsed = 0.0f;
     private float duration = 2.0f;
 
+    public DrawDamage(Text damage)
+    {
+        damageText = damage;
+        damageText.enabled = false;
+    }
+
 	// Use this for initialization
 	void Start () {
-        damageText = GetComponent<Text>();
         damageText.text = "42";
 	}
 	
@@ -26,7 +31,8 @@ public class DrawDamage : MonoBehaviour {
         while (timeElapsed < duration)
         {
             timeElapsed += Time.deltaTime;
-            damageText.transform.Translate(new Vector3(0.0f, 1.0f, 0.0f));
+            damageText.transform.Translate(new Vector3(0.0f, 2.0f, 0.0f));
+            yield return new WaitForSeconds(.025f);
         }
         damageText.enabled = false;
         yield return null;
