@@ -49,6 +49,14 @@ public class GameManager : MonoBehaviour {
 		if (playersTurn) {
 			PlayerSelect ();
 
+			if (activePlayer != null && activePlayer.Active) {
+				if (!activePlayer.GetComponentInChildren<ParticleSystem> ().isPlaying) {
+					activePlayer.GetComponentInChildren<ParticleSystem> ().Play (true);
+				}
+			} else if (activePlayer != null && !activePlayer.Active && !activePlayer.moving) {
+				activePlayer.GetComponentInChildren<ParticleSystem> ().Stop(true);
+			}
+
 			if (activePlayer != null && activePlayer.Active && !activePlayer.moving) {
 				playerInput.ProvideAction (activePlayer);
 			}
@@ -111,6 +119,9 @@ public class GameManager : MonoBehaviour {
 
 			if (Physics.Raycast (mouseRay, out hit)) {
 				if (hit.collider.tag.Equals ("Unit")) {
+					if (activePlayer != null && activePlayer != hit.collider.gameObject.GetComponent<TestUnit>()) {
+						activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
+					}
 					activePlayer = hit.collider.gameObject.GetComponent<Unit>();
 				}
 			}

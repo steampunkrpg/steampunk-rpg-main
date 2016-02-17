@@ -16,6 +16,10 @@ public class InitializeGame : MonoBehaviour {
 			RandomizeStats ();
 			GameManager.instance.enemyL [i].GetComponentInChildren<Stats> ().SetStats (STRval, DEXval, INTval, HPval, DEFval, 2.0f);
 		}
+
+		for (int i = 0; i < GameManager.instance.playerL.Count; i++) {
+			GameManager.instance.playerL [i].GetComponentInChildren<ParticleSystem> ().Stop (true);
+		}
 	}
 
 	void RandomizeStats() {

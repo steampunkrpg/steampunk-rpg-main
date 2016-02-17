@@ -13,6 +13,7 @@ public class Unit : MonoBehaviour {
 
 	void Awake() {
 		char_stats = this.GetComponentInChildren<Stats> ();
+		this.GetComponentInChildren<ParticleSystem> ().Stop (true);
 		Active = false;
 	}
 
