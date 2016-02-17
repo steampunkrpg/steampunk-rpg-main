@@ -8,13 +8,15 @@ public class GameManager : MonoBehaviour {
 	public float turnDelay = 0.1f;
 	private PlayerKeyBoardInput playerInput;
 
+	public GameObject LevelHUD;
+
 	private Ray mouseRay;
 	private RaycastHit hit;
 
 	public List<HexTile> tileL;
 	public List<Unit> playerL;
 	public List<Enemy> enemyL;
-	public Unit activePlayer;
+	public Unit activePlayer = null;
 
 	public bool playersTurn;
 	private bool enemiesTurn;
@@ -41,6 +43,8 @@ public class GameManager : MonoBehaviour {
 		enemyL = new List<Enemy> ();
 		tileL = new List<HexTile> ();
 
+		LevelHUD.SetActive (true);
+
 		LoadLists ();
 		playersTurn = true;
 	}
@@ -48,6 +52,15 @@ public class GameManager : MonoBehaviour {
 	void Update() {
 		if (playersTurn) {
 			PlayerSelect ();
+
+			if (activePlayer != null && activePlayer.Active) {
+				if (!activePlayer.GetComponentInChildren<ParticleSystem> ().isPlaying) {
+					activePlayer.GetComponentInChildren<ParticleSystem> ().Play (true);
+				}
+			} else if (activePlayer != null && !activePlayer.Active && !activePlayer.moving) {
+				activePlayer.GetComponentInChildren<ParticleSystem> ().Stop(true);
+			}
+
 			if (activePlayer != null && activePlayer.Active && !activePlayer.moving) {
 				playerInput.ProvideAction (activePlayer);
 			}
@@ -63,6 +76,7 @@ public class GameManager : MonoBehaviour {
 			if (all_done) {
 				playersTurn = false;
 				enemiesTurn = true;
+				activePlayer = null;
 
 				foreach (Enemy enemy in enemyL) {
 					enemy.Active = true;
@@ -109,6 +123,9 @@ public class GameManager : MonoBehaviour {
 
 			if (Physics.Raycast (mouseRay, out hit)) {
 				if (hit.collider.tag.Equals ("Unit")) {
+					if (activePlayer != null && activePlayer != hit.collider.gameObject.GetComponent<Unit>()) {
+						activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
+					}
 					activePlayer = hit.collider.gameObject.GetComponent<Unit>();
 				}
 			}

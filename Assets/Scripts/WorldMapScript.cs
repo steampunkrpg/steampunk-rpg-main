@@ -1,6 +1,7 @@
 ﻿using UnityEngine.UI;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WorldMapScript : MonoBehaviour {
 
@@ -18,7 +19,7 @@ public class WorldMapScript : MonoBehaviour {
 
 	IEnumerator LoadLevelWithBar (string sceneName)
 	{
-		async = Application.LoadLevelAsync(sceneName);
+		async = SceneManager.LoadSceneAsync(sceneName);
 		while (!async.isDone)
 		{
 			loadingBar.value = async.progress;
