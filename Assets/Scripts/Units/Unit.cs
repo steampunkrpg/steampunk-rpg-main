@@ -7,11 +7,13 @@ public class Unit : MonoBehaviour {
 	public bool moving;
 
 	public GameObject char_class;
+	public Inventory inv;
 	public Stats char_stats;
 	public float movement;
 
 	void Awake() {
 		char_stats = this.GetComponentInChildren<Stats> ();
+		this.GetComponentInChildren<ParticleSystem> ().Stop (true);
 		Active = false;
 	}
 

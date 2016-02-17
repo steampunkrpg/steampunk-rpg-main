@@ -6,15 +6,19 @@ public class InitializeGame : MonoBehaviour {
 	private float STRmin, STRmax, DEXmin, DEXmax, INTmin, INTmax, HPmin, HPmax, 
 	DEFmin, DEFmax, STRval, DEXval, INTval, HPval, DEFval;
 
-	void Start() {
+	void Awake() {
 		GameManager.instance.InitGame ();
-		InitializeStats ();
+		InitializeLists ();
 	}
 
-	public void InitializeStats() {
+	public void InitializeLists() {
 		for (int i = 0; i < GameManager.instance.enemyL.Count; i++) {
 			RandomizeStats ();
 			GameManager.instance.enemyL [i].GetComponentInChildren<Stats> ().SetStats (STRval, DEXval, INTval, HPval, DEFval, 2.0f);
+		}
+
+		for (int i = 0; i < GameManager.instance.playerL.Count; i++) {
+			GameManager.instance.playerL [i].GetComponentInChildren<ParticleSystem> ().Stop (true);
 		}
 	}
 

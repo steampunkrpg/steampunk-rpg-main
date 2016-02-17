@@ -11,7 +11,6 @@ public class Enemy : MonoBehaviour {
 	public float movement;
 
 	void Start() {
-		tile = null;
 		enemy_stats = this.GetComponentInChildren<Stats> ();
 	}
 
