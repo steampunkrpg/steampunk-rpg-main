@@ -8,24 +8,24 @@ public class UiTest : MonoBehaviour {
     private float mana;
     public Image healthBar;
     public Image manaBar;
-//	public RawImage partyBackdrop;
 	public int partySize;
 
 	// Use this for initialization
 	void Start () {
         healthBar.fillAmount = 1f;
         manaBar.fillAmount = 1f;
-//		partyBackdrop.rectTransform.rect.height = 50f * partySize + (partySize + 1) * 5f;
 		for (int i = 0; i < partySize; i++) {
-//			;
-//			partyMember.name = "Party-Member-" + (i + 1);
-//			partyMember.transform.localPosition = new Vector2 (5f, -((float)partySize * 55f + 5f));
-		}
-	}
+            RawImage player = Instantiate(Resources.Load("Hud-Party-Member", typeof(RawImage))) as RawImage;
+            player.transform.SetParent(GameObject.Find("Party-Info").transform);
+            player.transform.localScale = new Vector3(1f, 1f, 1f);
+            player.transform.localPosition = new Vector3(5f, -5f - ((float)i * 55f), 0f);
+            player.name = "Party-Member-" + (i + 1);
+           
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {
-//        UseAbility();
 		if (Input.GetKeyDown (KeyCode.Alpha4) && manaBar.fillAmount >= 0.1f) {
 			UseAbility4 ();
 		}
@@ -38,25 +38,6 @@ public class UiTest : MonoBehaviour {
         TakeDamage();
         ResetHealthAndMana();
 	}
-
-//    public void UseAbility()
-//    {
-//        if (Input.GetKeyDown(KeyCode.Alpha4) && 
-//            manaBar.fillAmount >= 0.1f)
-//        {
-//            manaBar.fillAmount -= 0.1f;
-//        }
-//        else if (Input.GetKeyDown(KeyCode.Alpha5) &&
-//            manaBar.fillAmount >= 0.2f)
-//        {
-//            manaBar.fillAmount -= 0.2f;
-//        }
-//        else if (Input.GetKeyDown(KeyCode.Alpha6) &&
-//            manaBar.fillAmount >= 0.3f)
-//        {
-//            manaBar.fillAmount -= 0.3f;
-//        }
-//    }
 
 	public void UseAbility4()
 	{
@@ -73,10 +54,10 @@ public class UiTest : MonoBehaviour {
 		manaBar.fillAmount -= 0.3f;
 	}
 
-	public void LoadParty()
-	{
+	//public void LoadParty()
+	//{
 
-	}
+	//}
 
     void TakeDamage()
     {
