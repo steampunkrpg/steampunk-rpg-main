@@ -128,6 +128,10 @@ public class GameManager : MonoBehaviour {
 					}
 					activePlayer = hit.collider.gameObject.GetComponent<Unit>();
 				}
+				if (hit.collider.tag.Equals ("Terrain") && activePlayer != null) {
+					activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
+					activePlayer = null;
+				}
 			}
 		}
 		}
