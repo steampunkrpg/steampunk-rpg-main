@@ -5839,7 +5839,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba7c1069fa2568d47bc8ddfe74e18efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 131926, guid: f2dea3cb7bce24a40b47ff1126391947, type: 2}
+  gameManager: {fileID: 138350, guid: 0ef3daf4d80209349aaa3d6d0529a0b2, type: 2}
 --- !u!4 &1142586349
 Transform:
   m_ObjectHideFlags: 0

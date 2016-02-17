@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour {
 	public float turnDelay = 0.1f;
 	private PlayerKeyBoardInput playerInput;
 
+	public GameObject LevelHUD;
+
 	private Ray mouseRay;
 	private RaycastHit hit;
 
@@ -40,6 +42,8 @@ public class GameManager : MonoBehaviour {
 	public void InitGame() {
 		enemyL = new List<Enemy> ();
 		tileL = new List<HexTile> ();
+
+		LevelHUD.SetActive (true);
 
 		LoadLists ();
 		playersTurn = true;

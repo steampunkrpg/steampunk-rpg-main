@@ -8,12 +8,13 @@ public class UiTest : MonoBehaviour {
     private float mana;
     public Image healthBar;
     public Image manaBar;
-	public int partySize;
+	private int partySize;
 
 	// Use this for initialization
 	void Start () {
         healthBar.fillAmount = 1f;
         manaBar.fillAmount = 1f;
+		partySize = GameManager.instance.playerL.Count - 1;
 		for (int i = 0; i < partySize; i++) {
             RawImage player = Instantiate(Resources.Load("Hud-Party-Member", typeof(RawImage))) as RawImage;
             player.transform.SetParent(GameObject.Find("Party-Info").transform);
