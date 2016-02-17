@@ -119,7 +119,7 @@ public class GameManager : MonoBehaviour {
 
 			if (Physics.Raycast (mouseRay, out hit)) {
 				if (hit.collider.tag.Equals ("Unit")) {
-					if (activePlayer != null && activePlayer != hit.collider.gameObject.GetComponent<TestUnit>()) {
+					if (activePlayer != null && activePlayer != hit.collider.gameObject.GetComponent<Unit>()) {
 						activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
 					}
 					activePlayer = hit.collider.gameObject.GetComponent<Unit>();
