@@ -5100,8 +5100,13 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u2022 Mage class (maybe no magic?)\n\u2022 Placeholder for stat description
-    & abilities\n\u2022 Hi Boggus"
+  m_Text: 'Elemental class
+
+
+    High INT
+
+
+    Uses science and mysticism to heal allies and harm enemies'
 --- !u!222 &964084048
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11653,8 +11658,13 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u2022 Ranged class\n\u2022 Placeholder for stat description & abilities\n\u2022
-    Hi Boggus"
+  m_Text: 'Ranged class
+
+
+    High DEX
+
+
+    Stays behind their allies, suppressing and picking off foes from a distance'
 --- !u!222 &1698842063
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12076,8 +12086,13 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u2022 Melee class\n\u2022 Placeholder for stat description & abilities\n\u2022
-    Hi Boggus"
+  m_Text: 'Melee class
+
+
+    High STR and DEF
+
+
+    Prefers to be in the frontlines, fighting enemies head-on'
 --- !u!222 &2066929016
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12159,7 +12174,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 85
+  field of view: 82
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -12181,8 +12196,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2081123704}
-  m_LocalRotation: {x: 0.12406314, y: 0, z: 0, w: 0.99227434}
-  m_LocalPosition: {x: -345.5, y: -128.90582, z: -32.745842}
+  m_LocalRotation: {x: 0.053804703, y: 0, z: 0, w: 0.9985515}
+  m_LocalPosition: {x: -345.5, y: -129.39, z: -32.53}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1429527637}
