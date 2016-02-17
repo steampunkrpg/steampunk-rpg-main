@@ -14,7 +14,11 @@ public class UiTest : MonoBehaviour {
 	void Start () {
         healthBar.fillAmount = 1f;
         manaBar.fillAmount = 1f;
+<<<<<<< HEAD
 		partySize = GameManager.instance.playerL.Count - 1;
+=======
+		partySize = GameManager.instance.playerL.Count;
+>>>>>>> refs/remotes/origin/master
 		for (int i = 0; i < partySize; i++) {
             RawImage player = Instantiate(Resources.Load("Hud-Party-Member", typeof(RawImage))) as RawImage;
             player.transform.SetParent(GameObject.Find("Party-Info").transform);
