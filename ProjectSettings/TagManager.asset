@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - CharacterClass
+  - GridTile
+  - Unit
+  - Enemy
+  - Class
   layers:
   - Default
   - TransparentFX
