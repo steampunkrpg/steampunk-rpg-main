@@ -6,7 +6,7 @@ public class InitializeGame : MonoBehaviour {
 	private float STRmin, STRmax, DEXmin, DEXmax, INTmin, INTmax, HPmin, HPmax, 
 	DEFmin, DEFmax, STRval, DEXval, INTval, HPval, DEFval;
 
-	void Start() {
+	void Awake() {
 		GameManager.instance.InitGame ();
 		InitializeLists ();
 	}
