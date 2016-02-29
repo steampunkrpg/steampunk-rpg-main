@@ -54,7 +54,7 @@ public class Enemy : MonoBehaviour {
         SearchNode<HexTile, Action> currentTile = enemyList[enemyToMoveTo];
 
         // set up the stack for movement
-        Stack<SearchNode<HexTile, Action>> enemyStack = new Stack<SearchNode<HexTile, Action>();
+        Stack<SearchNode<HexTile, Action>> enemyStack = new Stack<SearchNode<HexTile, Action>>();
         while (currentTile.state != tile)
         {
             enemyStack.Push(currentTile);
