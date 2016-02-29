@@ -22,3 +22,4 @@ sysinfo.txt
 
 ProjectSettings/ProjectSettings.asset
 ProjectSettings/EditorBuildSettings.asset
+*.meta
