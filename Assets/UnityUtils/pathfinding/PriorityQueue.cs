@@ -41,6 +41,11 @@ public class PriorityQueue<P, V>
 		}
 		return res;
     }
+
+    public int Size()
+    {
+        return list.Count;
+    }
 	
 	
 	
