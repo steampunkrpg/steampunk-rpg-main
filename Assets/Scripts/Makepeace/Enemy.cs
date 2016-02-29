@@ -35,9 +35,39 @@ public class Enemy : MonoBehaviour {
         else
         {
             CalculateAvailableMovementTiles();
+            //MoveToEnemy();
         }
 
 	}
+
+    private void MoveToEnemy()
+    {
+        // take visited/enemy list and should be able to traverse to that tile
+        // use stack of nodes and keep calling parent until at current tile
+        // then transform from current tile to top of stack.
+        // keep popping off stack
+
+
+        // pick an enemy at random
+        System.Random rand = new System.Random();
+        int enemyToMoveTo = rand.Next(0, enemyList.Count);
+        SearchNode<HexTile, Action> currentTile = enemyList[enemyToMoveTo];
+
+        // set up the stack for movement
+        Stack<SearchNode<HexTile, Action>> enemyStack = new Stack<SearchNode<HexTile, Action>();
+        while (currentTile.state != tile)
+        {
+            enemyStack.Push(currentTile);
+            currentTile = currentTile.parent;
+        }
+
+        // move on the respective tiles starting at current position
+        while (enemyStack.Count > 0)
+        {
+            transform.position = enemyStack.Pop().state.transform.position; // do fancy animations here
+        }
+
+    }
 
     private void CalculateAvailableMovementTiles()
     {
