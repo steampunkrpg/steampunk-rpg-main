@@ -10,6 +10,7 @@ public class BattleCommands : MonoBehaviour {
     public GameObject commandMenu;
     public GameObject commandBackground;
     public static bool runDeepSix = false;
+    public static bool runGrittySlap = false;
     public Text damageText;
     DrawDamage damageWriter;
 
@@ -47,17 +48,17 @@ public class BattleCommands : MonoBehaviour {
             {
                 Debug.Log("onFirst");
                 ShakeScreen.timeElapsed = 0.0f;
-                StartCoroutine(DeepSixAnimation());
+                StartCoroutine(AnimationMenuMove());
                 runDeepSix = true;
             }
             else
             {
                 Debug.Log("onSecond");
-                StartCoroutine(DeepSixAnimation());
+                StartCoroutine(AnimationMenuMove());
             }
         }
 	}
-    IEnumerator DeepSixAnimation()
+    IEnumerator AnimationMenuMove()
     {
         Debug.Log("Inside Animation");
         yield return new WaitForSeconds(5);
