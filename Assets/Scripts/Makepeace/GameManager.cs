@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour {
 			if (activePlayer != null && activePlayer.Active) {
 				if (!activePlayer.GetComponentInChildren<ParticleSystem> ().isPlaying) {
 					activePlayer.GetComponentInChildren<ParticleSystem> ().Play (true);
+					activePlayer.possibleMoves ();
 				}
 			} else if (activePlayer != null && !activePlayer.Active && !activePlayer.moving) {
 				activePlayer.GetComponentInChildren<ParticleSystem> ().Stop(true);
@@ -180,5 +181,17 @@ public class GameManager : MonoBehaviour {
 
 	public void AddPlayer(Unit player) {
 		playerL.Add (player);
+	}
+
+	public void ResetTileDis() {
+		foreach (HexTile tile in tileL) {
+			tile.dis = -1;
+		}
+	}
+
+	public void ResetTilePar() {
+		foreach (HexTile tile in tileL) {
+			tile.transform.Find ("Possible_Move").gameObject.SetActive (false);
+		}
 	}
 }

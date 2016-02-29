@@ -28,5 +28,9 @@ public class TestPlayerKeyBoardInput : MonoBehaviour {
 			activePlayer.Move (6);
 			return;
 		}
+		if (Input.GetKey (KeyCode.F)) {
+			activePlayer.possibleAttack ();
+			return;
+		}
 	}
 }

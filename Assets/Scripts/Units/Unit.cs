@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 using System.Collections;
 
 public class Unit : MonoBehaviour {
@@ -10,6 +11,8 @@ public class Unit : MonoBehaviour {
 	public Inventory inv;
 	public Stats char_stats;
 	public float movement;
+	public float att_range = 1;
+	public int dis;
 
 	void Awake() {
 		char_stats = this.GetComponentInChildren<Stats> ();
@@ -40,6 +43,100 @@ public class Unit : MonoBehaviour {
 		default:
 			return false;
 		}
+	}
+
+	public void possibleMoves() {
+		GameManager.instance.ResetTileDis ();
+		GameManager.instance.ResetTilePar ();
+		float totalMov = movement;
+		HexTile viewTile = null;
+		List<HexTile> visitedTile = new List<HexTile> ();
+
+		this.tile.dis = 0;
+
+		visitedTile.Add (this.tile);
+		viewTile = this.tile;
+
+		while (visitedTile.Count > 0) {
+			foreach (HexTile tile in visitedTile) {
+				if (viewTile == null || tile.dis < viewTile.dis) {
+					viewTile = tile;
+				}
+			}
+
+			visitedTile.Remove (viewTile);
+
+			if (viewTile.E_Tile != null && viewTile.E_Tile.character == null && viewTile.E_Tile.mov_cost + viewTile.dis <= totalMov) {
+				if (viewTile.E_Tile.dis != -1 && viewTile.E_Tile.dis > viewTile.dis + viewTile.E_Tile.mov_cost) {
+					viewTile.E_Tile.dis = viewTile.dis + viewTile.E_Tile.mov_cost;
+				} else if (viewTile.E_Tile.dis == -1) {
+					viewTile.E_Tile.dis = viewTile.dis + viewTile.E_Tile.mov_cost;
+					viewTile.E_Tile.transform.Find ("Possible_Move").gameObject.SetActive (true);
+					visitedTile.Add (viewTile.E_Tile);
+				}
+			}
+
+			if (viewTile.W_Tile != null && viewTile.W_Tile.character == null && viewTile.W_Tile.mov_cost + viewTile.dis <= totalMov) {
+				if (viewTile.W_Tile.dis != -1 && viewTile.W_Tile.dis > viewTile.dis + viewTile.W_Tile.mov_cost) {
+					viewTile.W_Tile.dis = viewTile.dis + viewTile.W_Tile.mov_cost;
+				} else if (viewTile.W_Tile.dis == -1) {
+					viewTile.W_Tile.dis = viewTile.dis + viewTile.W_Tile.mov_cost;
+					viewTile.W_Tile.transform.Find ("Possible_Move").gameObject.SetActive (true);
+					visitedTile.Add (viewTile.W_Tile);
+				}
+			}
+
+			if (viewTile.SE_Tile != null && viewTile.SE_Tile.character == null && viewTile.SE_Tile.mov_cost + viewTile.dis <= totalMov) {
+				if (viewTile.SE_Tile.dis != -1 && viewTile.SE_Tile.dis > viewTile.dis + viewTile.SE_Tile.mov_cost) {
+					viewTile.SE_Tile.dis = viewTile.dis + viewTile.SE_Tile.mov_cost;
+				} else if (viewTile.SE_Tile.dis == -1) {
+					viewTile.SE_Tile.dis = viewTile.dis + viewTile.SE_Tile.mov_cost;
+					viewTile.SE_Tile.transform.Find ("Possible_Move").gameObject.SetActive (true);
+					visitedTile.Add (viewTile.SE_Tile);
+				}
+			}
+
+			if (viewTile.SW_Tile != null && viewTile.SW_Tile.character == null && viewTile.SW_Tile.mov_cost + viewTile.dis <= totalMov) {
+				if (viewTile.SW_Tile.dis != -1 && viewTile.SW_Tile.dis > viewTile.dis + viewTile.SW_Tile.mov_cost) {
+					viewTile.SW_Tile.dis = viewTile.dis + viewTile.SW_Tile.mov_cost;
+				} else if (viewTile.SW_Tile.dis == -1) {
+					viewTile.SW_Tile.dis = viewTile.dis + viewTile.SW_Tile.mov_cost;
+					viewTile.SW_Tile.transform.Find ("Possible_Move").gameObject.SetActive (true);
+					visitedTile.Add (viewTile.SW_Tile);
+				}
+			}
+
+			if (viewTile.NE_Tile != null && viewTile.NE_Tile.character == null && viewTile.NE_Tile.mov_cost + viewTile.dis <= totalMov) {
+				if (viewTile.NE_Tile.dis != -1 && viewTile.NE_Tile.dis > viewTile.dis + viewTile.NE_Tile.mov_cost) {
+					viewTile.NE_Tile.dis = viewTile.dis + viewTile.NE_Tile.mov_cost;
+				} else if (viewTile.NE_Tile.dis == -1) {
+					viewTile.NE_Tile.dis = viewTile.dis + viewTile.NE_Tile.mov_cost;
+					viewTile.NE_Tile.transform.Find ("Possible_Move").gameObject.SetActive (true);
+					visitedTile.Add (viewTile.NE_Tile);
+				}
+			}
+
+			if (viewTile.NW_Tile != null && viewTile.NW_Tile.character == null && viewTile.NW_Tile.mov_cost + viewTile.dis <= totalMov) {
+				if (viewTile.NW_Tile.dis != -1 && viewTile.NW_Tile.dis > viewTile.dis + viewTile.NW_Tile.mov_cost) {
+					viewTile.NW_Tile.dis = viewTile.dis + viewTile.NW_Tile.mov_cost;
+				} else if (viewTile.NW_Tile.dis == -1) {
+					viewTile.NW_Tile.dis = viewTile.dis + viewTile.NW_Tile.mov_cost;
+					viewTile.NW_Tile.transform.Find ("Possible_Move").gameObject.SetActive (true);
+					visitedTile.Add (viewTile.NW_Tile);
+				}
+			}
+
+			viewTile = null;
+		}
+	}
+
+	public void possibleAttack() {
+		GameManager.instance.ResetTileDis ();
+		GameManager.instance.ResetTilePar ();
+		HexTile viewTile = null;
+		List<HexTile> visitedTile = new List<HexTile> ();
+
+
 	}
 
 	public void Move(int dir) {
@@ -90,6 +187,7 @@ public class Unit : MonoBehaviour {
 			this.transform.position = Vector3.MoveTowards (this.transform.position, new Vector3(tile.transform.position.x, this.transform.position.y, tile.transform.position.z), 3 * Time.deltaTime);
 			if (this.transform.position.x == tile.transform.position.x && this.transform.position.z == tile.transform.position.z) {
 				moving = false;
+				possibleMoves ();
 			}
 		}
 	}
