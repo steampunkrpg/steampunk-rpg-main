@@ -19,6 +19,6 @@ public class Stats : MonoBehaviour
 		DEF = Mathf.Round(DEFval * 10f) / 10f;
 		MOV = MOVval;
 
-		Debug.Log (STR + " " + DEX + " " + INT + " " + HP + " " + DEF);
+		//Debug.Log (STR + " " + DEX + " " + INT + " " + HP + " " + DEF);
 	}
 }
