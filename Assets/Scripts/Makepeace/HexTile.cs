@@ -16,15 +16,21 @@ public class HexTile : MonoBehaviour {
 
 	public int SpawnP;
 
-	// Use this for initialization
-	void Start () {
+    public HexTile[] neighbors = new HexTile[6];
+
+    void Start () {
 
 	}
 	
-	// Update is called once per frame
 	void Update () {
 	
 	}
+
+    public HexTile GetNeighbor(int tile)
+    {
+        // NE NW W SW SE E
+        return neighbors[tile];
+    }
 
 
 	public void FindNeighbors() {
@@ -109,5 +115,12 @@ public class HexTile : MonoBehaviour {
 
 			x++;
 		}
-	}
+
+        neighbors[0] = NE_Tile;
+        neighbors[1] = NW_Tile;
+        neighbors[2] = W_Tile;
+        neighbors[3] = SW_Tile;
+        neighbors[4] = SE_Tile;
+        neighbors[5] = E_Tile;
+    }
 }
