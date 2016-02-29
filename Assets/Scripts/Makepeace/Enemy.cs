@@ -35,7 +35,7 @@ public class Enemy : MonoBehaviour {
         else
         {
             CalculateAvailableMovementTiles();
-            //MoveToEnemy();
+            MoveToEnemy();
         }
 
 	}
@@ -50,8 +50,26 @@ public class Enemy : MonoBehaviour {
 
         // pick an enemy at random
         System.Random rand = new System.Random();
-        int enemyToMoveTo = rand.Next(0, enemyList.Count);
-        SearchNode<HexTile, Action> currentTile = enemyList[enemyToMoveTo];
+
+        SearchNode<HexTile, Action> currentTile;
+        if (enemyList.Count > 0)
+        {
+            int enemyToMoveTo = rand.Next(0, enemyList.Count);
+            currentTile = enemyList[enemyToMoveTo];
+        }
+        else
+        {
+            // why do i have to do this...damn you dictionaries...
+            // convert dictionary to a list then get a random value from it.
+            var visitedList = new List<SearchNode<HexTile, Action>>();
+            foreach(var vTile in visitedTiles)
+            {
+                visitedList.Add(vTile.Value);
+            }
+            int tileToMoveTo = rand.Next(0, visitedTiles.Count);
+            currentTile = visitedList.ToArray().GetValue(tileToMoveTo) as SearchNode<HexTile, Action>;
+        }
+        
 
         // set up the stack for movement
         Stack<SearchNode<HexTile, Action>> enemyStack = new Stack<SearchNode<HexTile, Action>>();
@@ -62,9 +80,10 @@ public class Enemy : MonoBehaviour {
         }
 
         // move on the respective tiles starting at current position
-        while (enemyStack.Count > 0)
+        while (enemyStack.Count > 0 || movement > 0)
         {
             transform.position = enemyStack.Pop().state.transform.position; // do fancy animations here
+            movement--;
         }
 
     }
@@ -78,6 +97,7 @@ public class Enemy : MonoBehaviour {
         do
         {
             Debug.Log("frontier size: " + frontier.Size());
+            Debug.Log("visited list size: " + visitedTiles.Count);
             currentNode = frontier.Dequeue(); // get first node on frontier
 
             if (!checkForGoalState(currentNode)) // if cost is already at max movement, then done with the tile
@@ -89,8 +109,9 @@ public class Enemy : MonoBehaviour {
 
                     if (conflictingTile.g > currentNode.g) // check if the conflicting costs is greater than the current cost
                     {
+                        Debug.Log("Visting tile with less cost.");
                         visitedTiles.Remove(currentNode.state);
-                        visitedTiles.Add(currentNode.state, currentNode);
+                        //visitedTiles.Add(currentNode.state, currentNode);
                     }
                 }
                 else // we've never been here before
@@ -128,6 +149,7 @@ public class Enemy : MonoBehaviour {
                         } // end inner if
                         else // we've never been here before
                         {
+                            Debug.Log("Adding " + node.state.name + " with cost of " + cost + " to frontier.");
                             frontier.Enqueue(node, cost);
                         }
                         
@@ -135,13 +157,13 @@ public class Enemy : MonoBehaviour {
                 } // end for each
 
 
-                Debug.Log("Visited " + currentNode.state);
+                //Debug.Log("Visited " + currentNode.state);
             }
 
 
         } while (!frontier.IsEmpty);
 
-        
+        Debug.Log("Done calculating movement squares.");
     }
 
     private Boolean checkForGoalState(SearchNode<HexTile, Action> currentNode)
