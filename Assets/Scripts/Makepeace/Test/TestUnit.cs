@@ -8,7 +8,6 @@ public class TestUnit : MonoBehaviour {
 	public bool moving;
 
 	public GameObject char_class;
-	public Inventory inv;
 	public Stats char_stats;
 	public float movement;
 	public int dis;
