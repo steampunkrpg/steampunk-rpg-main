@@ -15,8 +15,9 @@ public class Character2HeightmapPosition : MonoBehaviour {
 
 	void FixedUpdate () {
 		GameObject camera = GameObject.Find ("Main Camera");
+		CameraBounds bounds = camera.GetComponentInChildren<CameraBounds> ();
 		Vector3 posC = camera.transform.position;
-		posC.y = Terrain.activeTerrain.SampleHeight (camera.transform.position) + 5;
+		posC.y = Terrain.activeTerrain.SampleHeight (camera.transform.position) + bounds.offset - bounds.zoom;
 		camera.transform.position = posC;
 
 		foreach (GameObject o in Unit) {
