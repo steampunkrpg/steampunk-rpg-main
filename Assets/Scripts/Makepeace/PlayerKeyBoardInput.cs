@@ -76,5 +76,16 @@ public class PlayerKeyBoardInput : MonoBehaviour {
 			}
 			camera.transform.position = pos;
 		}
+
+		if (Input.GetAxis("Mouse ScrollWheel") != 0) {
+			float zoom = Input.GetAxis ("Mouse ScrollWheel");
+			bounds.zoom += zoom;
+			camera.transform.position = new Vector3 (camera.transform.position.x, camera.transform.position.y - zoom, camera.transform.position.z + zoom);
+		}
+
+		if (Input.GetKey (KeyCode.R)) {
+			camera.transform.position = new Vector3 (camera.transform.position.x, camera.transform.position.y + bounds.zoom, camera.transform.position.z - bounds.zoom);
+			bounds.zoom = 0;
+		}
 	}
 }

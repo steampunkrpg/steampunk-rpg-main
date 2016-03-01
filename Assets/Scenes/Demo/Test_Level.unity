@@ -321,7 +321,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Lv: 1
   Xp: 0
-  cHP: 18
+  cHP: 7
   mHP: 18
   Str: 6
   Mag: 0
@@ -6842,7 +6842,7 @@ MonoBehaviour:
   Res: 10
   Con: 10
   Wt: 10
-  Mov: 2
+  Mov: 10
 --- !u!1 &1039680050
 GameObject:
   m_ObjectHideFlags: 0
@@ -7272,6 +7272,8 @@ MonoBehaviour:
   minX: -10
   maxZ: 7
   minZ: -10
+  zoom: 0
+  offset: 5
   locked: 0
 --- !u!1001 &1277888333
 Prefab:

@@ -63,6 +63,7 @@ public class GameManager : MonoBehaviour {
 				}
 			} else if (activePlayer != null && activePlayer.Status == 0) {
 				activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
+				activePlayer = null;
 			}
 
 			if (activePlayer != null && activePlayer.Status == 1) {
@@ -177,8 +178,10 @@ public class GameManager : MonoBehaviour {
 		}
 
 		if (activePlayer != null) {
+			playerInput.CameraAction ();
 			GameObject camera = GameObject.Find ("Main Camera");
-			camera.transform.position = new Vector3 (activePlayer.transform.position.x, activePlayer.transform.position.y + 5, activePlayer.transform.position.z - 5);
+			CameraBounds bounds = camera.GetComponentInChildren<CameraBounds> ();
+			camera.transform.position = new Vector3 (activePlayer.transform.position.x, activePlayer.transform.position.y + bounds.offset - bounds.zoom, activePlayer.transform.position.z - bounds.offset + bounds.zoom);
 		} else {
 			playerInput.CameraAction ();
 		}
