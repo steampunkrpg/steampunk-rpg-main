@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Alchemist : MonoBehaviour {
 
-	private Stats char_stat;
+	public List<int> validEquips;
 
 	void Start() {
+		validEquips.Add (1);
+		validEquips.Add (3);
 	}
 
 	void Update() {

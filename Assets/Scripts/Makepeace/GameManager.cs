@@ -7,8 +7,7 @@ public class GameManager : MonoBehaviour {
 	public static GameManager instance = null;
 	public float turnDelay = 0.1f;
 	private PlayerKeyBoardInput playerInput;
-
-	public XpGrowthRate xpGrowthRate;
+	private XpGrowthRate xpGrowthRate;
 	public GameObject LevelHUD;
 
 	private Ray mouseRay;
@@ -34,8 +33,8 @@ public class GameManager : MonoBehaviour {
 		playerL = new List<Unit> ();
 		enemyL = new List<Enemy> ();
 
-		playerInput = this.gameObject.GetComponent<PlayerKeyBoardInput> ();
 		xpGrowthRate = this.gameObject.GetComponent<XpGrowthRate> ();
+		playerInput = this.gameObject.GetComponent<PlayerKeyBoardInput> ();
 
 		State = 0;
 	}
@@ -81,7 +80,17 @@ public class GameManager : MonoBehaviour {
 						activePlayer.Status = 4;
 					} else {
 						if (activePlayer.GetComponentInChildren<Stats> ().Xp >= 100) {
-							activePlayer.GetComponentInChildren<Stats> ().LevelUp ();
+							float[] lvStats = new float[8];
+							string className = "";
+							foreach (Transform child in activePlayer.transform) {
+								if (child.tag == "Class") {
+									className = child.name;
+									break;
+								}
+							}
+
+							lvStats = xpGrowthRate.GetGrowthRates (className);
+							activePlayer.GetComponentInChildren<Stats> ().LevelUp (lvStats);
 						}
 						activePlayer.Status = 0;
 					}

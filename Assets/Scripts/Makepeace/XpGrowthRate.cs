@@ -4,7 +4,7 @@ using System.Collections;
 public class XpGrowthRate : MonoBehaviour {
 
 	public float[] GetGrowthRates(string className) {
-		float[] lvStats = new int[8] {0};
+		float[] lvStats = new float[8];
 		int x = Random.Range (0, 100);
 		switch (className) {
 		case "Vanguard":

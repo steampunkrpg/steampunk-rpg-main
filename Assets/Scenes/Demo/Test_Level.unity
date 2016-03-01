@@ -320,7 +320,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Lv: 1
-  Xp: 0
+  Xp: 99
   cHP: 18
   mHP: 18
   Str: 6
@@ -3607,7 +3607,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22464478, guid: 0ef3daf4d80209349aaa3d6d0529a0b2, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0ef3daf4d80209349aaa3d6d0529a0b2, type: 2}
@@ -5743,6 +5743,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d9fe0f62635b9546a375366f453b2c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  validEquips: 
 --- !u!1 &1460814171
 GameObject:
   m_ObjectHideFlags: 0

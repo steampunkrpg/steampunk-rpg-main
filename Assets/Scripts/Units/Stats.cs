@@ -36,20 +36,18 @@ public class Stats : MonoBehaviour
 		Xp = 0;
 	}
 
-	public void LevelUp() {
-		String className = "";
+	public void LevelUp(float[] lvStats) {
 		Lv++;
 		Xp = Xp - 100;
 
-		foreach (Transform child in this.transform.parent) {
-			if (child.tag == "Class") {
-				className = child.name;
-				break;
-			}
-		}
-
-		float[] lvStats = GameManager.instance.xpGrowthRate.GetGrowthRates (className);
-
 		mHP+=lvStats[0];
+		cHP = mHP;
+		Str += lvStats [1];
+		Mag += lvStats [2];
+		Skl += lvStats [3];
+		Spd += lvStats [4];
+		Lck += lvStats [5];
+		Def += lvStats [6];
+		Res += lvStats [7];
 	}
 }
