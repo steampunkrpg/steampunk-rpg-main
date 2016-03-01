@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Unit : MonoBehaviour {
 	public HexTile tile;
@@ -7,6 +8,9 @@ public class Unit : MonoBehaviour {
 	public bool moving;
 
 	public GameObject char_class;
+	public GameObject ui;
+	public Text statsView;
+	public Image health;
 	public Inventory inv;
 	public Stats char_stats;
 	public float movement;
@@ -21,6 +25,9 @@ public class Unit : MonoBehaviour {
 		this.transform.position = tile.transform.position;
 		this.transform.Translate (new Vector3 (0.0f, 0.5f, 0.0f));
 		movement = char_stats.MOV;
+		statsView.text = "STATS\nSTR: " + char_stats.STR + "\t\tHP: " + char_stats.HP + "\nDEX: " + char_stats.DEX + "\t\tDEF: " + char_stats.DEF + "\nINT: " + char_stats.INT + "\t\tMOV: " + char_stats.MOV;
+		health.fillAmount = 1f;
+		ui.SetActive (false);
 	}
 
 	bool ValidMove(int dir) {
@@ -39,6 +46,16 @@ public class Unit : MonoBehaviour {
 			return (tile.W_Tile != null && tile.W_Tile.character == null && movement >= tile.W_Tile.mov_cost);
 		default:
 			return false;
+		}
+	}
+
+	public void ActivateUI(){
+		if (Input.GetMouseButtonDown (1)) {
+			if (ui.activeSelf) {
+				ui.SetActive (false);
+			} else if (!ui.activeSelf) {
+				ui.SetActive (true);
+			}
 		}
 	}
 
@@ -92,6 +109,8 @@ public class Unit : MonoBehaviour {
 				moving = false;
 			}
 		}
+		ActivateUI ();
+		health.fillAmount = (float)char_stats.HP / 5f;
 	}
 
 	public void DontDestroy() {
