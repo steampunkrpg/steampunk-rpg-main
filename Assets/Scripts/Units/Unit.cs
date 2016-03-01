@@ -264,6 +264,7 @@ public class Unit : MonoBehaviour {
 				for (int i = 0; i < att_range.Count; i++) {
 					if (viewTile.dis + 1 == att_range[i] && viewTile.E_Tile.character != null && viewTile.E_Tile.character.tag == "Unit") {
 						viewTile.E_Tile.character.GetComponentInChildren<ParticleSystem> ().Play (true);
+						viewTile.E_Tile.character.GetComponentInChildren<ParticleSystem> ().startColor = new Color (0, 255, 0);
 					}
 				}
 
@@ -279,6 +280,7 @@ public class Unit : MonoBehaviour {
 				for (int i = 0; i < att_range.Count; i++) {
 					if (viewTile.dis + 1 == att_range[i] && viewTile.W_Tile.character != null && viewTile.W_Tile.character.tag == "Unit") {
 						viewTile.W_Tile.character.GetComponentInChildren<ParticleSystem> ().Play (true);
+						viewTile.W_Tile.character.GetComponentInChildren<ParticleSystem> ().startColor = new Color (0, 255, 0);
 					}
 				}
 
@@ -294,6 +296,7 @@ public class Unit : MonoBehaviour {
 				for (int i = 0; i < att_range.Count; i++) {
 					if (viewTile.dis + 1 == att_range[i] && viewTile.NE_Tile.character != null && viewTile.NE_Tile.character.tag == "Unit") {
 						viewTile.NE_Tile.character.GetComponentInChildren<ParticleSystem> ().Play (true);
+						viewTile.NE_Tile.character.GetComponentInChildren<ParticleSystem> ().startColor = new Color (0, 255, 0);
 					}
 				}
 
@@ -309,6 +312,7 @@ public class Unit : MonoBehaviour {
 				for (int i = 0; i < att_range.Count; i++) {
 					if (viewTile.dis + 1 == att_range[i] && viewTile.NW_Tile.character != null && viewTile.NW_Tile.character.tag == "Unit") {
 						viewTile.NW_Tile.character.GetComponentInChildren<ParticleSystem> ().Play (true);
+						viewTile.NW_Tile.character.GetComponentInChildren<ParticleSystem> ().startColor = new Color (0, 255, 0);
 					}
 				}
 
@@ -324,6 +328,7 @@ public class Unit : MonoBehaviour {
 				for (int i = 0; i < att_range.Count; i++) {
 					if (viewTile.dis + 1 == att_range[i] && viewTile.SE_Tile.character != null && viewTile.SE_Tile.character.tag == "Unit") {
 						viewTile.SE_Tile.character.GetComponentInChildren<ParticleSystem> ().Play (true);
+						viewTile.SE_Tile.character.GetComponentInChildren<ParticleSystem> ().startColor = new Color (0, 255, 0);
 					}
 				}
 
@@ -339,7 +344,7 @@ public class Unit : MonoBehaviour {
 				for (int i = 0; i < att_range.Count; i++) {
 					if (viewTile.dis + 1 == att_range[i] && viewTile.SW_Tile.character != null && viewTile.SW_Tile.character.tag == "Unit") {
 						viewTile.SW_Tile.character.GetComponentInChildren<ParticleSystem> ().Play (true);
-
+						viewTile.SW_Tile.character.GetComponentInChildren<ParticleSystem> ().startColor = new Color (0, 255, 0);
 					}
 				}
 

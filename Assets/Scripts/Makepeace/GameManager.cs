@@ -312,6 +312,7 @@ public class GameManager : MonoBehaviour {
 	private void ResetPlayerPar() {
 		foreach (Unit unit in playerL) {
 			unit.GetComponentInChildren<ParticleSystem> ().Stop (true);
+			unit.GetComponentInChildren<ParticleSystem> ().startColor = new Color (255, 255, 255);
 		}
 	}
 
