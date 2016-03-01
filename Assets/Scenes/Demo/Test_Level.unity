@@ -9165,7 +9165,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 122556, guid: f9965f2c655bbf2498205ee2fd46ff4f, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f9965f2c655bbf2498205ee2fd46ff4f, type: 2}
@@ -9330,7 +9330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51b60b7216a8b1f408bfdc078dc46869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Mt: 3
+  Mt: 10
   Hit: 95
   Crit: 0
   Wt: 5

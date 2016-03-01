@@ -326,8 +326,8 @@ public class GameManager : MonoBehaviour {
 		Stats iStat = init.character.GetComponentInChildren<Stats> ();
 		Stats rStat = rec.character.GetComponentInChildren<Stats> ();
 
-		if (iWep.type == -1) {
-			rStat.cHP += 10 + iStat.Mag;
+		if (iWep.type%2==1) {
+			rStat.cHP += iWep.Mt + iStat.Mag;
 			if (rStat.cHP > rStat.mHP) {
 				rStat.cHP = rStat.mHP;
 			}
