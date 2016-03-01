@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour {
 	public float turnDelay = 0.1f;
 	private PlayerKeyBoardInput playerInput;
 
+	public XpGrowthRate xpGrowthRate;
 	public GameObject LevelHUD;
 
 	private Ray mouseRay;
@@ -19,8 +20,7 @@ public class GameManager : MonoBehaviour {
 	public Unit activePlayer = null;
 	public Enemy activeEnemy = null;
 
-	public bool playersTurn;
-	private bool enemiesTurn;
+	public int State;
 
 	void Awake() {
 		if (instance == null)
@@ -35,9 +35,9 @@ public class GameManager : MonoBehaviour {
 		enemyL = new List<Enemy> ();
 
 		playerInput = this.gameObject.GetComponent<PlayerKeyBoardInput> ();
+		xpGrowthRate = this.gameObject.GetComponent<XpGrowthRate> ();
 
-		playersTurn = false;
-		enemiesTurn = false;
+		State = 0;
 	}
 
 	public void InitGame() {
@@ -47,12 +47,14 @@ public class GameManager : MonoBehaviour {
 		LevelHUD.SetActive (true);
 
 		LoadLists ();
-		playersTurn = true;
+		State = 1;
 	}
 
 	void Update() {
-		if (playersTurn) {
-			PlayerSelect ();
+		if (State == 1) {
+			if (activePlayer == null || activePlayer.Status == 1) {
+				PlayerSelect ();
+			}
 
 			if (activePlayer != null && activePlayer.Status == 1) {
 				if (!activePlayer.GetComponentInChildren<ParticleSystem> ().isPlaying) {
@@ -60,19 +62,29 @@ public class GameManager : MonoBehaviour {
 					activePlayer.possibleMoves ();
 				}
 			} else if (activePlayer != null && activePlayer.Status == 0) {
-				activePlayer.GetComponentInChildren<ParticleSystem> ().Stop(true);
+				activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
 			}
 
 			if (activePlayer != null && activePlayer.Status == 1) {
-				playerInput.ProvideAction (activePlayer);
+				playerInput.UnitAction (activePlayer);
 			}
 
 			if (activePlayer != null && activePlayer.Status == 3) {
 				EnemySelect ();
 				if (activeEnemy != null) {
 					initiateBattle (activePlayer.tile, activeEnemy.tile);
+					ResetEnemyPar ();
+					activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
 					activeEnemy = null;
-					activePlayer.Status = 0;
+
+					if (activePlayer.GetComponentInChildren<Stats> ().cHP <= 0) {
+						activePlayer.Status = 4;
+					} else {
+						if (activePlayer.GetComponentInChildren<Stats> ().Xp >= 100) {
+							activePlayer.GetComponentInChildren<Stats> ().LevelUp ();
+						}
+						activePlayer.Status = 0;
+					}
 				}
 			}
 
@@ -85,8 +97,7 @@ public class GameManager : MonoBehaviour {
 			}
 
 			if (all_done) {
-				playersTurn = false;
-				enemiesTurn = true;
+				State = 3;
 				activePlayer = null;
 
 				foreach (Enemy enemy in enemyL) {
@@ -94,7 +105,7 @@ public class GameManager : MonoBehaviour {
 					enemy.ResetMovement ();
 				}
 			}
-		} else if (enemiesTurn) {
+		} else if (State == 2) {
 			bool all_done = true;
 
 			for (int i = 0; i < enemyL.Count; i++) {
@@ -107,25 +118,35 @@ public class GameManager : MonoBehaviour {
 					}
 
 					if (!aEnemyMoving) {
-						enemyL [i].MoveEnemy ();
+						//enemyL [i].MoveEnemy ();
 					}
 				}
 					
 				if (enemyL [i].Active || enemyL [i].moving) {
-					all_done = false;
+					//all_done = false;
 				}
 			}
 
 			if (all_done) {
-				playersTurn = true;
-				enemiesTurn = false;
+				State = 4;
 
 				foreach (Unit player in playerL) {
 					player.Status = 1;
 					player.ResetMovement ();
 				}
 			}
-		} 
+		} else if (State == 3) {
+			StartCoroutine (TimerEnumerator(3,2));
+		} else if (State == 4) {
+			StartCoroutine (TimerEnumerator(3,1));
+		}
+
+		if (activePlayer != null) {
+			GameObject camera = GameObject.Find ("Main Camera");
+			camera.transform.position = new Vector3 (activePlayer.transform.position.x, activePlayer.transform.position.y + 5, activePlayer.transform.position.z - 5);
+		} else {
+			playerInput.CameraAction ();
+		}
 	}
 		
 	void PlayerSelect() {
@@ -140,6 +161,7 @@ public class GameManager : MonoBehaviour {
 					activePlayer = hit.collider.gameObject.GetComponent<Unit>();
 				}
 				if (hit.collider.tag.Equals ("Terrain") && activePlayer != null) {
+					ResetTilePar ();
 					activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
 					activePlayer = null;
 				}
@@ -157,8 +179,10 @@ public class GameManager : MonoBehaviour {
 						activeEnemy = hit.collider.gameObject.GetComponent<Enemy> ();
 					}
 				}
-				if (hit.collider.tag.Equals ("Terrain")) {
+				if (hit.collider.tag.Equals ("Terrain") || hit.collider.tag.Equals ("Unit")) {
 					activePlayer.Status = 1;
+					activePlayer.possibleMoves ();
+					ResetEnemyPar ();
 				}
 			}
 		}
@@ -222,7 +246,233 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-	private void initiateBattle (HexTile attacker, HexTile defender) {
+	private void ResetEnemyPar() {
+		foreach (Enemy enemy in enemyL) {
+			enemy.transform.Find ("Particle").gameObject.SetActive (false);
+		}
+	}
 
+	IEnumerator TimerEnumerator(float secs, int nextState) {
+		State = 0;
+		yield return new WaitForSeconds (secs);
+		State = nextState;
+	}
+
+	private void initiateBattle (HexTile attacker, HexTile defender) {
+		Weapon aWep = attacker.character.GetComponentInChildren<Weapon> ();
+		Weapon dWep = defender.character.GetComponentInChildren<Weapon> ();
+		Stats aStat = attacker.character.GetComponentInChildren<Stats> ();
+		Stats dStat = defender.character.GetComponentInChildren<Stats> ();
+
+		float a_as, d_as;
+		if (aWep.Wt <= aStat.Str) {
+			a_as = aStat.Spd;
+		} else {
+			a_as = aStat.Spd - (aWep.Wt - aStat.Str);
+		}
+
+		if (dWep.Wt <= dStat.Str) {
+			d_as = dStat.Spd;
+		} else {
+			d_as = dStat.Spd - (dWep.Wt - dStat.Str);
+		}
+		 
+		int[] repAtt = {0,0};
+		if (a_as - d_as >= 4) {
+			repAtt [0] = 1;
+		} else if (d_as - a_as >= 4) {
+			repAtt [1] = 1;
+		}
+
+		float a_hr, d_hr;
+		a_hr = aWep.Hit + aStat.Skl * 2 + aStat.Lck /*+ Support Bonus + Biorythym Bonus*/;
+		d_hr = dWep.Hit + dStat.Skl * 2 + aStat.Lck /*+ Support Bonus + Biorythym Bonus*/;
+
+		float a_ev, d_ev;
+		a_ev = a_as + aStat.Lck + attacker.terrainBonus /*+ Support Bonus + Biorythym Bonus*/;
+		d_ev = d_as + dStat.Lck + defender.terrainBonus /*+ Support Bonus + Biorythym Bonus*/;
+
+		float a_ac, d_ac;
+		a_ac = a_hr - d_ev;
+		if (a_ac < 0) {
+			a_ac = 0;
+		} else if (a_ac > 100) {
+			a_ac = 100;
+		}
+		d_ac = d_hr - a_ev;
+		if (d_ac < 0) {
+			d_ac = 0;
+		} else if (d_ac > 100) {
+			d_ac = 100;
+		}
+
+		float a_ap, d_ap;
+		if (aWep.type%2 == 0) {
+			a_ap = aStat.Str + (aWep.Mt);
+		} else {
+			a_ap = aStat.Mag + (aWep.Mt);
+		}
+		if (dWep.type%2 == 0) {
+			d_ap = dStat.Str + (dWep.Mt);
+		} else {
+			d_ap = dStat.Mag + (dWep.Mt);
+		}
+
+		float a_dp, d_dp;
+		if (dWep.type%2 == 0) {
+			a_dp = attacker.terrainBonus + aStat.Def;
+		} else {
+			a_dp = attacker.terrainBonus + aStat.Res;
+		}
+		if (aWep.type%2 == 0) {
+			d_dp = defender.terrainBonus + dStat.Def;
+		} else {
+			d_dp = defender.terrainBonus + dStat.Res;
+		}
+
+		float a_dm, d_dm;
+		a_dm = a_ap - d_dp;
+		d_dm = d_ap - a_dp;
+		if (a_dm < 0) {
+			a_dm = 0;
+		}
+		if (d_dm < 0) {
+			d_dm = 0;
+		}
+
+		float a_cr, d_cr;
+		a_cr = aWep.Crit + aStat.Skl / 2 /*+ Bond Bonus + Class Critical*/;
+		d_cr = dWep.Crit + dStat.Skl / 2 /*+ Bond Bonus + Class Critical*/;
+
+		float a_ce, d_ce;
+		a_ce = aStat.Lck /*+ Bond Bonus*/;
+		d_ce = dStat.Lck /*+ Bond Bonus*/;
+
+		float a_cc, d_cc;
+		a_cc = a_cr - d_ce;
+		d_cc = d_cr - a_ce;
+
+		float a_xp, d_xp;
+
+		float x = Random.Range(0,100);
+		if (a_cc>=x) {
+			a_dm = a_dm * 3;
+		}
+		if (a_ac >= x) {
+			if (a_dm == 0) {
+				a_xp = 1;
+			} else {
+				float xp = 10 + (dStat.Lv - aStat.Lv) / 2;
+				if (xp < 1) {
+					xp = 1;
+				}
+				a_xp = xp;
+			}
+			dStat.cHP -= a_dm;
+		} else {
+			a_xp = 1;
+		}
+
+		if (dStat.cHP <= 0) {
+			a_xp += (dStat.Lv - aStat.Lv) + 15 + 5;
+			if (defender.character.CompareTag ("Enemy")) {
+				a_xp += 40 * defender.character.GetComponent<Enemy> ().special;
+			}
+			UpdateXp (aStat,a_xp,dStat,0);
+			return;
+		}
+
+		x = Random.Range(0,100);
+		if (d_cc>=x) {
+			d_dm = d_dm * 3;
+		}
+		if (d_ac >= x && dWep.Rng.Contains (defender.dis)) {
+			if (d_dm == 0) {
+				d_xp = 1;
+			} else {
+				float xp = 10 + (aStat.Lv - dStat.Lv) / 2;
+				if (xp < 1) {
+					xp = 1;
+				}
+				d_xp = xp;
+			}
+			aStat.cHP -= d_dm;
+		} else {
+			d_xp = 1;
+		}
+
+		if (aStat.cHP <= 0) {
+			d_xp += (aStat.Lv - dStat.Lv) + 15 + 5;
+			if (attacker.character.CompareTag ("Enemy")) {
+				d_xp += 40 * defender.character.GetComponent<Enemy> ().special;
+			}
+			UpdateXp (aStat,a_xp,dStat,d_xp);
+			return;
+		}
+
+		if (repAtt[0] == 1) {
+			x = Random.Range(0,100);
+			if (a_cc>=x) {
+				a_dm = a_dm * 3;
+			}
+			if (a_ac >= x) {
+				if (a_dm == 0) {
+					a_xp += 1;
+				} else {
+					float xp = 10 + (dStat.Lv - aStat.Lv) / 2;
+					if (xp < 1) {
+						xp = 1;
+					}
+					a_xp += xp;
+				}
+				dStat.cHP -= a_dm;
+			} else {
+				a_xp += 1;
+			}
+
+			if (dStat.cHP <= 0) {
+				a_xp += (dStat.Lv - aStat.Lv) + 15 + 5;
+				if (defender.character.CompareTag ("Enemy")) {
+					a_xp += 40 * defender.character.GetComponent<Enemy> ().special;
+				}
+				UpdateXp (aStat,a_xp,dStat,d_xp);
+				return;
+			}
+		} else if (repAtt[1] == 1) {
+			x = Random.Range(0,100);
+			if (d_cc>=x) {
+				d_dm = d_dm * 3;
+			}
+			if (d_ac >= x && dWep.Rng.Contains (defender.dis)) {
+				if (d_dm == 0) {
+					d_xp += 1;
+				} else {
+					float xp = 10 + (aStat.Lv - dStat.Lv) / 2;
+					if (xp < 1) {
+						xp = 1;
+					}
+					d_xp += xp;
+				}
+				aStat.cHP -= d_dm;
+			} else {
+				d_xp += 1;
+			}
+
+			if (aStat.cHP <= 0) {
+				d_xp += (aStat.Lv - dStat.Lv) + 15 + 5;
+				if (attacker.character.CompareTag ("Enemy")) {
+					d_xp += 40 * defender.character.GetComponent<Enemy> ().special;
+				}
+				UpdateXp (aStat,a_xp,dStat,d_xp);
+				return;
+			}
+		}
+
+		UpdateXp (aStat,a_xp,dStat,d_xp);
+	}
+
+	private void UpdateXp(Stats aStat, float a_xp, Stats dStat, float d_xp) {
+		aStat.Xp += a_xp;
+		dStat.Xp += d_xp;
 	}
 }

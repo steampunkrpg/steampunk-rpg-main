@@ -6,15 +6,11 @@ public class Unit : MonoBehaviour {
 	public HexTile tile;
 	public int Status;
 
-	public GameObject char_class;
-	public Inventory inv;
-	public Stats char_stats;
 	public float movement;
-	public float att_range;
+	public List<float> att_range;
 	public int dis;
 
 	void Awake() {
-		char_stats = this.GetComponentInChildren<Stats> ();
 		this.GetComponentInChildren<ParticleSystem> ().Stop (true);
 		Status = 0;
 	}
@@ -22,7 +18,7 @@ public class Unit : MonoBehaviour {
 	public void InitPosition() {
 		this.transform.position = tile.transform.position;
 		this.transform.Translate (new Vector3 (0.0f, 0.5f, 0.0f));
-		movement = char_stats.MOV;
+		movement = this.GetComponentInChildren<Stats>().Mov;
 	}
 
 	bool ValidMove(int dir) {
@@ -46,7 +42,6 @@ public class Unit : MonoBehaviour {
 
 	public void possibleMoves() {
 		GameManager.instance.ResetTileDis ();
-		GameManager.instance.ResetTilePar ();
 		float totalMov = movement;
 		HexTile viewTile = null;
 		List<HexTile> visitedTile = new List<HexTile> ();
@@ -130,6 +125,7 @@ public class Unit : MonoBehaviour {
 	}
 
 	public void possibleAttack() {
+		att_range = this.GetComponentInChildren<Weapon> ().Rng;
 		GameManager.instance.ResetTileDis ();
 		GameManager.instance.ResetTilePar ();
 		HexTile viewTile = null;
@@ -149,9 +145,11 @@ public class Unit : MonoBehaviour {
 
 			visitedTile.Remove (viewTile);
 
-			if (viewTile.E_Tile != null && viewTile.dis + 1 <= att_range) {
-				if (viewTile.dis + 1 == att_range && viewTile.E_Tile.character != null && viewTile.E_Tile.character.tag == "Enemy") {
-					viewTile.E_Tile.character.transform.Find ("Particle").gameObject.SetActive (true);
+			if (viewTile.E_Tile != null && viewTile.dis + 1 <= att_range.ToArray()[att_range.Count-1]) {
+				for (int i = 0; i < att_range.Count; i++) {
+					if (viewTile.dis + 1 == att_range[i] && viewTile.E_Tile.character != null && viewTile.E_Tile.character.tag == "Enemy") {
+						viewTile.E_Tile.character.transform.Find ("Particle").gameObject.SetActive (true);
+					}
 				}
 
 				if (viewTile.E_Tile.dis == -1) {
@@ -159,6 +157,81 @@ public class Unit : MonoBehaviour {
 					visitedTile.Add (viewTile.E_Tile);
 				} else if (viewTile.E_Tile.dis > viewTile.dis + 1) {
 					viewTile.E_Tile.dis = viewTile.dis + 1;
+				}
+			}
+
+			if (viewTile.W_Tile != null && viewTile.dis + 1 <= att_range.ToArray()[att_range.Count-1]) {
+				for (int i = 0; i < att_range.Count; i++) {
+					if (viewTile.dis + 1 == att_range[i] && viewTile.W_Tile.character != null && viewTile.W_Tile.character.tag == "Enemy") {
+						viewTile.W_Tile.character.transform.Find ("Particle").gameObject.SetActive (true);
+					}
+				}
+
+				if (viewTile.W_Tile.dis == -1) {
+					viewTile.W_Tile.dis = viewTile.dis + 1;
+					visitedTile.Add (viewTile.W_Tile);
+				} else if (viewTile.W_Tile.dis > viewTile.dis + 1) {
+					viewTile.W_Tile.dis = viewTile.dis + 1;
+				}
+			}
+
+			if (viewTile.NE_Tile != null && viewTile.dis + 1 <= att_range.ToArray()[att_range.Count-1]) {
+				for (int i = 0; i < att_range.Count; i++) {
+					if (viewTile.dis + 1 == att_range[i] && viewTile.NE_Tile.character != null && viewTile.NE_Tile.character.tag == "Enemy") {
+						viewTile.NE_Tile.character.transform.Find ("Particle").gameObject.SetActive (true);
+					}
+				}
+
+				if (viewTile.NE_Tile.dis == -1) {
+					viewTile.NE_Tile.dis = viewTile.dis + 1;
+					visitedTile.Add (viewTile.NE_Tile);
+				} else if (viewTile.NE_Tile.dis > viewTile.dis + 1) {
+					viewTile.NE_Tile.dis = viewTile.dis + 1;
+				}
+			}
+
+			if (viewTile.NW_Tile != null && viewTile.dis + 1 <= att_range.ToArray()[att_range.Count-1]) {
+				for (int i = 0; i < att_range.Count; i++) {
+					if (viewTile.dis + 1 == att_range[i] && viewTile.NW_Tile.character != null && viewTile.NW_Tile.character.tag == "Enemy") {
+						viewTile.NW_Tile.character.transform.Find ("Particle").gameObject.SetActive (true);
+					}
+				}
+
+				if (viewTile.NW_Tile.dis == -1) {
+					viewTile.NW_Tile.dis = viewTile.dis + 1;
+					visitedTile.Add (viewTile.NW_Tile);
+				} else if (viewTile.NW_Tile.dis > viewTile.dis + 1) {
+					viewTile.NW_Tile.dis = viewTile.dis + 1;
+				}
+			}
+
+			if (viewTile.SE_Tile != null && viewTile.dis + 1 <= att_range.ToArray()[att_range.Count-1]) {
+				for (int i = 0; i < att_range.Count; i++) {
+					if (viewTile.dis + 1 == att_range[i] && viewTile.SE_Tile.character != null && viewTile.SE_Tile.character.tag == "Enemy") {
+						viewTile.SE_Tile.character.transform.Find ("Particle").gameObject.SetActive (true);
+					}
+				}
+
+				if (viewTile.SE_Tile.dis == -1) {
+					viewTile.SE_Tile.dis = viewTile.dis + 1;
+					visitedTile.Add (viewTile.SE_Tile);
+				} else if (viewTile.SE_Tile.dis > viewTile.dis + 1) {
+					viewTile.SE_Tile.dis = viewTile.dis + 1;
+				}
+			}
+
+			if (viewTile.SW_Tile != null && viewTile.dis + 1 <= att_range.ToArray()[att_range.Count-1]) {
+				for (int i = 0; i < att_range.Count; i++) {
+					if (viewTile.dis + 1 == att_range[i] && viewTile.SW_Tile.character != null && viewTile.SW_Tile.character.tag == "Enemy") {
+						viewTile.SW_Tile.character.transform.Find ("Particle").gameObject.SetActive (true);
+					}
+				}
+
+				if (viewTile.SW_Tile.dis == -1) {
+					viewTile.SW_Tile.dis = viewTile.dis + 1;
+					visitedTile.Add (viewTile.SW_Tile);
+				} else if (viewTile.SW_Tile.dis > viewTile.dis + 1) {
+					viewTile.SW_Tile.dis = viewTile.dis + 1;
 				}
 			}
 
@@ -211,12 +284,18 @@ public class Unit : MonoBehaviour {
 			this.transform.position = Vector3.MoveTowards (this.transform.position, new Vector3(tile.transform.position.x, this.transform.position.y, tile.transform.position.z), 3 * Time.deltaTime);
 			if (this.transform.position.x == tile.transform.position.x && this.transform.position.z == tile.transform.position.z) {
 				if (movement == 0) {
+					GameManager.instance.ResetTilePar ();
 					Status = 0;
 				} else {
+					GameManager.instance.ResetTilePar ();
 					Status = 1;
 					possibleMoves ();
 				}
 			}
+		}
+
+		if (Status == 4) {
+			Death ();
 		}
 	}
 
@@ -224,11 +303,12 @@ public class Unit : MonoBehaviour {
 		DontDestroyOnLoad (this);
 	}
 
-	public void Death() {
-		Destroy (this);
+	private void Death() {
+		GameManager.instance.playerL.Remove (this);
+		Destroy (this.gameObject);
 	}
 
 	public void ResetMovement() {
-		movement = char_stats.MOV;
+		movement = this.GetComponentInChildren<Stats>().Mov;
 	}
 }

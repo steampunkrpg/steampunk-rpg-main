@@ -4,23 +4,52 @@ using System;
 
 public class Stats : MonoBehaviour
 {
-	public float STR;
-	public float DEX;
-	public float INT;
+	public float Lv;
+	public float Xp;
 	public float cHP;
 	public float mHP;
-	public float DEF;
-	public float MOV;
+	public float Str;
+	public float Mag;
+	public float Skl;
+	public float Spd;
+	public float Lck;
+	public float Def;
+	public float Res;
+	public float Con;
+	public float Wt;
+	public float Mov;
 
-	public void SetStats(float STRval, float DEXval, float INTval, float HPval, float DEFval, float MOVval){
-		STR = Mathf.Round(STRval * 10f) / 10f;
-		DEX = Mathf.Round(DEXval * 10f) / 10f;
-		INT = Mathf.Round(INTval * 10f) / 10f;
-		cHP = Mathf.Round(HPval * 10f) / 10f;
-		DEF = Mathf.Round(DEFval * 10f) / 10f;
+	public void SetStats(float Lv, float mHP, float Str, float Mag, float Skl, float Spd, float Lck, float Def, float Res, float Con, float Wt, float Mov) {
+		this.Lv = Lv;
+		this.mHP = mHP;
+		this.Str = Str;
+		this.Mag = Mag;
+		this.Skl = Skl;
+		this.Spd = Spd;
+		this.Lck = Lck;
+		this.Def = Def;
+		this.Res = Res;
+		this.Con = Con;
+		this.Wt = Wt;
+		this.Mov = Mov;
 		cHP = mHP;
-		MOV = MOVval;
+		Xp = 0;
+	}
 
-		//Debug.Log (STR + " " + DEX + " " + INT + " " + HP + " " + DEF);
+	public void LevelUp() {
+		String className = "";
+		Lv++;
+		Xp = Xp - 100;
+
+		foreach (Transform child in this.transform.parent) {
+			if (child.tag == "Class") {
+				className = child.name;
+				break;
+			}
+		}
+
+		float[] lvStats = GameManager.instance.xpGrowthRate.GetGrowthRates (className);
+
+		mHP+=lvStats[0];
 	}
 }

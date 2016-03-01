@@ -23,7 +23,7 @@ public class TestUnit : MonoBehaviour {
 	public void InitPosition() {
 		this.transform.position = tile.transform.position;
 		this.transform.Translate (new Vector3 (0.0f, 0.5f, 0.0f));
-		movement = char_stats.MOV;
+		movement = char_stats.Mov;
 	}
 
 	bool ValidMove(int dir) {
@@ -270,6 +270,6 @@ public class TestUnit : MonoBehaviour {
 	}
 
 	public void ResetMovement() {
-		movement = char_stats.MOV;
+		movement = char_stats.Mov;
 	}
 }
