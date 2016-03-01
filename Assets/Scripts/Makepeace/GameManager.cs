@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour {
 	public List<Unit> playerL;
 	public List<Enemy> enemyL;
 	public Unit activePlayer = null;
+	public Enemy activeEnemy = null;
 
 	public bool playersTurn;
 	private bool enemiesTurn;
@@ -53,22 +54,31 @@ public class GameManager : MonoBehaviour {
 		if (playersTurn) {
 			PlayerSelect ();
 
-			if (activePlayer != null && activePlayer.Active) {
+			if (activePlayer != null && activePlayer.Status == 1) {
 				if (!activePlayer.GetComponentInChildren<ParticleSystem> ().isPlaying) {
 					activePlayer.GetComponentInChildren<ParticleSystem> ().Play (true);
 					activePlayer.possibleMoves ();
 				}
-			} else if (activePlayer != null && !activePlayer.Active && !activePlayer.moving) {
+			} else if (activePlayer != null && activePlayer.Status == 0) {
 				activePlayer.GetComponentInChildren<ParticleSystem> ().Stop(true);
 			}
 
-			if (activePlayer != null && activePlayer.Active && !activePlayer.moving) {
+			if (activePlayer != null && activePlayer.Status == 1) {
 				playerInput.ProvideAction (activePlayer);
+			}
+
+			if (activePlayer != null && activePlayer.Status == 3) {
+				EnemySelect ();
+				if (activeEnemy != null) {
+					initiateBattle (activePlayer.tile, activeEnemy.tile);
+					activeEnemy = null;
+					activePlayer.Status = 0;
+				}
 			}
 
 			bool all_done = true;
 			for (int i = 0; i < playerL.Count; i++) {
-				if (playerL [i].Active || playerL [i].moving) {
+				if (playerL [i].Status != 0) {
 					all_done = false;
 					break;
 				}
@@ -111,7 +121,7 @@ public class GameManager : MonoBehaviour {
 				enemiesTurn = false;
 
 				foreach (Unit player in playerL) {
-					player.Active = true;
+					player.Status = 1;
 					player.ResetMovement ();
 				}
 			}
@@ -135,7 +145,24 @@ public class GameManager : MonoBehaviour {
 				}
 			}
 		}
+	}
+
+	void EnemySelect() {
+		if (Input.GetMouseButtonDown (0)) {
+			mouseRay = Camera.main.ScreenPointToRay (Input.mousePosition);
+
+			if (Physics.Raycast (mouseRay, out hit)) {
+				if (hit.collider.tag.Equals ("Enemy")) {
+					if (hit.collider.gameObject.transform.Find ("Particle").gameObject.activeSelf) {
+						activeEnemy = hit.collider.gameObject.GetComponent<Enemy> ();
+					}
+				}
+				if (hit.collider.tag.Equals ("Terrain")) {
+					activePlayer.Status = 1;
+				}
+			}
 		}
+	}
 
 	private void LoadLists() {
 		GameObject[] tiles = GameObject.FindGameObjectsWithTag ("GridTile");
@@ -164,7 +191,7 @@ public class GameManager : MonoBehaviour {
 						tile.GetComponent<HexTile> ().character = player.gameObject;
 						player.GetComponent<Unit> ().tile = tile;
 						player.GetComponent<Unit> ().InitPosition ();
-						player.GetComponent<Unit>().Active = true;
+						player.GetComponent<Unit>().Status = 1;
 					}
 				}
 			} else if (tile.GetComponent<HexTile> ().SpawnP == 2) {
@@ -193,5 +220,9 @@ public class GameManager : MonoBehaviour {
 		foreach (HexTile tile in tileL) {
 			tile.transform.Find ("Possible_Move").gameObject.SetActive (false);
 		}
+	}
+
+	private void initiateBattle (HexTile attacker, HexTile defender) {
+
 	}
 }

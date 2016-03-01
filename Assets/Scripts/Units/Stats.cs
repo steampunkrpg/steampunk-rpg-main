@@ -7,7 +7,8 @@ public class Stats : MonoBehaviour
 	public float STR;
 	public float DEX;
 	public float INT;
-	public float HP;
+	public float cHP;
+	public float mHP;
 	public float DEF;
 	public float MOV;
 
@@ -15,8 +16,9 @@ public class Stats : MonoBehaviour
 		STR = Mathf.Round(STRval * 10f) / 10f;
 		DEX = Mathf.Round(DEXval * 10f) / 10f;
 		INT = Mathf.Round(INTval * 10f) / 10f;
-		HP = Mathf.Round(HPval * 10f) / 10f;
+		cHP = Mathf.Round(HPval * 10f) / 10f;
 		DEF = Mathf.Round(DEFval * 10f) / 10f;
+		cHP = mHP;
 		MOV = MOVval;
 
 		//Debug.Log (STR + " " + DEX + " " + INT + " " + HP + " " + DEF);

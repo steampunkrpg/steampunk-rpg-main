@@ -30,6 +30,7 @@ public class PlayerKeyBoardInput : MonoBehaviour {
 		}
 		if (Input.GetKey (KeyCode.F)) {
 			activePlayer.possibleAttack ();
+			activePlayer.Status = 3;
 			return;
 		}
 	}

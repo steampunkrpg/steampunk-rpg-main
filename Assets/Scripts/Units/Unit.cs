@@ -4,20 +4,19 @@ using System.Collections;
 
 public class Unit : MonoBehaviour {
 	public HexTile tile;
-	public bool Active;
-	public bool moving;
+	public int Status;
 
 	public GameObject char_class;
 	public Inventory inv;
 	public Stats char_stats;
 	public float movement;
-	public float att_range = 1;
+	public float att_range;
 	public int dis;
 
 	void Awake() {
 		char_stats = this.GetComponentInChildren<Stats> ();
 		this.GetComponentInChildren<ParticleSystem> ().Stop (true);
-		Active = false;
+		Status = 0;
 	}
 
 	public void InitPosition() {
@@ -136,6 +135,35 @@ public class Unit : MonoBehaviour {
 		HexTile viewTile = null;
 		List<HexTile> visitedTile = new List<HexTile> ();
 
+		this.tile.dis = 0;
+
+		visitedTile.Add (this.tile);
+		viewTile = this.tile;
+
+		while (visitedTile.Count > 0) {
+			foreach (HexTile tile in visitedTile) {
+				if (viewTile == null || tile.dis < viewTile.dis) {
+					viewTile = tile;
+				}
+			}
+
+			visitedTile.Remove (viewTile);
+
+			if (viewTile.E_Tile != null && viewTile.dis + 1 <= att_range) {
+				if (viewTile.dis + 1 == att_range && viewTile.E_Tile.character != null && viewTile.E_Tile.character.tag == "Enemy") {
+					viewTile.E_Tile.character.transform.Find ("Particle").gameObject.SetActive (true);
+				}
+
+				if (viewTile.E_Tile.dis == -1) {
+					viewTile.E_Tile.dis = viewTile.dis + 1;
+					visitedTile.Add (viewTile.E_Tile);
+				} else if (viewTile.E_Tile.dis > viewTile.dis + 1) {
+					viewTile.E_Tile.dis = viewTile.dis + 1;
+				}
+			}
+
+			viewTile = null;
+		}
 
 	}
 
@@ -173,21 +201,21 @@ public class Unit : MonoBehaviour {
 				break;
 			}
 
-			moving = true;
+			Status = 2;
 			movement = movement - tile.mov_cost;
-		}
-
-		if (movement == 0) {
-			Active = false;
 		}
 	}
 
 	void Update() {
-		if ((Active || moving) && (this.transform.position.x != tile.transform.position.x || this.transform.position.z != tile.transform.position.z)) {
+		if (Status == 2 && (this.transform.position.x != tile.transform.position.x || this.transform.position.z != tile.transform.position.z)) {
 			this.transform.position = Vector3.MoveTowards (this.transform.position, new Vector3(tile.transform.position.x, this.transform.position.y, tile.transform.position.z), 3 * Time.deltaTime);
 			if (this.transform.position.x == tile.transform.position.x && this.transform.position.z == tile.transform.position.z) {
-				moving = false;
-				possibleMoves ();
+				if (movement == 0) {
+					Status = 0;
+				} else {
+					Status = 1;
+					possibleMoves ();
+				}
 			}
 		}
 	}

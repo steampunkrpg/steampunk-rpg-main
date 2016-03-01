@@ -103,7 +103,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &343777939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,7 +189,7 @@ GameObject:
   - 4: {fileID: 418467299}
   - 114: {fileID: 418467298}
   m_Layer: 0
-  m_Name: Inventory
+  m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -203,9 +203,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 418467297}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e15ffef2c0049742a5b172a78530afa, type: 3}
+  m_Script: {fileID: 11500000, guid: 51b60b7216a8b1f408bfdc078dc46869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  crit_rate: 0
+  hit_perc: 0
+  range: 0
+  weap_effectiveness: 0
+  might: 0
+  type: 0
+  weight: 0
 --- !u!4 &418467299
 Transform:
   m_ObjectHideFlags: 0
@@ -260,7 +267,8 @@ MonoBehaviour:
   STR: 0
   DEX: 0
   INT: 0
-  HP: 0
+  cHP: 0
+  mHP: 0
   DEF: 0
   MOV: 0
 --- !u!1 &520463401
@@ -305,7 +313,8 @@ MonoBehaviour:
   STR: 5
   DEX: 5
   INT: 5
-  HP: 5
+  cHP: 0
+  mHP: 0
   DEF: 5
   MOV: 3
 --- !u!1 &569141231
@@ -1895,7 +1904,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &630020190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5201,13 +5210,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tile: {fileID: 0}
-  Active: 0
-  moving: 0
+  Status: 0
   char_class: {fileID: 1407478584}
-  inv: {fileID: 418467298}
+  inv: {fileID: 0}
   char_stats: {fileID: 0}
   movement: 0
-  att_range: 1
+  att_range: 2
   dis: 0
 --- !u!1 &1080940004
 GameObject:
@@ -5346,6 +5354,7 @@ Transform:
   m_Children:
   - {fileID: 1844388281}
   - {fileID: 569141232}
+  - {fileID: 1460814172}
   m_Father: {fileID: 0}
   m_RootOrder: 4
 --- !u!114 &1153696786
@@ -5541,6 +5550,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d9fe0f62635b9546a375366f453b2c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1460814171
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1460814172}
+  - 114: {fileID: 1460814173}
+  m_Layer: 0
+  m_Name: Weapon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1460814172
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1460814171}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2, y: -0.5, z: -10}
+  m_LocalScale: {x: 0.75, y: 1.4, z: 0.75}
+  m_Children: []
+  m_Father: {fileID: 1153696785}
+  m_RootOrder: 2
+--- !u!114 &1460814173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1460814171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51b60b7216a8b1f408bfdc078dc46869, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crit_rate: 0
+  hit_perc: 0
+  range: 0
+  weap_effectiveness: 0
+  might: 0
+  type: 0
+  weight: 0
 --- !u!1 &1627019253
 GameObject:
   m_ObjectHideFlags: 0
@@ -7198,7 +7253,8 @@ MonoBehaviour:
   STR: 0
   DEX: 0
   INT: 0
-  HP: 0
+  cHP: 0
+  mHP: 0
   DEF: 0
   MOV: 0
 --- !u!1 &1844388280
@@ -7243,7 +7299,8 @@ MonoBehaviour:
   STR: 0
   DEX: 0
   INT: 0
-  HP: 0
+  cHP: 0
+  mHP: 0
   DEF: 0
   MOV: 0
 --- !u!1 &1921484405 stripped
@@ -7310,13 +7367,17 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11494906, guid: e490082012424214aa337d35a19f75ef, type: 2}
       propertyPath: SpawnP
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11472596, guid: e490082012424214aa337d35a19f75ef, type: 2}
       propertyPath: SpawnP
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 11489952, guid: e490082012424214aa337d35a19f75ef, type: 2}
+      propertyPath: SpawnP
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11457950, guid: e490082012424214aa337d35a19f75ef, type: 2}
       propertyPath: SpawnP
       value: 2
       objectReference: {fileID: 0}
