@@ -88,6 +88,32 @@ public class XpGrowthRate : MonoBehaviour {
 			}
 			break;
 
+		case "Healer":
+			if (x <= 50) {
+				lvStats [0] = 1;
+			}
+			if (x <= 25) {
+				lvStats [1] = 1;
+			}
+			if (x <= 45) {
+				lvStats [2] = 1;
+			}
+			if (x <= 45) {
+				lvStats [3] = 1;
+			}
+			if (x <= 30) {
+				lvStats [4] = 1;
+			}
+			if (x <= 85) {
+				lvStats [5] = 1;
+			}
+			if (x <= 30) {
+				lvStats [6] = 1;
+			}
+			if (x <= 40) {
+				lvStats [7] = 1;
+			}
+			break;
 		default:
 			lvStats = null;
 			break;

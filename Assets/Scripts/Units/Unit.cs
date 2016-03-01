@@ -237,6 +237,122 @@ public class Unit : MonoBehaviour {
 
 			viewTile = null;
 		}
+	}
+
+	public void possibleInteract() {
+		att_range = this.GetComponentInChildren<Weapon> ().Rng;
+		GameManager.instance.ResetTileDis ();
+		GameManager.instance.ResetTilePar ();
+		HexTile viewTile = null;
+		List<HexTile> visitedTile = new List<HexTile> ();
+
+		this.tile.dis = 0;
+
+		visitedTile.Add (this.tile);
+		viewTile = this.tile;
+
+		while (visitedTile.Count > 0) {
+			foreach (HexTile tile in visitedTile) {
+				if (viewTile == null || tile.dis < viewTile.dis) {
+					viewTile = tile;
+				}
+			}
+
+			visitedTile.Remove (viewTile);
+
+			if (viewTile.E_Tile != null && viewTile.dis + 1 <= att_range.ToArray()[att_range.Count-1]) {
+				for (int i = 0; i < att_range.Count; i++) {
+					if (viewTile.dis + 1 == att_range[i] && viewTile.E_Tile.character != null && viewTile.E_Tile.character.tag == "Unit") {
+						viewTile.E_Tile.character.GetComponentInChildren<ParticleSystem> ().Play (true);
+					}
+				}
+
+				if (viewTile.E_Tile.dis == -1) {
+					viewTile.E_Tile.dis = viewTile.dis + 1;
+					visitedTile.Add (viewTile.E_Tile);
+				} else if (viewTile.E_Tile.dis > viewTile.dis + 1) {
+					viewTile.E_Tile.dis = viewTile.dis + 1;
+				}
+			}
+
+			if (viewTile.W_Tile != null && viewTile.dis + 1 <= att_range.ToArray()[att_range.Count-1]) {
+				for (int i = 0; i < att_range.Count; i++) {
+					if (viewTile.dis + 1 == att_range[i] && viewTile.W_Tile.character != null && viewTile.W_Tile.character.tag == "Unit") {
+						viewTile.W_Tile.character.GetComponentInChildren<ParticleSystem> ().Play (true);
+					}
+				}
+
+				if (viewTile.W_Tile.dis == -1) {
+					viewTile.W_Tile.dis = viewTile.dis + 1;
+					visitedTile.Add (viewTile.W_Tile);
+				} else if (viewTile.W_Tile.dis > viewTile.dis + 1) {
+					viewTile.W_Tile.dis = viewTile.dis + 1;
+				}
+			}
+
+			if (viewTile.NE_Tile != null && viewTile.dis + 1 <= att_range.ToArray()[att_range.Count-1]) {
+				for (int i = 0; i < att_range.Count; i++) {
+					if (viewTile.dis + 1 == att_range[i] && viewTile.NE_Tile.character != null && viewTile.NE_Tile.character.tag == "Unit") {
+						viewTile.NE_Tile.character.GetComponentInChildren<ParticleSystem> ().Play (true);
+					}
+				}
+
+				if (viewTile.NE_Tile.dis == -1) {
+					viewTile.NE_Tile.dis = viewTile.dis + 1;
+					visitedTile.Add (viewTile.NE_Tile);
+				} else if (viewTile.NE_Tile.dis > viewTile.dis + 1) {
+					viewTile.NE_Tile.dis = viewTile.dis + 1;
+				}
+			}
+
+			if (viewTile.NW_Tile != null && viewTile.dis + 1 <= att_range.ToArray()[att_range.Count-1]) {
+				for (int i = 0; i < att_range.Count; i++) {
+					if (viewTile.dis + 1 == att_range[i] && viewTile.NW_Tile.character != null && viewTile.NW_Tile.character.tag == "Unit") {
+						viewTile.NW_Tile.character.GetComponentInChildren<ParticleSystem> ().Play (true);
+					}
+				}
+
+				if (viewTile.NW_Tile.dis == -1) {
+					viewTile.NW_Tile.dis = viewTile.dis + 1;
+					visitedTile.Add (viewTile.NW_Tile);
+				} else if (viewTile.NW_Tile.dis > viewTile.dis + 1) {
+					viewTile.NW_Tile.dis = viewTile.dis + 1;
+				}
+			}
+
+			if (viewTile.SE_Tile != null && viewTile.dis + 1 <= att_range.ToArray()[att_range.Count-1]) {
+				for (int i = 0; i < att_range.Count; i++) {
+					if (viewTile.dis + 1 == att_range[i] && viewTile.SE_Tile.character != null && viewTile.SE_Tile.character.tag == "Unit") {
+						viewTile.SE_Tile.character.GetComponentInChildren<ParticleSystem> ().Play (true);
+					}
+				}
+
+				if (viewTile.SE_Tile.dis == -1) {
+					viewTile.SE_Tile.dis = viewTile.dis + 1;
+					visitedTile.Add (viewTile.SE_Tile);
+				} else if (viewTile.SE_Tile.dis > viewTile.dis + 1) {
+					viewTile.SE_Tile.dis = viewTile.dis + 1;
+				}
+			}
+
+			if (viewTile.SW_Tile != null && viewTile.dis + 1 <= att_range.ToArray()[att_range.Count-1]) {
+				for (int i = 0; i < att_range.Count; i++) {
+					if (viewTile.dis + 1 == att_range[i] && viewTile.SW_Tile.character != null && viewTile.SW_Tile.character.tag == "Unit") {
+						viewTile.SW_Tile.character.GetComponentInChildren<ParticleSystem> ().Play (true);
+
+					}
+				}
+
+				if (viewTile.SW_Tile.dis == -1) {
+					viewTile.SW_Tile.dis = viewTile.dis + 1;
+					visitedTile.Add (viewTile.SW_Tile);
+				} else if (viewTile.SW_Tile.dis > viewTile.dis + 1) {
+					viewTile.SW_Tile.dis = viewTile.dis + 1;
+				}
+			}
+
+			viewTile = null;
+		}
 
 	}
 

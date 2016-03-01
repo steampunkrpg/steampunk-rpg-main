@@ -28,9 +28,14 @@ public class PlayerKeyBoardInput : MonoBehaviour {
 			activePlayer.Move (6);
 			return;
 		}
-		if (Input.GetKey (KeyCode.F)) {
+		if (Input.GetKey (KeyCode.F) && activePlayer.GetComponentInChildren<Weapon> ().type >= 0) {
 			activePlayer.possibleAttack ();
 			activePlayer.Status = 3;
+			return;
+		}
+		if (Input.GetKey (KeyCode.H) && activePlayer.GetComponentInChildren<Weapon> ().type < 0) {
+			activePlayer.possibleInteract ();
+			activePlayer.Status = 5;
 			return;
 		}
 	}
