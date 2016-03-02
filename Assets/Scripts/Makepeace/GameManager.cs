@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour {
 	private PlayerKeyBoardInput playerInput;
 
 	public GameObject LevelHUD;
+	public GameObject InventoryHUD;
+	private GameObject InventoryHUDGO;
 
 	private Ray mouseRay;
 	private RaycastHit hit;
@@ -33,6 +35,9 @@ public class GameManager : MonoBehaviour {
 		playerL = new List<Unit> ();
 		enemyL = new List<Enemy> ();
 
+		Instantiate (InventoryHUD);
+
+
 		playerInput = this.gameObject.GetComponent<PlayerKeyBoardInput> ();
 
 		playersTurn = false;
@@ -44,6 +49,7 @@ public class GameManager : MonoBehaviour {
 		tileL = new List<HexTile> ();
 
 		LevelHUD.SetActive (true);
+		InventoryHUD.SetActive (true);
 
 		LoadLists ();
 		playersTurn = true;
