@@ -1430,13 +1430,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnDelay: 0.1
-  xpGrowthRate: {fileID: 0}
   LevelHUD: {fileID: 181572}
   tileL: []
   playerL: []
   enemyL: []
   activePlayer: {fileID: 0}
   activeEnemy: {fileID: 0}
+  interactPlayer: {fileID: 0}
   State: 0
 --- !u!114 &11494808
 MonoBehaviour:
@@ -2028,7 +2028,23 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: maxX
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: minX
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: minZ
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: maxZ
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 187778}
