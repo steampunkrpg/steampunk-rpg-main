@@ -848,20 +848,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ad742f992dd94c29904002ebc2643f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Lv: 0
+  Lv: 1
   Xp: 0
-  cHP: 0
-  mHP: 0
-  Str: 0
+  cHP: 20
+  mHP: 20
+  Str: 8
   Mag: 0
-  Skl: 0
-  Spd: 0
+  Skl: 8
+  Spd: 8
   Lck: 0
-  Def: 0
-  Res: 0
-  Con: 0
-  Wt: 0
-  Mov: 0
+  Def: 7
+  Res: 2
+  Con: 11
+  Wt: 15
+  Mov: 6
 --- !u!1 &283192749
 GameObject:
   m_ObjectHideFlags: 0
@@ -9361,20 +9361,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ad742f992dd94c29904002ebc2643f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Lv: 0
+  Lv: 1
   Xp: 0
-  cHP: 0
-  mHP: 0
-  Str: 0
+  cHP: 20
+  mHP: 20
+  Str: 8
   Mag: 0
-  Skl: 0
-  Spd: 0
+  Skl: 8
+  Spd: 8
   Lck: 0
-  Def: 0
-  Res: 0
-  Con: 0
-  Wt: 0
-  Mov: 0
+  Def: 7
+  Res: 2
+  Con: 11
+  Wt: 15
+  Mov: 6
 --- !u!1 &1348277596
 GameObject:
   m_ObjectHideFlags: 0
@@ -12291,17 +12291,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ad742f992dd94c29904002ebc2643f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Lv: 0
+  Lv: 1
   Xp: 0
-  cHP: 0
-  mHP: 0
-  Str: 0
+  cHP: 20
+  mHP: 20
+  Str: 8
   Mag: 0
-  Skl: 0
-  Spd: 0
+  Skl: 8
+  Spd: 8
   Lck: 0
-  Def: 0
-  Res: 0
-  Con: 0
-  Wt: 0
-  Mov: 0
+  Def: 7
+  Res: 2
+  Con: 11
+  Wt: 15
+  Mov: 6

@@ -2866,20 +2866,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ad742f992dd94c29904002ebc2643f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Lv: 0
+  Lv: 1
   Xp: 0
-  cHP: 0
-  mHP: 0
+  cHP: 17
+  mHP: 17
   Str: 0
-  Mag: 0
-  Skl: 0
-  Spd: 0
+  Mag: 6
+  Skl: 3
+  Spd: 3
   Lck: 0
-  Def: 0
-  Res: 0
-  Con: 0
-  Wt: 0
-  Mov: 3
+  Def: 1
+  Res: 10
+  Con: 5
+  Wt: 5
+  Mov: 5
 --- !u!1 &520463401
 GameObject:
   m_ObjectHideFlags: 0
@@ -2920,7 +2920,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Lv: 1
-  Xp: 0
+  Xp: 99
   cHP: 20
   mHP: 20
   Str: 8
