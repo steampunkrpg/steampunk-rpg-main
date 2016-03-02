@@ -11,6 +11,7 @@ public class TestHexTile : MonoBehaviour {
 	public TestHexTile SW_Tile;
 	public float[] pos;
 	public float mov_cost = 1;
+	public float dis = -1;
 
 	public GameObject character;
 

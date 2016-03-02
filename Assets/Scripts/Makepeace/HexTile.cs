@@ -11,6 +11,8 @@ public class HexTile : MonoBehaviour {
 	public HexTile SW_Tile;
 	public float[] pos;
 	public float mov_cost = 1;
+	public float dis = -1;
+	public float terrainBonus = .1F;
 
 	public GameObject character;
 

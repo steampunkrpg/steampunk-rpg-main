@@ -409,6 +409,7 @@ GameObject:
   - 114: {fileID: 11494084}
   - 114: {fileID: 11424528}
   - 114: {fileID: 11485478}
+  - 114: {fileID: 11451278}
   m_Layer: 0
   m_Name: GameManager_HUD
   m_TagString: Untagged
@@ -1052,6 +1053,17 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &11451278
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 187778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 161d1e214e8e098439ff8d7870e4bf3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11455936
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1418,12 +1430,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnDelay: 0.1
+  xpGrowthRate: {fileID: 0}
   LevelHUD: {fileID: 181572}
   tileL: []
   playerL: []
   enemyL: []
   activePlayer: {fileID: 0}
-  playersTurn: 1
+  activeEnemy: {fileID: 0}
+  State: 0
 --- !u!114 &11494808
 MonoBehaviour:
   m_ObjectHideFlags: 1
