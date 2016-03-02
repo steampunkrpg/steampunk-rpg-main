@@ -6,12 +6,12 @@ using UnityEngine.EventSystems;
 using System.Collections;
 
 public class InventoryManager : MonoBehaviour {
+	public static Dictionary<string, int> itemsAndCounts;
+	public GameObject inventoryWindow, inventoryEntry, inventoryEntryGO;
 
 	private List<GameObject> buttonsInMenu;
-	public Dictionary<string, int> itemsAndCounts;
 	private Vector3 heightOffset;
 	private int buttonCount = 0, hasClicked = 0;
-	public GameObject inventoryWindow, inventoryEntry, inventoryEntryGO;
 	private Text buttonText;
 
 	void Start() {
@@ -28,6 +28,7 @@ public class InventoryManager : MonoBehaviour {
 	public void AddItem(string item, int count) {
 		if (itemsAndCounts.ContainsKey (item) == false) {
 			itemsAndCounts.Add (item, count);
+			print (itemsAndCounts ["Potion"]);
 			ButtonCreator (item, count);
 		} else {
 			itemsAndCounts [item] += 1;
@@ -42,10 +43,8 @@ public class InventoryManager : MonoBehaviour {
 		Text pressedText = button.GetComponentInChildren<Text> ();
 		string pressedTextKey = rgx.Replace (pressedText.text, "");
 
-		if (pressedTextKey == "Potion") {
-			print ("WHY IS THIS WRONG");
-			print (itemsAndCounts ["Potion"]);
-		}
+		itemsAndCounts [pressedTextKey] -= 1;
+		pressedText.text = " " + pressedTextKey + ": " + itemsAndCounts [pressedTextKey];
 	}
 
 	public void InventoryToggler() {
