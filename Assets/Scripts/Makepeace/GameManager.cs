@@ -319,7 +319,8 @@ public class GameManager : MonoBehaviour {
 
 	private void ResetEnemyPar() {
 		foreach (Enemy enemy in enemyL) {
-			enemy.transform.Find ("Particle").gameObject.SetActive (false);
+			enemy.GetComponentInChildren<ParticleSystem> ().Stop (true);
+			//enemy.transform.Find ("Particle").gameObject.SetActive (false);
 		}
 	}
 

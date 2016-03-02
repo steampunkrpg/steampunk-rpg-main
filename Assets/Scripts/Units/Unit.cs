@@ -173,7 +173,7 @@ public class Unit : MonoBehaviour {
 			if (viewTile.E_Tile != null && viewTile.dis + 1 <= att_range.ToArray()[att_range.Count-1]) {
 				for (int i = 0; i < att_range.Count; i++) {
 					if (viewTile.dis + 1 == att_range[i] && viewTile.E_Tile.character != null && viewTile.E_Tile.character.tag == "Enemy") {
-						viewTile.E_Tile.character.transform.Find ("Particle").gameObject.SetActive (true);
+						viewTile.E_Tile.character.GetComponentInChildren<ParticleSystem> ().Play (true);
 					}
 				}
 
@@ -187,8 +187,8 @@ public class Unit : MonoBehaviour {
 
 			if (viewTile.W_Tile != null && viewTile.dis + 1 <= att_range.ToArray()[att_range.Count-1]) {
 				for (int i = 0; i < att_range.Count; i++) {
-					if (viewTile.dis + 1 == att_range[i] && viewTile.W_Tile.character != null && viewTile.W_Tile.character.tag == "Enemy") {
-						viewTile.W_Tile.character.transform.Find ("Particle").gameObject.SetActive (true);
+					if (viewTile.dis + 1 == att_range [i] && viewTile.W_Tile.character != null && viewTile.W_Tile.character.tag == "Enemy") {
+						viewTile.W_Tile.character.GetComponentInChildren<ParticleSystem> ().Play (true);
 					}
 				}
 
@@ -203,7 +203,7 @@ public class Unit : MonoBehaviour {
 			if (viewTile.NE_Tile != null && viewTile.dis + 1 <= att_range.ToArray()[att_range.Count-1]) {
 				for (int i = 0; i < att_range.Count; i++) {
 					if (viewTile.dis + 1 == att_range[i] && viewTile.NE_Tile.character != null && viewTile.NE_Tile.character.tag == "Enemy") {
-						viewTile.NE_Tile.character.transform.Find ("Particle").gameObject.SetActive (true);
+						viewTile.NE_Tile.character.GetComponentInChildren<ParticleSystem> ().Play (true);
 					}
 				}
 
@@ -218,7 +218,7 @@ public class Unit : MonoBehaviour {
 			if (viewTile.NW_Tile != null && viewTile.dis + 1 <= att_range.ToArray()[att_range.Count-1]) {
 				for (int i = 0; i < att_range.Count; i++) {
 					if (viewTile.dis + 1 == att_range[i] && viewTile.NW_Tile.character != null && viewTile.NW_Tile.character.tag == "Enemy") {
-						viewTile.NW_Tile.character.transform.Find ("Particle").gameObject.SetActive (true);
+						viewTile.NW_Tile.character.GetComponentInChildren<ParticleSystem> ().Play (true);
 					}
 				}
 
@@ -233,7 +233,7 @@ public class Unit : MonoBehaviour {
 			if (viewTile.SE_Tile != null && viewTile.dis + 1 <= att_range.ToArray()[att_range.Count-1]) {
 				for (int i = 0; i < att_range.Count; i++) {
 					if (viewTile.dis + 1 == att_range[i] && viewTile.SE_Tile.character != null && viewTile.SE_Tile.character.tag == "Enemy") {
-						viewTile.SE_Tile.character.transform.Find ("Particle").gameObject.SetActive (true);
+						viewTile.SE_Tile.character.GetComponentInChildren<ParticleSystem> ().Play (true);
 					}
 				}
 
@@ -248,7 +248,7 @@ public class Unit : MonoBehaviour {
 			if (viewTile.SW_Tile != null && viewTile.dis + 1 <= att_range.ToArray()[att_range.Count-1]) {
 				for (int i = 0; i < att_range.Count; i++) {
 					if (viewTile.dis + 1 == att_range[i] && viewTile.SW_Tile.character != null && viewTile.SW_Tile.character.tag == "Enemy") {
-						viewTile.SW_Tile.character.transform.Find ("Particle").gameObject.SetActive (true);
+						viewTile.SW_Tile.character.GetComponentInChildren<ParticleSystem> ().Play (true);
 					}
 				}
 

@@ -13,7 +13,8 @@ public class InitializeGame : MonoBehaviour {
 
 	public void InitializeLists() {
 		for (int i = 0; i < GameManager.instance.enemyL.Count; i++) {
-			RandomizeStats ();
+			GameManager.instance.enemyL[i].GetComponentInChildren<ParticleSystem> ().Stop (true);
+			//RandomizeStats ();
 			//GameManager.instance.enemyL [i].GetComponentInChildren<Stats> ().SetStats (5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 2);
 		}
 
