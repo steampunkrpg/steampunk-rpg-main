@@ -180,7 +180,6 @@ public class GameManager : MonoBehaviour {
 		if (activePlayer != null) {
 			playerInput.CameraAction ();
 			GameObject camera = GameObject.Find ("Main Camera");
-//			CameraBounds bounds = camera.GetComponentInChildren<CameraBounds> ();
 			CameraBounds bounds = camera.GetComponent<CameraBounds>();
 			camera.transform.position = new Vector3 (activePlayer.transform.position.x, activePlayer.transform.position.y + bounds.offset - bounds.zoom, activePlayer.transform.position.z - bounds.offset + bounds.zoom);
 		} else {
@@ -211,10 +210,10 @@ public class GameManager : MonoBehaviour {
 
 			if (Physics.Raycast (mouseRay, out hit)) {
 				if (hit.collider.tag.Equals ("Unit")) {
-//					if (activePlayer != null && activePlayer != hit.collider.gameObject.GetComponent<Unit>()) {
-////						activePlayer.ActivateUI ();
-//					}
-					activePlayer.ActivateUI ();
+					//if (activePlayer != null && activePlayer == hit.collider.gameObject.GetComponent<Unit>()) {
+					//	activePlayer.ActivateUI ();
+					//}
+					//activePlayer.ActivateUI ();
 				}
 			}
 		}
