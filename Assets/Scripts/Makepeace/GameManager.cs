@@ -134,6 +134,18 @@ public class GameManager : MonoBehaviour {
 				}
 			}
 		}
+		if (Input.GetMouseButtonDown (1)) {
+			mouseRay = Camera.main.ScreenPointToRay (Input.mousePosition);
+
+			if (Physics.Raycast (mouseRay, out hit)) {
+				if (hit.collider.tag.Equals ("Unit")) {
+//					if (activePlayer != null && activePlayer != hit.collider.gameObject.GetComponent<Unit>()) {
+////						activePlayer.ActivateUI ();
+//					}
+					activePlayer.ActivateUI ();
+				}
+			}
+		}
 		}
 
 	private void LoadLists() {
@@ -164,6 +176,7 @@ public class GameManager : MonoBehaviour {
 						player.GetComponent<Unit> ().tile = tile;
 						player.GetComponent<Unit> ().InitPosition ();
 						player.GetComponent<Unit>().Active = true;
+						player.GetComponent<Unit> ().InitUI ();
 					}
 				}
 			} else if (tile.GetComponent<HexTile> ().SpawnP == 2) {

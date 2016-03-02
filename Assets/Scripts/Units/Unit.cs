@@ -25,6 +25,9 @@ public class Unit : MonoBehaviour {
 		this.transform.position = tile.transform.position;
 		this.transform.Translate (new Vector3 (0.0f, 0.5f, 0.0f));
 		movement = char_stats.MOV;
+	}
+
+	public void InitUI() {
 		statsView.text = "STATS\nSTR: " + char_stats.STR + "\t\tHP: " + char_stats.HP + "\nDEX: " + char_stats.DEX + "\t\tDEF: " + char_stats.DEF + "\nINT: " + char_stats.INT + "\t\tMOV: " + char_stats.MOV;
 		health.fillAmount = 1f;
 		ui.SetActive (false);
@@ -50,13 +53,15 @@ public class Unit : MonoBehaviour {
 	}
 
 	public void ActivateUI(){
-		if (Input.GetMouseButtonDown (1)) {
-			if (ui.activeSelf) {
-				ui.SetActive (false);
-			} else if (!ui.activeSelf) {
-				ui.SetActive (true);
-			}
+		
+		if (ui.activeSelf) {
+			ui.SetActive (false);
+		} else if (!ui.activeSelf) {
+			ui.SetActive (true);
+			ui.transform.LookAt (Camera.main.transform.position);
+			ui.transform.forward = -ui.transform.forward;
 		}
+
 	}
 
 	public void Move(int dir) {
@@ -109,8 +114,8 @@ public class Unit : MonoBehaviour {
 				moving = false;
 			}
 		}
-		ActivateUI ();
-		health.fillAmount = (float)char_stats.HP / 5f;
+//		ActivateUI ();
+//		health.fillAmount = (float)char_stats.HP / 5f;
 	}
 
 	public void DontDestroy() {
