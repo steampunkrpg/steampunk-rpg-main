@@ -23,6 +23,7 @@ public class InventoryManager : MonoBehaviour {
 
 		//testing item
 		AddItem("Potion", 10);
+		AddItem ("Ether", 5);
 	}
 
 	public void AddItem(string item, int count) {
