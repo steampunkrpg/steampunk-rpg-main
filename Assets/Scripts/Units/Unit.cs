@@ -31,8 +31,8 @@ public class Unit : MonoBehaviour {
 
 	public void InitUI() {
 		//statsView.text = "STATS\nSTR: " + char_stats.Str + "\t\tHP: " + char_stats.mHP + "\nRES: " + char_stats.Res + "\t\tDEF: " + char_stats.Def + "\nMAG: " + char_stats.Mag + "\t\tMOV: " + char_stats.Mov;
-		health.fillAmount = 1f;
-		ui.SetActive (false);
+		//health.fillAmount = 1f;
+		//ui.SetActive (false);
 	}
 
 	bool ValidMove(int dir) {

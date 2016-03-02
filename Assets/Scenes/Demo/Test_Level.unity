@@ -2932,7 +2932,7 @@ MonoBehaviour:
   Res: 0
   Con: 0
   Wt: 0
-  Mov: 5
+  Mov: 10
 --- !u!1 &530107399
 GameObject:
   m_ObjectHideFlags: 0
@@ -6751,6 +6751,10 @@ Prefab:
       propertyPath: SpawnP
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11440930, guid: e490082012424214aa337d35a19f75ef, type: 2}
+      propertyPath: SpawnP
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e490082012424214aa337d35a19f75ef, type: 2}
   m_IsPrefabParent: 0
@@ -9772,6 +9776,7 @@ MonoBehaviour:
   Wt: 0
   Rng:
   - 1
+  - 2
   type: 0
 --- !u!1001 &1346576455
 Prefab:
