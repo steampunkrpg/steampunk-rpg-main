@@ -158,7 +158,7 @@ public class TestGameManager : MonoBehaviour {
 						player.GetComponent<TestUnit>().Active = true;
 					}
 				}
-			} /*else if (tile.GetComponent<TestHexTile> ().SpawnP == 2) {
+			} else if (tile.GetComponent<TestHexTile> ().SpawnP == 2) {
 				foreach (Enemy enemy in enemyL) {
 					if (enemy.GetComponent<Enemy> ().tile == null && tile.GetComponent<HexTile> ().character == null) {
 						tile.GetComponent<TestHexTile> ().character = enemy.gameObject;
@@ -166,11 +166,23 @@ public class TestGameManager : MonoBehaviour {
 						enemy.GetComponent<Enemy> ().InitPosition ();
 					}
 				}
-			}*/
+			}
 		}
 	}
 
 	public void AddPlayer(TestUnit player) {
 		playerL.Add (player);
+	}
+
+	public void ResetTileDis() {
+		foreach (TestHexTile tile in tileL) {
+			tile.dis = -1;
+		}
+	}
+
+	public void ResetTilePar() {
+		foreach (TestHexTile tile in tileL) {
+			tile.transform.Find ("Possible_Move").gameObject.SetActive (false);
+		}
 	}
 }

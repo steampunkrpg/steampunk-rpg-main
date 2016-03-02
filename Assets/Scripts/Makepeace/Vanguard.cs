@@ -4,8 +4,11 @@ using System.Collections.Generic;
 
 public class Vanguard : MonoBehaviour {
 
-	void Start() {
+	public List<int> validEquips;
 
+	void Start() {
+		validEquips.Add (0);
+		validEquips.Add (2);
 	}
 
 	void Update() {

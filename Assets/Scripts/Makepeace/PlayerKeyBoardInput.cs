@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerKeyBoardInput : MonoBehaviour {
 
-	public void ProvideAction(Unit activePlayer) {
+	public void UnitAction(Unit activePlayer) {
 		if (Input.GetKey (KeyCode.W)) {
 			activePlayer.Move (1);
 			return;
@@ -27,6 +27,65 @@ public class PlayerKeyBoardInput : MonoBehaviour {
 		if (Input.GetKey (KeyCode.A)) {
 			activePlayer.Move (6);
 			return;
+		}
+		if (Input.GetKey (KeyCode.F) && activePlayer.GetComponentInChildren<Weapon> ().type >= 0) {
+			activePlayer.possibleAttack ();
+			activePlayer.Status = 3;
+			return;
+		}
+		if (Input.GetKey (KeyCode.H) && activePlayer.GetComponentInChildren<Weapon> ().type < 0) {
+			activePlayer.possibleInteract ();
+			activePlayer.Status = 5;
+			return;
+		}
+	}
+
+	public void CameraAction() {
+		GameObject camera = GameObject.Find ("Main Camera");
+		CameraBounds bounds = camera.GetComponentInChildren<CameraBounds> ();
+
+		if (Input.GetKey (KeyCode.LeftArrow)) {
+			bounds.locked = false;
+			Vector3 pos = new Vector3 (camera.transform.position.x - 0.1F, camera.transform.position.y, camera.transform.position.z);
+			if (pos.x < bounds.minX) {
+				pos.x = bounds.minX;
+			}
+			camera.transform.position = pos;
+		}
+		if (Input.GetKey (KeyCode.RightArrow)) {
+			bounds.locked = false;
+			Vector3 pos = new Vector3 (camera.transform.position.x + 0.1F, camera.transform.position.y, camera.transform.position.z);
+			if (pos.x > bounds.maxX) {
+				pos.x = bounds.maxX;
+			}
+			camera.transform.position = pos;
+		}
+		if (Input.GetKey (KeyCode.UpArrow)) {
+			bounds.locked = false;
+			Vector3 pos = new Vector3 (camera.transform.position.x, camera.transform.position.y, camera.transform.position.z + 0.1F);
+			if (pos.z > bounds.maxZ) {
+				pos.z = bounds.maxZ;
+			}
+			camera.transform.position = pos;
+		}
+		if (Input.GetKey (KeyCode.DownArrow)) {
+			bounds.locked = false;
+			Vector3 pos = new Vector3 (camera.transform.position.x, camera.transform.position.y, camera.transform.position.z - 0.1F);
+			if (pos.z < bounds.minZ) {
+				pos.z = bounds.minZ;
+			}
+			camera.transform.position = pos;
+		}
+
+		if (Input.GetAxis("Mouse ScrollWheel") != 0) {
+			float zoom = Input.GetAxis ("Mouse ScrollWheel");
+			bounds.zoom += zoom;
+			camera.transform.position = new Vector3 (camera.transform.position.x, camera.transform.position.y - zoom, camera.transform.position.z + zoom);
+		}
+
+		if (Input.GetKey (KeyCode.R)) {
+			camera.transform.position = new Vector3 (camera.transform.position.x, camera.transform.position.y + bounds.zoom, camera.transform.position.z - bounds.zoom);
+			bounds.zoom = 0;
 		}
 	}
 }

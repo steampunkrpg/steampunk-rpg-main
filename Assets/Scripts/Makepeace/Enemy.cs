@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour {
 	public bool moving = false;
 	public bool Active = false;
 	public float movement;
+	public int special;
 
     PriorityQueue<float, SearchNode<HexTile, Action>> frontier = new PriorityQueue<float, SearchNode<HexTile, Action>>();
     List<SearchNode<HexTile, Action>> enemyList = new List<SearchNode<HexTile, Action>>();
@@ -181,6 +182,6 @@ public class Enemy : MonoBehaviour {
 	}
 
 	public void ResetMovement() {
-		movement = enemy_stats.MOV;
+		movement = enemy_stats.Mov;
 	}
 }

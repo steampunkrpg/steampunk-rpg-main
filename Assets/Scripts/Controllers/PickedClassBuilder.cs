@@ -103,7 +103,7 @@ public class PickedClassBuilder : MonoBehaviour {
 
 	void SetStats() {
 		pickedClass = GameObject.Find (pickedClassName);
-		pickedClass.GetComponentInChildren<Stats>().SetStats(STRval, DEXval, INTval, HPval, DEFval, 2.0f);
+		pickedClass.GetComponentInChildren<Stats> ().SetStats (5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 2);
 		GameManager.instance.AddPlayer (pickedClass.GetComponentInChildren<Unit> ());
 		pickedClass.GetComponent<Unit> ().DontDestroy ();
 	}

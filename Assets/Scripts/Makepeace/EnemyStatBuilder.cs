@@ -10,7 +10,7 @@ public class EnemyStatBuilder : MonoBehaviour {
 	public void InitializeStats() {
 		for (int i = 0; i < GameManager.instance.enemyL.Count; i++) {
 			RandomizeStats ();
-			GameManager.instance.enemyL [i].GetComponentInChildren<Stats> ().SetStats (STRval, DEXval, INTval, HPval, DEFval, 2.0f);
+			GameManager.instance.enemyL [i].GetComponentInChildren<Stats> ().SetStats (5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 2);
 		}
 	}
 

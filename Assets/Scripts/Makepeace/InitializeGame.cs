@@ -14,7 +14,7 @@ public class InitializeGame : MonoBehaviour {
 	public void InitializeLists() {
 		for (int i = 0; i < GameManager.instance.enemyL.Count; i++) {
 			RandomizeStats ();
-			GameManager.instance.enemyL [i].GetComponentInChildren<Stats> ().SetStats (STRval, DEXval, INTval, HPval, DEFval, 2.0f);
+			//GameManager.instance.enemyL [i].GetComponentInChildren<Stats> ().SetStats (5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 2);
 		}
 
 		for (int i = 0; i < GameManager.instance.playerL.Count; i++) {
