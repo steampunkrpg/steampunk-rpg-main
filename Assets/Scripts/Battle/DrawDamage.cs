@@ -8,6 +8,7 @@ public class DrawDamage : MonoBehaviour {
     public Text damageText;
     private float timeElapsed = 0.0f;
     private float duration = 2.0f;
+    public Vector3 startPos;
 
     public DrawDamage(Text damage)
     {
@@ -18,6 +19,7 @@ public class DrawDamage : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         damageText.text = "42";
+        startPos = damageText.transform.position;
 	}
 	
 	// Update is called once per frame
@@ -35,6 +37,7 @@ public class DrawDamage : MonoBehaviour {
             yield return new WaitForSeconds(.025f);
         }
         damageText.enabled = false;
+        damageText.transform.position = startPos;
         yield return null;
     }
 }

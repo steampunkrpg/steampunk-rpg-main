@@ -10,6 +10,7 @@ public class ShakeScreen : MonoBehaviour {
     Vector3 initPos;
     float damping = .01f;
     bool goingUp;
+    public static bool shaking;
 
 	// Use this for initialization
 	void Start () {
@@ -18,11 +19,12 @@ public class ShakeScreen : MonoBehaviour {
         yMove = 1;
         initPos = mainCam.transform.position;
         goingUp = true;
+        shaking = false;
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if (BattleCommands.runDeepSix)
+        if (shaking)
         {
             timeElapsed += Time.deltaTime;
             if (goingUp)
