@@ -24,8 +24,6 @@ public class GrittySlapAni : MonoBehaviour {
 	void Update () {
         if (BattleCommands.runGrittySlap)
         {
-            //StartCoroutine(this.runGritty());
-            //this.runGritty();
             animPlayer.Play("Walk");
             if  (distTrav < 5)
             {
@@ -34,7 +32,6 @@ public class GrittySlapAni : MonoBehaviour {
             }
             else
             {
-                //anim.ResetTrigger("Walking");
                 animPlayer.Play("Attack(1)");
                 //BattleCommands.runGrittySlap = false;
                 StartCoroutine(goBack());

@@ -11,6 +11,8 @@ public class BattleCommands : MonoBehaviour {
     public GameObject commandBackground;
     public static bool runDeepSix = false;
     public static bool runGrittySlap = false;
+    public static bool runSolarShot = false;
+    public static bool runSonicPhantom = false;
     public bool walking = false;
     public Text damageText;
     DrawDamage damageWriter;
@@ -53,6 +55,8 @@ public class BattleCommands : MonoBehaviour {
                 ShakeScreen.timeElapsed = 0.0f;
                 StartCoroutine(AnimationMenuMove(5.5f));
                 //runGrittySlap = true;
+                //runSolarShot = true;
+                runSonicPhantom = true;
             }
             else
             {

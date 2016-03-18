@@ -25,40 +25,63 @@ public class SolarShotAni : MonoBehaviour {
         ray6.Pause();
         ParticleSystem.EmissionModule em = burst.emission;
         em.enabled = false;
+        sphere.GetComponent<Renderer>().enabled = false;
+        ray1.GetComponent<Renderer>().enabled = false;
+        ray2.GetComponent<Renderer>().enabled = false;
+        ray3.GetComponent<Renderer>().enabled = false;
+        ray4.GetComponent<Renderer>().enabled = false;
+        ray5.GetComponent<Renderer>().enabled = false;
+        ray6.GetComponent<Renderer>().enabled = false;
+        burst.GetComponent<Renderer>().enabled = false;
     }
 
     // Update is called once per frame
     void Update() {
-        if (sphere.transform.localScale.x < 2.6f)
+        if (BattleCommands.runSolarShot)
         {
-            sphere.transform.localScale += Vector3.one * Time.deltaTime;
-            //sphere.transform.Rotate(new Vector3(0.0f, 1.24f, 0.0f));
-            StartCoroutine(throwSun());
-        }
-        else
-        {
-            if (sphere.transform.position.z > 4.5f)
+            if (sphere.GetComponent<Renderer>().enabled == false)
             {
-                sphere.transform.Translate(.1f, 0.0f, -.1f);
-                
+                sphere.GetComponent<Renderer>().enabled = true;
+                ray1.GetComponent<Renderer>().enabled = true;
+                ray2.GetComponent<Renderer>().enabled = true;
+                ray3.GetComponent<Renderer>().enabled = true;
+                ray4.GetComponent<Renderer>().enabled = true;
+                ray5.GetComponent<Renderer>().enabled = true;
+                ray6.GetComponent<Renderer>().enabled = true;
+                burst.GetComponent<Renderer>().enabled = true;
             }
-            else if (!emitted)
+            
+            if (sphere.transform.localScale.x < 2.6f)
             {
-                
-                ray1.Play();
-                ray2.Play();
-                ray3.Play();
-                ray4.Play();
-                ray5.Play();
-                ray6.Play();
-                emitted = true;
-                StartCoroutine(waiter());
-                animEnemy.Play("Get hit");
-                this.SunBurst();
-                /* ParticleSystem.EmissionModule em = burst.emission;
-                 em.enabled = true;
-                 burst.Play(); */
-                //ParticleBurst.isBursting = true;
+                sphere.transform.localScale += Vector3.one * Time.deltaTime;
+                //sphere.transform.Rotate(new Vector3(0.0f, 1.24f, 0.0f));
+                StartCoroutine(throwSun());
+            }
+            else
+            {
+                if (sphere.transform.position.z > 4.5f)
+                {
+                    sphere.transform.Translate(.1f, 0.0f, -.1f);
+
+                }
+                else if (!emitted)
+                {
+
+                    ray1.Play();
+                    ray2.Play();
+                    ray3.Play();
+                    ray4.Play();
+                    ray5.Play();
+                    ray6.Play();
+                    emitted = true;
+                    StartCoroutine(waiter());
+                    animEnemy.Play("Get hit");
+                    this.SunBurst();
+                    /* ParticleSystem.EmissionModule em = burst.emission;
+                     em.enabled = true;
+                     burst.Play(); */
+                    //ParticleBurst.isBursting = true;
+                }
             }
         }
     }
