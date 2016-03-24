@@ -17,3 +17,5 @@ EditorBuildSettings:
     path: Assets/Scenes/grid-with-movement.unity
   - enabled: 1
     path: Assets/Scenes/Demo/Test_Level.unity
+  - enabled: 1
+    path: Assets/Scenes/Demo/World_Map.unity
