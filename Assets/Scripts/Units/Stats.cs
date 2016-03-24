@@ -49,5 +49,6 @@ public class Stats : MonoBehaviour
 		Lck += lvStats [5];
 		Def += lvStats [6];
 		Res += lvStats [7];
+		//Debug.Log (STR + " " + DEX + " " + INT + " " + HP + " " + DEF);
 	}
 }
