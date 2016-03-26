@@ -26,10 +26,10 @@ public class InventoryManager : MonoBehaviour {
 		AddItem ("Ether", 5);
 
 		//generate some "weapons" for testing
-		Weapon WoodSword = new Weapon(5, 95, 20, 5, new List<float>(2,1,2), 0);
-		Weapon Crossbow = new Weapon (7, 90, 20, 3, new List<float> (2, 1, 2), 0);
-		Weapon PyroFlame = new Weapon (9, 70, 10, 1, new List<float> (2, 1, 2), 1);
-		Weapon HealingHand = new Weapon (3, 100, 10, 1, new List<float> (2, 1, 2), -1);
+		Weapon WoodSword = new Weapon(5, 95, 20, 5, new List<float>{2, 1, 2}, 0);
+		Weapon Crossbow = new Weapon (7, 90, 20, 3, new List<float> {2, 1, 2}, 0);
+		Weapon PyroFlame = new Weapon (9, 70, 10, 1, new List<float> {2, 1, 2}, 1);
+		Weapon HealingHand = new Weapon (3, 100, 10, 1, new List<float> {2, 1, 2}, -1);
 	}
 
 	public void AddItem(string item, int count) {
