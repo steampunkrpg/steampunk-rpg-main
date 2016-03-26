@@ -437,6 +437,8 @@ public class Unit : MonoBehaviour {
 					Status = 1;
 					possibleMoves ();
 				}
+
+				//Cancel movement animation
 			}
 		}
 
