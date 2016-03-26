@@ -100,6 +100,11 @@ public class GameManager : MonoBehaviour {
 					initiateBattle (activePlayer.tile, activeEnemy.tile);
 					ResetEnemyPar ();
 					activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
+
+					if (activeEnemy.GetComponentInChildren<Stats> ().cHP <= 0) {
+						enemyL.Remove (activeEnemy);
+						Destroy (activeEnemy.gameObject);
+					}
 					activeEnemy = null;
 
 					if (activePlayer.GetComponentInChildren<Stats> ().cHP <= 0) {
@@ -342,6 +347,8 @@ public class GameManager : MonoBehaviour {
 		 *		players' turn
 		*/
 		yield return new WaitForSeconds (secs);
+
+
 		State = nextState;
 	}
 
