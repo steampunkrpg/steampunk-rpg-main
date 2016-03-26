@@ -11,6 +11,8 @@ public class Unit : MonoBehaviour {
 	public GameObject ui;
 	public Text statsView;
 	public Image health;
+	public VanguardMenu menu;
+//	public VanguardMenu menu;
 //	public Inventory inv;
 	public Stats char_stats;
 	public Stats har_stats;
@@ -20,6 +22,10 @@ public class Unit : MonoBehaviour {
 
 	void Awake() {
 		this.GetComponentInChildren<ParticleSystem> ().Stop (true);
+		//Mike - Adding Menu
+		menu = this.gameObject.GetComponentInChildren<VanguardMenu>();
+		menu.InitializeMenu ();
+//		this.gameObject.GetComponentInChildren<VanguardMenu>().InitializeMenu();
 		Status = 0;
 	}
 
@@ -54,16 +60,16 @@ public class Unit : MonoBehaviour {
 		}
 	}
 		
-	public void ActivateUI(){
-		
-		if (ui.activeSelf) {
-			ui.SetActive (false);
-		} else if (!ui.activeSelf) {
-			ui.SetActive (true);
-//			ui.transform.LookAt (Camera.main.transform.position);
-			ui.transform.forward = -ui.transform.forward;
-		}
-	}
+//	public void ActivateUI(){
+//		
+//		if (ui.activeSelf) {
+//			ui.SetActive (false);
+//		} else if (!ui.activeSelf) {
+//			ui.SetActive (true);
+////			ui.transform.LookAt (Camera.main.transform.position);
+//			ui.transform.forward = -ui.transform.forward;
+//		}
+//	}
 
 	public void possibleMoves() {
 		GameManager.instance.ResetTileDis ();

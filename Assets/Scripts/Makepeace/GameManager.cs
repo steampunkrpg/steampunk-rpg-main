@@ -195,12 +195,15 @@ public class GameManager : MonoBehaviour {
 				if (hit.collider.tag.Equals ("Unit")) {
 					if (activePlayer != null && activePlayer != hit.collider.gameObject.GetComponent<Unit>()) {
 						activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
+						//TODO - Close UI
 					}
 					activePlayer = hit.collider.gameObject.GetComponent<Unit>();
+					//TODO - Bring up UI
 				}
 				if (hit.collider.tag.Equals ("Terrain") && activePlayer != null) {
 					ResetTilePar ();
 					activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
+					//TODO - Close UI
 					activePlayer = null;
 				}
 			}
@@ -333,6 +336,11 @@ public class GameManager : MonoBehaviour {
 
 	IEnumerator TimerEnumerator(float secs, int nextState) {
 		State = 0;
+		/*if nextState == 2
+		 * 		enemies' turn
+		 *else if nextState == 1
+		 *		players' turn
+		*/
 		yield return new WaitForSeconds (secs);
 		State = nextState;
 	}
