@@ -43,9 +43,14 @@ public class Enemy : MonoBehaviour {
 		}
 
 		if (attackablePlayer != null) {
-			Debug.Log (attackablePlayer);
+			attackablePlayers = new List<Unit> ();
+			FindAttackablePlayers (this.tile);
 
-			MoveTowardsPlayer (attackablePlayer);
+			if (attackablePlayers.Contains(attackablePlayer)) {
+				GameManager.instance.InitiateBattle (this.tile, attackablePlayer.tile);
+			} else {
+				MoveTowardsPlayer (attackablePlayer);
+			}
 		}
 
 		Status = 0;
@@ -424,6 +429,11 @@ public class Enemy : MonoBehaviour {
 				Status = 1;
 			}
 		}*/
+	}
+
+	public void Death() {
+		GameManager.instance.enemyL.Remove (this);
+		Destroy (this.gameObject);
 	}
 
 	public void ResetMovement() {

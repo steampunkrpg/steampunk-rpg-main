@@ -447,7 +447,7 @@ public class Unit : MonoBehaviour {
 			}
 		}
 
-		if (Status == 4) {
+		if (Status == -1) {
 			Death ();
 		}
 	}
@@ -456,7 +456,7 @@ public class Unit : MonoBehaviour {
 		DontDestroyOnLoad (this);
 	}
 
-	private void Death() {
+	public void Death() {
 		GameManager.instance.playerL.Remove (this);
 		Destroy (this.gameObject);
 	}
