@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour {
 		xpGrowthRate = this.gameObject.GetComponent<XpGrowthRate> ();
 		playerInput = this.gameObject.GetComponent<PlayerKeyBoardInput> ();
 
+		level = 0;
 		State = 0;
 	}
 
@@ -616,6 +617,7 @@ public class GameManager : MonoBehaviour {
 		if (enemyL.Count == 0) {
 			//Show Victory
 			//Increment Level by 1
+			level++;
 			//Back to Map
 		}
 	}
