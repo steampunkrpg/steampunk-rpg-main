@@ -79,7 +79,7 @@ public class ClassSelectManager : MonoBehaviour {
 		areYouSurePanel.SetActive (false);
 		buildingCharacterPanel.SetActive (true);
 		classIsPicked = true;
-		ClickAsync ("Test_Level");
+		ClickAsync ("World_Map");
 	}
 
 	//public for no

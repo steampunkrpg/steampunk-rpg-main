@@ -11,7 +11,6 @@ public class WorldMapScript : MonoBehaviour {
 	
 	
 	public void LoadScene(string scene) 
-		
 	{
 		loader.SetActive(true);
 		StartCoroutine(LoadLevelWithBar(scene));

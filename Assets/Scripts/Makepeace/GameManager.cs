@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -9,6 +10,8 @@ public class GameManager : MonoBehaviour {
 	private PlayerKeyBoardInput playerInput;
 	private XpGrowthRate xpGrowthRate;
 	public GameObject LevelHUD;
+
+	private AsyncOperation async;
 
 	private Ray mouseRay;
 	private RaycastHit hit;
@@ -617,6 +620,7 @@ public class GameManager : MonoBehaviour {
 			//Show Game Over
 			//Destroy GameManager
 			//Back to Menu
+			LoadScene("New_Main_Menu");
 		}
 
 		if (enemyL.Count == 0) {
@@ -624,6 +628,25 @@ public class GameManager : MonoBehaviour {
 			//Increment Level by 1
 			level++;
 			//Back to Map
+			LoadScene("World_Map");
 		}
+	}
+
+	public void LoadScene(string scene) 
+	{
+		StartCoroutine(LoadLevelWithBar(scene));
+	}
+
+	IEnumerator LoadLevelWithBar (string sceneName)
+	{
+		async = SceneManager.LoadSceneAsync(sceneName);
+		while (!async.isDone)
+		{
+			yield return null;
+		}
+	}
+
+	public void DestroyThis () {
+		Destroy (this.gameObject);
 	}
 }

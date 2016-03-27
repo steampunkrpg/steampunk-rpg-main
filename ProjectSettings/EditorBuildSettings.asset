@@ -6,16 +6,20 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Scrap/Menu_Scene.unity
+    path: Assets/Scenes/Demo/New_Menu_Scene.unity
   - enabled: 1
     path: Assets/Scenes/Demo/Credit_Scene.unity
   - enabled: 1
     path: Assets/Scenes/Demo/Character_Scene.unity
-  - enabled: 0
-    path: Assets/Scenes/Demo/Grid_Scene.unity
-  - enabled: 1
-    path: Assets/Scenes/grid-with-movement.unity
-  - enabled: 1
-    path: Assets/Scenes/Demo/Test_Level.unity
   - enabled: 1
     path: Assets/Scenes/Demo/World_Map.unity
+  - enabled: 1
+    path: Assets/Scenes/Makepeace/Desert_Scene.unity
+  - enabled: 1
+    path: Assets/Scenes/Makepeace/Forest_Scene.unity
+  - enabled: 1
+    path: Assets/Scenes/Makepeace/Lava_Scene.unity
+  - enabled: 1
+    path: Assets/Scenes/Makepeace/Plains_Scene.unity
+  - enabled: 1
+    path: Assets/Scenes/Makepeace/Winter_Scene.unity
