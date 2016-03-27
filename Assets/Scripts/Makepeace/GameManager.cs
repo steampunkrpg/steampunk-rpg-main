@@ -23,8 +23,6 @@ public class GameManager : MonoBehaviour {
 	public int State;
 	public int level;
 
-    public int level;
-
 	void Awake() {
 		if (instance == null)
 			instance = this;
@@ -318,6 +316,12 @@ public class GameManager : MonoBehaviour {
 	public void ResetTilePar() {
 		foreach (HexTile tile in tileL) {
 			tile.transform.Find ("Possible_Move").gameObject.SetActive (false);
+		}
+	}
+
+	public void ResetTileParent() {
+		foreach (HexTile tile in tileL) {
+			tile.parent = null;
 		}
 	}
 

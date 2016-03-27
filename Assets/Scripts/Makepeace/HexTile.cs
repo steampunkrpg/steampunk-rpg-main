@@ -17,6 +17,8 @@ public class HexTile : MonoBehaviour {
 
 	public GameObject character;
 
+	public HexTile parent;
+
 	public int SpawnP;
 
     public HexTile[] neighbors = new HexTile[6];

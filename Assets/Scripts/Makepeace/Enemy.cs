@@ -282,7 +282,6 @@ public class Enemy : MonoBehaviour {
 		float totalMov = movement;
 		HexTile viewTile = null;
 		List<HexTile> visitedTile = new List<HexTile> ();
-		List<HexTile> PathTiles = new List<HexTile> ();
 
 		this.tile.mov_dis = 0;
 
@@ -297,30 +296,17 @@ public class Enemy : MonoBehaviour {
 			}
 
 			visitedTile.Remove (viewTile);
-			PathTiles.Add (viewTile);
-
-			if (viewTile.E_Tile != null && viewTile.E_Tile.character != null && viewTile.E_Tile.character.CompareTag ("Unit") && viewTile.E_Tile.character.GetComponentInChildren<Unit> () == player) {
+			FindAttackablePlayers (viewTile);
+			if(attackablePlayers.Contains(player)) {
 				break;
-			} else if (viewTile.W_Tile != null && viewTile.E_Tile.character != null && viewTile.E_Tile.character.CompareTag ("Unit") && viewTile.E_Tile.character.GetComponentInChildren<Unit> () == player) {
-				break;
-			} else if (viewTile.NE_Tile != null && viewTile.E_Tile.character != null && viewTile.E_Tile.character.CompareTag ("Unit") && viewTile.E_Tile.character.GetComponentInChildren<Unit> () == player) {
-				break;
-			} else if (viewTile.E_Tile != null && viewTile.E_Tile.character != null && viewTile.E_Tile.character.CompareTag ("Unit") && viewTile.E_Tile.character.GetComponentInChildren<Unit> () == player) {
-				break;
-			} else if (viewTile.E_Tile != null && viewTile.E_Tile.character != null && viewTile.E_Tile.character.CompareTag ("Unit") && viewTile.E_Tile.character.GetComponentInChildren<Unit> () == player) {
-				break;
-			} else if (viewTile.E_Tile != null && viewTile.E_Tile.character != null && viewTile.E_Tile.character.CompareTag ("Unit") && viewTile.E_Tile.character.GetComponentInChildren<Unit> () == player) {
-				break;
-			} else 
-				
-
-
+			}
 
 			if (viewTile.E_Tile != null && viewTile.E_Tile.character == null && viewTile.E_Tile.mov_cost + viewTile.mov_dis <= totalMov) {
 				if (viewTile.E_Tile.mov_dis != -1 && viewTile.E_Tile.mov_dis > viewTile.mov_dis + viewTile.E_Tile.mov_cost) {
 					viewTile.E_Tile.mov_dis = viewTile.mov_dis + viewTile.E_Tile.mov_cost;
 				} else if (viewTile.E_Tile.mov_dis == -1) {
 					viewTile.E_Tile.mov_dis = viewTile.mov_dis + viewTile.E_Tile.mov_cost;
+					viewTile.E_Tile.parent = viewTile;
 					visitedTile.Add (viewTile.E_Tile);
 				}
 			}
@@ -330,6 +316,7 @@ public class Enemy : MonoBehaviour {
 					viewTile.W_Tile.mov_dis = viewTile.mov_dis + viewTile.W_Tile.mov_cost;
 				} else if (viewTile.W_Tile.mov_dis == -1) {
 					viewTile.W_Tile.mov_dis = viewTile.mov_dis + viewTile.W_Tile.mov_cost;
+					viewTile.W_Tile.parent = viewTile;
 					visitedTile.Add (viewTile.W_Tile);
 				}
 			}
@@ -339,6 +326,7 @@ public class Enemy : MonoBehaviour {
 					viewTile.SE_Tile.mov_dis = viewTile.mov_dis + viewTile.SE_Tile.mov_cost;
 				} else if (viewTile.SE_Tile.mov_dis == -1) {
 					viewTile.SE_Tile.mov_dis = viewTile.mov_dis + viewTile.SE_Tile.mov_cost;
+					viewTile.SE_Tile.parent = viewTile;
 					visitedTile.Add (viewTile.SE_Tile);
 				}
 			}
@@ -348,6 +336,7 @@ public class Enemy : MonoBehaviour {
 					viewTile.SW_Tile.mov_dis = viewTile.mov_dis + viewTile.SW_Tile.mov_cost;
 				} else if (viewTile.SW_Tile.mov_dis == -1) {
 					viewTile.SW_Tile.mov_dis = viewTile.mov_dis + viewTile.SW_Tile.mov_cost;
+					viewTile.SW_Tile.parent = viewTile;
 					visitedTile.Add (viewTile.SW_Tile);
 				}
 			}
@@ -357,6 +346,7 @@ public class Enemy : MonoBehaviour {
 					viewTile.NE_Tile.mov_dis = viewTile.mov_dis + viewTile.NE_Tile.mov_cost;
 				} else if (viewTile.NE_Tile.mov_dis == -1) {
 					viewTile.NE_Tile.mov_dis = viewTile.mov_dis + viewTile.NE_Tile.mov_cost;
+					viewTile.NE_Tile.parent = viewTile;
 					visitedTile.Add (viewTile.NE_Tile);
 				}
 			}
@@ -366,11 +356,23 @@ public class Enemy : MonoBehaviour {
 					viewTile.NW_Tile.mov_dis = viewTile.mov_dis + viewTile.NW_Tile.mov_cost;
 				} else if (viewTile.NW_Tile.mov_dis == -1) {
 					viewTile.NW_Tile.mov_dis = viewTile.mov_dis + viewTile.NW_Tile.mov_cost;
-					visitedTile.Add (viewTile.NW_Tile);
+					viewTile.NW_Tile.parent = viewTile;
+					visitedTile.Add (viewTile.NE_Tile);
 				}
 			}
-
+				
 			viewTile = null;
+		}
+
+		while (true) {
+			if (viewTile.parent == this.tile) {
+				this.tile.character = null;
+				this.tile = viewTile;
+				this.tile.character = this.gameObject;
+				break;
+			} else {
+				viewTile = viewTile.parent;
+			}
 		}
 	}
 
