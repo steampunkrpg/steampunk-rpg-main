@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour {
 
 	public int State;
 
+    public int level;
+
 	void Awake() {
 		if (instance == null)
 			instance = this;

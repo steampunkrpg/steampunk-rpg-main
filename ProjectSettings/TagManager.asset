@@ -11,6 +11,7 @@ TagManager:
   - Class
   - Terrain
   - TileParticle
+  - MapButton
   layers:
   - Default
   - TransparentFX
