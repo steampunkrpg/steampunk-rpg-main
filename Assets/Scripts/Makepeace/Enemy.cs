@@ -279,6 +279,7 @@ public class Enemy : MonoBehaviour {
 
 	private void MoveTowardsPlayer(Unit player) {
 		GameManager.instance.ResetTileMovDis ();
+		GameManager.instance.ResetTileParent ();
 		float totalMov = movement;
 		HexTile viewTile = null;
 		List<HexTile> visitedTile = new List<HexTile> ();
