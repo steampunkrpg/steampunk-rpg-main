@@ -446,10 +446,6 @@ public class Unit : MonoBehaviour {
 				//Cancel movement animation
 			}
 		}
-
-		if (Status == -1) {
-			Death ();
-		}
 	}
 
 	public void DontDestroy() {

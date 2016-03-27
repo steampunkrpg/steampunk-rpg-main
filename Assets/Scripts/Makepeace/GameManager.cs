@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour {
 	public Unit interactPlayer = null;
 
 	public int State;
+	public int level;
 
 	void Awake() {
 		if (instance == null)
@@ -140,7 +141,9 @@ public class GameManager : MonoBehaviour {
 			}
 		} else if (State == 2) {
 			for (int i = 0; i < enemyL.Count; i++) {
-				if (enemyL [i].Status == 1) {
+				if (enemyL [i].Status == 2) {
+					break;
+				} else if (enemyL [i].Status == 1) {
 					enemyL [i].MoveEnemy ();
 				}
 			}
@@ -277,7 +280,6 @@ public class GameManager : MonoBehaviour {
 						tile.GetComponent<HexTile> ().character = player.gameObject;
 						player.GetComponent<Unit> ().tile = tile;
 						player.GetComponent<Unit> ().InitPosition ();
-//						player.GetComponent<Unit>().Active = true;
 						player.GetComponent<Unit> ().InitUI ();
 						player.GetComponent<Unit>().Status = 1;
 					}
@@ -486,7 +488,7 @@ public class GameManager : MonoBehaviour {
 		if (d_cc>=x) {
 			d_dm = d_dm * 3;
 		}
-		if (d_ac >= x /*&& dWep.Rng.Contains (defender.mov_dis)*/ && dWep.type >= 0) {
+		if (d_ac >= x && dWep.Rng.Contains (defender.att_dis) && dWep.type >= 0) {
 			if (d_dm == 0) {
 				d_xp = 1;
 			} else {
@@ -545,7 +547,7 @@ public class GameManager : MonoBehaviour {
 			if (d_cc>=x) {
 				d_dm = d_dm * 3;
 			}
-			if (d_ac >= x /*&& dWep.Rng.Contains (defender.dis)*/ && dWep.type >= 0) {
+			if (d_ac >= x && dWep.Rng.Contains (defender.att_dis) && dWep.type >= 0) {
 				if (d_dm == 0) {
 					d_xp += 1;
 				} else {
@@ -597,6 +599,22 @@ public class GameManager : MonoBehaviour {
 			} else {
 				defender.character.GetComponentInChildren<Enemy> ().Death ();
 			}
+		}
+
+		CheckWinOrLoseCondition ();
+	}
+
+	private void CheckWinOrLoseCondition() {
+		if (playerL.Count == 0) {
+			//Show Game Over
+			//Destroy GameManager
+			//Back to Menu
+		}
+
+		if (enemyL.Count == 0) {
+			//Show Victory
+			//Increment Level by 1
+			//Back to Map
 		}
 	}
 }

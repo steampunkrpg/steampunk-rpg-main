@@ -97,7 +97,6 @@ public class Enemy : MonoBehaviour {
 					viewTile.E_Tile.mov_dis = viewTile.mov_dis + viewTile.E_Tile.mov_cost;
 				} else if (viewTile.E_Tile.mov_dis == -1) {
 					viewTile.E_Tile.mov_dis = viewTile.mov_dis + viewTile.E_Tile.mov_cost;
-					viewTile.E_Tile.transform.Find ("Possible_Move").gameObject.SetActive (true);
 					visitedTile.Add (viewTile.E_Tile);
 				}
 			}
@@ -107,7 +106,6 @@ public class Enemy : MonoBehaviour {
 					viewTile.W_Tile.mov_dis = viewTile.mov_dis + viewTile.W_Tile.mov_cost;
 				} else if (viewTile.W_Tile.mov_dis == -1) {
 					viewTile.W_Tile.mov_dis = viewTile.mov_dis + viewTile.W_Tile.mov_cost;
-					viewTile.W_Tile.transform.Find ("Possible_Move").gameObject.SetActive (true);
 					visitedTile.Add (viewTile.W_Tile);
 				}
 			}
@@ -117,7 +115,6 @@ public class Enemy : MonoBehaviour {
 					viewTile.SE_Tile.mov_dis = viewTile.mov_dis + viewTile.SE_Tile.mov_cost;
 				} else if (viewTile.SE_Tile.mov_dis == -1) {
 					viewTile.SE_Tile.mov_dis = viewTile.mov_dis + viewTile.SE_Tile.mov_cost;
-					viewTile.SE_Tile.transform.Find ("Possible_Move").gameObject.SetActive (true);
 					visitedTile.Add (viewTile.SE_Tile);
 				}
 			}
@@ -127,7 +124,6 @@ public class Enemy : MonoBehaviour {
 					viewTile.SW_Tile.mov_dis = viewTile.mov_dis + viewTile.SW_Tile.mov_cost;
 				} else if (viewTile.SW_Tile.mov_dis == -1) {
 					viewTile.SW_Tile.mov_dis = viewTile.mov_dis + viewTile.SW_Tile.mov_cost;
-					viewTile.SW_Tile.transform.Find ("Possible_Move").gameObject.SetActive (true);
 					visitedTile.Add (viewTile.SW_Tile);
 				}
 			}
@@ -137,7 +133,6 @@ public class Enemy : MonoBehaviour {
 					viewTile.NE_Tile.mov_dis = viewTile.mov_dis + viewTile.NE_Tile.mov_cost;
 				} else if (viewTile.NE_Tile.mov_dis == -1) {
 					viewTile.NE_Tile.mov_dis = viewTile.mov_dis + viewTile.NE_Tile.mov_cost;
-					viewTile.NE_Tile.transform.Find ("Possible_Move").gameObject.SetActive (true);
 					visitedTile.Add (viewTile.NE_Tile);
 				}
 			}
@@ -147,7 +142,6 @@ public class Enemy : MonoBehaviour {
 					viewTile.NW_Tile.mov_dis = viewTile.mov_dis + viewTile.NW_Tile.mov_cost;
 				} else if (viewTile.NW_Tile.mov_dis == -1) {
 					viewTile.NW_Tile.mov_dis = viewTile.mov_dis + viewTile.NW_Tile.mov_cost;
-					viewTile.NW_Tile.transform.Find ("Possible_Move").gameObject.SetActive (true);
 					visitedTile.Add (viewTile.NW_Tile);
 				}
 			}
@@ -180,7 +174,6 @@ public class Enemy : MonoBehaviour {
 			if (viewTile.E_Tile != null && viewTile.att_dis + 1 <= att_range.ToArray()[att_range.Count-1]) {
 				for (int i = 0; i < att_range.Count; i++) {
 					if (viewTile.att_dis + 1 == att_range[i] && viewTile.E_Tile.character != null && viewTile.E_Tile.character.tag == "Unit") {
-						viewTile.E_Tile.character.GetComponentInChildren<ParticleSystem> ().Play (true);
 						if (!attackablePlayers.Contains (viewTile.E_Tile.character.GetComponentInChildren<Unit> ())) {
 							attackablePlayers.Add (viewTile.E_Tile.character.GetComponentInChildren<Unit> ());
 						}
@@ -198,7 +191,6 @@ public class Enemy : MonoBehaviour {
 			if (viewTile.W_Tile != null && viewTile.att_dis + 1 <= att_range.ToArray()[att_range.Count-1]) {
 				for (int i = 0; i < att_range.Count; i++) {
 					if (viewTile.att_dis + 1 == att_range [i] && viewTile.W_Tile.character != null && viewTile.W_Tile.character.tag == "Unit") {
-						viewTile.W_Tile.character.GetComponentInChildren<ParticleSystem> ().Play (true);
 						if (!attackablePlayers.Contains (viewTile.W_Tile.character.GetComponentInChildren<Unit> ())) {
 							attackablePlayers.Add (viewTile.W_Tile.character.GetComponentInChildren<Unit> ());
 						}
@@ -216,7 +208,6 @@ public class Enemy : MonoBehaviour {
 			if (viewTile.NE_Tile != null && viewTile.att_dis + 1 <= att_range.ToArray()[att_range.Count-1]) {
 				for (int i = 0; i < att_range.Count; i++) {
 					if (viewTile.att_dis + 1 == att_range[i] && viewTile.NE_Tile.character != null && viewTile.NE_Tile.character.tag == "Unit") {
-						viewTile.NE_Tile.character.GetComponentInChildren<ParticleSystem> ().Play (true);
 						if (!attackablePlayers.Contains (viewTile.NE_Tile.character.GetComponentInChildren<Unit> ())) {
 							attackablePlayers.Add (viewTile.NE_Tile.character.GetComponentInChildren<Unit> ());
 						}
@@ -234,7 +225,6 @@ public class Enemy : MonoBehaviour {
 			if (viewTile.NW_Tile != null && viewTile.att_dis + 1 <= att_range.ToArray()[att_range.Count-1]) {
 				for (int i = 0; i < att_range.Count; i++) {
 					if (viewTile.att_dis + 1 == att_range[i] && viewTile.NW_Tile.character != null && viewTile.NW_Tile.character.tag == "Unit") {
-						viewTile.NW_Tile.character.GetComponentInChildren<ParticleSystem> ().Play (true);
 						if (!attackablePlayers.Contains (viewTile.NW_Tile.character.GetComponentInChildren<Unit> ())) {
 							attackablePlayers.Add (viewTile.NW_Tile.character.GetComponentInChildren<Unit> ());
 						}
@@ -252,7 +242,6 @@ public class Enemy : MonoBehaviour {
 			if (viewTile.SE_Tile != null && viewTile.att_dis + 1 <= att_range.ToArray()[att_range.Count-1]) {
 				for (int i = 0; i < att_range.Count; i++) {
 					if (viewTile.att_dis + 1 == att_range[i] && viewTile.SE_Tile.character != null && viewTile.SE_Tile.character.tag == "Unit") {
-						viewTile.SE_Tile.character.GetComponentInChildren<ParticleSystem> ().Play (true);
 						if (!attackablePlayers.Contains (viewTile.SE_Tile.character.GetComponentInChildren<Unit> ())) {
 							attackablePlayers.Add (viewTile.SE_Tile.character.GetComponentInChildren<Unit> ());
 						}
@@ -270,7 +259,6 @@ public class Enemy : MonoBehaviour {
 			if (viewTile.SW_Tile != null && viewTile.att_dis + 1 <= att_range.ToArray()[att_range.Count-1]) {
 				for (int i = 0; i < att_range.Count; i++) {
 					if (viewTile.att_dis + 1 == att_range[i] && viewTile.SW_Tile.character != null && viewTile.SW_Tile.character.tag == "Unit") {
-						viewTile.SW_Tile.character.GetComponentInChildren<ParticleSystem> ().Play (true);
 						if (!attackablePlayers.Contains (viewTile.SW_Tile.character.GetComponentInChildren<Unit> ())) {
 							attackablePlayers.Add (viewTile.SW_Tile.character.GetComponentInChildren<Unit> ());
 						}
@@ -425,12 +413,16 @@ public class Enemy : MonoBehaviour {
     }*/
 
     void Update(){
-		/*if (Status == 2 && (this.transform.position.x != tile.transform.position.x || this.transform.position.z != tile.transform.position.z)) {
+		if (Status == 2 && (this.transform.position.x != tile.transform.position.x || this.transform.position.z != tile.transform.position.z)) {
 			this.transform.position = Vector3.MoveTowards (this.transform.position, new Vector3(tile.transform.position.x, this.transform.position.y, tile.transform.position.z), 3 * Time.deltaTime);
 			if (this.transform.position.x == tile.transform.position.x && this.transform.position.z == tile.transform.position.z) {
-				Status = 1;
+				if (movement == 0) {
+					Status = 0;
+				} else {
+					Status = 1;
+				}
 			}
-		}*/
+		}
 	}
 
 	public void Death() {
