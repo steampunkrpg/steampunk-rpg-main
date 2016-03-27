@@ -46,14 +46,16 @@ public class Enemy : MonoBehaviour {
 			attackablePlayers = new List<Unit> ();
 			FindAttackablePlayers (this.tile);
 
-			if (attackablePlayers.Contains(attackablePlayer)) {
+			if (attackablePlayers.Contains (attackablePlayer)) {
 				GameManager.instance.InitiateBattle (this.tile, attackablePlayer.tile);
+				Status = 0;
 			} else {
 				MoveTowardsPlayer (attackablePlayer);
+				Status = 2;
 			}
+		} else {
+			Status = 0;
 		}
-
-		Status = 0;
 
         /*if (movement == 0)
         {
