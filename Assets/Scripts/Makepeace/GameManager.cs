@@ -146,6 +146,7 @@ public class GameManager : MonoBehaviour {
 					break;
 				} else if (enemyL [i].Status == 1) {
 					enemyL [i].MoveEnemy ();
+					break;
 				}
 			}
 
