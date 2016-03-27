@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour {
 	public Unit interactPlayer = null;
 
 	public int State;
+	public int level;
 
     public int level;
 
@@ -75,7 +76,7 @@ public class GameManager : MonoBehaviour {
 			if (activePlayer != null && activePlayer.Status == 5) {
 				InteractSelect ();
 				if (interactPlayer != null) {
-					initiateInteraction (activePlayer.tile, interactPlayer.tile);
+					InitiateInteraction (activePlayer.tile, interactPlayer.tile);
 					ResetPlayerPar ();
 					activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
 					interactPlayer = null;
@@ -99,35 +100,27 @@ public class GameManager : MonoBehaviour {
 			if (activePlayer != null && activePlayer.Status == 3) {
 				EnemySelect ();
 				if (activeEnemy != null) {
-					initiateBattle (activePlayer.tile, activeEnemy.tile);
+					InitiateBattle (activePlayer.tile, activeEnemy.tile);
 					ResetEnemyPar ();
 					activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
 
-					if (activeEnemy.GetComponentInChildren<Stats> ().cHP <= 0) {
-						enemyL.Remove (activeEnemy);
-						Destroy (activeEnemy.gameObject);
-					}
-					activeEnemy = null;
-
-					if (activePlayer.GetComponentInChildren<Stats> ().cHP <= 0) {
-						activePlayer.Status = 4;
-					} else {
-						if (activePlayer.GetComponentInChildren<Stats> ().Xp >= 100) {
-							float[] lvStats = new float[8];
-							string className = "";
-							foreach (Transform child in activePlayer.transform) {
-								if (child.tag == "Class") {
-									className = child.name;
-									break;
-								}
+					if (activePlayer.GetComponentInChildren<Stats> ().Xp >= 100) {
+						float[] lvStats = new float[8];
+						string className = "";
+						foreach (Transform child in activePlayer.transform) {
+							if (child.tag == "Class") {
+								className = child.name;
+								break;
 							}
-
-							lvStats = xpGrowthRate.GetGrowthRates (className);
-							activePlayer.GetComponentInChildren<Stats> ().LevelUp (lvStats);
 						}
-						activePlayer.Status = 0;
-						activePlayer = null;
+
+						lvStats = xpGrowthRate.GetGrowthRates (className);
+						activePlayer.GetComponentInChildren<Stats> ().LevelUp (lvStats);
 					}
+
+					activePlayer.Status = 0;
+					activePlayer = null;
+					activeEnemy = null;
 				}
 			}
 
@@ -144,29 +137,24 @@ public class GameManager : MonoBehaviour {
 				activePlayer = null;
 
 				foreach (Enemy enemy in enemyL) {
-					enemy.Active = true;
+					enemy.Status = 1;
 					enemy.ResetMovement ();
 				}
 			}
 		} else if (State == 2) {
-			bool all_done = true;
-
 			for (int i = 0; i < enemyL.Count; i++) {
-				if (enemyL [i].Active) {
-					bool aEnemyMoving = false;
-					for (int j = 0; j < enemyL.Count; j++) {
-						if (enemyL [j].moving) {
-							aEnemyMoving = true;
-						}
-					}
-
-					if (!aEnemyMoving) {
-						//enemyL [i].MoveEnemy ();
-					}
+				if (enemyL [i].Status == 2) {
+					break;
+				} else if (enemyL [i].Status == 1) {
+					enemyL [i].MoveEnemy ();
 				}
-					
-				if (enemyL [i].Active || enemyL [i].moving) {
-					//all_done = false;
+			}
+
+			bool all_done = true;
+			for (int i = 0; i < enemyL.Count; i++) {
+				if (enemyL [i].Status != 0) {
+					all_done = false;
+					break;
 				}
 			}
 
@@ -184,7 +172,7 @@ public class GameManager : MonoBehaviour {
 			StartCoroutine (TimerEnumerator(3,1));
 		}
 
-		if (activePlayer != null) {
+		if (activePlayer != null && State != 0 && State != 3 && State != 4) {
 			playerInput.CameraAction ();
 			GameObject camera = GameObject.Find ("Main Camera");
 			CameraBounds bounds = camera.GetComponent<CameraBounds>();
@@ -294,7 +282,6 @@ public class GameManager : MonoBehaviour {
 						tile.GetComponent<HexTile> ().character = player.gameObject;
 						player.GetComponent<Unit> ().tile = tile;
 						player.GetComponent<Unit> ().InitPosition ();
-//						player.GetComponent<Unit>().Active = true;
 						player.GetComponent<Unit> ().InitUI ();
 						player.GetComponent<Unit>().Status = 1;
 					}
@@ -315,9 +302,15 @@ public class GameManager : MonoBehaviour {
 		playerL.Add (player);
 	}
 
-	public void ResetTileDis() {
+	public void ResetTileMovDis() {
 		foreach (HexTile tile in tileL) {
-			tile.dis = -1;
+			tile.mov_dis = -1;
+		}
+	}
+
+	public void ResetTileAttDis() {
+		foreach (HexTile tile in tileL) {
+			tile.att_dis = -1;
 		}
 	}
 
@@ -354,7 +347,7 @@ public class GameManager : MonoBehaviour {
 		State = nextState;
 	}
 
-	private void initiateInteraction (HexTile init, HexTile rec) {
+	private void InitiateInteraction (HexTile init, HexTile rec) {
 		Weapon iWep = init.character.GetComponentInChildren<Weapon> ();
 		Stats iStat = init.character.GetComponentInChildren<Stats> ();
 		Stats rStat = rec.character.GetComponentInChildren<Stats> ();
@@ -368,7 +361,7 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-	private void initiateBattle (HexTile attacker, HexTile defender) {
+	public void InitiateBattle (HexTile attacker, HexTile defender) {
 		Weapon aWep = attacker.character.GetComponentInChildren<Weapon> ();
 		Weapon dWep = defender.character.GetComponentInChildren<Weapon> ();
 		Stats aStat = attacker.character.GetComponentInChildren<Stats> ();
@@ -489,6 +482,7 @@ public class GameManager : MonoBehaviour {
 				a_xp += 40 * defender.character.GetComponent<Enemy> ().special;
 			}
 			UpdateXp (aStat,a_xp,dStat,0);
+			CheckForDeaths (attacker, defender);
 			return;
 		}
 
@@ -496,7 +490,7 @@ public class GameManager : MonoBehaviour {
 		if (d_cc>=x) {
 			d_dm = d_dm * 3;
 		}
-		if (d_ac >= x && dWep.Rng.Contains (defender.dis) && dWep.type >= 0) {
+		if (d_ac >= x && dWep.Rng.Contains (defender.att_dis) && dWep.type >= 0) {
 			if (d_dm == 0) {
 				d_xp = 1;
 			} else {
@@ -514,9 +508,10 @@ public class GameManager : MonoBehaviour {
 		if (aStat.cHP <= 0) {
 			d_xp += (aStat.Lv - dStat.Lv) + 15 + 5;
 			if (attacker.character.CompareTag ("Enemy")) {
-				d_xp += 40 * defender.character.GetComponent<Enemy> ().special;
+				d_xp += 40 * attacker.character.GetComponent<Enemy> ().special;
 			}
 			UpdateXp (aStat,a_xp,dStat,d_xp);
+			CheckForDeaths (attacker, defender);
 			return;
 		}
 
@@ -546,6 +541,7 @@ public class GameManager : MonoBehaviour {
 					a_xp += 40 * defender.character.GetComponent<Enemy> ().special;
 				}
 				UpdateXp (aStat,a_xp,dStat,d_xp);
+				CheckForDeaths (attacker, defender);
 				return;
 			}
 		} else if (repAtt[1] == 1) {
@@ -553,7 +549,7 @@ public class GameManager : MonoBehaviour {
 			if (d_cc>=x) {
 				d_dm = d_dm * 3;
 			}
-			if (d_ac >= x && dWep.Rng.Contains (defender.dis) && dWep.type >= 0) {
+			if (d_ac >= x && dWep.Rng.Contains (defender.att_dis) && dWep.type >= 0) {
 				if (d_dm == 0) {
 					d_xp += 1;
 				} else {
@@ -574,6 +570,7 @@ public class GameManager : MonoBehaviour {
 					d_xp += 40 * defender.character.GetComponent<Enemy> ().special;
 				}
 				UpdateXp (aStat,a_xp,dStat,d_xp);
+				CheckForDeaths (attacker, defender);
 				return;
 			}
 		}
@@ -584,5 +581,42 @@ public class GameManager : MonoBehaviour {
 	private void UpdateXp(Stats aStat, float a_xp, Stats dStat, float d_xp) {
 		aStat.Xp += a_xp;
 		dStat.Xp += d_xp;
+	}
+
+	private void CheckForDeaths(HexTile attacker, HexTile defender) {
+		Stats aStat = attacker.character.GetComponentInChildren<Stats> ();
+		Stats dStat = defender.character.GetComponentInChildren<Stats> ();
+
+		if (aStat.cHP <= 0) {
+			if (attacker.character.CompareTag ("Unit")) {
+				attacker.character.GetComponentInChildren<Unit> ().Death ();
+			} else {
+				attacker.character.GetComponentInChildren<Enemy> ().Death ();
+			}
+		}
+
+		if (dStat.cHP <= 0) {
+			if (defender.character.CompareTag ("Unit")) {
+				defender.character.GetComponentInChildren<Unit> ().Death ();;
+			} else {
+				defender.character.GetComponentInChildren<Enemy> ().Death ();
+			}
+		}
+
+		CheckWinOrLoseCondition ();
+	}
+
+	private void CheckWinOrLoseCondition() {
+		if (playerL.Count == 0) {
+			//Show Game Over
+			//Destroy GameManager
+			//Back to Menu
+		}
+
+		if (enemyL.Count == 0) {
+			//Show Victory
+			//Increment Level by 1
+			//Back to Map
+		}
 	}
 }
