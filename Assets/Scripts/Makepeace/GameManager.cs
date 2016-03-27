@@ -274,6 +274,7 @@ public class GameManager : MonoBehaviour {
 		GameObject[] players = GameObject.FindGameObjectsWithTag ("Unit");
 		foreach (GameObject player in players) {
 			if (!playerL.Contains (player.GetComponent<Unit> ())) {
+				player.GetComponent<Unit> ().DontDestroy ();
 				playerL.Add (player.GetComponent<Unit> ());
 			}
 		}
@@ -627,6 +628,7 @@ public class GameManager : MonoBehaviour {
 			//Show Victory
 			//Increment Level by 1
 			level++;
+			State = 0;
 			//Back to Map
 			LoadScene("World_Map");
 		}
