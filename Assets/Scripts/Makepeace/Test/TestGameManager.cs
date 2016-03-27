@@ -75,14 +75,14 @@ public class TestGameManager : MonoBehaviour {
 				activePlayer = null;
 
 				foreach (Enemy enemy in enemyL) {
-					enemy.Active = true;
+					enemy.Status = 1;
 					enemy.ResetMovement ();
 				}
 			}
 		} else if (enemiesTurn) {
 			bool all_done = true;
 
-			for (int i = 0; i < enemyL.Count; i++) {
+			/*for (int i = 0; i < enemyL.Count; i++) {
 				if (enemyL [i].Active) {
 					bool aEnemyMoving = false;
 					for (int j = 0; j < enemyL.Count; j++) {
@@ -109,7 +109,7 @@ public class TestGameManager : MonoBehaviour {
 					player.Active = true;
 					player.ResetMovement ();
 				}
-			}
+			}*/
 		} 
 	}
 		

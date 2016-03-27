@@ -142,29 +142,22 @@ public class GameManager : MonoBehaviour {
 				activePlayer = null;
 
 				foreach (Enemy enemy in enemyL) {
-					enemy.Active = true;
+					enemy.Status = 1;
 					enemy.ResetMovement ();
 				}
 			}
 		} else if (State == 2) {
-			bool all_done = true;
-
 			for (int i = 0; i < enemyL.Count; i++) {
-				if (enemyL [i].Active) {
-					bool aEnemyMoving = false;
-					for (int j = 0; j < enemyL.Count; j++) {
-						if (enemyL [j].moving) {
-							aEnemyMoving = true;
-						}
-					}
-
-					if (!aEnemyMoving) {
-						//enemyL [i].MoveEnemy ();
-					}
+				if (enemyL [i].Status == 1) {
+					enemyL [i].MoveEnemy ();
 				}
-					
-				if (enemyL [i].Active || enemyL [i].moving) {
-					//all_done = false;
+			}
+
+			bool all_done = true;
+			for (int i = 0; i < enemyL.Count; i++) {
+				if (enemyL [i].Status != 0) {
+					all_done = false;
+					break;
 				}
 			}
 
@@ -182,7 +175,7 @@ public class GameManager : MonoBehaviour {
 			StartCoroutine (TimerEnumerator(3,1));
 		}
 
-		if (activePlayer != null) {
+		if (activePlayer != null && State != 0 && State != 3 && State != 4) {
 			playerInput.CameraAction ();
 			GameObject camera = GameObject.Find ("Main Camera");
 			CameraBounds bounds = camera.GetComponent<CameraBounds>();
@@ -313,9 +306,15 @@ public class GameManager : MonoBehaviour {
 		playerL.Add (player);
 	}
 
-	public void ResetTileDis() {
+	public void ResetTileMovDis() {
 		foreach (HexTile tile in tileL) {
-			tile.dis = -1;
+			tile.mov_dis = -1;
+		}
+	}
+
+	public void ResetTileAttDis() {
+		foreach (HexTile tile in tileL) {
+			tile.att_dis = -1;
 		}
 	}
 
@@ -494,7 +493,7 @@ public class GameManager : MonoBehaviour {
 		if (d_cc>=x) {
 			d_dm = d_dm * 3;
 		}
-		if (d_ac >= x && dWep.Rng.Contains (defender.dis) && dWep.type >= 0) {
+		if (d_ac >= x /*&& dWep.Rng.Contains (defender.mov_dis)*/ && dWep.type >= 0) {
 			if (d_dm == 0) {
 				d_xp = 1;
 			} else {
@@ -551,7 +550,7 @@ public class GameManager : MonoBehaviour {
 			if (d_cc>=x) {
 				d_dm = d_dm * 3;
 			}
-			if (d_ac >= x && dWep.Rng.Contains (defender.dis) && dWep.type >= 0) {
+			if (d_ac >= x /*&& dWep.Rng.Contains (defender.dis)*/ && dWep.type >= 0) {
 				if (d_dm == 0) {
 					d_xp += 1;
 				} else {
