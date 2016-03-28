@@ -123,6 +123,10 @@ public class GameManager : MonoBehaviour {
 					activePlayer.Status = 0;
 					activePlayer = null;
 					activeEnemy = null;
+
+					if (State == 0) {
+						return;
+					}
 				}
 			}
 
@@ -149,6 +153,9 @@ public class GameManager : MonoBehaviour {
 					break;
 				} else if (enemyL [i].Status == 1) {
 					enemyL [i].MoveEnemy ();
+					if (State == 0) {
+						return;
+					}
 					break;
 				}
 			}
