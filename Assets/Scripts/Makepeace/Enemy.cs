@@ -15,10 +15,6 @@ public class Enemy : MonoBehaviour {
 	public List<Unit> attackablePlayers;
 	private Unit attackablePlayer;
 
-    //PriorityQueue<float, SearchNode<HexTile, Action>> frontier = new PriorityQueue<float, SearchNode<HexTile, Action>>();
-    //List<SearchNode<HexTile, Action>> enemyList = new List<SearchNode<HexTile, Action>>();
-    //Dictionary<HexTile, SearchNode<HexTile, Action>> visitedTiles = new Dictionary<HexTile, SearchNode<HexTile, Action>>();
-
 	void Start() {
 		enemy_stats = this.GetComponentInChildren<Stats> ();
 		Status = 0;
@@ -79,6 +75,7 @@ public class Enemy : MonoBehaviour {
 			}
 
 			visitedTile.Remove (viewTile);
+			attackablePlayers = new List<Unit> ();
 			FindAttackablePlayers (viewTile);
 
 			if (viewTile.E_Tile != null && viewTile.E_Tile.character == null && viewTile.E_Tile.mov_cost + viewTile.mov_dis <= totalMov) {
@@ -146,12 +143,12 @@ public class Enemy : MonoBehaviour {
 		HexTile viewTile = null;
 		List<HexTile> visitedTile = new List<HexTile> ();
 
-		this.tile.att_dis = 0;
+		origin.att_dis = 0;
 
 		visitedTile.Add (origin);
-		viewTile = origin;
 
 		while (visitedTile.Count > 0) {
+			viewTile = null;
 			foreach (HexTile tile in visitedTile) {
 				if (viewTile == null || tile.att_dis < viewTile.att_dis) {
 					viewTile = tile;
@@ -261,8 +258,6 @@ public class Enemy : MonoBehaviour {
 					viewTile.SW_Tile.att_dis = viewTile.att_dis + 1;
 				}
 			}
-
-			viewTile = null;
 		}
 	}
 
@@ -286,6 +281,7 @@ public class Enemy : MonoBehaviour {
 			}
 
 			visitedTile.Remove (viewTile);
+			attackablePlayers = new List<Unit> ();
 			FindAttackablePlayers (viewTile);
 			if(attackablePlayers.Contains(player)) {
 				break;
@@ -347,7 +343,7 @@ public class Enemy : MonoBehaviour {
 				} else if (viewTile.NW_Tile.mov_dis == -1) {
 					viewTile.NW_Tile.mov_dis = viewTile.mov_dis + viewTile.NW_Tile.mov_cost;
 					viewTile.NW_Tile.parent = viewTile;
-					visitedTile.Add (viewTile.NE_Tile);
+					visitedTile.Add (viewTile.NW_Tile);
 				}
 			}
 				
