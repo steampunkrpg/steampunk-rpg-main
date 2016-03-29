@@ -2490,6 +2490,18 @@ Prefab:
       propertyPath: LevelHUD
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 11466336, guid: 1ffe8ec2f82317a4481556a2c58df85d, type: 2}
+      propertyPath: PauseUI
+      value: 
+      objectReference: {fileID: 1470734239}
+    - target: {fileID: 11466336, guid: 1ffe8ec2f82317a4481556a2c58df85d, type: 2}
+      propertyPath: TurnUI
+      value: 
+      objectReference: {fileID: 1485715031}
+    - target: {fileID: 11466336, guid: 1ffe8ec2f82317a4481556a2c58df85d, type: 2}
+      propertyPath: turnText
+      value: 
+      objectReference: {fileID: 940082725}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1ffe8ec2f82317a4481556a2c58df85d, type: 2}
   m_IsPrefabParent: 0
@@ -12658,7 +12670,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1470734240
 MonoBehaviour:
   m_ObjectHideFlags: 0

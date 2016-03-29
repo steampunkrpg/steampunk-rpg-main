@@ -45,6 +45,9 @@ public class GameManager : MonoBehaviour {
 		xpGrowthRate = this.gameObject.GetComponent<XpGrowthRate> ();
 		playerInput = this.gameObject.GetComponent<PlayerKeyBoardInput> ();
 
+		PauseUI.SetActive (false);
+		TurnUI.SetActive (false);
+
 		level = 0;
 		State = 0;
 	}
