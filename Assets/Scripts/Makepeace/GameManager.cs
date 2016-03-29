@@ -186,10 +186,10 @@ public class GameManager : MonoBehaviour {
 				}
 			}
 		} else if (State == 3) {
-			StartCoroutine (TimerEnumerator(3,2));
+			StartCoroutine (TimerEnumerator (3, 2));
 		} else if (State == 4) {
-			StartCoroutine (TimerEnumerator(3,1));
-		}
+			StartCoroutine (TimerEnumerator (3, 1));
+		} 
 
 		if (State != 0 && State != 3 && State != 4) {
 			if (activePlayer != null) {
@@ -371,16 +371,24 @@ public class GameManager : MonoBehaviour {
 		//SceneTransition.gameObject.SetActive(true);
 		if (nextState == 1) {
 			//SceneTransition.text = "Player's Turn";
-		} else {
+		} else if (nextState == 2) {
 			//SceneTransition.text = "Enemy's Turn";
+		} else if (nextState == -1) {
+			//SceneTransition.text = "Game Over";
+		} else if (nextState == -2) {
+			//SceneTransition.text = "Victory";
 		}
 
 		yield return new WaitForSeconds (secs);
 
+		//SceneTransition.gameObject.SetActive(false);
 		if (nextState == 1) {
 			CameraFocusPlayer ();
+		} else if (nextState == -1) {
+			LoadScene ("New_Main_Menu");
+		} else if (nextState == -2) {
+			LoadScene ("World_Map");
 		}
-		//SceneTransition.gameObject.SetActive(false);
 
 		State = nextState;
 	}
@@ -650,6 +658,7 @@ public class GameManager : MonoBehaviour {
 			//Destroy GameManager
 			//Back to Menu
 			LoadScene("New_Main_Menu");
+			DestroyThis ();
 		}
 
 		if (enemyL.Count == 0) {
