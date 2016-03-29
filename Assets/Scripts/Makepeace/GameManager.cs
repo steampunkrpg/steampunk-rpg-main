@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using UnityEngine;using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
@@ -385,7 +384,7 @@ public class GameManager : MonoBehaviour {
 		if (nextState == 1) {
 			CameraFocusPlayer ();
 		} else if (nextState == -1) {
-			LoadScene ("New_Main_Menu");
+			LoadScene ("New_Menu_Scene");
 		} else if (nextState == -2) {
 			LoadScene ("World_Map");
 		}
