@@ -368,11 +368,7 @@ public class Enemy : MonoBehaviour {
 		if (Status == 2 && (this.transform.position.x != tile.transform.position.x || this.transform.position.z != tile.transform.position.z)) {
 			this.transform.position = Vector3.MoveTowards (this.transform.position, new Vector3(tile.transform.position.x, this.transform.position.y, tile.transform.position.z), 3 * Time.deltaTime);
 			if (this.transform.position.x == tile.transform.position.x && this.transform.position.z == tile.transform.position.z) {
-				if (movement == 0) {
-					Status = 0;
-				} else {
-					Status = 1;
-				}
+				Status = 1;
 			}
 		}
 	}

@@ -65,9 +65,12 @@ public class GameManager : MonoBehaviour {
 					activePlayer.possibleMoves ();
 				}
 				playerInput.UnitAction (activePlayer);
-			} else if (activePlayer != null && activePlayer.Status == 0) {
+			} 
+
+			if (activePlayer != null && activePlayer.Status == 0) {
 				activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
 				activePlayer.menu.gameObject.SetActive (false);
+				ResetTilePar ();
 				activePlayer = null;
 			}
 
@@ -186,13 +189,15 @@ public class GameManager : MonoBehaviour {
 			StartCoroutine (TimerEnumerator(3,1));
 		}
 
-		if (activePlayer != null && State != 0 && State != 3 && State != 4) {
-			playerInput.CameraAction ();
-			GameObject camera = GameObject.Find ("Main Camera");
-			CameraBounds bounds = camera.GetComponent<CameraBounds>();
-			camera.transform.position = new Vector3 (activePlayer.transform.position.x, activePlayer.transform.position.y + bounds.offset - bounds.zoom, activePlayer.transform.position.z - bounds.offset + bounds.zoom);
-		} else {
-			playerInput.CameraAction ();
+		if (State != 0 && State != 3 && State != 4) {
+			if (activePlayer != null) {
+				playerInput.CameraAction ();
+				GameObject camera = GameObject.Find ("Main Camera");
+				CameraBounds bounds = camera.GetComponent<CameraBounds> ();
+				camera.transform.position = new Vector3 (activePlayer.transform.position.x, activePlayer.transform.position.y + bounds.offset - bounds.zoom, activePlayer.transform.position.z - bounds.offset + bounds.zoom);
+			} else {
+				playerInput.CameraAction ();
+			}
 		}
 	}
 		
@@ -204,6 +209,7 @@ public class GameManager : MonoBehaviour {
 				if (hit.collider.tag.Equals ("Unit")) {
 					if (activePlayer != null && activePlayer != hit.collider.gameObject.GetComponent<Unit>()) {
 						activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
+						ResetTilePar ();
 						activePlayer.menu.gameObject.SetActive (false);
 					}
 					activePlayer = hit.collider.gameObject.GetComponent<Unit>();
@@ -213,6 +219,7 @@ public class GameManager : MonoBehaviour {
 					activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
 					activePlayer.menu.gameObject.SetActive (false);
 					activePlayer = null;
+					ResetTilePar ();
 				}
 			}
 		}

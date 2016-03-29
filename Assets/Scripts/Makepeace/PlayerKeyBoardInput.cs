@@ -38,6 +38,10 @@ public class PlayerKeyBoardInput : MonoBehaviour {
 			activePlayer.Status = 5;
 			return;
 		}
+		if (Input.GetKey (KeyCode.T)) {
+			activePlayer.Status = 0;
+			return;
+		}
 	}
 
 	public void CameraAction() {

@@ -6916,6 +6916,10 @@ Prefab:
       propertyPath: m_TagString
       value: Terrain
       objectReference: {fileID: 0}
+    - target: {fileID: 11446790, guid: a8f2b3a7b41a18447a6e63819603537c, type: 2}
+      propertyPath: numOfBushes
+      value: 500
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a8f2b3a7b41a18447a6e63819603537c, type: 2}
   m_IsPrefabParent: 0
