@@ -33,7 +33,7 @@ public class Enemy : MonoBehaviour {
 		Debug.Log (attackablePlayers);
 
 		for (int i = 0; i < attackablePlayers.Count; i++) {
-			if (i == 0 || attackablePlayer == null || attackablePlayer.char_stats.cHP >= attackablePlayers [i].char_stats.cHP) {
+			if (attackablePlayer == null || attackablePlayer.char_stats.cHP >= attackablePlayers [i].char_stats.cHP) {
 				attackablePlayer = attackablePlayers [i];
 			}
 		}
