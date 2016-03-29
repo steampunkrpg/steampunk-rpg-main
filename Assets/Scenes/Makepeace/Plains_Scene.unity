@@ -224,6 +224,14 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11428590, guid: 9451c0747dba2bd4cb242676083599ae, type: 2}
+      propertyPath: U_Name
+      value: Chloe
+      objectReference: {fileID: 0}
+    - target: {fileID: 11413840, guid: 9451c0747dba2bd4cb242676083599ae, type: 2}
+      propertyPath: Wt
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9451c0747dba2bd4cb242676083599ae, type: 2}
   m_IsPrefabParent: 0
@@ -277,7 +285,7 @@ GameObject:
   - 23: {fileID: 43907826}
   - 114: {fileID: 43907825}
   m_Layer: 0
-  m_Name: Sphere (4)
+  m_Name: Soldier 5
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2085,19 +2093,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Lv: 1
   Xp: 0
-  cHP: 22
-  mHP: 22
-  Str: 10
+  cHP: 20
+  mHP: 20
+  Str: 8
   Mag: 0
-  Skl: 6
+  Skl: 8
   Spd: 8
   Lck: 0
-  Def: 5
-  Res: 0
-  Con: 12
-  Wt: 14
-  Mov: 2
-  U_Name: 
+  Def: 7
+  Res: 2
+  Con: 11
+  Wt: 15
+  Mov: 6
+  U_Name: Soldier 5
 --- !u!1 &166046920
 GameObject:
   m_ObjectHideFlags: 0
@@ -2250,20 +2258,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Lv: 1
-  Xp: 99
-  cHP: 20
-  mHP: 20
-  Str: 8
+  Xp: 0
+  cHP: 19
+  mHP: 19
+  Str: 9
   Mag: 0
-  Skl: 8
+  Skl: 10
   Spd: 8
   Lck: 0
-  Def: 7
-  Res: 2
-  Con: 11
-  Wt: 15
+  Def: 5
+  Res: 1
+  Con: 10
+  Wt: 10
   Mov: 6
-  U_Name: 
+  U_Name: Marcus
 --- !u!1 &192133769
 GameObject:
   m_ObjectHideFlags: 0
@@ -4472,19 +4480,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Lv: 1
   Xp: 0
-  cHP: 22
-  mHP: 22
-  Str: 10
+  cHP: 20
+  mHP: 20
+  Str: 8
   Mag: 0
-  Skl: 6
+  Skl: 8
   Spd: 8
   Lck: 0
-  Def: 5
-  Res: 0
-  Con: 12
-  Wt: 14
-  Mov: 2
-  U_Name: 
+  Def: 7
+  Res: 2
+  Con: 11
+  Wt: 15
+  Mov: 6
+  U_Name: Soldier 1
 --- !u!1 &415741450
 GameObject:
   m_ObjectHideFlags: 0
@@ -7264,13 +7272,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51b60b7216a8b1f408bfdc078dc46869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Mt: 40
-  Hit: 100
+  Mt: 6
+  Hit: 90
   Crit: 0
-  Wt: 5
+  Wt: 7
   Rng:
   - 1
-  - 2
   type: 0
 --- !u!1 &760432690
 GameObject:
@@ -9961,19 +9968,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Lv: 1
   Xp: 0
-  cHP: 22
-  mHP: 22
-  Str: 10
+  cHP: 20
+  mHP: 20
+  Str: 8
   Mag: 0
-  Skl: 6
+  Skl: 8
   Spd: 8
   Lck: 0
-  Def: 5
-  Res: 0
-  Con: 12
-  Wt: 14
-  Mov: 2
-  U_Name: 
+  Def: 7
+  Res: 2
+  Con: 11
+  Wt: 15
+  Mov: 6
+  U_Name: Soldier 3
 --- !u!1 &1302499196
 GameObject:
   m_ObjectHideFlags: 0
@@ -9987,7 +9994,7 @@ GameObject:
   - 23: {fileID: 1302499198}
   - 114: {fileID: 1302499197}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: ' Soldier 1'
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10332,19 +10339,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Lv: 1
-  Xp: 99
-  cHP: 20
-  mHP: 20
-  Str: 8
+  Xp: 0
+  cHP: 22
+  mHP: 22
+  Str: 10
   Mag: 0
-  Skl: 8
+  Skl: 6
   Spd: 8
   Lck: 0
-  Def: 7
-  Res: 2
-  Con: 11
-  Wt: 15
-  Mov: 20
+  Def: 5
+  Res: 0
+  Con: 12
+  Wt: 12
+  Mov: 6
   U_Name: Hector
 --- !u!1 &1443125684
 GameObject:
@@ -12615,7 +12622,7 @@ GameObject:
   - 23: {fileID: 1594742768}
   - 114: {fileID: 1594742767}
   m_Layer: 0
-  m_Name: Sphere (2)
+  m_Name: Soldier 3
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14564,19 +14571,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Lv: 1
   Xp: 0
-  cHP: 22
-  mHP: 22
-  Str: 10
+  cHP: 20
+  mHP: 20
+  Str: 8
   Mag: 0
-  Skl: 6
+  Skl: 8
   Spd: 8
   Lck: 0
-  Def: 5
-  Res: 0
-  Con: 12
-  Wt: 14
-  Mov: 2
-  U_Name: 
+  Def: 7
+  Res: 2
+  Con: 11
+  Wt: 15
+  Mov: 6
+  U_Name: Soldier 2
 --- !u!1 &1678248959
 GameObject:
   m_ObjectHideFlags: 0
@@ -14590,7 +14597,7 @@ GameObject:
   - 23: {fileID: 1678248961}
   - 114: {fileID: 1678248960}
   m_Layer: 0
-  m_Name: Sphere (3)
+  m_Name: Soldier 4
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15479,14 +15486,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51b60b7216a8b1f408bfdc078dc46869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Mt: 3
-  Hit: 95
+  Mt: 6
+  Hit: 85
   Crit: 0
-  Wt: 5
+  Wt: 8
   Rng:
-  - 1
   - 2
-  type: 0
+  type: 4
 --- !u!4 &2018994876 stripped
 Transform:
   m_PrefabParentObject: {fileID: 479588, guid: 9451c0747dba2bd4cb242676083599ae, type: 2}
@@ -15580,7 +15586,7 @@ GameObject:
   - 23: {fileID: 2025509350}
   - 114: {fileID: 2025509349}
   m_Layer: 0
-  m_Name: Sphere (1)
+  m_Name: Soldier 2
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15767,19 +15773,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Lv: 1
   Xp: 0
-  cHP: 22
-  mHP: 22
-  Str: 10
+  cHP: 20
+  mHP: 20
+  Str: 8
   Mag: 0
-  Skl: 6
+  Skl: 8
   Spd: 8
   Lck: 0
-  Def: 5
-  Res: 0
-  Con: 12
-  Wt: 14
-  Mov: 2
-  U_Name: 
+  Def: 7
+  Res: 2
+  Con: 11
+  Wt: 15
+  Mov: 6
+  U_Name: Soldier 4
 --- !u!1 &2072384953
 GameObject:
   m_ObjectHideFlags: 0
