@@ -224,6 +224,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11428590, guid: 9451c0747dba2bd4cb242676083599ae, type: 2}
+      propertyPath: U_Name
+      value: Chloe
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9451c0747dba2bd4cb242676083599ae, type: 2}
   m_IsPrefabParent: 0
@@ -277,7 +281,7 @@ GameObject:
   - 23: {fileID: 43907826}
   - 114: {fileID: 43907825}
   m_Layer: 0
-  m_Name: Sphere (4)
+  m_Name: Soldier 5
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2097,7 +2101,7 @@ MonoBehaviour:
   Con: 12
   Wt: 14
   Mov: 2
-  U_Name: 
+  U_Name: Soldier 5
 --- !u!1 &166046920
 GameObject:
   m_ObjectHideFlags: 0
@@ -2263,7 +2267,7 @@ MonoBehaviour:
   Con: 11
   Wt: 15
   Mov: 6
-  U_Name: 
+  U_Name: Marcus
 --- !u!1 &192133769
 GameObject:
   m_ObjectHideFlags: 0
@@ -4484,7 +4488,7 @@ MonoBehaviour:
   Con: 12
   Wt: 14
   Mov: 2
-  U_Name: 
+  U_Name: Soldier 1
 --- !u!1 &415741450
 GameObject:
   m_ObjectHideFlags: 0
@@ -9973,7 +9977,7 @@ MonoBehaviour:
   Con: 12
   Wt: 14
   Mov: 2
-  U_Name: 
+  U_Name: Soldier 3
 --- !u!1 &1302499196
 GameObject:
   m_ObjectHideFlags: 0
@@ -9987,7 +9991,7 @@ GameObject:
   - 23: {fileID: 1302499198}
   - 114: {fileID: 1302499197}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: ' Soldier 1'
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12615,7 +12619,7 @@ GameObject:
   - 23: {fileID: 1594742768}
   - 114: {fileID: 1594742767}
   m_Layer: 0
-  m_Name: Sphere (2)
+  m_Name: Soldier 3
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14576,7 +14580,7 @@ MonoBehaviour:
   Con: 12
   Wt: 14
   Mov: 2
-  U_Name: 
+  U_Name: Soldier 2
 --- !u!1 &1678248959
 GameObject:
   m_ObjectHideFlags: 0
@@ -14590,7 +14594,7 @@ GameObject:
   - 23: {fileID: 1678248961}
   - 114: {fileID: 1678248960}
   m_Layer: 0
-  m_Name: Sphere (3)
+  m_Name: Soldier 4
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15580,7 +15584,7 @@ GameObject:
   - 23: {fileID: 2025509350}
   - 114: {fileID: 2025509349}
   m_Layer: 0
-  m_Name: Sphere (1)
+  m_Name: Soldier 2
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15779,7 +15783,7 @@ MonoBehaviour:
   Con: 12
   Wt: 14
   Mov: 2
-  U_Name: 
+  U_Name: Soldier 4
 --- !u!1 &2072384953
 GameObject:
   m_ObjectHideFlags: 0
