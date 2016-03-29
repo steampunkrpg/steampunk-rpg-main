@@ -654,17 +654,11 @@ public class GameManager : MonoBehaviour {
 
 	private void CheckWinOrLoseCondition() {
 		if (playerL.Count == 0) {
-			//Show Game Over
-			//Destroy GameManager
-			//Back to Menu
 			StartCoroutine(TimerEnumerator(5,-1));
 		}
 
 		if (enemyL.Count == 0) {
-			//Show Victory
-			//Increment Level by 1
 			level++;
-			//Back to Map
 			StartCoroutine(TimerEnumerator(5,-2));
 		}
 	}
