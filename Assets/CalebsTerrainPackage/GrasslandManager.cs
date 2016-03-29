@@ -8,8 +8,6 @@ public class GrasslandManager : MonoBehaviour {
     public GameObject bush2;
     public GameObject bush3;
     public GameObject bush4;
-    public GameObject bush5;
-    public GameObject bush6;
 
     public Terrain terrain;
 
@@ -22,8 +20,6 @@ public class GrasslandManager : MonoBehaviour {
             InstantiateVegetation(bush2, (numOfBushes / 4));
             InstantiateVegetation(bush3, (numOfBushes / 4));
             InstantiateVegetation(bush4, (numOfBushes / 4));
-            InstantiateVegetation(bush5, (numOfBushes / 50));
-            InstantiateVegetation(bush6, (numOfBushes / 50));
 
         }
     }
@@ -34,23 +30,14 @@ public class GrasslandManager : MonoBehaviour {
         float randZ = Random.Range(5f, 95f);
         float randY = terrain.SampleHeight(new Vector3(randX, 0f, randZ)) + go.transform.lossyScale.y - 1.5f;
 
-        if (!go.Equals(bush5) && !go.Equals(bush6))
+       
+        while (DistributeGrass(randY) == false)
         {
-            while (DistributeGrass(randY) == false)
-            {
-                randX = Random.Range(3f, 98f);
-                randZ = Random.Range(3f, 75f);
-                randY = terrain.SampleHeight(new Vector3(randX, 0f, randZ)) + go.transform.lossyScale.y - 1.5f;
-            }
-        } else if (go.Equals(bush5) || go.Equals(bush6))
-        {
-            while (DistributeBush(randY) == false)
-            {
-                randX = Random.Range(3f, 98f);
-                randZ = Random.Range(3f, 75f);
-                randY = terrain.SampleHeight(new Vector3(randX, 0f, randZ)) + go.transform.lossyScale.y - 1.5f;
-            }
+            randX = Random.Range(3f, 98f);
+            randZ = Random.Range(3f, 75f);
+            randY = terrain.SampleHeight(new Vector3(randX, 0f, randZ)) + go.transform.lossyScale.y - 1.5f;
         }
+        
 
         Vector3 randPos = new Vector3(randX, randY, randZ);
         return randPos;
@@ -89,10 +76,9 @@ public class GrasslandManager : MonoBehaviour {
             Vector3 pos = RandomPosGenerator(go);
             GameObject bush = Instantiate(go, pos, Quaternion.Euler(0, 0, 0)) as GameObject;
             bush.name = "grass";
-            if (!go.Equals(bush5) && !go.Equals(bush6))
-            {
-                bush.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
-            }
+            
+            bush.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+            
         }
     }
 
