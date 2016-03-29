@@ -12,12 +12,8 @@ public class WorldMapScript : MonoBehaviour {
 	
 	public void LoadScene(string scene) 
 	{
-		int level = GameManager.instance.level;
-
-		if ((level == 0 && scene == "Plains_Scene") || (level == 1 && scene == "Desert_Scene") || (level == 2 && scene == "Forest_Scene") || (level == 3 && scene == "Winter_Scene") || (level == 4 && scene == "Lava_Scene")) {
 			loader.SetActive (true);
 			StartCoroutine (LoadLevelWithBar (scene));
-		}
 	}
 
 	IEnumerator LoadLevelWithBar (string sceneName)
