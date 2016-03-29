@@ -232,6 +232,38 @@ Prefab:
       propertyPath: Wt
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 11428590, guid: 9451c0747dba2bd4cb242676083599ae, type: 2}
+      propertyPath: Str
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11428590, guid: 9451c0747dba2bd4cb242676083599ae, type: 2}
+      propertyPath: cHP
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 11428590, guid: 9451c0747dba2bd4cb242676083599ae, type: 2}
+      propertyPath: mHP
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 11428590, guid: 9451c0747dba2bd4cb242676083599ae, type: 2}
+      propertyPath: Mag
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11428590, guid: 9451c0747dba2bd4cb242676083599ae, type: 2}
+      propertyPath: Spd
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11428590, guid: 9451c0747dba2bd4cb242676083599ae, type: 2}
+      propertyPath: Lck
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11428590, guid: 9451c0747dba2bd4cb242676083599ae, type: 2}
+      propertyPath: Def
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11428590, guid: 9451c0747dba2bd4cb242676083599ae, type: 2}
+      propertyPath: Res
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9451c0747dba2bd4cb242676083599ae, type: 2}
   m_IsPrefabParent: 0
@@ -2257,19 +2289,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ad742f992dd94c29904002ebc2643f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Lv: 1
+  Lv: 4
   Xp: 0
-  cHP: 19
-  mHP: 19
-  Str: 9
+  cHP: 17
+  mHP: 17
+  Str: 8
   Mag: 0
-  Skl: 10
-  Spd: 8
-  Lck: 0
+  Skl: 12
+  Spd: 10
+  Lck: 6
   Def: 5
-  Res: 1
-  Con: 10
-  Wt: 10
+  Res: 4
+  Con: 7
+  Wt: 7
   Mov: 6
   U_Name: Marcus
 --- !u!1 &192133769
@@ -10342,19 +10374,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ad742f992dd94c29904002ebc2643f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Lv: 1
+  Lv: 5
   Xp: 0
-  cHP: 22
-  mHP: 22
-  Str: 10
+  cHP: 25
+  mHP: 25
+  Str: 12
   Mag: 0
-  Skl: 6
-  Spd: 8
-  Lck: 0
-  Def: 5
-  Res: 0
-  Con: 12
-  Wt: 12
+  Skl: 11
+  Spd: 10
+  Lck: 7
+  Def: 9
+  Res: 3
+  Con: 13
+  Wt: 13
   Mov: 6
   U_Name: Hector
 --- !u!1 &1443125684
