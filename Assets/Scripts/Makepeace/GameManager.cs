@@ -62,18 +62,21 @@ public class GameManager : MonoBehaviour {
 				if (!activePlayer.GetComponentInChildren<ParticleSystem> ().isPlaying) {
 					activePlayer.GetComponentInChildren<ParticleSystem> ().Play (true);
 					activePlayer.menu.gameObject.SetActive (true);
-					//activePlayer.possibleMoves ();
 				}
 			} else if (activePlayer != null && activePlayer.Status == 0) {
 				activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
+				activePlayer.menu.gameObject.SetActive (false);
 				activePlayer = null;
 			}
 
-			if (activePlayer != null && activePlayer.Status == 1) {
+			if (activePlayer != null && activePlayer.Status == 6) {
+				activePlayer.menu.gameObject.SetActive (false);
+				activePlayer.possibleMoves ();
 				playerInput.UnitAction (activePlayer);
 			}
 
 			if (activePlayer != null && activePlayer.Status == 5) {
+				activePlayer.menu.gameObject.SetActive (false);
 				InteractSelect ();
 				if (interactPlayer != null) {
 					InitiateInteraction (activePlayer.tile, interactPlayer.tile);
@@ -98,6 +101,7 @@ public class GameManager : MonoBehaviour {
 			}
 
 			if (activePlayer != null && activePlayer.Status == 3) {
+				activePlayer.menu.gameObject.SetActive (false);
 				EnemySelect ();
 				if (activeEnemy != null) {
 					InitiateBattle (activePlayer.tile, activeEnemy.tile);
@@ -198,28 +202,15 @@ public class GameManager : MonoBehaviour {
 				if (hit.collider.tag.Equals ("Unit")) {
 					if (activePlayer != null && activePlayer != hit.collider.gameObject.GetComponent<Unit>()) {
 						activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
-						//TODO - Close UI
+						activePlayer.menu.gameObject.SetActive (false);
 					}
 					activePlayer = hit.collider.gameObject.GetComponent<Unit>();
-					//TODO - Bring up UI
+					activePlayer.menu.gameObject.SetActive (true);
 				}
 				if (hit.collider.tag.Equals ("Terrain") && activePlayer != null) {
-					ResetTilePar ();
 					activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
-					//TODO - Close UI
+					activePlayer.menu.gameObject.SetActive (false);
 					activePlayer = null;
-				}
-			}
-		}
-		if (Input.GetMouseButtonDown (1)) {
-			mouseRay = Camera.main.ScreenPointToRay (Input.mousePosition);
-
-			if (Physics.Raycast (mouseRay, out hit)) {
-				if (hit.collider.tag.Equals ("Unit")) {
-					//if (activePlayer != null && activePlayer == hit.collider.gameObject.GetComponent<Unit>()) {
-					//	activePlayer.ActivateUI ();
-					//}
-					//activePlayer.ActivateUI ();
 				}
 			}
 		}
@@ -237,7 +228,7 @@ public class GameManager : MonoBehaviour {
 				}
 				if (hit.collider.tag.Equals ("Terrain") || hit.collider.tag.Equals ("Unit")) {
 					activePlayer.Status = 1;
-					activePlayer.possibleMoves ();
+					activePlayer.menu.gameObject.SetActive (true);
 					ResetEnemyPar ();
 				}
 			}
@@ -256,7 +247,7 @@ public class GameManager : MonoBehaviour {
 				}
 				if (hit.collider.tag.Equals ("Terrain") || hit.collider.tag.Equals ("Enemy")) {
 					activePlayer.Status = 1;
-					activePlayer.possibleMoves ();
+					activePlayer.menu.gameObject.SetActive (true);
 					ResetPlayerPar ();
 				}
 			}
