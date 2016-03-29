@@ -2541,7 +2541,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &256630761
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6903,6 +6903,10 @@ Prefab:
     - target: {fileID: 447510, guid: a8f2b3a7b41a18447a6e63819603537c, type: 2}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 110962, guid: a8f2b3a7b41a18447a6e63819603537c, type: 2}
+      propertyPath: m_TagString
+      value: Terrain
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a8f2b3a7b41a18447a6e63819603537c, type: 2}
@@ -12751,7 +12755,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1602480444
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14809,7 +14813,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1755719714
 RectTransform:
   m_ObjectHideFlags: 0
