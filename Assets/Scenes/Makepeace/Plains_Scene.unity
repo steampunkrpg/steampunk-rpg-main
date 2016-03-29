@@ -2454,7 +2454,6 @@ MonoBehaviour:
   tile: {fileID: 0}
   Status: 0
   char_class: {fileID: 205687778}
-  ui: {fileID: 1230243353}
   statsView: {fileID: 1999344409}
   health: {fileID: 441866488}
   menu: {fileID: 0}
@@ -9908,7 +9907,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 2
   m_RenderMode: 2
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 611454113}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -10103,7 +10102,6 @@ MonoBehaviour:
   tile: {fileID: 0}
   Status: 0
   char_class: {fileID: 876855346}
-  ui: {fileID: 1022263680}
   statsView: {fileID: 1755719716}
   health: {fileID: 1818137383}
   menu: {fileID: 0}
