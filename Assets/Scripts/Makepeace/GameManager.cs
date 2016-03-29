@@ -205,6 +205,10 @@ public class GameManager : MonoBehaviour {
 				playerInput.CameraAction ();
 			}
 		}
+
+		if (State != 0) {
+			playerInput.GlobalAction ();
+		}
 	}
 		
 	void CameraFocusPlayer() {

@@ -44,6 +44,13 @@ public class PlayerKeyBoardInput : MonoBehaviour {
 		}
 	}
 
+	public void GlobalAction() {
+		if (Input.GetKey (KeyCode.Escape)) {
+			GameManager.instance.State = 0;
+			//GameManager.instance.PauseHUD.gameObject.SetActive(true);
+		}
+	}
+
 	public void CameraAction() {
 		GameObject camera = GameObject.Find ("Main Camera");
 		CameraBounds bounds = camera.GetComponentInChildren<CameraBounds> ();
