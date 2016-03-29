@@ -2172,6 +2172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   charInfo: {fileID: 1962215}
   level: {fileID: 2020657178}
+  interaction: {fileID: 1216184947}
 --- !u!114 &166046923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9430,6 +9431,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   charInfo: {fileID: 1755719716}
   level: {fileID: 1602480445}
+  interaction: {fileID: 1638600917}
 --- !u!114 &1022263683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9869,6 +9871,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   charInfo: {fileID: 1999344409}
   level: {fileID: 415741452}
+  interaction: {fileID: 783991839}
 --- !u!114 &1230243356
 MonoBehaviour:
   m_ObjectHideFlags: 0
