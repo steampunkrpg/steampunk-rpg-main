@@ -136,6 +136,10 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 192622, guid: 06a0a8a7adcd2f84da8e433e0aed9d31, type: 2}
+      propertyPath: m_TagString
+      value: Terrain
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 06a0a8a7adcd2f84da8e433e0aed9d31, type: 2}
   m_IsPrefabParent: 0
