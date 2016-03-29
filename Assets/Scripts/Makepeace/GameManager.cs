@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour {
 
 		LoadLists ();
 		State = 1;
+		CameraFocusPlayer ();
 	}
 
 	void Update() {
@@ -160,6 +161,7 @@ public class GameManager : MonoBehaviour {
 					break;
 				} else if (enemyL [i].Status == 1) {
 					enemyL [i].MoveEnemy ();
+					activeEnemy = enemyL [i];
 					if (State == 0) {
 						return;
 					}
@@ -195,12 +197,25 @@ public class GameManager : MonoBehaviour {
 				GameObject camera = GameObject.Find ("Main Camera");
 				CameraBounds bounds = camera.GetComponent<CameraBounds> ();
 				camera.transform.position = new Vector3 (activePlayer.transform.position.x, activePlayer.transform.position.y + bounds.offset - bounds.zoom, activePlayer.transform.position.z - bounds.offset + bounds.zoom);
+			} else if (activeEnemy != null) {
+				playerInput.CameraAction ();
+				GameObject camera = GameObject.Find ("Main Camera");
+				CameraBounds bounds = camera.GetComponent<CameraBounds> ();
+				camera.transform.position = new Vector3 (activeEnemy.transform.position.x, activeEnemy.transform.position.y + bounds.offset - bounds.zoom, activeEnemy.transform.position.z - bounds.offset + bounds.zoom);
 			} else {
 				playerInput.CameraAction ();
 			}
 		}
 	}
 		
+	void CameraFocusPlayer() {
+		if (playerL.Count > 0) {
+			GameObject camera = GameObject.Find ("Main Camera");
+			CameraBounds bounds = camera.GetComponent<CameraBounds> ();
+			camera.transform.position = new Vector3 (playerL[0].transform.position.x, playerL[0].transform.position.y + bounds.offset - bounds.zoom, playerL[0].transform.position.z - bounds.offset + bounds.zoom);
+		}
+	}
+
 	void PlayerSelect() {
 		if (Input.GetMouseButtonDown (0)) {
 			mouseRay = Camera.main.ScreenPointToRay (Input.mousePosition);
@@ -337,7 +352,6 @@ public class GameManager : MonoBehaviour {
 	private void ResetEnemyPar() {
 		foreach (Enemy enemy in enemyL) {
 			enemy.GetComponentInChildren<ParticleSystem> ().Stop (true);
-			//enemy.transform.Find ("Particle").gameObject.SetActive (false);
 		}
 	}
 
@@ -357,6 +371,9 @@ public class GameManager : MonoBehaviour {
 		*/
 		yield return new WaitForSeconds (secs);
 
+		if (nextState == 1) {
+			CameraFocusPlayer ();
+		}
 
 		State = nextState;
 	}

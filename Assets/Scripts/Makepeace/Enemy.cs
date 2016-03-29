@@ -14,7 +14,6 @@ public class Enemy : MonoBehaviour {
 	public List<float> att_range;
 	public List<Unit> attackablePlayers;
 	private Unit attackablePlayer;
-	public string name;
 
 	void Start() {
 		enemy_stats = this.GetComponentInChildren<Stats> ();
@@ -369,6 +368,7 @@ public class Enemy : MonoBehaviour {
 			this.transform.position = Vector3.MoveTowards (this.transform.position, new Vector3(tile.transform.position.x, this.transform.position.y, tile.transform.position.z), 3 * Time.deltaTime);
 			if (this.transform.position.x == tile.transform.position.x && this.transform.position.z == tile.transform.position.z) {
 				Status = 1;
+				GameManager.instance.activeEnemy = null;
 			}
 		}
 	}
