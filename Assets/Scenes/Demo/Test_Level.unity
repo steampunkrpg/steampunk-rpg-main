@@ -2978,7 +2978,6 @@ MonoBehaviour:
   Wt: 5
   Rng:
   - 1
-  - 2
   type: 0
 --- !u!1 &576231248
 GameObject:
@@ -6757,6 +6756,10 @@ Prefab:
     - target: {fileID: 11440930, guid: e490082012424214aa337d35a19f75ef, type: 2}
       propertyPath: SpawnP
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 107108, guid: e490082012424214aa337d35a19f75ef, type: 2}
+      propertyPath: m_Name
+      value: HexGrid
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e490082012424214aa337d35a19f75ef, type: 2}
