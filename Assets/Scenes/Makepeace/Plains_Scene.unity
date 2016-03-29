@@ -7715,6 +7715,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 11403014, guid: 5b993634cdae4a945b63e8fc3c7884ef, type: 2}
+      propertyPath: Mt
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 11403014, guid: 5b993634cdae4a945b63e8fc3c7884ef, type: 2}
+      propertyPath: Hit
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 11447366, guid: 5b993634cdae4a945b63e8fc3c7884ef, type: 2}
+      propertyPath: Mov
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5b993634cdae4a945b63e8fc3c7884ef, type: 2}
   m_IsPrefabParent: 0
