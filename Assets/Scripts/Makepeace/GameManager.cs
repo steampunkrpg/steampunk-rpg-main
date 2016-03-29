@@ -367,7 +367,7 @@ public class GameManager : MonoBehaviour {
 
 	IEnumerator TimerEnumerator(float secs, int nextState) {
 		State = 0;
-		//SceneTransition.gameObject.SetActive(ture);
+		//SceneTransition.gameObject.SetActive(true);
 		if (nextState == 1) {
 			//SceneTransition.text = "Player's Turn";
 		} else {
@@ -379,6 +379,7 @@ public class GameManager : MonoBehaviour {
 		if (nextState == 1) {
 			CameraFocusPlayer ();
 		}
+		//SceneTransition.gameObject.SetActive(false);
 
 		State = nextState;
 	}
