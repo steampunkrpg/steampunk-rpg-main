@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour {
 	public Unit interactPlayer = null;
 
 	public int State;
+	public int prevState;
 	public int level;
 
 	void Awake() {

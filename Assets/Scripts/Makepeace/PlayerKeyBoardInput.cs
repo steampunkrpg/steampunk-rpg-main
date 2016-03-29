@@ -46,6 +46,7 @@ public class PlayerKeyBoardInput : MonoBehaviour {
 
 	public void GlobalAction() {
 		if (Input.GetKey (KeyCode.Escape)) {
+			GameManager.instance.prevState = GameManager.instance.State;
 			GameManager.instance.State = 0;
 			//GameManager.instance.PauseHUD.gameObject.SetActive(true);
 		}
