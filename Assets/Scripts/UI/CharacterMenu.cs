@@ -9,6 +9,7 @@ public class CharacterMenu : MonoBehaviour {
 	public Text interaction;
 
 	public void InitializeMenu(Stats charStats) {
+		
 		charInfo.text = charStats.U_Name + "\nHealth: " + charStats.cHP + "/" + charStats.mHP;
 		level.text = "Lv " + charStats.Lv;
 
