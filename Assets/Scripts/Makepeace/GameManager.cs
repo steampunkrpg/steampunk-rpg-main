@@ -1,8 +1,13 @@
 ﻿using UnityEngine;using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
+
+	public GameObject PauseUI;
+	public GameObject TurnUI;
+	public Text turnText;
 
 	public static GameManager instance = null;
 	public float turnDelay = 0.1f;
@@ -367,20 +372,21 @@ public class GameManager : MonoBehaviour {
 
 	IEnumerator TimerEnumerator(float secs, int nextState) {
 		State = 0;
-		//SceneTransition.gameObject.SetActive(true);
+
+		TurnUI.SetActive (true);
 		if (nextState == 1) {
-			//SceneTransition.text = "Player's Turn";
+			turnText.text = "PLAYER'S TURN";
 		} else if (nextState == 2) {
-			//SceneTransition.text = "Enemy's Turn";
+			turnText.text = "ENEMY'S TURN";
 		} else if (nextState == -1) {
-			//SceneTransition.text = "Game Over";
+			turnText.text = "GAME OVER";
 		} else if (nextState == -2) {
-			//SceneTransition.text = "Victory";
+			turnText.text = "VICTORY";
 		}
 
 		yield return new WaitForSeconds (secs);
 
-		//SceneTransition.gameObject.SetActive(false);
+		TurnUI.SetActive(false);
 		if (nextState == 1) {
 			CameraFocusPlayer ();
 		} else if (nextState == -1) {
