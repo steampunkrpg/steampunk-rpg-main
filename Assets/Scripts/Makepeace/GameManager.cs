@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour {
 	public float turnDelay = 0.1f;
 	private PlayerKeyBoardInput playerInput;
 	private XpGrowthRate xpGrowthRate;
-	public GameObject LevelHUD;
 
 	private AsyncOperation async;
 
@@ -48,8 +47,6 @@ public class GameManager : MonoBehaviour {
 	public void InitGame() {
 		enemyL = new List<Enemy> ();
 		tileL = new List<HexTile> ();
-
-		LevelHUD.SetActive (true);
 
 		LoadLists ();
 		State = 1;

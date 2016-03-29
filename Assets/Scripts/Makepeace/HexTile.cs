@@ -60,7 +60,7 @@ public class HexTile : MonoBehaviour {
 			y++;
 			x++;
 			tileName = "HexTile [" + y + "," + x + "]";
-			if (pos [1] != 9) {
+			if (GameObject.Find (tileName) != null) {
 				E_Tile = GameObject.Find (tileName).GetComponent<HexTile> ();
 			}
 
@@ -89,25 +89,25 @@ public class HexTile : MonoBehaviour {
 
 			x++;
 			tileName = "HexTile [" + y + "," + x + "]";
-			if (pos [1] != 9) {
+			if (GameObject.Find (tileName) != null) {
 				NE_Tile = GameObject.Find (tileName).GetComponent<HexTile> ();
 			}
 
 			y++;
 			tileName = "HexTile [" + y + "," + x + "]";
-			if (pos [1] != 9) {
+			if (GameObject.Find (tileName) != null) {
 				E_Tile = GameObject.Find (tileName).GetComponent<HexTile> ();
 			}
 
 			y++;
 			tileName = "HexTile [" + y + "," + x + "]";
-			if (pos [1] != 9 && pos[0] != 9) {
+			if (GameObject.Find (tileName) != null) {
 				SE_Tile = GameObject.Find (tileName).GetComponent<HexTile> ();
 			}
 
 			x--;
 			tileName = "HexTile [" + y + "," + x + "]";
-			if (pos [0] != 9) {
+			if (GameObject.Find (tileName) != null) {
 				SW_Tile = GameObject.Find (tileName).GetComponent<HexTile> ();
 			}
 
