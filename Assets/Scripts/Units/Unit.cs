@@ -8,7 +8,6 @@ public class Unit : MonoBehaviour {
 	public int Status;
 
 	public GameObject char_class;
-	public GameObject ui;
 	public Text statsView;
 	public Image health;
 	public CharacterMenu menu;
@@ -32,12 +31,6 @@ public class Unit : MonoBehaviour {
 		movement = this.GetComponentInChildren<Stats>().Mov;
 	}
 
-	public void InitUI() {
-		//statsView.text = "STATS\nSTR: " + char_stats.Str + "\t\tHP: " + char_stats.mHP + "\nRES: " + char_stats.Res + "\t\tDEF: " + char_stats.Def + "\nMAG: " + char_stats.Mag + "\t\tMOV: " + char_stats.Mov;
-		//health.fillAmount = 1f;
-		//ui.SetActive (false);
-	}
-
 	bool ValidMove(int dir) {
 		switch (dir) {
 		case 1:
@@ -56,17 +49,6 @@ public class Unit : MonoBehaviour {
 			return false;
 		}
 	}
-		
-//	public void ActivateUI(){
-//		
-//		if (ui.activeSelf) {
-//			ui.SetActive (false);
-//		} else if (!ui.activeSelf) {
-//			ui.SetActive (true);
-////			ui.transform.LookAt (Camera.main.transform.position);
-//			ui.transform.forward = -ui.transform.forward;
-//		}
-//	}
 
 	public void possibleMoves() {
 		GameManager.instance.ResetTileMovDis ();

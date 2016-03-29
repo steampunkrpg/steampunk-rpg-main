@@ -282,7 +282,6 @@ public class GameManager : MonoBehaviour {
 						tile.GetComponent<HexTile> ().character = player.gameObject;
 						player.GetComponent<Unit> ().tile = tile;
 						player.GetComponent<Unit> ().InitPosition ();
-						player.GetComponent<Unit> ().InitUI ();
 						player.GetComponent<Unit>().Status = 1;
 					}
 				}
