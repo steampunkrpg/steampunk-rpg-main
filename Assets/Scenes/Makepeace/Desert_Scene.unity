@@ -418,6 +418,38 @@ Prefab:
       propertyPath: m_Name
       value: HexGrid
       objectReference: {fileID: 0}
+    - target: {fileID: 11401606, guid: 5f45e7e188d2dbe49aff9434508b9745, type: 2}
+      propertyPath: SpawnP
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11443694, guid: 5f45e7e188d2dbe49aff9434508b9745, type: 2}
+      propertyPath: SpawnP
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2320494, guid: 5f45e7e188d2dbe49aff9434508b9745, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2375098, guid: 5f45e7e188d2dbe49aff9434508b9745, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11491686, guid: 5f45e7e188d2dbe49aff9434508b9745, type: 2}
+      propertyPath: SpawnP
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2317548, guid: 5f45e7e188d2dbe49aff9434508b9745, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2371312, guid: 5f45e7e188d2dbe49aff9434508b9745, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11458894, guid: 5f45e7e188d2dbe49aff9434508b9745, type: 2}
+      propertyPath: SpawnP
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5f45e7e188d2dbe49aff9434508b9745, type: 2}
   m_IsPrefabParent: 0
