@@ -179,6 +179,7 @@ public class GameManager : MonoBehaviour {
 
 			if (all_done) {
 				State = 4;
+				activeEnemy = null;
 
 				foreach (Unit player in playerL) {
 					player.Status = 1;
@@ -678,6 +679,9 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void DestroyThis () {
+		foreach (Unit player in playerL) {
+			player.Death ();
+		}
 		Destroy (this.gameObject);
 	}
 }
