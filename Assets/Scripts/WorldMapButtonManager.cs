@@ -4,20 +4,19 @@ using System.Collections;
 public class WorldMapButtonManager : MonoBehaviour
 {
 
-    int level;
-
-    void Start()
+    void Update()
     {
-        DisplayButtons(GameManager.instance.level);
+        DisplayButtons();
     }
 
-    void DisplayButtons(int level)
+    void DisplayButtons()
     {
         var buttonList = GameObject.FindGameObjectsWithTag("MapButton");
         foreach (var button in buttonList)
         {
             if (checkName(button))
             {
+                Debug.Log("button:" + button);
                 button.SetActive(true);
             }
             else
@@ -29,6 +28,7 @@ public class WorldMapButtonManager : MonoBehaviour
 
     public bool checkName(GameObject button)
     {
+        int level = GameManager.instance.level;
         if ((level == 0 && button.name.Equals("Grassland Button"))
             || (level == 1 && button.name.Equals("Desert Button"))
             || (level == 2 && button.name.Equals("Forrest Button"))
