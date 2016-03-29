@@ -61,7 +61,8 @@ public class GameManager : MonoBehaviour {
 			if (activePlayer != null && activePlayer.Status == 1) {
 				if (!activePlayer.GetComponentInChildren<ParticleSystem> ().isPlaying) {
 					activePlayer.GetComponentInChildren<ParticleSystem> ().Play (true);
-					activePlayer.possibleMoves ();
+					activePlayer.menu.gameObject.SetActive (true);
+					//activePlayer.possibleMoves ();
 				}
 			} else if (activePlayer != null && activePlayer.Status == 0) {
 				activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);

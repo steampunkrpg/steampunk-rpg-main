@@ -18,6 +18,7 @@ public class Stats : MonoBehaviour
 	public float Con;
 	public float Wt;
 	public float Mov;
+	public string U_Name;
 
 	public void SetStats(float Lv, float mHP, float Str, float Mag, float Skl, float Spd, float Lck, float Def, float Res, float Con, float Wt, float Mov) {
 		this.Lv = Lv;

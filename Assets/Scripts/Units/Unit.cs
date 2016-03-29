@@ -11,21 +11,18 @@ public class Unit : MonoBehaviour {
 	public GameObject ui;
 	public Text statsView;
 	public Image health;
-	public VanguardMenu menu;
+	public CharacterMenu menu;
 //	public VanguardMenu menu;
 //	public Inventory inv;
 	public Stats char_stats;
 	public float movement;
 	public List<float> att_range;
-	public string name;
 
 	void Awake() {
 		this.GetComponentInChildren<ParticleSystem> ().Stop (true);
 		char_stats = this.GetComponentInChildren<Stats> ();
-		//Mike - Adding Menu
-		//menu = this.gameObject.GetComponentInChildren<VanguardMenu>();
-		//menu.InitializeMenu ();
-//		this.gameObject.GetComponentInChildren<VanguardMenu>().InitializeMenu();
+		menu = this.GetComponentInChildren<CharacterMenu>();
+		menu.InitializeMenu (char_stats);
 		Status = 0;
 	}
 
