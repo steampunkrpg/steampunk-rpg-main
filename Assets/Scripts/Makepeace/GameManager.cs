@@ -657,17 +657,15 @@ public class GameManager : MonoBehaviour {
 			//Show Game Over
 			//Destroy GameManager
 			//Back to Menu
-			LoadScene("New_Main_Menu");
-			DestroyThis ();
+			StartCoroutine(TimerEnumerator(5,-1));
 		}
 
 		if (enemyL.Count == 0) {
 			//Show Victory
 			//Increment Level by 1
 			level++;
-			State = 0;
 			//Back to Map
-			LoadScene("World_Map");
+			StartCoroutine(TimerEnumerator(5,-2));
 		}
 	}
 
