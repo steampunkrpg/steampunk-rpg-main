@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour {
 	public Unit interactPlayer = null;
 
 	public int State;
+	public int prevState;
 	public int level;
 
 	void Awake() {
@@ -49,7 +50,7 @@ public class GameManager : MonoBehaviour {
 		tileL = new List<HexTile> ();
 
 		LoadLists ();
-		State = 1;
+		State = 4;
 	}
 
 	void Update() {
@@ -65,9 +66,12 @@ public class GameManager : MonoBehaviour {
 					activePlayer.possibleMoves ();
 				}
 				playerInput.UnitAction (activePlayer);
-			} else if (activePlayer != null && activePlayer.Status == 0) {
+			} 
+
+			if (activePlayer != null && activePlayer.Status == 0) {
 				activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
 				activePlayer.menu.gameObject.SetActive (false);
+				ResetTilePar ();
 				activePlayer = null;
 			}
 
@@ -174,6 +178,7 @@ public class GameManager : MonoBehaviour {
 
 			if (all_done) {
 				State = 4;
+				activeEnemy = null;
 
 				foreach (Unit player in playerL) {
 					player.Status = 1;
@@ -181,21 +186,40 @@ public class GameManager : MonoBehaviour {
 				}
 			}
 		} else if (State == 3) {
-			StartCoroutine (TimerEnumerator(3,2));
+			StartCoroutine (TimerEnumerator (3, 2));
 		} else if (State == 4) {
-			StartCoroutine (TimerEnumerator(3,1));
+			StartCoroutine (TimerEnumerator (3, 1));
+		} 
+
+		if (State != 0 && State != 3 && State != 4) {
+			if (activePlayer != null) {
+				playerInput.CameraAction ();
+				GameObject camera = GameObject.Find ("Main Camera");
+				CameraBounds bounds = camera.GetComponent<CameraBounds> ();
+				camera.transform.position = new Vector3 (activePlayer.transform.position.x, activePlayer.transform.position.y + bounds.offset - bounds.zoom, activePlayer.transform.position.z - bounds.offset + bounds.zoom);
+			} else if (activeEnemy != null) {
+				playerInput.CameraAction ();
+				GameObject camera = GameObject.Find ("Main Camera");
+				CameraBounds bounds = camera.GetComponent<CameraBounds> ();
+				camera.transform.position = new Vector3 (activeEnemy.transform.position.x, activeEnemy.transform.position.y + bounds.offset - bounds.zoom, activeEnemy.transform.position.z - bounds.offset + bounds.zoom);
+			} else {
+				playerInput.CameraAction ();
+			}
 		}
 
-		if (activePlayer != null && State != 0 && State != 3 && State != 4) {
-			playerInput.CameraAction ();
-			GameObject camera = GameObject.Find ("Main Camera");
-			CameraBounds bounds = camera.GetComponent<CameraBounds>();
-			camera.transform.position = new Vector3 (activePlayer.transform.position.x, activePlayer.transform.position.y + bounds.offset - bounds.zoom, activePlayer.transform.position.z - bounds.offset + bounds.zoom);
-		} else {
-			playerInput.CameraAction ();
+		if (State != 0) {
+			playerInput.GlobalAction ();
 		}
 	}
 		
+	void CameraFocusPlayer() {
+		if (playerL.Count > 0) {
+			GameObject camera = GameObject.Find ("Main Camera");
+			CameraBounds bounds = camera.GetComponent<CameraBounds> ();
+			camera.transform.position = new Vector3 (playerL[0].transform.position.x, playerL[0].transform.position.y + bounds.offset - bounds.zoom, playerL[0].transform.position.z - bounds.offset + bounds.zoom);
+		}
+	}
+
 	void PlayerSelect() {
 		if (Input.GetMouseButtonDown (0)) {
 			mouseRay = Camera.main.ScreenPointToRay (Input.mousePosition);
@@ -204,6 +228,7 @@ public class GameManager : MonoBehaviour {
 				if (hit.collider.tag.Equals ("Unit")) {
 					if (activePlayer != null && activePlayer != hit.collider.gameObject.GetComponent<Unit>()) {
 						activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
+						ResetTilePar ();
 						activePlayer.menu.gameObject.SetActive (false);
 					}
 					activePlayer = hit.collider.gameObject.GetComponent<Unit>();
@@ -213,6 +238,7 @@ public class GameManager : MonoBehaviour {
 					activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
 					activePlayer.menu.gameObject.SetActive (false);
 					activePlayer = null;
+					ResetTilePar ();
 				}
 			}
 		}
@@ -330,7 +356,6 @@ public class GameManager : MonoBehaviour {
 	private void ResetEnemyPar() {
 		foreach (Enemy enemy in enemyL) {
 			enemy.GetComponentInChildren<ParticleSystem> ().Stop (true);
-			//enemy.transform.Find ("Particle").gameObject.SetActive (false);
 		}
 	}
 
@@ -343,13 +368,27 @@ public class GameManager : MonoBehaviour {
 
 	IEnumerator TimerEnumerator(float secs, int nextState) {
 		State = 0;
-		/*if nextState == 2
-		 * 		enemies' turn
-		 *else if nextState == 1
-		 *		players' turn
-		*/
+		//SceneTransition.gameObject.SetActive(true);
+		if (nextState == 1) {
+			//SceneTransition.text = "Player's Turn";
+		} else if (nextState == 2) {
+			//SceneTransition.text = "Enemy's Turn";
+		} else if (nextState == -1) {
+			//SceneTransition.text = "Game Over";
+		} else if (nextState == -2) {
+			//SceneTransition.text = "Victory";
+		}
+
 		yield return new WaitForSeconds (secs);
 
+		//SceneTransition.gameObject.SetActive(false);
+		if (nextState == 1) {
+			CameraFocusPlayer ();
+		} else if (nextState == -1) {
+			LoadScene ("New_Main_Menu");
+		} else if (nextState == -2) {
+			LoadScene ("World_Map");
+		}
 
 		State = nextState;
 	}
@@ -364,7 +403,7 @@ public class GameManager : MonoBehaviour {
 			if (rStat.cHP > rStat.mHP) {
 				rStat.cHP = rStat.mHP;
 			}
-			iStat.Xp += 11;
+			iStat.Xp += iWep.Mt;
 		}
 	}
 
@@ -615,19 +654,12 @@ public class GameManager : MonoBehaviour {
 
 	private void CheckWinOrLoseCondition() {
 		if (playerL.Count == 0) {
-			//Show Game Over
-			//Destroy GameManager
-			//Back to Menu
-			LoadScene("New_Main_Menu");
+			StartCoroutine(TimerEnumerator(5,-1));
 		}
 
 		if (enemyL.Count == 0) {
-			//Show Victory
-			//Increment Level by 1
 			level++;
-			State = 0;
-			//Back to Map
-			LoadScene("World_Map");
+			StartCoroutine(TimerEnumerator(5,-2));
 		}
 	}
 
@@ -646,6 +678,9 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void DestroyThis () {
+		foreach (Unit player in playerL) {
+			player.Death ();
+		}
 		Destroy (this.gameObject);
 	}
 }

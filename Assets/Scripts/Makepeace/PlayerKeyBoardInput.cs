@@ -38,6 +38,18 @@ public class PlayerKeyBoardInput : MonoBehaviour {
 			activePlayer.Status = 5;
 			return;
 		}
+		if (Input.GetKey (KeyCode.T)) {
+			activePlayer.Status = 0;
+			return;
+		}
+	}
+
+	public void GlobalAction() {
+		if (Input.GetKey (KeyCode.Escape)) {
+			GameManager.instance.prevState = GameManager.instance.State;
+			GameManager.instance.State = 0;
+			//GameManager.instance.PauseHUD.gameObject.SetActive(true);
+		}
 	}
 
 	public void CameraAction() {
