@@ -49,8 +49,7 @@ public class GameManager : MonoBehaviour {
 		tileL = new List<HexTile> ();
 
 		LoadLists ();
-		State = 1;
-		CameraFocusPlayer ();
+		State = 4;
 	}
 
 	void Update() {
@@ -364,11 +363,13 @@ public class GameManager : MonoBehaviour {
 
 	IEnumerator TimerEnumerator(float secs, int nextState) {
 		State = 0;
-		/*if nextState == 2
-		 * 		enemies' turn
-		 *else if nextState == 1
-		 *		players' turn
-		*/
+		//SceneTransition.gameObject.SetActive(ture);
+		if (nextState == 1) {
+			//SceneTransition.text = "Player's Turn";
+		} else {
+			//SceneTransition.text = "Enemy's Turn";
+		}
+
 		yield return new WaitForSeconds (secs);
 
 		if (nextState == 1) {
