@@ -309,7 +309,7 @@ MonoBehaviour:
   SE_Tile: {fileID: 0}
   SW_Tile: {fileID: 0}
   pos: []
-  mov_cost: 1
+  mov_cost: 2
   mov_dis: -1
   att_dis: -1
   terrainBonus: 0
@@ -11109,7 +11109,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: mov_cost
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 179876}
