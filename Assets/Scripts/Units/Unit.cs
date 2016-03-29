@@ -9,9 +9,7 @@ public class Unit : MonoBehaviour {
 
 	public GameObject char_class;
 	public Text statsView;
-	public Image health;
 	public CharacterMenu menu;
-//	public VanguardMenu menu;
 //	public Inventory inv;
 	public Stats char_stats;
 	public float movement;

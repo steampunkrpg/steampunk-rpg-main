@@ -161,7 +161,6 @@ public class GameManager : MonoBehaviour {
 					break;
 				} else if (enemyL [i].Status == 1) {
 					enemyL [i].MoveEnemy ();
-					activeEnemy = enemyL [i];
 					if (State == 0) {
 						return;
 					}

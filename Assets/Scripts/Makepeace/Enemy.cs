@@ -39,6 +39,7 @@ public class Enemy : MonoBehaviour {
 		}
 
 		if (attackablePlayer != null) {
+			GameManager.instance.activeEnemy = this;
 			attackablePlayers = new List<Unit> ();
 			FindAttackablePlayers (this.tile);
 
