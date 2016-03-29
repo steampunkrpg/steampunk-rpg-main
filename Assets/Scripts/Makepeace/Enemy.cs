@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour {
 	public List<float> att_range;
 	public List<Unit> attackablePlayers;
 	private Unit attackablePlayer;
+	public string name;
 
 	void Start() {
 		enemy_stats = this.GetComponentInChildren<Stats> ();

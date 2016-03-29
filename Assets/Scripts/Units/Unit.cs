@@ -17,6 +17,7 @@ public class Unit : MonoBehaviour {
 	public Stats char_stats;
 	public float movement;
 	public List<float> att_range;
+	public string name;
 
 	void Awake() {
 		this.GetComponentInChildren<ParticleSystem> ().Stop (true);
