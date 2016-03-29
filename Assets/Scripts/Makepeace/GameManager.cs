@@ -394,7 +394,7 @@ public class GameManager : MonoBehaviour {
 			if (rStat.cHP > rStat.mHP) {
 				rStat.cHP = rStat.mHP;
 			}
-			iStat.Xp += 11;
+			iStat.Xp += iWep.Mt;
 		}
 	}
 
