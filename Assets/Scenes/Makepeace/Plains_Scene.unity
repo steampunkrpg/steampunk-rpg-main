@@ -2119,6 +2119,7 @@ MonoBehaviour:
   Con: 12
   Wt: 14
   Mov: 2
+  U_Name: 
 --- !u!1 &166046920
 GameObject:
   m_ObjectHideFlags: 0
@@ -2283,6 +2284,7 @@ MonoBehaviour:
   Con: 11
   Wt: 15
   Mov: 6
+  U_Name: 
 --- !u!1 &192133769
 GameObject:
   m_ObjectHideFlags: 0
@@ -2493,7 +2495,6 @@ MonoBehaviour:
   char_stats: {fileID: 0}
   movement: 0
   att_range: []
-  unit_name: 
 --- !u!23 &217935888
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4507,6 +4508,7 @@ MonoBehaviour:
   Con: 12
   Wt: 14
   Mov: 2
+  U_Name: 
 --- !u!1 &415741450
 GameObject:
   m_ObjectHideFlags: 0
@@ -9978,6 +9980,7 @@ MonoBehaviour:
   Con: 12
   Wt: 14
   Mov: 2
+  U_Name: 
 --- !u!1 &1302499196
 GameObject:
   m_ObjectHideFlags: 0
@@ -10117,7 +10120,6 @@ MonoBehaviour:
   char_stats: {fileID: 0}
   movement: 0
   att_range: []
-  unit_name: 
 --- !u!23 &1317896283
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10351,6 +10353,7 @@ MonoBehaviour:
   Con: 11
   Wt: 15
   Mov: 20
+  U_Name: Hector
 --- !u!1 &1443125684
 GameObject:
   m_ObjectHideFlags: 0
@@ -14570,6 +14573,7 @@ MonoBehaviour:
   Con: 12
   Wt: 14
   Mov: 2
+  U_Name: 
 --- !u!1 &1678248959
 GameObject:
   m_ObjectHideFlags: 0
@@ -15711,6 +15715,7 @@ MonoBehaviour:
   Con: 12
   Wt: 14
   Mov: 2
+  U_Name: 
 --- !u!1 &2072384953
 GameObject:
   m_ObjectHideFlags: 0
