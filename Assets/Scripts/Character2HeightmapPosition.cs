@@ -38,7 +38,7 @@ public class Character2HeightmapPosition : MonoBehaviour {
 	}
 
 	private void MoveParticles() {
-		GameObject HexGrid = GameObject.Find ("HexGrid10x10P");
+		GameObject HexGrid = GameObject.Find ("HexGrid");
 		foreach (Transform tile in HexGrid.transform) {
 			foreach (Transform particle in tile) {
 				Vector3 pos = particle.transform.position;
