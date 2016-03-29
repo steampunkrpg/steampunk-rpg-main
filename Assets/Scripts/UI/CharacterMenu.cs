@@ -25,4 +25,20 @@ public class CharacterMenu : MonoBehaviour {
 		charInfo.text = charStats.U_Name + "\nHealth: " + charStats.cHP + "/" + charStats.mHP;
 		level.text = "Lv " + charStats.Lv;
 	}
+
+	public void Move_Button() {
+		GameManager.instance.activePlayer.Status = 6;
+	}
+
+	public void Attack_Button() {
+		if (interaction.text == "Interact") {
+			GameManager.instance.activePlayer.Status = 5;
+		} else {
+			GameManager.instance.activePlayer.Status = 3;
+		}
+	}
+
+	public void End_Button() {
+		GameManager.instance.activePlayer.Status = 0;
+	}
 }
