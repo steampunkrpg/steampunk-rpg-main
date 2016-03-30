@@ -9,6 +9,9 @@ TagManager:
   - Unit
   - Enemy
   - Class
+  - Terrain
+  - TileParticle
+  - MapButton
   layers:
   - Default
   - TransparentFX

@@ -11,20 +11,31 @@ public class HexTile : MonoBehaviour {
 	public HexTile SW_Tile;
 	public float[] pos;
 	public float mov_cost = 1;
+	public float mov_dis = -1;
+	public float att_dis = -1;
+	public float terrainBonus = .1F;
 
 	public GameObject character;
 
+	public HexTile parent;
+
 	public int SpawnP;
 
-	// Use this for initialization
-	void Start () {
+    public HexTile[] neighbors = new HexTile[6];
+
+    void Start () {
 
 	}
 	
-	// Update is called once per frame
 	void Update () {
 	
 	}
+
+    public HexTile GetNeighbor(int tile)
+    {
+        // NE NW W SW SE E
+        return neighbors[tile];
+    }
 
 
 	public void FindNeighbors() {
@@ -49,7 +60,7 @@ public class HexTile : MonoBehaviour {
 			y++;
 			x++;
 			tileName = "HexTile [" + y + "," + x + "]";
-			if (pos [1] != 9) {
+			if (GameObject.Find (tileName) != null) {
 				E_Tile = GameObject.Find (tileName).GetComponent<HexTile> ();
 			}
 
@@ -78,25 +89,25 @@ public class HexTile : MonoBehaviour {
 
 			x++;
 			tileName = "HexTile [" + y + "," + x + "]";
-			if (pos [1] != 9) {
+			if (GameObject.Find (tileName) != null) {
 				NE_Tile = GameObject.Find (tileName).GetComponent<HexTile> ();
 			}
 
 			y++;
 			tileName = "HexTile [" + y + "," + x + "]";
-			if (pos [1] != 9) {
+			if (GameObject.Find (tileName) != null) {
 				E_Tile = GameObject.Find (tileName).GetComponent<HexTile> ();
 			}
 
 			y++;
 			tileName = "HexTile [" + y + "," + x + "]";
-			if (pos [1] != 9 && pos[0] != 9) {
+			if (GameObject.Find (tileName) != null) {
 				SE_Tile = GameObject.Find (tileName).GetComponent<HexTile> ();
 			}
 
 			x--;
 			tileName = "HexTile [" + y + "," + x + "]";
-			if (pos [0] != 9) {
+			if (GameObject.Find (tileName) != null) {
 				SW_Tile = GameObject.Find (tileName).GetComponent<HexTile> ();
 			}
 
@@ -109,5 +120,12 @@ public class HexTile : MonoBehaviour {
 
 			x++;
 		}
-	}
+
+        neighbors[0] = NE_Tile;
+        neighbors[1] = NW_Tile;
+        neighbors[2] = W_Tile;
+        neighbors[3] = SW_Tile;
+        neighbors[4] = SE_Tile;
+        neighbors[5] = E_Tile;
+    }
 }

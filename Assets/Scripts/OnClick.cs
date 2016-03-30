@@ -13,7 +13,6 @@ public class OnClick : MonoBehaviour {
 
 	public void ClickAsync(string sceneName)
 	{
-		buttonImage.SetActive (false);
 		loadingImage.SetActive(true);
 		StartCoroutine(LoadLevelWithBar(sceneName));
 	}
