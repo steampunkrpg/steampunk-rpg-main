@@ -280,6 +280,7 @@ public class GameManager : MonoBehaviour {
 				}
 				if (hit.collider.tag.Equals ("Terrain") || hit.collider.tag.Equals ("Unit")) {
 					activePlayer.Status = 1;
+					activePlayer.possibleMoves ();
 					activePlayer.menu.gameObject.SetActive (true);
 					ResetEnemyPar ();
 				}
@@ -299,6 +300,7 @@ public class GameManager : MonoBehaviour {
 				}
 				if (hit.collider.tag.Equals ("Terrain") || hit.collider.tag.Equals ("Enemy")) {
 					activePlayer.Status = 1;
+					activePlayer.possibleMoves ();
 					activePlayer.menu.gameObject.SetActive (true);
 					ResetPlayerPar ();
 				}

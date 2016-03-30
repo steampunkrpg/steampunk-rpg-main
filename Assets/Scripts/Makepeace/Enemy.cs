@@ -16,6 +16,8 @@ public class Enemy : MonoBehaviour {
 	public List<Unit> attackablePlayers;
 	private Unit attackablePlayer;
 	public EnemyMenu menu;
+    public Animator animEnemy;
+    public float currRotation;
 
 	void Start() {
 		enemy_stats = this.GetComponentInChildren<Stats> ();
@@ -50,9 +52,11 @@ public class Enemy : MonoBehaviour {
 			if (attackablePlayers.Contains (attackablePlayer)) {
 				GameManager.instance.InitiateBattle (this.tile, attackablePlayer.tile);
 				Status = 0;
+                animEnemy.Play("Idle");
 			} else {
 				MoveTowardsPlayer (attackablePlayer);
 				Status = 2;
+                animEnemy.Play("Walk");
 			}
 		} else {
 			Status = 0;
@@ -357,6 +361,28 @@ public class Enemy : MonoBehaviour {
 
 		while (true) {
 			if (viewTile.parent == this.tile) {
+				if (this.tile.E_Tile == viewTile) {
+                    this.transform.Rotate(new Vector3(0.0f, -90.0f, 0.0f));
+                    currRotation = -90.0f;
+                } else if (this.tile.W_Tile == viewTile) {
+                    this.transform.Rotate(new Vector3(0.0f, 90.0f, 0.0f));
+                    currRotation = 90.0f;
+                } else if (this.tile.NE_Tile == viewTile) {
+                    this.transform.Rotate(new Vector3(0.0f, -135.0f, 0.0f));
+                    currRotation = -135.0f;
+                } else if (this.tile.NW_Tile == viewTile) {
+                    this.transform.Rotate(new Vector3(0.0f, 135.0f, 0.0f));
+                    currRotation = 135.0f;
+
+                } else if (this.tile.SE_Tile == viewTile) {
+                    this.transform.Rotate(new Vector3(0.0f, -45.0f, 0.0f));
+                    currRotation = -45.0f;
+
+                } else if (this.tile.SW_Tile == viewTile) {
+                    this.transform.Rotate(new Vector3(0.0f, 45.0f, 0.0f));
+                    currRotation = 45.0f;
+                }
+
 				this.tile.character = null;
 				this.tile = viewTile;
 				this.tile.character = this.gameObject;
@@ -373,8 +399,12 @@ public class Enemy : MonoBehaviour {
 			this.transform.position = Vector3.MoveTowards (this.transform.position, new Vector3(tile.transform.position.x, this.transform.position.y, tile.transform.position.z), 3 * Time.deltaTime);
 			if (this.transform.position.x == tile.transform.position.x && this.transform.position.z == tile.transform.position.z) {
 				Status = 1;
-				GameManager.instance.activeEnemy = null;
-			}
+                this.transform.Rotate(new Vector3(0.0f, -currRotation, 0.0f));
+                GameManager.instance.activeEnemy = null;
+               
+            }
+   
+            
 		}
 	}
 
