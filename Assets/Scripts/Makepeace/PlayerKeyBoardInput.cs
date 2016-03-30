@@ -66,7 +66,7 @@ public class PlayerKeyBoardInput : MonoBehaviour {
 
 		if (Input.GetKey (KeyCode.LeftArrow)) {
 			bounds.locked = false;
-			Vector3 pos = new Vector3 (camera.transform.position.x - 0.1F, camera.transform.position.y, camera.transform.position.z);
+			Vector3 pos = new Vector3 (camera.transform.position.x - 0.5F, camera.transform.position.y, camera.transform.position.z);
 			if (pos.x < bounds.minX) {
 				pos.x = bounds.minX;
 			}
@@ -74,7 +74,7 @@ public class PlayerKeyBoardInput : MonoBehaviour {
 		}
 		if (Input.GetKey (KeyCode.RightArrow)) {
 			bounds.locked = false;
-			Vector3 pos = new Vector3 (camera.transform.position.x + 0.1F, camera.transform.position.y, camera.transform.position.z);
+			Vector3 pos = new Vector3 (camera.transform.position.x + 0.5F, camera.transform.position.y, camera.transform.position.z);
 			if (pos.x > bounds.maxX) {
 				pos.x = bounds.maxX;
 			}
@@ -82,7 +82,7 @@ public class PlayerKeyBoardInput : MonoBehaviour {
 		}
 		if (Input.GetKey (KeyCode.UpArrow)) {
 			bounds.locked = false;
-			Vector3 pos = new Vector3 (camera.transform.position.x, camera.transform.position.y, camera.transform.position.z + 0.1F);
+			Vector3 pos = new Vector3 (camera.transform.position.x, camera.transform.position.y, camera.transform.position.z + 0.5F);
 			if (pos.z > bounds.maxZ) {
 				pos.z = bounds.maxZ;
 			}
@@ -90,7 +90,7 @@ public class PlayerKeyBoardInput : MonoBehaviour {
 		}
 		if (Input.GetKey (KeyCode.DownArrow)) {
 			bounds.locked = false;
-			Vector3 pos = new Vector3 (camera.transform.position.x, camera.transform.position.y, camera.transform.position.z - 0.1F);
+			Vector3 pos = new Vector3 (camera.transform.position.x, camera.transform.position.y, camera.transform.position.z - 0.5F);
 			if (pos.z < bounds.minZ) {
 				pos.z = bounds.minZ;
 			}

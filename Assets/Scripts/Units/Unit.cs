@@ -420,8 +420,7 @@ public class Unit : MonoBehaviour {
 				if (movement != 0) {
 					possibleMoves ();
 				}
-
-                //Cancel movement animation
+					
                 animUnit.Play("Idle");
 			}
 		}
