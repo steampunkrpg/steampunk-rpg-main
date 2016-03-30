@@ -833,7 +833,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 113, y: 31}
+  m_AnchoredPosition: {x: 100, y: 10}
   m_SizeDelta: {x: 300, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &22462514
@@ -899,6 +899,14 @@ Prefab:
       propertyPath: inventoryEntry
       value: 
       objectReference: {fileID: 153090, guid: c21639d4dc559a2408c9e6f9ef0f5b9f, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_AnchoredPosition.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_AnchoredPosition.x
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 184948}
