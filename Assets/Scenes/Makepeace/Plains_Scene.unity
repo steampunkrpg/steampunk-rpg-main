@@ -2739,6 +2739,10 @@ Prefab:
       propertyPath: turnText
       value: 
       objectReference: {fileID: 940082725}
+    - target: {fileID: 11466336, guid: 1ffe8ec2f82317a4481556a2c58df85d, type: 2}
+      propertyPath: StatsUI
+      value: 
+      objectReference: {fileID: 848291175}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1ffe8ec2f82317a4481556a2c58df85d, type: 2}
   m_IsPrefabParent: 0
@@ -10401,7 +10405,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &848291176
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10428,9 +10432,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 848291175}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d0fc58f8c23b554ebdad9f16a1221c7, type: 3}
+  m_Script: {fileID: 11500000, guid: c49cbf7064f6daa439e514f294cf0bf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  char_name: {fileID: 555715}
+  level: {fileID: 883803550}
+  stats: {fileID: 1445087544}
 --- !u!114 &848291178
 MonoBehaviour:
   m_ObjectHideFlags: 0
