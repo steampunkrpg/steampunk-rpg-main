@@ -298,6 +298,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 11466336, guid: 1ffe8ec2f82317a4481556a2c58df85d, type: 2}
+      propertyPath: PauseUI
+      value: 
+      objectReference: {fileID: 407504855}
+    - target: {fileID: 11466336, guid: 1ffe8ec2f82317a4481556a2c58df85d, type: 2}
+      propertyPath: TurnUI
+      value: 
+      objectReference: {fileID: 1970109052}
+    - target: {fileID: 11466336, guid: 1ffe8ec2f82317a4481556a2c58df85d, type: 2}
+      propertyPath: turnText
+      value: 
+      objectReference: {fileID: 998664846}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1ffe8ec2f82317a4481556a2c58df85d, type: 2}
   m_IsPrefabParent: 0
