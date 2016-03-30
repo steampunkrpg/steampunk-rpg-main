@@ -14,6 +14,8 @@ public class Unit : MonoBehaviour {
 	public Stats char_stats;
 	public float movement;
 	public List<float> att_range;
+    public Animator animUnit;
+    public float currRotation;
 
 	void Awake() {
 		this.GetComponentInChildren<ParticleSystem> ().Stop (true);
@@ -21,6 +23,7 @@ public class Unit : MonoBehaviour {
 		menu = this.GetComponentInChildren<CharacterMenu>();
 		menu.InitializeMenu (char_stats);
 		Status = 0;
+        animUnit.Play("Idle");
 	}
 
 	public void InitPosition() {
@@ -378,47 +381,63 @@ public class Unit : MonoBehaviour {
 			case 1:
 				tile.NW_Tile.character = this.gameObject;
 				tile = tile.NW_Tile;
-				break;
+                this.transform.Rotate(new Vector3(0.0f, 135.0f, 0.0f));
+                    currRotation = 135.0f;
+                break;
 			case 2:
 				tile.NE_Tile.character = this.gameObject;
 				tile = tile.NE_Tile;
-				break;
+                    this.transform.Rotate(new Vector3(0.0f, -135.0f, 0.0f));
+                    currRotation = -135.0f;
+                    break;
 			case 3:
 				tile.E_Tile.character = this.gameObject;
 				tile = tile.E_Tile;
-				break;
+                    this.transform.Rotate(new Vector3(0.0f, -90.0f, 0.0f));
+                    currRotation = -90.0f;
+                    break;
 			case 4:
 				tile.SE_Tile.character = this.gameObject;
 				tile = tile.SE_Tile;
-				break;
+                    this.transform.Rotate(new Vector3(0.0f, -45.0f, 0.0f));
+                    currRotation = -45.0f;
+                    break;
 			case 5:
 				tile.SW_Tile.character = this.gameObject;
 				tile = tile.SW_Tile;
-				break;
+                    this.transform.Rotate(new Vector3(0.0f, 45.0f, 0.0f));
+                    currRotation = 45.0f;
+                    break;
 			case 6:
 				tile.W_Tile.character = this.gameObject;
 				tile = tile.W_Tile;
-				break;
+                    this.transform.Rotate(new Vector3(0.0f, 90.0f, 0.0f));
+                    currRotation = 90.0f;
+                    break;
 			default:
 				break;
 			}
 
 			Status = 2;
+            animUnit.Play("Walk");
 			movement = movement - tile.mov_cost;
 		}
 	}
 
 	void Update() {
 		if (Status == 2 && (this.transform.position.x != tile.transform.position.x || this.transform.position.z != tile.transform.position.z)) {
+            
 			this.transform.position = Vector3.MoveTowards (this.transform.position, new Vector3(tile.transform.position.x, this.transform.position.y, tile.transform.position.z), 3 * Time.deltaTime);
 			if (this.transform.position.x == tile.transform.position.x && this.transform.position.z == tile.transform.position.z) {
 				GameManager.instance.ResetTilePar ();
 				Status = 1;
+                this.transform.Rotate(new Vector3(0.0f, -currRotation, 0.0f));
 				if (movement != 0) {
 					possibleMoves ();
 				}
 
-				//Cancel movement animation
+                //Cancel movement animation
+                animUnit.Play("Idle");
 			}
 		}
 	}

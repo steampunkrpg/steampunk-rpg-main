@@ -42,6 +42,14 @@ public class PlayerKeyBoardInput : MonoBehaviour {
 			activePlayer.Status = 0;
 			return;
 		}
+		if (Input.GetKey (KeyCode.Y)) {
+			GameManager.instance.StatsUI.GetComponent<StatsMenu> ().UpdateMenu (activePlayer.char_stats);
+			if (GameManager.instance.StatsUI.activeSelf) {
+				GameManager.instance.StatsUI.SetActive (false);
+			} else {
+				GameManager.instance.StatsUI.SetActive (true);
+			}
+		}
 	}
 
 	public void GlobalAction() {
