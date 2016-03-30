@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ForestManager : MonoBehaviour {
 
-
+    //TEST
     public int numOfTrees;
     public GameObject tree1;
     public GameObject tree2;
