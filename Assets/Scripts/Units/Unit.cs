@@ -381,39 +381,39 @@ public class Unit : MonoBehaviour {
 			case 1:
 				tile.NW_Tile.character = this.gameObject;
 				tile = tile.NW_Tile;
-                this.transform.Rotate(new Vector3(0.0f, 135.0f, 0.0f));
-                    currRotation = 135.0f;
-                break;
+				this.transform.Rotate (new Vector3 (0.0f, 135.0f, 0.0f));
+				currRotation = 135.0f;
+				break;
 			case 2:
 				tile.NE_Tile.character = this.gameObject;
 				tile = tile.NE_Tile;
-                    this.transform.Rotate(new Vector3(0.0f, -135.0f, 0.0f));
-                    currRotation = -135.0f;
-                    break;
+				this.transform.Rotate (new Vector3 (0.0f, -135.0f, 0.0f));
+				currRotation = -135.0f;
+				break;
 			case 3:
 				tile.E_Tile.character = this.gameObject;
 				tile = tile.E_Tile;
-                    this.transform.Rotate(new Vector3(0.0f, -90.0f, 0.0f));
-                    currRotation = -90.0f;
-                    break;
+				this.transform.Rotate (new Vector3 (0.0f, -90.0f, 0.0f));
+				currRotation = -90.0f;
+				break;
 			case 4:
 				tile.SE_Tile.character = this.gameObject;
 				tile = tile.SE_Tile;
-                    this.transform.Rotate(new Vector3(0.0f, -45.0f, 0.0f));
-                    currRotation = -45.0f;
-                    break;
+				this.transform.Rotate (new Vector3 (0.0f, -45.0f, 0.0f));
+				currRotation = -45.0f;
+				break;
 			case 5:
 				tile.SW_Tile.character = this.gameObject;
 				tile = tile.SW_Tile;
-                    this.transform.Rotate(new Vector3(0.0f, 45.0f, 0.0f));
-                    currRotation = 45.0f;
-                    break;
+				this.transform.Rotate (new Vector3 (0.0f, 45.0f, 0.0f));
+				currRotation = 45.0f;
+				break;
 			case 6:
 				tile.W_Tile.character = this.gameObject;
 				tile = tile.W_Tile;
-                    this.transform.Rotate(new Vector3(0.0f, 90.0f, 0.0f));
-                    currRotation = 90.0f;
-                    break;
+				this.transform.Rotate (new Vector3 (0.0f, 90.0f, 0.0f));
+				currRotation = 90.0f;
+				break;
 			default:
 				break;
 			}

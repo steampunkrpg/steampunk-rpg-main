@@ -357,6 +357,20 @@ public class Enemy : MonoBehaviour {
 
 		while (true) {
 			if (viewTile.parent == this.tile) {
+				if (this.tile.E_Tile == viewTile) {
+
+				} else if (this.tile.W_Tile == viewTile) {
+
+				} else if (this.tile.NE_Tile == viewTile) {
+
+				} else if (this.tile.NW_Tile == viewTile) {
+
+				} else if (this.tile.SE_Tile == viewTile) {
+
+				} else if (this.tile.SW_Tile == viewTile) {
+
+				}
+
 				this.tile.character = null;
 				this.tile = viewTile;
 				this.tile.character = this.gameObject;
