@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour {
 	public GameObject PauseUI;
 	public GameObject TurnUI;
 	public Text turnText;
+	public GameObject StatsUI;
 
 	public static GameManager instance = null;
 	public float turnDelay = 0.1f;
@@ -47,6 +48,7 @@ public class GameManager : MonoBehaviour {
 
 		PauseUI.SetActive (false);
 		TurnUI.SetActive (false);
+		StatsUI.SetActive (false);
 
 		level = 0;
 		State = 0;
