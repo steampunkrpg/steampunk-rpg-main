@@ -5548,6 +5548,10 @@ Prefab:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: c754d6819994e814eb5afde10d8eb729, type: 2}
+    - target: {fileID: 9500000, guid: ce5b01e832dbd36408be83e6a74bbd34, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ce5b01e832dbd36408be83e6a74bbd34, type: 3}
   m_IsPrefabParent: 0
@@ -11263,7 +11267,7 @@ RectTransform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1022263680}
-  m_LocalRotation: {x: 0.3826835, y: 0, z: 0, w: 0.92387956}
+  m_LocalRotation: {x: -0.000000016727627, y: 0.92387956, z: -0.3826835, w: -0.00000004038406}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.005, y: 0.005, z: 1}
   m_Children:

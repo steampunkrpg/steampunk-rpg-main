@@ -406,6 +406,7 @@ public class Unit : MonoBehaviour {
 			}
 
 			Status = 2;
+            animUnit.Play("Walk");
 			movement = movement - tile.mov_cost;
 		}
 	}
@@ -420,7 +421,8 @@ public class Unit : MonoBehaviour {
 					possibleMoves ();
 				}
 
-				//Cancel movement animation
+                //Cancel movement animation
+                animUnit.Play("Idle");
 			}
 		}
 	}
