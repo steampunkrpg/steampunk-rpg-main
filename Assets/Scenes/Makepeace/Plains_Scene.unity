@@ -352,6 +352,10 @@ Prefab:
       propertyPath: Res
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 11471534, guid: 9451c0747dba2bd4cb242676083599ae, type: 2}
+      propertyPath: animUnit
+      value: 
+      objectReference: {fileID: 436654656}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9451c0747dba2bd4cb242676083599ae, type: 2}
   m_IsPrefabParent: 0
@@ -2813,6 +2817,7 @@ MonoBehaviour:
   char_stats: {fileID: 0}
   movement: 0
   att_range: []
+  animUnit: {fileID: 436654656}
 --- !u!23 &217935888
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3391,7 +3396,7 @@ RectTransform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 314351850}
-  m_LocalRotation: {x: 0.38268346, y: 0, z: 0, w: 0.9238795}
+  m_LocalRotation: {x: 0.3826835, y: 0, z: 0, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.005, y: 0.005, z: 1}
   m_Children:
@@ -5494,7 +5499,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400172, guid: ce5b01e832dbd36408be83e6a74bbd34, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400172, guid: ce5b01e832dbd36408be83e6a74bbd34, type: 3}
       propertyPath: m_LocalRotation.z
@@ -5502,7 +5507,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400172, guid: ce5b01e832dbd36408be83e6a74bbd34, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: -0.00000004371139
       objectReference: {fileID: 0}
     - target: {fileID: 400172, guid: ce5b01e832dbd36408be83e6a74bbd34, type: 3}
       propertyPath: m_RootOrder
@@ -5540,6 +5545,10 @@ Prefab:
       propertyPath: m_TagString
       value: Unit
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: ce5b01e832dbd36408be83e6a74bbd34, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: c754d6819994e814eb5afde10d8eb729, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ce5b01e832dbd36408be83e6a74bbd34, type: 3}
   m_IsPrefabParent: 0
@@ -5582,6 +5591,12 @@ MonoBehaviour:
   char_stats: {fileID: 0}
   movement: 0
   att_range: []
+  animUnit: {fileID: 436654656}
+--- !u!95 &436654656 stripped
+Animator:
+  m_PrefabParentObject: {fileID: 9500000, guid: ce5b01e832dbd36408be83e6a74bbd34,
+    type: 3}
+  m_PrefabInternal: {fileID: 436654651}
 --- !u!1 &441866487
 GameObject:
   m_ObjectHideFlags: 0
@@ -10383,7 +10398,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &848291176
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10945,7 +10960,7 @@ RectTransform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 955920198}
-  m_LocalRotation: {x: 0.38268346, y: 0, z: 0, w: 0.9238795}
+  m_LocalRotation: {x: 0.3826835, y: 0, z: 0, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.005, y: 0.005, z: 1}
   m_Children:
@@ -12445,7 +12460,7 @@ RectTransform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1401511250}
-  m_LocalRotation: {x: 0.38268346, y: 0, z: 0, w: 0.9238795}
+  m_LocalRotation: {x: 0.3826835, y: 0, z: 0, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.005, y: 0.005, z: 1}
   m_Children:
@@ -15599,7 +15614,7 @@ RectTransform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1604671984}
-  m_LocalRotation: {x: 0.38268346, y: 0, z: 0, w: 0.9238795}
+  m_LocalRotation: {x: 0.3826835, y: 0, z: 0, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.005, y: 0.005, z: 1}
   m_Children:
@@ -17992,7 +18007,7 @@ RectTransform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1820159709}
-  m_LocalRotation: {x: 0.38268346, y: 0, z: 0, w: 0.9238795}
+  m_LocalRotation: {x: 0.3826835, y: 0, z: 0, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.005, y: 0.005, z: 1}
   m_Children:

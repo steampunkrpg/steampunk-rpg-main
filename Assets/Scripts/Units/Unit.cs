@@ -14,6 +14,7 @@ public class Unit : MonoBehaviour {
 	public Stats char_stats;
 	public float movement;
 	public List<float> att_range;
+    public Animator animUnit;
 
 	void Awake() {
 		this.GetComponentInChildren<ParticleSystem> ().Stop (true);
@@ -21,6 +22,7 @@ public class Unit : MonoBehaviour {
 		menu = this.GetComponentInChildren<CharacterMenu>();
 		menu.InitializeMenu (char_stats);
 		Status = 0;
+        animUnit.Play("Idle");
 	}
 
 	public void InitPosition() {
