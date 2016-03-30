@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour {
 
@@ -14,9 +15,12 @@ public class Enemy : MonoBehaviour {
 	public List<float> att_range;
 	public List<Unit> attackablePlayers;
 	private Unit attackablePlayer;
+	public EnemyMenu menu;
 
 	void Start() {
 		enemy_stats = this.GetComponentInChildren<Stats> ();
+		menu = this.GetComponentInChildren<EnemyMenu> ();
+		menu.InitializeMenu (enemy_stats);
 		Status = 0;
 	}
 
