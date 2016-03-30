@@ -51,6 +51,8 @@ public class Enemy : MonoBehaviour {
 
 			if (attackablePlayers.Contains (attackablePlayer)) {
 				GameManager.instance.InitiateBattle (this.tile, attackablePlayer.tile);
+				menu.UpdateMenu ();
+				attackablePlayer.menu.UpdateMenu ();
 				Status = 0;
                 animEnemy.Play("Idle");
 			} else {
