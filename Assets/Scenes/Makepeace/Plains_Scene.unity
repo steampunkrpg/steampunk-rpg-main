@@ -524,6 +524,8 @@ MonoBehaviour:
   att_range: []
   attackablePlayers: []
   menu: {fileID: 0}
+  animEnemy: {fileID: 38742509}
+  currRotation: 0
 --- !u!65 &38742508
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -536,6 +538,11 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 2, z: 1}
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!95 &38742509 stripped
+Animator:
+  m_PrefabParentObject: {fileID: 9500000, guid: dedc78ca70e4b384e9f9d43889de9d8d,
+    type: 3}
+  m_PrefabInternal: {fileID: 38742504}
 --- !u!1 &39791119
 GameObject:
   m_ObjectHideFlags: 0
@@ -6044,7 +6051,7 @@ Transform:
   - {fileID: 1670100156}
   - {fileID: 2015515521}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
 --- !u!95 &217935892
 Animator:
   serializedVersion: 3
@@ -6297,6 +6304,8 @@ MonoBehaviour:
   att_range: []
   attackablePlayers: []
   menu: {fileID: 0}
+  animEnemy: {fileID: 303333097}
+  currRotation: 0
 --- !u!65 &303333096
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6304,11 +6313,16 @@ BoxCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 303333093}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 2, z: 1}
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!95 &303333097 stripped
+Animator:
+  m_PrefabParentObject: {fileID: 9500000, guid: dedc78ca70e4b384e9f9d43889de9d8d,
+    type: 3}
+  m_PrefabInternal: {fileID: 303333092}
 --- !u!1 &310655928
 GameObject:
   m_ObjectHideFlags: 0
@@ -15965,7 +15979,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1639383173}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 2, z: 1}
@@ -15989,6 +16003,13 @@ MonoBehaviour:
   att_range: []
   attackablePlayers: []
   menu: {fileID: 0}
+  animEnemy: {fileID: 1639383176}
+  currRotation: 0
+--- !u!95 &1639383176 stripped
+Animator:
+  m_PrefabParentObject: {fileID: 9500000, guid: dedc78ca70e4b384e9f9d43889de9d8d,
+    type: 3}
+  m_PrefabInternal: {fileID: 1639383171}
 --- !u!1 &1670100155
 GameObject:
   m_ObjectHideFlags: 0
@@ -17725,6 +17746,8 @@ MonoBehaviour:
   att_range: []
   attackablePlayers: []
   menu: {fileID: 0}
+  animEnemy: {fileID: 1718875941}
+  currRotation: 0
 --- !u!65 &1718875940
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17732,11 +17755,16 @@ BoxCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1718875937}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 2, z: 1}
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!95 &1718875941 stripped
+Animator:
+  m_PrefabParentObject: {fileID: 9500000, guid: dedc78ca70e4b384e9f9d43889de9d8d,
+    type: 3}
+  m_PrefabInternal: {fileID: 1718875936}
 --- !u!1 &1750365419
 GameObject:
   m_ObjectHideFlags: 0
@@ -19078,6 +19106,8 @@ MonoBehaviour:
   att_range: []
   attackablePlayers: []
   menu: {fileID: 0}
+  animEnemy: {fileID: 2014387877}
+  currRotation: 0
 --- !u!65 &2014387876
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19085,11 +19115,16 @@ BoxCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2014387873}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 2, z: 1}
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!95 &2014387877 stripped
+Animator:
+  m_PrefabParentObject: {fileID: 9500000, guid: dedc78ca70e4b384e9f9d43889de9d8d,
+    type: 3}
+  m_PrefabInternal: {fileID: 2014387872}
 --- !u!1 &2015515520
 GameObject:
   m_ObjectHideFlags: 0
