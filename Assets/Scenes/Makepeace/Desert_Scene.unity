@@ -2718,11 +2718,12 @@ MonoBehaviour:
   Status: 0
   char_class: {fileID: 975835993}
   statsView: {fileID: 1170580684}
-  health: {fileID: 1051648938}
   menu: {fileID: 0}
   char_stats: {fileID: 0}
   movement: 0
   att_range: []
+  animUnit: {fileID: 0}
+  currRotation: 0
 --- !u!23 &1147031917
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3709,6 +3710,30 @@ Prefab:
     - target: {fileID: 11458894, guid: 5f45e7e188d2dbe49aff9434508b9745, type: 2}
       propertyPath: SpawnP
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2352058, guid: 5f45e7e188d2dbe49aff9434508b9745, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11419034, guid: 5f45e7e188d2dbe49aff9434508b9745, type: 2}
+      propertyPath: SpawnP
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11462386, guid: 5f45e7e188d2dbe49aff9434508b9745, type: 2}
+      propertyPath: SpawnP
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2396450, guid: 5f45e7e188d2dbe49aff9434508b9745, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2335492, guid: 5f45e7e188d2dbe49aff9434508b9745, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11444872, guid: 5f45e7e188d2dbe49aff9434508b9745, type: 2}
+      propertyPath: terrainBonus
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5f45e7e188d2dbe49aff9434508b9745, type: 2}
