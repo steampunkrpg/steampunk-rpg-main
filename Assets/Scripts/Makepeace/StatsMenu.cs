@@ -11,7 +11,7 @@ public class StatsMenu : MonoBehaviour {
 	public void InitializeMenu(Stats charStats) {
 
 		char_name.text = charStats.U_Name;
-		level.text = "Lv: " + charStats.Lv;
+		level.text = "Lv: " + charStats.Lv + "\nExp: " + charStats.Xp + "/100";
 		stats.text = "HP: " + charStats.cHP + "/" + charStats.mHP + "\nStr: " + charStats.Str + "\nMag: " + charStats.Mag + "\nSkl: " + charStats.Skl + "\nSpd: " + charStats.Spd + "\nLuck: " + charStats.Lck + "\nDef: " + charStats.Def + "\nRes: " + charStats.Res;
 
 		this.gameObject.SetActive (false);
@@ -19,7 +19,7 @@ public class StatsMenu : MonoBehaviour {
 
 	public void UpdateMenu(Stats charStats) {
 		char_name.text = charStats.U_Name;
-		level.text = "Lv: " + charStats.Lv;
+		level.text = "Lv: " + charStats.Lv + "\nExp: " + charStats.Xp + "/100";
 		stats.text = "HP: " + charStats.cHP + "/" + charStats.mHP + "\nStr: " + charStats.Str + "\nMag: " + charStats.Mag + "\nSkl: " + charStats.Skl + "\nSpd: " + charStats.Spd + "\nLuck: " + charStats.Lck + "\nDef: " + charStats.Def + "\nRes: " + charStats.Res;
 	}
 }
