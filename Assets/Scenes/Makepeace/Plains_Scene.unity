@@ -433,6 +433,7 @@ MonoBehaviour:
   special: 0
   att_range: []
   attackablePlayers: []
+  menu: {fileID: 0}
 --- !u!23 &43907826
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3411,18 +3412,16 @@ RectTransform:
 --- !u!114 &314351852
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11446700, guid: 5b993634cdae4a945b63e8fc3c7884ef,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 314351850}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7975b0bf5b5f4f8499bfb4eac7709cc0, type: 3}
+  m_Script: {fileID: 11500000, guid: 95b880b0e3f312b4eaa07ab9497c06f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   charInfo: {fileID: 240485883}
   level: {fileID: 2106989426}
-  interaction: {fileID: 0}
 --- !u!114 &314351853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10975,18 +10974,16 @@ RectTransform:
 --- !u!114 &955920200
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11446700, guid: 5b993634cdae4a945b63e8fc3c7884ef,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 955920198}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7975b0bf5b5f4f8499bfb4eac7709cc0, type: 3}
+  m_Script: {fileID: 11500000, guid: 95b880b0e3f312b4eaa07ab9497c06f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   charInfo: {fileID: 337518399}
   level: {fileID: 261436586}
-  interaction: {fileID: 0}
 --- !u!114 &955920201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12116,6 +12113,7 @@ MonoBehaviour:
   special: 0
   att_range: []
   attackablePlayers: []
+  menu: {fileID: 0}
 --- !u!23 &1302499198
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -12475,18 +12473,16 @@ RectTransform:
 --- !u!114 &1401511252
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11446700, guid: 5b993634cdae4a945b63e8fc3c7884ef,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1401511250}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7975b0bf5b5f4f8499bfb4eac7709cc0, type: 3}
+  m_Script: {fileID: 11500000, guid: 95b880b0e3f312b4eaa07ab9497c06f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   charInfo: {fileID: 928867242}
   level: {fileID: 358079754}
-  interaction: {fileID: 0}
 --- !u!114 &1401511253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15278,6 +15274,7 @@ MonoBehaviour:
   special: 0
   att_range: []
   attackablePlayers: []
+  menu: {fileID: 0}
 --- !u!23 &1594742768
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15629,18 +15626,16 @@ RectTransform:
 --- !u!114 &1604671986
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11446700, guid: 5b993634cdae4a945b63e8fc3c7884ef,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1604671984}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7975b0bf5b5f4f8499bfb4eac7709cc0, type: 3}
+  m_Script: {fileID: 11500000, guid: 95b880b0e3f312b4eaa07ab9497c06f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   charInfo: {fileID: 1094811437}
   level: {fileID: 1674017205}
-  interaction: {fileID: 0}
 --- !u!114 &1604671987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17513,6 +17508,7 @@ MonoBehaviour:
   special: 0
   att_range: []
   attackablePlayers: []
+  menu: {fileID: 0}
 --- !u!23 &1678248961
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -18022,18 +18018,16 @@ RectTransform:
 --- !u!114 &1820159711
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11446700, guid: 5b993634cdae4a945b63e8fc3c7884ef,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1820159709}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7975b0bf5b5f4f8499bfb4eac7709cc0, type: 3}
+  m_Script: {fileID: 11500000, guid: 95b880b0e3f312b4eaa07ab9497c06f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   charInfo: {fileID: 1844413090}
   level: {fileID: 1551444117}
-  interaction: {fileID: 0}
 --- !u!114 &1820159712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19212,6 +19206,7 @@ MonoBehaviour:
   special: 0
   att_range: []
   attackablePlayers: []
+  menu: {fileID: 0}
 --- !u!23 &2025509350
 MeshRenderer:
   m_ObjectHideFlags: 0
