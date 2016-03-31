@@ -7,8 +7,10 @@ using System.Collections;
 
 public class InventoryManager : MonoBehaviour {
 	public static Dictionary<string, int> itemsAndCounts;
-	public GameObject inventoryWindow, inventoryEntry, inventoryEntryGO;
+	public GameObject inventoryWindow, inventoryEntry, inventoryEntryGO, gameManager;
+	public Unit activePlayer;
 
+	private Transform activePlayerStats, activePlayerWeapon;
 	private List<GameObject> buttonsInMenu;
 	private Vector3 heightOffset;
 	private int buttonCount = 0, hasClicked = 0;
@@ -20,10 +22,11 @@ public class InventoryManager : MonoBehaviour {
 		itemsAndCounts = new Dictionary<string, int> ();
 		inventoryWindow = GameObject.Find ("InventoryWindow");
 		inventoryWindow.SetActive (false);
+		gameManager = GameObject.Find ("GameManager");
 
 		//testing item
 		AddItem("Potion", 10);
-		AddItem ("Ether", 5);
+		AddItem ("Sword", 1);
 
 		//generate some "weapons" for testing
 		Weapon WoodSword = new Weapon(5, 95, 20, 5, new List<float>{2, 1, 2}, 0);
@@ -49,9 +52,39 @@ public class InventoryManager : MonoBehaviour {
 		Text pressedText = button.GetComponentInChildren<Text> ();
 		string pressedTextKey = rgx.Replace (pressedText.text, "");
 
-		itemsAndCounts [pressedTextKey] -= 1;
-		pressedText.text = " " + pressedTextKey + ": " + itemsAndCounts [pressedTextKey];
+		if (itemsAndCounts [pressedTextKey] != 0) {
+			itemsAndCounts [pressedTextKey] -= 1;
+			pressedText.text = " " + pressedTextKey + ": " + itemsAndCounts [pressedTextKey];
+			//ItemHandler (pressedTextKey);
+		}
 	}
+
+	/*
+	//code that handles use cases of each item
+	void ItemHandler(string item){
+		var script = gameManager.GetComponent<GameManager>();
+		activePlayer = GameObject.Find(script.activePlayer.ToString);
+
+		activePlayerStats =	activePlayer.transform.FindChild ("Stats");
+		var apsScript = activePlayerStats.GetComponent<Stats> ();
+
+		activePlayerWeapon = activePlayer.transform.FindChild ("Weapon");
+		var apwScript = activePlayerWeapon.GetComponent<Weapon> ();
+
+		switch (item) {
+		case "Potion":
+			apsScript.cHP += apsScript.mHP * 0.40f;
+			break;
+		case "Sword":
+			apwScript.Mt = 10;
+			apwScript.Hit = 95;
+			apwScript.Crit = 15;
+			apwScript.Wt = 3;
+			apwScript.Rng = new List<float> {1,1};
+			apwScript.type = 0;
+		}
+	}
+	*/
 
 	public void InventoryToggler() {
 		if (hasClicked == 0) {
