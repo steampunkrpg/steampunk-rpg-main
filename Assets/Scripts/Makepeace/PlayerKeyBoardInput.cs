@@ -29,6 +29,10 @@ public class PlayerKeyBoardInput : MonoBehaviour {
 			return;
 		}
 		if (Input.GetKey (KeyCode.F) && activePlayer.GetComponentInChildren<Weapon> ().type >= 0) {
+			if (GameManager.instance.activeEnemy != null) {
+				GameManager.instance.activeEnemy = null;
+			}
+
 			activePlayer.possibleAttack ();
 			activePlayer.Status = 3;
 			return;

@@ -243,6 +243,12 @@ public class GameManager : MonoBehaviour {
 						ResetTilePar ();
 						activePlayer.menu.gameObject.SetActive (false);
 					}
+
+					if (activeEnemy != null) {
+						activeEnemy.menu.gameObject.SetActive (false);
+						activeEnemy = null;
+					}
+
 					activePlayer = hit.collider.gameObject.GetComponent<Unit> ();
 					activePlayer.menu.gameObject.SetActive (true);
 				} else if (hit.collider.tag.Equals ("Enemy")) {
