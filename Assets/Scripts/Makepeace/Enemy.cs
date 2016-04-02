@@ -365,42 +365,11 @@ public class Enemy : MonoBehaviour {
 		}
 			
 		while (true) {
-			/*if (viewTile.parent == this.tile) {
-				if (this.tile.E_Tile == viewTile) {
-                    this.transform.Rotate(new Vector3(0.0f, -90.0f, 0.0f));
-                    currRotation = -90.0f;
-                } else if (this.tile.W_Tile == viewTile) {
-                    this.transform.Rotate(new Vector3(0.0f, 90.0f, 0.0f));
-                    currRotation = 90.0f;
-                } else if (this.tile.NE_Tile == viewTile) {
-                    this.transform.Rotate(new Vector3(0.0f, -135.0f, 0.0f));
-                    currRotation = -135.0f;
-                } else if (this.tile.NW_Tile == viewTile) {
-                    this.transform.Rotate(new Vector3(0.0f, 135.0f, 0.0f));
-                    currRotation = 135.0f;
-
-                } else if (this.tile.SE_Tile == viewTile) {
-                    this.transform.Rotate(new Vector3(0.0f, -45.0f, 0.0f));
-                    currRotation = -45.0f;
-
-                } else if (this.tile.SW_Tile == viewTile) {
-                    this.transform.Rotate(new Vector3(0.0f, 45.0f, 0.0f));
-                    currRotation = 45.0f;
-                }
-
-				this.tile.character = null;
-				this.tile = viewTile;
-				this.tile.character = this.gameObject;
-				movement--;
-				break;
-			} else {
-				viewTile = viewTile.parent;
-			}*/
-
 			if (viewTile.parent != this.tile) {
 				movePath.Add (viewTile);
 				viewTile = viewTile.parent;
 			} else {
+				viewTile.parent = this.tile;
 				MoveTile (viewTile);
 				break;
 			}
@@ -408,6 +377,111 @@ public class Enemy : MonoBehaviour {
 	}
 
 	void MoveTile(HexTile nextTile) {
+		float newRotation = 0.0f;
+		if (this.tile.parent == null) {
+			if (this.tile.E_Tile == nextTile) {
+				newRotation = -90.0f;
+			} else if (this.tile.W_Tile == nextTile) {
+				newRotation = 90.0f;
+			} else if (this.tile.NE_Tile == nextTile) {
+				newRotation = -150.0f;
+			} else if (this.tile.NW_Tile == nextTile) {
+				newRotation = 150.0f;
+			} else if (this.tile.SE_Tile == nextTile) {
+				newRotation = -30.0f;
+			} else if (this.tile.SW_Tile == nextTile) {
+				newRotation = 30.0f;
+			}
+		} else {
+			if (this.tile.parent.E_Tile == this.tile) {
+				if (nextTile == this.tile.E_Tile) {
+					newRotation = 0.0f;
+				} else if (nextTile == this.tile.W_Tile) {
+					newRotation = 180.0f;
+				} else if (nextTile == this.tile.NE_Tile) {
+					newRotation = -60.0f;
+				} else if (nextTile == this.tile.NW_Tile) {
+					newRotation = -120.0f;
+				} else if (nextTile == this.tile.SE_Tile) {
+					newRotation = 60.0f;
+				} else if (nextTile == this.tile.SW_Tile) {
+					newRotation = 120.0f;
+				} 
+			} else if (this.tile.parent.W_Tile == this.tile) {
+				if (nextTile == this.tile.E_Tile) {
+					newRotation = 180.0f;
+				} else if (nextTile == this.tile.W_Tile) {
+					newRotation = 0.0f;
+				} else if (nextTile == this.tile.NE_Tile) {
+					newRotation = 120.0f;
+				} else if (nextTile == this.tile.NW_Tile) {
+					newRotation = 60.0f;
+				} else if (nextTile == this.tile.SE_Tile) {
+					newRotation = -120.0f;
+				} else if (nextTile == this.tile.SW_Tile) {
+					newRotation = -60.0f;
+				} 
+			} else if (this.tile.parent.NE_Tile == this.tile) {
+				if (nextTile == this.tile.E_Tile) {
+					newRotation = -120.0f;
+				} else if (nextTile == this.tile.W_Tile) {
+					newRotation = 60.0f;
+				} else if (nextTile == this.tile.NE_Tile) {
+					newRotation = 0.0f;
+				} else if (nextTile == this.tile.NW_Tile) {
+					newRotation = -60.0f;
+				} else if (nextTile == this.tile.SE_Tile) {
+					newRotation = 120.0f;
+				} else if (nextTile == this.tile.SW_Tile) {
+					newRotation = 180.0f;
+				} 
+			} else if (this.tile.parent.NW_Tile == this.tile) {
+				if (nextTile == this.tile.E_Tile) {
+					newRotation = 120.0f;
+				} else if (nextTile == this.tile.W_Tile) {
+					newRotation = -60.0f;
+				} else if (nextTile == this.tile.NE_Tile) {
+					newRotation = 60.0f;
+				} else if (nextTile == this.tile.NW_Tile) {
+					newRotation = 0.0f;
+				} else if (nextTile == this.tile.SE_Tile) {
+					newRotation = 180.0f;
+				} else if (nextTile == this.tile.SW_Tile) {
+					newRotation = -120.0f;
+				} 
+			} else if (this.tile.parent.SE_Tile == this.tile) {
+				if (nextTile == this.tile.E_Tile) {
+					newRotation = -60.0f;
+				} else if (nextTile == this.tile.W_Tile) {
+					newRotation = 120.0f;
+				} else if (nextTile == this.tile.NE_Tile) {
+					newRotation = -120.0f;
+				} else if (nextTile == this.tile.NW_Tile) {
+					newRotation = 180.0f;
+				} else if (nextTile == this.tile.SE_Tile) {
+					newRotation = 0.0f;
+				} else if (nextTile == this.tile.SW_Tile) {
+					newRotation = 60.0f;
+				} 
+			} else if (this.tile.parent.SW_Tile == this.tile) {
+				if (nextTile == this.tile.E_Tile) {
+					newRotation = -120.0f;
+				} else if (nextTile == this.tile.W_Tile) {
+					newRotation = 60.0f;
+				} else if (nextTile == this.tile.NE_Tile) {
+					newRotation = 120.0f;
+				} else if (nextTile == this.tile.NW_Tile) {
+					newRotation = 180.0f;
+				} else if (nextTile == this.tile.SE_Tile) {
+					newRotation = -60.0f;
+				} else if (nextTile == this.tile.SW_Tile) {
+					newRotation = 0.0f;
+				} 
+			}
+		}
+
+		this.transform.Rotate (new Vector3 (0.0f, newRotation, 0.0f));
+		currRotation += newRotation;
 		this.tile.character = null;
 		this.tile = nextTile;
 		this.tile.character = this.gameObject;
@@ -428,11 +502,10 @@ public class Enemy : MonoBehaviour {
 					attackablePlayer.menu.UpdateMenu (attackablePlayer.char_stats);
 					Status = 0;
 					animEnemy.Play("Idle");
-				}
-                //this.transform.Rotate(new Vector3(0.0f, -currRotation, 0.0f));              
-            }
-   
-            
+					this.transform.Rotate(new Vector3(0.0f, -currRotation, 0.0f));
+					currRotation = 0;
+				}            
+            }        
 		}
 	}
 
