@@ -152,7 +152,7 @@ public class Enemy : MonoBehaviour {
 	private void FindAttackablePlayers(HexTile origin) {
 		att_range = this.GetComponentInChildren<Weapon> ().Rng;
 		GameManager.instance.ResetTileAttDis ();
-		GameManager.instance.ResetTilePar ();
+		GameManager.instance.ResetTileParticles ();
 		HexTile viewTile = null;
 		List<HexTile> visitedTile = new List<HexTile> ();
 

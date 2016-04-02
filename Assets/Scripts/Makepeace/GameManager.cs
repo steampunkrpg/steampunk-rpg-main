@@ -82,15 +82,13 @@ public class GameManager : MonoBehaviour {
 			if (activePlayer != null && activePlayer.Status == 0) {
 				activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
 				activePlayer.menu.gameObject.SetActive (false);
-				ResetTilePar ();
+				ResetTileParticles ();
 				activePlayer = null;
 			}
 
 			if (activePlayer != null && activePlayer.Status == 6) {
 				activePlayer.menu.gameObject.SetActive (false);
 				MoveSelect ();
-				//activePlayer.possibleMoves ();
-				//playerInput.UnitAction (activePlayer);
 			}
 
 			if (activePlayer != null && activePlayer.Status == 5) {
@@ -243,7 +241,7 @@ public class GameManager : MonoBehaviour {
 				if (hit.collider.tag.Equals ("Unit")) {
 					if (activePlayer != null && activePlayer != hit.collider.gameObject.GetComponent<Unit> ()) {
 						activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
-						ResetTilePar ();
+						ResetTileParticles ();
 						activePlayer.menu.gameObject.SetActive (false);
 					}
 
@@ -267,7 +265,7 @@ public class GameManager : MonoBehaviour {
 						activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
 						activePlayer.menu.gameObject.SetActive (false);
 						activePlayer = null;
-						ResetTilePar ();
+						ResetTileParticles ();
 					} else {
 						activeEnemy.menu.gameObject.SetActive (false);
 						activeEnemy = null;
@@ -326,9 +324,12 @@ public class GameManager : MonoBehaviour {
 					if (Physics.Raycast (hit.point, Vector3.down, out vertHit)) {
 						Debug.DrawLine (hit.point, vertHit.point);
 						if (vertHit.collider.tag.Equals ("GridTile")) {
+							GameObject tile = vertHit.collider.gameObject;
 
-							//Add movement code
-
+							if (tile.transform.Find ("Possible_Move").gameObject.activeSelf) {
+								activePlayer.MoveTo (tile.GetComponent<HexTile> ());
+								Debug.Log ("Possible Move: " + vertHit.collider.gameObject.GetComponent<HexTile> ());
+							}
 						}
 					}
 				}
@@ -395,7 +396,7 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-	public void ResetTilePar() {
+	public void ResetTileParticles() {
 		foreach (HexTile tile in tileL) {
 			tile.transform.Find ("Possible_Move").gameObject.SetActive (false);
 		}
