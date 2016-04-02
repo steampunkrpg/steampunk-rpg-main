@@ -68,6 +68,7 @@ public class GameManager : MonoBehaviour {
 		if (State == 1) {
 			if (activePlayer == null || activePlayer.Status == 1) {
 				PlayerSelect ();
+				playerInput.PlayerTurn ();
 			}
 
 			if (activePlayer != null && activePlayer.Status == 1) {
