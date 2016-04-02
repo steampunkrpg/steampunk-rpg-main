@@ -4,7 +4,7 @@ using System.Collections;
 public class PlayerKeyBoardInput : MonoBehaviour {
 
 	public void UnitAction(Unit activePlayer) {
-		if (Input.GetKey (KeyCode.W)) {
+		/*if (Input.GetKey (KeyCode.W)) {
 			activePlayer.Move (1);
 			return;
 		}
@@ -27,7 +27,7 @@ public class PlayerKeyBoardInput : MonoBehaviour {
 		if (Input.GetKey (KeyCode.A)) {
 			activePlayer.Move (6);
 			return;
-		}
+		}*/
 		if (Input.GetKey (KeyCode.F) && activePlayer.GetComponentInChildren<Weapon> ().type >= 0) {
 			if (GameManager.instance.activeEnemy != null) {
 				GameManager.instance.activeEnemy = null;
@@ -53,6 +53,11 @@ public class PlayerKeyBoardInput : MonoBehaviour {
 			} else {
 				GameManager.instance.StatsUI.SetActive (true);
 			}
+		}
+		if (Input.GetKey (KeyCode.M)) {
+			GameManager.instance.activePlayer.Status = 6;
+			activePlayer.possibleMoves ();
+			return;
 		}
 	}
 

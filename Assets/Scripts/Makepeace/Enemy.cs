@@ -19,6 +19,8 @@ public class Enemy : MonoBehaviour {
     public Animator animEnemy;
     public float currRotation;
 
+	private List<HexTile> movePath;
+
 	void Start() {
 		enemy_stats = this.GetComponentInChildren<Stats> ();
 		menu = this.GetComponentInChildren<EnemyMenu> ();
@@ -278,6 +280,7 @@ public class Enemy : MonoBehaviour {
 		float totalMov = movement;
 		HexTile viewTile = null;
 		List<HexTile> visitedTile = new List<HexTile> ();
+		movePath = new List<HexTile> ();
 
 		this.tile.mov_dis = 0;
 
@@ -360,9 +363,9 @@ public class Enemy : MonoBehaviour {
 				
 			viewTile = null;
 		}
-
+			
 		while (true) {
-			if (viewTile.parent == this.tile) {
+			/*if (viewTile.parent == this.tile) {
 				if (this.tile.E_Tile == viewTile) {
                     this.transform.Rotate(new Vector3(0.0f, -90.0f, 0.0f));
                     currRotation = -90.0f;
@@ -392,18 +395,41 @@ public class Enemy : MonoBehaviour {
 				break;
 			} else {
 				viewTile = viewTile.parent;
+			}*/
+
+			if (viewTile.parent != this.tile) {
+				movePath.Add (viewTile);
+				viewTile = viewTile.parent;
+			} else {
+				MoveTile (viewTile);
+				break;
 			}
 		}
+	}
+
+	void MoveTile(HexTile nextTile) {
+		this.tile.character = null;
+		this.tile = nextTile;
+		this.tile.character = this.gameObject;
+		movement--;
 	}
 
     void Update(){
 		if (Status == 2 && (this.transform.position.x != tile.transform.position.x || this.transform.position.z != tile.transform.position.z)) {
 			this.transform.position = Vector3.MoveTowards (this.transform.position, new Vector3(tile.transform.position.x, this.transform.position.y, tile.transform.position.z), 3 * Time.deltaTime);
 			if (this.transform.position.x == tile.transform.position.x && this.transform.position.z == tile.transform.position.z) {
-				Status = 1;
-                this.transform.Rotate(new Vector3(0.0f, -currRotation, 0.0f));
-                GameManager.instance.activeEnemy = null;
-               
+				if (movePath.Count > 0) {
+					HexTile nextTile = movePath[movePath.Count - 1];
+					movePath.RemoveAt (movePath.Count - 1);
+					MoveTile (nextTile);
+				} else {
+					GameManager.instance.InitiateBattle (this.tile, attackablePlayer.tile);
+					menu.UpdateMenu (enemy_stats);
+					attackablePlayer.menu.UpdateMenu (attackablePlayer.char_stats);
+					Status = 0;
+					animEnemy.Play("Idle");
+				}
+                //this.transform.Rotate(new Vector3(0.0f, -currRotation, 0.0f));              
             }
    
             

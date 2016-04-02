@@ -1,4 +1,5 @@
-﻿using UnityEngine;using System.Collections;
+﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour {
 
 	private Ray mouseRay;
 	private RaycastHit hit;
+	private RaycastHit vertHit;
 
 	public List<HexTile> tileL;
 	public List<Unit> playerL;
@@ -72,7 +74,6 @@ public class GameManager : MonoBehaviour {
 				if (!activePlayer.GetComponentInChildren<ParticleSystem> ().isPlaying) {
 					activePlayer.GetComponentInChildren<ParticleSystem> ().Play (true);
 					activePlayer.menu.gameObject.SetActive (true);
-					activePlayer.possibleMoves ();
 				}
 				playerInput.UnitAction (activePlayer);
 			} 
@@ -86,8 +87,9 @@ public class GameManager : MonoBehaviour {
 
 			if (activePlayer != null && activePlayer.Status == 6) {
 				activePlayer.menu.gameObject.SetActive (false);
-				activePlayer.possibleMoves ();
-				playerInput.UnitAction (activePlayer);
+				MoveSelect ();
+				//activePlayer.possibleMoves ();
+				//playerInput.UnitAction (activePlayer);
 			}
 
 			if (activePlayer != null && activePlayer.Status == 5) {
@@ -309,6 +311,25 @@ public class GameManager : MonoBehaviour {
 					activePlayer.possibleMoves ();
 					activePlayer.menu.gameObject.SetActive (true);
 					ResetPlayerPar ();
+				}
+			}
+		}
+	}
+
+	void MoveSelect() {
+		if (Input.GetMouseButtonDown (0)) {
+			mouseRay = Camera.main.ScreenPointToRay (Input.mousePosition);
+
+			if (Physics.Raycast (mouseRay, out hit)) {
+				if (hit.collider.tag.Equals ("Terrain")) {
+					if (Physics.Raycast (hit.point, Vector3.down, out vertHit)) {
+						Debug.DrawLine (hit.point, vertHit.point);
+						if (vertHit.collider.tag.Equals ("GridTile")) {
+
+							//Add movement code
+
+						}
+					}
 				}
 			}
 		}
