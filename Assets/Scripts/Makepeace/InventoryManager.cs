@@ -58,16 +58,8 @@ public class InventoryManager : MonoBehaviour {
 
 		/*SECTION 2*/
 		//use cases for items
-		var gameManager = GameObject.Find ("GameManager");
-		//GameManager.instance.activePlayer.GetComponent<Stats> ();
-		var script = gameManager.GetComponent<GameManager>();
-		var activePlayerStats =	script.activePlayer.transform.FindChild ("Stats").GetComponent<Stats>();
-		var apsScript = activePlayerStats.GetComponent<Stats> ();
-		Debug.Log (activePlayerStats);
-		Debug.Log (apsScript);
-
-		var activePlayerWeapon = activePlayer.transform.FindChild ("Weapon");
-		var apwScript = activePlayerWeapon.GetComponent<Weapon> ();
+		var apsScript =	GameManager.instance.activePlayer.GetComponent<Stats> ();
+		var apwScript = GameManager.instance.activeEnemy.GetComponent<Weapon> ();
 
 		/*
 		switch (item) {
