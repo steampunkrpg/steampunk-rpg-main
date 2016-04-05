@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour {
 	public GameObject TurnUI;
 	public Text turnText;
 	public GameObject StatsUI;
+	public GameObject InvUI;
 
 	public static GameManager instance = null;
 	public float turnDelay = 0.1f;

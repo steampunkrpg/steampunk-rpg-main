@@ -5,10 +5,12 @@ public class PlayerKeyBoardInput : MonoBehaviour {
 
 	public bool tabReset;
 	public bool statReset;
+	public bool invReset;
 
 	void Start() {
 		tabReset = true;
 		statReset = true;
+		invReset = true;
 	}
 
 	public void UnitAction(Unit activePlayer) {	
@@ -32,6 +34,16 @@ public class PlayerKeyBoardInput : MonoBehaviour {
 			}
 			activePlayer.Status = 0;
 			return;
+		}
+		if (Input.GetKeyDown (KeyCode.I) && invReset) {
+			statReset = false;
+			if (GameManager.instance.InvUI.activeSelf) {
+				GameManager.instance.InvUI.SetActive (false);
+			} else {
+				GameManager.instance.InvUI.SetActive (true);
+			}
+		} else if (Input.GetKeyUp (KeyCode.I)) {
+			invReset = true;
 		}
 		if (Input.GetKeyDown (KeyCode.Y) && statReset) {
 			statReset = false;
