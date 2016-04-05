@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour {
 	public GameObject TurnUI;
 	public Text turnText;
 	public GameObject StatsUI;
+	public GameObject InvUI;
 
 	public static GameManager instance = null;
 	public float turnDelay = 0.1f;
@@ -51,6 +52,8 @@ public class GameManager : MonoBehaviour {
 		PauseUI.SetActive (false);
 		TurnUI.SetActive (false);
 		StatsUI.SetActive (false);
+		InvUI.GetComponent<InventoryManager> ().CreateDefault ();
+		InvUI.SetActive (false);
 
 		level = 0;
 		State = 0;

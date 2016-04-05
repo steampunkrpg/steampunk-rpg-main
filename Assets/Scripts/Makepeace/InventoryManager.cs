@@ -15,12 +15,12 @@ public class InventoryManager : MonoBehaviour {
 	private int buttonCount = 0, hasClicked = 0;
 	private Text buttonText;
 
-	void Start() {
+	public void CreateDefault() {
 		buttonsInMenu = new List<GameObject> ();
 		heightOffset = new Vector3(0.0f, 80.0f, 0.0f);
 		itemsAndCounts = new Dictionary<string, int> ();
 		inventoryWindow = GameObject.Find ("InventoryWindow");
-		inventoryWindow.SetActive (false);
+		//inventoryWindow.SetActive (false);
 
 		//testing item
 		AddItem("Potion", 10);
@@ -75,16 +75,6 @@ public class InventoryManager : MonoBehaviour {
 			break;
 			}
 		}
-
-	public void InventoryToggler() {
-		if (hasClicked == 0) {
-			inventoryWindow.SetActive (true);
-			hasClicked = 1;
-		} else if (hasClicked == 1){
-			inventoryWindow.SetActive (false);
-			hasClicked = 0;
-		}
-	}
 
 	void ButtonCreator (string item, int count) {
 		inventoryEntryGO = Instantiate (inventoryEntry);
