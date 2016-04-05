@@ -6,6 +6,7 @@ public class PlayerKeyBoardInput : MonoBehaviour {
 	public bool tabReset;
 	public bool statReset;
 	public bool invReset;
+	public int prevActiveState;
 
 	void Start() {
 		tabReset = true;
@@ -39,7 +40,10 @@ public class PlayerKeyBoardInput : MonoBehaviour {
 			statReset = false;
 			if (GameManager.instance.InvUI.activeSelf) {
 				GameManager.instance.InvUI.SetActive (false);
+				activePlayer.Status = prevActiveState;
 			} else {
+				prevActiveState = activePlayer.Status;
+				activePlayer.Status = 7;
 				GameManager.instance.InvUI.SetActive (true);
 			}
 		} else if (Input.GetKeyUp (KeyCode.I)) {

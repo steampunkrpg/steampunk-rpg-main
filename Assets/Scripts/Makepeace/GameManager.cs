@@ -263,7 +263,7 @@ public class GameManager : MonoBehaviour {
 					activeEnemy.menu.gameObject.SetActive (true);
 				}
 
-				if (hit.collider.tag.Equals ("Terrain") && (activePlayer != null || activeEnemy != null)) {
+				if (hit.collider.tag.Equals ("Terrain") && (activePlayer != null || activeEnemy != null) && activePlayer.Status != 7) {
 					if (activePlayer != null) {
 						activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
 						activePlayer.menu.gameObject.SetActive (false);
