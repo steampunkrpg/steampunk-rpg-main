@@ -15,22 +15,22 @@ public class InventoryManager : MonoBehaviour {
 	private int buttonCount = 0, hasClicked = 0;
 	private Text buttonText;
 
-	void Start() {
+	public void CreateDefault() {
 		buttonsInMenu = new List<GameObject> ();
 		heightOffset = new Vector3(0.0f, 80.0f, 0.0f);
 		itemsAndCounts = new Dictionary<string, int> ();
 		inventoryWindow = GameObject.Find ("InventoryWindow");
-		inventoryWindow.SetActive (false);
+		//inventoryWindow.SetActive (false);
 
 		//testing item
 		AddItem("Potion", 10);
 		AddItem ("Sword", 1);
 
 		//generate some "weapons" for testing
-		Weapon WoodSword = new Weapon(5, 95, 20, 5, new List<float>{2, 1, 2}, 0);
+		/*Weapon WoodSword = new Weapon(5, 95, 20, 5, new List<float>{2, 1, 2}, 0);
 		Weapon Crossbow = new Weapon (7, 90, 20, 3, new List<float> {2, 1, 2}, 0);
 		Weapon PyroFlame = new Weapon (9, 70, 10, 1, new List<float> {2, 1, 2}, 1);
-		Weapon HealingHand = new Weapon (3, 100, 10, 1, new List<float> {2, 1, 2}, -1);
+		Weapon HealingHand = new Weapon (3, 100, 10, 1, new List<float> {2, 1, 2}, -1);*/
 	}
 
 	public void AddItem(string item, int count) {
@@ -76,16 +76,6 @@ public class InventoryManager : MonoBehaviour {
 			}
 			*/
 		}
-
-	public void InventoryToggler() {
-		if (hasClicked == 0) {
-			inventoryWindow.SetActive (true);
-			hasClicked = 1;
-		} else if (hasClicked == 1){
-			inventoryWindow.SetActive (false);
-			hasClicked = 0;
-		}
-	}
 
 	void ButtonCreator (string item, int count) {
 		inventoryEntryGO = Instantiate (inventoryEntry);
