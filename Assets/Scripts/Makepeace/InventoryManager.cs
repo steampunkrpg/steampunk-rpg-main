@@ -27,10 +27,10 @@ public class InventoryManager : MonoBehaviour {
 		AddItem ("Sword", 1);
 
 		//generate some "weapons" for testing
-		Weapon WoodSword = new Weapon(5, 95, 20, 5, new List<float>{2, 1, 2}, 0);
-		Weapon Crossbow = new Weapon (7, 90, 20, 3, new List<float> {2, 1, 2}, 0);
-		Weapon PyroFlame = new Weapon (9, 70, 10, 1, new List<float> {2, 1, 2}, 1);
-		Weapon HealingHand = new Weapon (3, 100, 10, 1, new List<float> {2, 1, 2}, -1);
+		Weapon WoodSword = new Weapon("WoodSword", 5, 95, 20, 5, new List<float>{1}, 0);
+		Weapon Crossbow = new Weapon ("Crossbow", 7, 90, 20, 3, new List<float> {2}, 0);
+		Weapon PyroFlame = new Weapon ("PyroFlame", 9, 70, 10, 1, new List<float> {1, 2, 3}, 1);
+		Weapon HealingHand = new Weapon ("HealingHand", 3, 100, 10, 1, new List<float> {1}, -1);
 	}
 
 	public void AddItem(string item, int count) {
@@ -61,20 +61,19 @@ public class InventoryManager : MonoBehaviour {
 		var apsScript =	GameManager.instance.activePlayer.GetComponent<Stats> ();
 		var apwScript = GameManager.instance.activeEnemy.GetComponent<Weapon> ();
 
-		/*
-		switch (item) {
-			case "Potion":
-				apsScript.cHP += apsScript.mHP * 0.40f;
-					break;
-			case "Sword":
-				apwScript.Mt = 10;
-				apwScript.Hit = 95;
-				apwScript.Crit = 15;
-				apwScript.Wt = 3;
-				apwScript.Rng = new List<float> {1,1};
-				apwScript.type = 0;
+		switch (pressedTextKey) {
+		case "Potion":
+			apsScript.cHP += apsScript.mHP * 0.40f;
+			break;
+		case "Sword":
+			apwScript.Mt = 10;
+			apwScript.Hit = 95;
+			apwScript.Crit = 15;
+			apwScript.Wt = 3;
+			apwScript.Rng = new List<float> { 1, 1 };
+			apwScript.type = 0;
+			break;
 			}
-			*/
 		}
 
 	public void InventoryToggler() {
