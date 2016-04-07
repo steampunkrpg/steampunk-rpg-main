@@ -15,7 +15,6 @@ public class Enemy : MonoBehaviour {
 	public List<float> att_range;
 	public List<Unit> attackablePlayers;
 	private Unit attackablePlayer;
-	public EnemyMenu menu;
     public Animator animEnemy;
     public float currRotation;
 
@@ -23,8 +22,6 @@ public class Enemy : MonoBehaviour {
 
 	void Start() {
 		enemy_stats = this.GetComponentInChildren<Stats> ();
-		menu = this.GetComponentInChildren<EnemyMenu> ();
-		menu.InitializeMenu (enemy_stats);
 		Status = 0;
 	}
 
@@ -53,8 +50,6 @@ public class Enemy : MonoBehaviour {
 
 			if (attackablePlayers.Contains (attackablePlayer)) {
 				GameManager.instance.InitiateBattle (this.tile, attackablePlayer.tile);
-				menu.UpdateMenu (enemy_stats);
-				attackablePlayer.menu.UpdateMenu (attackablePlayer.char_stats);
 				Status = 0;
                 animEnemy.Play("Idle");
 			} else {
@@ -498,8 +493,6 @@ public class Enemy : MonoBehaviour {
 					MoveTile (nextTile);
 				} else {
 					GameManager.instance.InitiateBattle (this.tile, attackablePlayer.tile);
-					menu.UpdateMenu (enemy_stats);
-					attackablePlayer.menu.UpdateMenu (attackablePlayer.char_stats);
 					Status = 0;
 					animEnemy.Play("Idle");
 					this.transform.Rotate(new Vector3(0.0f, -currRotation, 0.0f));

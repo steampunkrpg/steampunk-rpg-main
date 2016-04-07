@@ -9,8 +9,6 @@ public class Unit : MonoBehaviour {
 
 	public GameObject char_class;
 	public Text statsView;
-	public CharacterMenu menu;
-//	public Inventory inv;
 	public Stats char_stats;
 	public float movement;
 	public List<float> att_range;
@@ -21,8 +19,6 @@ public class Unit : MonoBehaviour {
 	void Awake() {
 		this.GetComponentInChildren<ParticleSystem> ().Stop (true);
 		char_stats = this.GetComponentInChildren<Stats> ();
-		menu = this.GetComponentInChildren<CharacterMenu>();
-		menu.InitializeMenu (char_stats);
 		Status = 0;
         animUnit.Play("Idle");
 		movePath = new List<HexTile> ();

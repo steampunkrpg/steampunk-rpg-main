@@ -36,7 +36,7 @@ public class PlayerKeyBoardInput : MonoBehaviour {
 			activePlayer.Status = 0;
 			return;
 		}
-		if (Input.GetKeyDown (KeyCode.I) && invReset) {
+		/*if (Input.GetKeyDown (KeyCode.I) && invReset) {
 			statReset = false;
 			if (GameManager.instance.InvUI.activeSelf) {
 				GameManager.instance.InvUI.SetActive (false);
@@ -48,7 +48,7 @@ public class PlayerKeyBoardInput : MonoBehaviour {
 			}
 		} else if (Input.GetKeyUp (KeyCode.I)) {
 			invReset = true;
-		}
+		}*/
 		if (Input.GetKeyDown (KeyCode.Y) && statReset) {
 			statReset = false;
 			GameManager.instance.StatsUI.GetComponent<StatsMenu> ().UpdateMenu (activePlayer.char_stats);
@@ -94,7 +94,6 @@ public class PlayerKeyBoardInput : MonoBehaviour {
 							for (int j = 0; j < GameManager.instance.playerL.Count; j++) {
 								if (GameManager.instance.playerL [j].Status == 1 && GameManager.instance.playerL [j] != GameManager.instance.activePlayer) {
 									GameManager.instance.activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
-									GameManager.instance.activePlayer.menu.gameObject.SetActive (false);
 									GameManager.instance.activePlayer = GameManager.instance.playerL [j];
 									break;
 								}
@@ -104,7 +103,6 @@ public class PlayerKeyBoardInput : MonoBehaviour {
 							for (int j = 0; j < GameManager.instance.playerL.Count; j++) {
 								if (GameManager.instance.playerL [(j+i+1)%GameManager.instance.playerL.Count].Status == 1 && GameManager.instance.playerL [(j+i+1)%GameManager.instance.playerL.Count] != GameManager.instance.activePlayer) {
 									GameManager.instance.activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
-									GameManager.instance.activePlayer.menu.gameObject.SetActive (false);
 									GameManager.instance.activePlayer = GameManager.instance.playerL [(j+i+1)%GameManager.instance.playerL.Count];
 									break;
 								}
