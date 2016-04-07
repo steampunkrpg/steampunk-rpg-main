@@ -167,6 +167,7 @@ GameObject:
   - 114: {fileID: 11406984}
   - 114: {fileID: 11422414}
   - 114: {fileID: 11458194}
+  - 114: {fileID: 11496486}
   m_Layer: 5
   m_Name: InventoryHUD
   m_TagString: Untagged
@@ -439,10 +440,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryWindow: {fileID: 0}
-  inventoryEntry: {fileID: 153090, guid: c21639d4dc559a2408c9e6f9ef0f5b9f, type: 2}
+  inventoryEntry: {fileID: 0}
   inventoryEntryGO: {fileID: 0}
-  gameManager: {fileID: 0}
-  activePlayer: {fileID: 0}
 --- !u!114 &11461368
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -621,6 +620,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &11496486
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 184948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b3a410201c1a470d8cf6b135e55aaf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &22215264
 CanvasRenderer:
   m_ObjectHideFlags: 1

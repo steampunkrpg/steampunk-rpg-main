@@ -24,12 +24,6 @@ public class InventoryManager : MonoBehaviour {
 		//testing item
 		AddItem("Potion", 10);
 		AddItem ("Sword", 1);
-
-		//generate some "weapons" for testing
-		/*Weapon WoodSword = new Weapon("WoodSword", 5, 95, 20, 5, new List<float>{1}, 0);
-		Weapon Crossbow = new Weapon ("Crossbow", 7, 90, 20, 3, new List<float> {2}, 0);
-		Weapon PyroFlame = new Weapon ("PyroFlame", 9, 70, 10, 1, new List<float> {1, 2, 3}, 1);
-		Weapon HealingHand = new Weapon ("HealingHand", 3, 100, 10, 1, new List<float> {1}, -1);*/
 	}
 
 	public void AddItem(string item, int count) {
@@ -39,8 +33,9 @@ public class InventoryManager : MonoBehaviour {
 				itemsAndCounts [i] = new KeyValuePair<string, int> (item, itemsAndCounts [i].Value + 1);
 				GameObject.Destroy (GameObject.Find (item));
 				ButtonCreator (item, itemsAndCounts [i].Value + 1);
-				i = itemsAndCounts.Count;
-			} else if (i == itemsAndCounts.Count - 1 && itemsAndCounts [i].Key != item) {
+				break;
+			} 
+			else if (i == itemsAndCounts.Count - 1 && itemsAndCounts [i].Key != item) {
 				itemsAndCounts.Add (new KeyValuePair<string, int> (item, count));
 				ButtonCreator (item, count);
 			}
@@ -60,24 +55,47 @@ public class InventoryManager : MonoBehaviour {
 	}
 
 	//handles use of the item
-	public void UseItem(Button button)
+	public void UseItem (Button button)
 	{	
 		/*SECTION 1*/
 		//decrements the count on the inventory button
-		string pressedString = button.transform.name.ToString();
+		string pressedItem = button.transform.name.ToString ();
 
 		for (int i = 0; i < itemsAndCounts.Count; i++) {
-			if (itemsAndCounts [i].Key == pressedString) {
-				itemsAndCounts [i] = new KeyValuePair<string, int> (pressedString, itemsAndCounts [i].Value + 1);
-				GameObject.Destroy (GameObject.Find (pressedString));
-				ButtonCreator (pressedString, itemsAndCounts [i].Value - 1);
-				i = itemsAndCounts.Count;
+			if (itemsAndCounts [i].Key == pressedItem) {
+				itemsAndCounts [i] = new KeyValuePair<string, int> (pressedItem, itemsAndCounts [i].Value + 1);
+				GameObject.Destroy (GameObject.Find (pressedItem));
+				ButtonCreator (pressedItem, itemsAndCounts [i].Value - 1);
+				break;
 			}
 		}
 
 		/*SECTION 2*/
-		//use cases for items
+		//use of items
 		var apsScript =	GameManager.instance.activePlayer.GetComponent<Stats> ();
-		var apwScript = GameManager.instance.activeEnemy.GetComponent<Weapon> ();
+		var apwScript = GameManager.instance.activePlayer.GetComponent<Weapon> ();
+		InventoryLUT lookup = new InventoryLUT ();
 
+		//get type of item (Weapon/Consumable)
+		Item targetItem = lookup.Lookup(pressedItem);
+
+		//not many consumables so just handle cases here
+		if (targetItem.iType == 0) {
+			if (targetItem.iName == "Potion") {
+				apsScript.cHP += apsScript.mHP * 0.40f;
+			}
+			if (targetItem.iName == "FuryElixir") {
+				apwScript.Mt = apwScript.Mt * 1.4f;
+			}
+		}
+
+		else if (targetItem.iType == 1){
+			apwScript.Mt = targetItem.Mt ;
+			apwScript.Hit = targetItem.Hit;
+			apwScript.Crit = targetItem.Crit;
+			apwScript.Wt = targetItem.Wt;
+			apwScript.Rng = targetItem.Rng;
+			apwScript.type = targetItem.type;
+		}
+	}
 }
