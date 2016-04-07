@@ -89,6 +89,7 @@ public class InventoryManager : MonoBehaviour {
 			}
 		}
 
+		//weapon type stat assignments
 		else if (targetItem.iType == 1){
 			apwScript.Mt = targetItem.Mt ;
 			apwScript.Hit = targetItem.Hit;
