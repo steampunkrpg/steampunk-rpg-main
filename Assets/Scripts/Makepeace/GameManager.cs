@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour {
 	public GameObject PauseUI;
 	public GameObject TurnUI;
 	public Text turnText;
+	public Image turnImage;
 	public GameObject StatsUI;
 	public GameObject InvUI;
 	public GameObject PlayerUI;
@@ -416,12 +417,16 @@ public class GameManager : MonoBehaviour {
 
 		TurnUI.SetActive (true);
 		if (nextState == 1) {
+			turnImage.color = new Color32(0,255,100,255);
 			turnText.text = "PLAYER'S TURN";
 		} else if (nextState == 2) {
+			turnImage.color = new Color32(255,0,100,255);
 			turnText.text = "ENEMY'S TURN";
 		} else if (nextState == -1) {
+			turnImage.color = new Color32(37,38,38,123);
 			turnText.text = "GAME OVER";
 		} else if (nextState == -2) {
+			turnImage.color = new Color32(37,38,38,123);
 			turnText.text = "VICTORY";
 		}
 
