@@ -11248,8 +11248,11 @@ MonoBehaviour:
   - 3
   - 6
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -11279,8 +11282,11 @@ MonoBehaviour:
   - 0
   - 2
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -11310,8 +11316,11 @@ MonoBehaviour:
   - 7
   - 2
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -11341,8 +11350,11 @@ MonoBehaviour:
   - 4
   - 9
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -11372,8 +11384,11 @@ MonoBehaviour:
   - 0
   - 3
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -11403,8 +11418,11 @@ MonoBehaviour:
   - 2
   - 0
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -11434,8 +11452,11 @@ MonoBehaviour:
   - 6
   - 5
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -11465,8 +11486,11 @@ MonoBehaviour:
   - 3
   - 7
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -11496,8 +11520,11 @@ MonoBehaviour:
   - 9
   - 4
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -11527,8 +11554,11 @@ MonoBehaviour:
   - 9
   - 8
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -11558,8 +11588,11 @@ MonoBehaviour:
   - 8
   - 0
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -11589,8 +11622,11 @@ MonoBehaviour:
   - 1
   - 3
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -11620,8 +11656,11 @@ MonoBehaviour:
   - 2
   - 5
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -11651,8 +11690,11 @@ MonoBehaviour:
   - 9
   - 0
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -11682,8 +11724,11 @@ MonoBehaviour:
   - 7
   - 9
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -11713,8 +11758,11 @@ MonoBehaviour:
   - 7
   - 0
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -11744,8 +11792,11 @@ MonoBehaviour:
   - 5
   - 5
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -11775,8 +11826,11 @@ MonoBehaviour:
   - 3
   - 8
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -11806,8 +11860,11 @@ MonoBehaviour:
   - 5
   - 4
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -11837,8 +11894,11 @@ MonoBehaviour:
   - 1
   - 5
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -11868,8 +11928,11 @@ MonoBehaviour:
   - 2
   - 4
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -11899,8 +11962,11 @@ MonoBehaviour:
   - 7
   - 3
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -11930,8 +11996,11 @@ MonoBehaviour:
   - 2
   - 2
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -11961,8 +12030,11 @@ MonoBehaviour:
   - 1
   - 6
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -11992,8 +12064,11 @@ MonoBehaviour:
   - 4
   - 3
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -12023,8 +12098,11 @@ MonoBehaviour:
   - 5
   - 7
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -12054,8 +12132,11 @@ MonoBehaviour:
   - 0
   - 4
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -12085,8 +12166,11 @@ MonoBehaviour:
   - 5
   - 1
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -12116,8 +12200,11 @@ MonoBehaviour:
   - 4
   - 4
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -12147,8 +12234,11 @@ MonoBehaviour:
   - 8
   - 7
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -12178,8 +12268,11 @@ MonoBehaviour:
   - 9
   - 5
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -12209,8 +12302,11 @@ MonoBehaviour:
   - 6
   - 0
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -12240,8 +12336,11 @@ MonoBehaviour:
   - 5
   - 9
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -12271,8 +12370,11 @@ MonoBehaviour:
   - 7
   - 7
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -12302,8 +12404,11 @@ MonoBehaviour:
   - 3
   - 4
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -12333,8 +12438,11 @@ MonoBehaviour:
   - 1
   - 7
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -12364,8 +12472,11 @@ MonoBehaviour:
   - 1
   - 0
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -12395,8 +12506,11 @@ MonoBehaviour:
   - 5
   - 0
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -12426,8 +12540,11 @@ MonoBehaviour:
   - 4
   - 2
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -12457,8 +12574,11 @@ MonoBehaviour:
   - 5
   - 2
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -12488,8 +12608,11 @@ MonoBehaviour:
   - 4
   - 8
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -12519,8 +12642,11 @@ MonoBehaviour:
   - 8
   - 9
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -12550,8 +12676,11 @@ MonoBehaviour:
   - 7
   - 8
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -12581,8 +12710,11 @@ MonoBehaviour:
   - 6
   - 1
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -12612,8 +12744,11 @@ MonoBehaviour:
   - 2
   - 9
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -12643,8 +12778,11 @@ MonoBehaviour:
   - 1
   - 1
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -12674,8 +12812,11 @@ MonoBehaviour:
   - 8
   - 8
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -12705,8 +12846,11 @@ MonoBehaviour:
   - 2
   - 8
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -12736,8 +12880,11 @@ MonoBehaviour:
   - 6
   - 8
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -12767,8 +12914,11 @@ MonoBehaviour:
   - 9
   - 7
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -12798,8 +12948,11 @@ MonoBehaviour:
   - 4
   - 0
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -12829,8 +12982,11 @@ MonoBehaviour:
   - 3
   - 1
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -12860,8 +13016,11 @@ MonoBehaviour:
   - 9
   - 1
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -12891,8 +13050,11 @@ MonoBehaviour:
   - 1
   - 9
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -12922,8 +13084,11 @@ MonoBehaviour:
   - 7
   - 1
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -12953,8 +13118,11 @@ MonoBehaviour:
   - 9
   - 9
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -12984,8 +13152,11 @@ MonoBehaviour:
   - 4
   - 7
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -13015,8 +13186,11 @@ MonoBehaviour:
   - 3
   - 5
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -13046,8 +13220,11 @@ MonoBehaviour:
   - 0
   - 7
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -13077,8 +13254,11 @@ MonoBehaviour:
   - 5
   - 8
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -13108,8 +13288,11 @@ MonoBehaviour:
   - 6
   - 9
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -13139,8 +13322,11 @@ MonoBehaviour:
   - 3
   - 2
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -13170,8 +13356,11 @@ MonoBehaviour:
   - 4
   - 5
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -13201,8 +13390,11 @@ MonoBehaviour:
   - 2
   - 6
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -13232,8 +13424,11 @@ MonoBehaviour:
   - 1
   - 4
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -13263,8 +13458,11 @@ MonoBehaviour:
   - 0
   - 9
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -13294,8 +13492,11 @@ MonoBehaviour:
   - 6
   - 2
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -13325,8 +13526,11 @@ MonoBehaviour:
   - 1
   - 2
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -13356,8 +13560,11 @@ MonoBehaviour:
   - 1
   - 8
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -13387,8 +13594,11 @@ MonoBehaviour:
   - 4
   - 6
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -13418,8 +13628,11 @@ MonoBehaviour:
   - 4
   - 1
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -13449,8 +13662,11 @@ MonoBehaviour:
   - 7
   - 4
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -13480,8 +13696,11 @@ MonoBehaviour:
   - 0
   - 0
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -13511,8 +13730,11 @@ MonoBehaviour:
   - 3
   - 0
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -13542,8 +13764,11 @@ MonoBehaviour:
   - 6
   - 4
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -13573,8 +13798,11 @@ MonoBehaviour:
   - 6
   - 6
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -13604,8 +13832,11 @@ MonoBehaviour:
   - 2
   - 3
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -13635,8 +13866,11 @@ MonoBehaviour:
   - 7
   - 6
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -13666,8 +13900,11 @@ MonoBehaviour:
   - 8
   - 1
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -13697,8 +13934,11 @@ MonoBehaviour:
   - 0
   - 8
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -13728,8 +13968,11 @@ MonoBehaviour:
   - 9
   - 2
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -13759,8 +14002,11 @@ MonoBehaviour:
   - 2
   - 1
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -13790,8 +14036,11 @@ MonoBehaviour:
   - 0
   - 1
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -13821,8 +14070,11 @@ MonoBehaviour:
   - 8
   - 4
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -13852,8 +14104,11 @@ MonoBehaviour:
   - 8
   - 3
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -13883,8 +14138,11 @@ MonoBehaviour:
   - 8
   - 6
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -13914,8 +14172,11 @@ MonoBehaviour:
   - 9
   - 3
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -13945,8 +14206,11 @@ MonoBehaviour:
   - 6
   - 7
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -13976,8 +14240,11 @@ MonoBehaviour:
   - 5
   - 3
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -14007,8 +14274,11 @@ MonoBehaviour:
   - 2
   - 7
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -14038,8 +14308,11 @@ MonoBehaviour:
   - 9
   - 6
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -14069,8 +14342,11 @@ MonoBehaviour:
   - 0
   - 6
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -14100,8 +14376,11 @@ MonoBehaviour:
   - 3
   - 9
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -14131,8 +14410,11 @@ MonoBehaviour:
   - 0
   - 5
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -14162,8 +14444,11 @@ MonoBehaviour:
   - 5
   - 6
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -14193,8 +14478,11 @@ MonoBehaviour:
   - 8
   - 2
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -14224,8 +14512,11 @@ MonoBehaviour:
   - 3
   - 3
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -14255,8 +14546,11 @@ MonoBehaviour:
   - 8
   - 5
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -14286,8 +14580,11 @@ MonoBehaviour:
   - 6
   - 3
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
@@ -14317,8 +14614,11 @@ MonoBehaviour:
   - 7
   - 5
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
+  terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}

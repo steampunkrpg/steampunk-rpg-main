@@ -130,9 +130,11 @@ MonoBehaviour:
   SW_Tile: {fileID: 0}
   pos: []
   mov_cost: 1
-  dis: -1
+  mov_dis: -1
+  att_dis: -1
   terrainBonus: 0.1
   character: {fileID: 0}
+  parent: {fileID: 0}
   SpawnP: 0
   neighbors:
   - {fileID: 0}
