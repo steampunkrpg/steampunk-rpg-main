@@ -10,7 +10,9 @@ public class GameManager : MonoBehaviour {
 	public GameObject TurnUI;
 	public Text turnText;
 	public GameObject StatsUI;
-	//public GameObject InvUI;
+	public GameObject InvUI;
+	public GameObject PlayerUI;
+	public GameObject EnemyUI;
 
 	public static GameManager instance = null;
 	public float turnDelay = 0.1f;
@@ -52,8 +54,11 @@ public class GameManager : MonoBehaviour {
 		PauseUI.SetActive (false);
 		TurnUI.SetActive (false);
 		StatsUI.SetActive (false);
-		//InvUI.GetComponent<InventoryManager> ().CreateDefault ();
-		//InvUI.SetActive (false);
+		InvUI.GetComponent<InventoryManager> ().CreateDefault ();
+		InvUI.SetActive (false);
+		PlayerUI.SetActive(false);
+		EnemyUI.SetActive (false);
+
 
 		level = 0;
 		State = 0;
@@ -243,10 +248,12 @@ public class GameManager : MonoBehaviour {
 					}
 
 					activePlayer = hit.collider.gameObject.GetComponent<Unit> ();
+					PlayerUI.SetActive (true);
 				} else if (hit.collider.tag.Equals ("Enemy")) {
 					if (activeEnemy != null && activePlayer != hit.collider.gameObject.GetComponent<Enemy> ()) {
 					}
 					activeEnemy = hit.collider.gameObject.GetComponent<Enemy> ();
+					EnemyUI.SetActive (true);
 				}
 
 				if (hit.collider.tag.Equals ("Terrain") && (activePlayer != null || activeEnemy != null) && activePlayer.Status != 7) {
