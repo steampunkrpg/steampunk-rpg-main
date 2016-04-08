@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class GameManager : MonoBehaviour {
 
@@ -56,9 +57,6 @@ public class GameManager : MonoBehaviour {
 		StatsUI.SetActive (false);
 		InvUI.GetComponent<InventoryManager> ().CreateDefault ();
 		InvUI.SetActive (false);
-		PlayerUI.SetActive(false);
-		EnemyUI.SetActive (false);
-
 
 		level = 0;
 		State = 0;
@@ -248,15 +246,15 @@ public class GameManager : MonoBehaviour {
 					}
 
 					activePlayer = hit.collider.gameObject.GetComponent<Unit> ();
-					PlayerUI.SetActive (true);
+					PlayerUI.GetComponentInChildren<Animator>().SetTrigger("UI_Trigger");
+					PlayerUI.GetComponent<PlayerUI> ().UpdateUI (activePlayer.char_stats);
 				} else if (hit.collider.tag.Equals ("Enemy")) {
-					if (activeEnemy != null && activePlayer != hit.collider.gameObject.GetComponent<Enemy> ()) {
-					}
 					activeEnemy = hit.collider.gameObject.GetComponent<Enemy> ();
-					EnemyUI.SetActive (true);
+					EnemyUI.GetComponentInChildren<Animator>().SetTrigger("UI_Trigger");
+					EnemyUI.GetComponent<EnemyUI> ().UpdateUI (activeEnemy.enemy_stats);
 				}
 
-				if (hit.collider.tag.Equals ("Terrain") && (activePlayer != null || activeEnemy != null) && activePlayer.Status != 7) {
+				if (hit.collider.tag.Equals ("Terrain") && (activePlayer != null || activeEnemy != null) && !EventSystem.current.IsPointerOverGameObject()/*activePlayer.Status != 7*/) {
 					if (activePlayer != null) {
 						activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
 						activePlayer = null;

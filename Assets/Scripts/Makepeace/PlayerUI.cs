@@ -4,27 +4,22 @@ using UnityEngine.UI;
 
 public class PlayerUI : MonoBehaviour {
 
-	public Text charInfo;
-	public Text level;
-	public Text interaction;
+	public Text playerName;
+	public Text playerLevel;
+	public Text playerHealth;
+	public Text playerIntAtt;
 
-	public void InitializeMenu(Stats charStats) {
+	public void UpdateUI(Stats playerStats) {
 
-		charInfo.text = charStats.U_Name + "\nHealth: " + charStats.cHP + "/" + charStats.mHP;
-		level.text = "Lv " + charStats.Lv;
+		playerName.text = playerStats.U_Name;
+		playerLevel.text = "Lvl: " + playerStats.Lv + "\nExp: " + playerStats.Xp;
+		playerHealth.text = "Health: " + playerStats.cHP + "/" + playerStats.mHP;
 
-		if (this.gameObject.transform.parent.GetComponentInChildren<Weapon> ().type < 0) {
-			interaction.text = "Interact";
+		if (playerStats.gameObject.transform.parent.GetComponentInChildren<Weapon> ().type < 0) {
+			playerIntAtt.text = "Interact";
 		} else {
-			interaction.text = "Attack";
+			playerIntAtt.text = "Attack";
 		}
-
-		this.gameObject.SetActive (false);
-	}
-
-	public void UpdateMenu(Stats charStats) {
-		charInfo.text = charStats.U_Name + "\nHealth: " + charStats.cHP + "/" + charStats.mHP;
-		level.text = "Lv " + charStats.Lv;
 	}
 
 	public void Move_Button() {
@@ -32,12 +27,11 @@ public class PlayerUI : MonoBehaviour {
 	}
 
 	public void Attack_Button() {
-		//		if (interaction.text == "Interact") {
-		//			GameManager.instance.activePlayer.Status = 5;
-		////		} else {
-		//		} else if (interaction.text == "Attack") {
-		//			GameManager.instance.activePlayer.Status = 3;
-		//		}
+		if (playerIntAtt.text == "Interact") {
+			GameManager.instance.activePlayer.Status = 5;
+		} else if (playerIntAtt.text == "Attack") {
+			GameManager.instance.activePlayer.Status = 3;
+		}
 		GameManager.instance.activePlayer.Status = 3;
 	}
 

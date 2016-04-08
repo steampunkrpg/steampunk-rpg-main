@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: EnemySlideIn
+  m_Name: PlayerSlideUI
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,14 +20,14 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: 140
-        inSlope: -2652
-        outSlope: -2652
+        value: -140
+        inSlope: 1326
+        outSlope: 1326
         tangentMode: 10
-      - time: 0.083333336
-        value: -81
-        inSlope: -2652
-        outSlope: -2652
+      - time: 0.16666667
+        value: 81
+        inSlope: 1326
+        outSlope: 1326
         tangentMode: 10
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -56,7 +56,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.083333336
+    m_StopTime: 0.16666667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -76,14 +76,14 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - time: 0
-        value: 140
-        inSlope: -2652
-        outSlope: -2652
+        value: -140
+        inSlope: 1326
+        outSlope: 1326
         tangentMode: 10
-      - time: 0.083333336
-        value: -81
-        inSlope: -2652
-        outSlope: -2652
+      - time: 0.16666667
+        value: 81
+        inSlope: 1326
+        outSlope: 1326
         tangentMode: 10
       m_PreInfinity: 2
       m_PostInfinity: 2
