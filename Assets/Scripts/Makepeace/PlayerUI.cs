@@ -35,6 +35,10 @@ public class PlayerUI : MonoBehaviour {
 		GameManager.instance.activePlayer.Status = 3;
 	}
 
+	public void Item_Button() {
+		GameManager.instance.InvUI.SetActive (true);
+	}
+
 	public void End_Button() {
 		GameManager.instance.activePlayer.Status = 0;
 	}

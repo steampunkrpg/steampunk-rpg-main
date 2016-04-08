@@ -36,8 +36,8 @@ public class PlayerKeyBoardInput : MonoBehaviour {
 			activePlayer.Status = 0;
 			return;
 		}
-		/*if (Input.GetKeyDown (KeyCode.I) && invReset) {
-			statReset = false;
+		if (Input.GetKeyDown (KeyCode.I) && invReset) {
+			invReset = false;
 			if (GameManager.instance.InvUI.activeSelf) {
 				GameManager.instance.InvUI.SetActive (false);
 				activePlayer.Status = prevActiveState;
@@ -48,7 +48,7 @@ public class PlayerKeyBoardInput : MonoBehaviour {
 			}
 		} else if (Input.GetKeyUp (KeyCode.I)) {
 			invReset = true;
-		}*/
+		}
 		if (Input.GetKeyDown (KeyCode.Y) && statReset) {
 			statReset = false;
 			GameManager.instance.StatsUI.GetComponent<StatsMenu> ().UpdateMenu (activePlayer.char_stats);
