@@ -75,7 +75,6 @@ public class GameManager : MonoBehaviour {
 		if (State == 1) {
 			if (activePlayer == null || activePlayer.Status == 1) {
 				PlayerSelect ();
-				playerInput.PlayerTurn ();
 			}
 
 			if (activePlayer != null && activePlayer.Status == 1) {
@@ -83,10 +82,11 @@ public class GameManager : MonoBehaviour {
 					activePlayer.GetComponentInChildren<ParticleSystem> ().Play (true);
 				}
 				playerInput.UnitAction (activePlayer);
-			} 
+			}
 
 			if (activePlayer != null && activePlayer.Status == 0) {
 				activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
+				PlayerUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
 				ResetTileParticles ();
 				activePlayer = null;
 			}

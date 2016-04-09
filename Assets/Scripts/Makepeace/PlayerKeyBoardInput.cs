@@ -15,7 +15,7 @@ public class PlayerKeyBoardInput : MonoBehaviour {
 	}
 
 	public void UnitAction(Unit activePlayer) {	
-		if (Input.GetKey (KeyCode.F) && activePlayer.GetComponentInChildren<Weapon> ().type >= 0) {
+		/*if (Input.GetKey (KeyCode.F) && activePlayer.GetComponentInChildren<Weapon> ().type >= 0) {
 			if (GameManager.instance.activeEnemy != null) {
 				GameManager.instance.activeEnemy = null;
 			}
@@ -48,7 +48,7 @@ public class PlayerKeyBoardInput : MonoBehaviour {
 			}
 		} else if (Input.GetKeyUp (KeyCode.I)) {
 			invReset = true;
-		}
+		}*/
 		if (Input.GetKeyDown (KeyCode.Y) && statReset) {
 			statReset = false;
 			GameManager.instance.StatsUI.GetComponent<StatsMenu> ().UpdateMenu (activePlayer.char_stats);
@@ -60,11 +60,11 @@ public class PlayerKeyBoardInput : MonoBehaviour {
 		} else if (Input.GetKeyUp (KeyCode.Y)) {
 			statReset = true;
 		}
-		if (Input.GetKey (KeyCode.M)) {
+		/*if (Input.GetKey (KeyCode.M)) {
 			GameManager.instance.activePlayer.Status = 6;
 			activePlayer.possibleMoves ();
 			return;
-		}
+		}*/
 	}
 
 	public void GlobalAction() {
