@@ -75,6 +75,7 @@ public class GrasslandManager : MonoBehaviour {
         {
             Vector3 pos = RandomPosGenerator(go);
             GameObject bush = Instantiate(go, pos, Quaternion.Euler(0, 0, 0)) as GameObject;
+            bush.transform.parent = this.transform;
             bush.name = "grass";
             
             bush.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
