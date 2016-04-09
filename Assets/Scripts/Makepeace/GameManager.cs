@@ -67,6 +67,8 @@ public class GameManager : MonoBehaviour {
 		enemyL = new List<Enemy> ();
 		tileL = new List<HexTile> ();
 
+		activePlayer = null;
+		activeEnemy = null;
 		LoadLists ();
 		State = 4;
 	}
@@ -239,31 +241,53 @@ public class GameManager : MonoBehaviour {
 				if (hit.collider.tag.Equals ("Unit")) {
 					if (activePlayer != null && activePlayer != hit.collider.gameObject.GetComponent<Unit> ()) {
 						activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
-						ResetTileParticles ();
 					}
 
 					if (activeEnemy != null) {
 						activeEnemy = null;
+						EnemyUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
+					}
+
+					if (activePlayer == null) {
+						PlayerUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
 					}
 
 					activePlayer = hit.collider.gameObject.GetComponent<Unit> ();
-					PlayerUI.GetComponentInChildren<Animator>().SetTrigger("UI_Trigger");
 					PlayerUI.GetComponent<PlayerUI> ().UpdateUI (activePlayer.char_stats);
 				} else if (hit.collider.tag.Equals ("Enemy")) {
-					activeEnemy = hit.collider.gameObject.GetComponent<Enemy> ();
-					EnemyUI.GetComponentInChildren<Animator>().SetTrigger("UI_Trigger");
-					EnemyUI.GetComponent<EnemyUI> ().UpdateUI (activeEnemy.enemy_stats);
-				}
-
-				if (hit.collider.tag.Equals ("Terrain") && (activePlayer != null || activeEnemy != null) && !EventSystem.current.IsPointerOverGameObject()/*activePlayer.Status != 7*/) {
 					if (activePlayer != null) {
 						activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
 						activePlayer = null;
-						ResetTileParticles ();
-					} else {
+						PlayerUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
+					}
+
+					if (activeEnemy == null) {
+						EnemyUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
+					}
+
+					activeEnemy = hit.collider.gameObject.GetComponent<Enemy> ();
+					EnemyUI.GetComponent<EnemyUI> ().UpdateUI (activeEnemy.enemy_stats);
+				}
+
+				if (hit.collider.tag.Equals ("Terrain") && (activePlayer != null || activeEnemy != null) && !EventSystem.current.IsPointerOverGameObject()) {
+					if (activePlayer != null) {
+						activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
+						PlayerUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
+						activePlayer = null;
+					} else if (activeEnemy != null) {
+						EnemyUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
 						activeEnemy = null;
 					}
 				}
+			}
+		} else if (Input.GetMouseButtonDown (1)) {
+			if (activePlayer != null) {
+				activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
+				PlayerUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
+				activePlayer = null;
+			} else if (activeEnemy != null) {
+				EnemyUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
+				activeEnemy = null;
 			}
 		}
 	}
@@ -278,12 +302,11 @@ public class GameManager : MonoBehaviour {
 						activeEnemy = hit.collider.gameObject.GetComponent<Enemy> ();
 					}
 				}
-				if (hit.collider.tag.Equals ("Terrain") || hit.collider.tag.Equals ("Unit")) {
-					activePlayer.Status = 1;
-					activePlayer.possibleMoves ();
-					ResetEnemyPar ();
-				}
 			}
+		} else if (Input.GetMouseButtonDown (1)) {
+			ResetEnemyPar ();
+			PlayerUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
+			ResetTileParticles ();
 		}
 	}
 
@@ -297,12 +320,11 @@ public class GameManager : MonoBehaviour {
 						interactPlayer = hit.collider.gameObject.GetComponent<Unit> ();
 					}
 				}
-				if (hit.collider.tag.Equals ("Terrain") || hit.collider.tag.Equals ("Enemy")) {
-					activePlayer.Status = 1;
-					activePlayer.possibleMoves ();
-					ResetPlayerPar ();
-				}
 			}
+		} else if (Input.GetMouseButtonDown (1)) {
+			ResetPlayerPar ();
+			PlayerUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
+			ResetTileParticles ();
 		}
 	}
 
@@ -325,6 +347,9 @@ public class GameManager : MonoBehaviour {
 					}
 				}
 			}
+		} else if (Input.GetMouseButtonDown (1)) {
+			ResetTileParticles ();
+			PlayerUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
 		}
 	}
 
@@ -333,6 +358,7 @@ public class GameManager : MonoBehaviour {
 		foreach (GameObject tile in tiles) {
 			HexTile tempTile = tile.GetComponent<HexTile> ();
 			tempTile.FindNeighbors ();
+			tempTile.transform.Find ("Possible_Move").GetComponent<ParticleSystem> ().Stop (true);
 			tileL.Add (tempTile);	
 		}
 
@@ -389,7 +415,8 @@ public class GameManager : MonoBehaviour {
 
 	public void ResetTileParticles() {
 		foreach (HexTile tile in tileL) {
-			tile.transform.Find ("Possible_Move").gameObject.SetActive (false);
+			tile.transform.Find ("Possible_Move").GetComponent<ParticleSystem> ().Stop ();
+			tile.transform.Find ("Possible_Move").GetComponent<ParticleSystem>().startColor = new Color32(0,120,255,255);
 		}
 	}
 
