@@ -4,6 +4,7 @@ using System.Collections;
 public class SolarShotAni : MonoBehaviour {
 
     public GameObject sphere;
+    public GameObject enemy;
     public ParticleSystem ray1;
     public ParticleSystem ray2;
     public ParticleSystem ray3;
@@ -33,6 +34,7 @@ public class SolarShotAni : MonoBehaviour {
         ray5.GetComponent<Renderer>().enabled = false;
         ray6.GetComponent<Renderer>().enabled = false;
         burst.GetComponent<Renderer>().enabled = false;
+        animEnemy.Play("Idle_block");
     }
 
     // Update is called once per frame
@@ -75,7 +77,8 @@ public class SolarShotAni : MonoBehaviour {
                     ray6.Play();
                     emitted = true;
                     StartCoroutine(waiter());
-                    animEnemy.Play("Get hit");
+                    animEnemy.Play("break_through_the_block");
+                    StartCoroutine(enemyReact());
                     this.SunBurst();
                     /* ParticleSystem.EmissionModule em = burst.emission;
                      em.enabled = true;
@@ -88,7 +91,15 @@ public class SolarShotAni : MonoBehaviour {
     public IEnumerator throwSun()
     {
         yield return new WaitForSeconds(1.75f);
+        
         animPlayer.Play("Attack(4)");
+    }
+
+    public IEnumerator enemyReact()
+    {
+        yield return new WaitForSeconds(.6f);
+        enemy.transform.Translate(new Vector3(-1.2f, 1.0f, 0.0f));
+        animEnemy.Play("Dead");
     }
 
     public IEnumerator waiter()

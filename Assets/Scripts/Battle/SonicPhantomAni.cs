@@ -109,12 +109,13 @@ public class SonicPhantomAni : MonoBehaviour {
     IEnumerator enemyReaction()
     {
         yield return new WaitForSeconds(.8f);
-        animEnemy.Play("Get hit");
+        //animEnemy.Play("break_through_the_block");
+        animEnemy.enabled = false;
     }
 
     IEnumerator sonic2()
     {
-        yield return new WaitForSeconds(1.9f);
+        yield return new WaitForSeconds(.6f);
         ray3.GetComponent<Renderer>().enabled = true;
         ray3.Play();
         activeRay3 = true;
@@ -134,6 +135,7 @@ public class SonicPhantomAni : MonoBehaviour {
     IEnumerator endAni()
     {
         yield return new WaitForSeconds(1.0f);
+        animEnemy.enabled = true;
         animEnemy.Play("Dead");
         ray4.GetComponent<Renderer>().enabled = false;
     }
