@@ -25,6 +25,8 @@ public class BattleCommands : MonoBehaviour {
         onFirst = true;
         runDeepSix = false;
         damageWriter = new DrawDamage(damageText);
+        GameManager.instance.activePlayer.transform.position = new Vector3(-7.55f, 1f, 1.5f);
+        GameManager.instance.activeEnemy.transform.position = new Vector3(0.0f, 1.0f, 1.5f);
 	}
 	
 	// Update is called once per frame

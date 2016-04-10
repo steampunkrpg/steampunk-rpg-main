@@ -43,7 +43,7 @@ public class SonicPhantomAni : MonoBehaviour {
         {
             if (!inMotion)
             {
-                animPlayer.Play("Jamp");
+                GameManager.instance.activePlayer.GetComponent<Animator>().Play("Jamp");
                 inMotion = true;
                 StartCoroutine(characterMotion());
             }
@@ -91,7 +91,7 @@ public class SonicPhantomAni : MonoBehaviour {
     IEnumerator characterMotion()
     {
         yield return new WaitForSeconds(.7f);
-        player.transform.Translate(new Vector3(0.0f, 5.0f, 0.0f));
+        GameManager.instance.activePlayer.transform.Translate(new Vector3(0.0f, 5.0f, 0.0f));
         // ray1.transform.Translate(new Vector3(0.0f, -5.0f, 0.0f));
         ray1.GetComponent<Renderer>().enabled = true;
         ray1.Play();
@@ -136,7 +136,7 @@ public class SonicPhantomAni : MonoBehaviour {
     {
         yield return new WaitForSeconds(1.0f);
         animEnemy.enabled = true;
-        animEnemy.Play("Dead");
+        GameManager.instance.activeEnemy.GetComponent<Animator>().Play("Dead");
         ray4.GetComponent<Renderer>().enabled = false;
     }
 
@@ -148,6 +148,6 @@ public class SonicPhantomAni : MonoBehaviour {
         ray5.Play();
         yield return new WaitForSeconds(1.0f);
         ray5.GetComponent<Renderer>().enabled = false;
-        player.transform.Translate(new Vector3(0.0f, -5.0f, 0.0f));
+        GameManager.instance.activePlayer.transform.Translate(new Vector3(0.0f, -5.0f, 0.0f));
     }
 }
