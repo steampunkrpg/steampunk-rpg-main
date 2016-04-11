@@ -59,7 +59,8 @@ public class BattleCommands : MonoBehaviour {
                 StartCoroutine(AnimationMenuMove(5.5f));
                 //runGrittySlap = true;
                 //runSolarShot = true;
-                runSonicPhantom = true;
+                //runSonicPhantom = true;
+                runJotun = true;
             }
             else
             {
