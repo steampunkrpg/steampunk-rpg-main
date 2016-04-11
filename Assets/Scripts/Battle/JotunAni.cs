@@ -26,6 +26,7 @@ using System.Collections;
     {
                 if (BattleCommands.runJotun)
                     {
+            WriteMovelist.currentMove = "Jotun";
                         if (player.transform.localScale.x <= 8.6f)
                             {
                 player.transform.localScale += Vector3.one * Time.deltaTime;

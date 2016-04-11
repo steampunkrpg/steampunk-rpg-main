@@ -41,6 +41,7 @@ public class SolarShotAni : MonoBehaviour {
     void Update() {
         if (BattleCommands.runSolarShot)
         {
+            WriteMovelist.currentMove = "Solar Shot";
             if (sphere.GetComponent<Renderer>().enabled == false)
             {
                 sphere.GetComponent<Renderer>().enabled = true;

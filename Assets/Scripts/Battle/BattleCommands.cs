@@ -14,6 +14,7 @@ public class BattleCommands : MonoBehaviour {
     public static bool runSolarShot = false;
     public static bool runSonicPhantom = false;
     public static bool runJotun = false;
+    public static bool runSuddenDeath = false;
     public bool walking = false;
     public Text damageText;
     DrawDamage damageWriter;
@@ -21,7 +22,6 @@ public class BattleCommands : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         arrow1.enabled = true;
-        //arrow2.enabled = false;
         onFirst = true;
         runDeepSix = false;
         damageWriter = new DrawDamage(damageText);
@@ -31,22 +31,6 @@ public class BattleCommands : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	    /*if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            if (onFirst)
-            {
-                onFirst = false;
-                arrow1.enabled = false;
-                //arrow2.enabled = true;
-            }
-            else
-            {
-                onFirst = true;
-                //arrow2.enabled = false;
-                arrow1.enabled = true;
-            }
-        } */
-        //else if (Input.GetKeyDown(KeyCode.Return))
         if (!walking)
         {
             walking = true;
@@ -60,7 +44,8 @@ public class BattleCommands : MonoBehaviour {
                 //runGrittySlap = true;
                 //runSolarShot = true;
                 //runSonicPhantom = true;
-                runJotun = true;
+                //runJotun = true;
+                runSuddenDeath = true;
             }
             else
             {
@@ -76,8 +61,6 @@ public class BattleCommands : MonoBehaviour {
         Debug.Log("Inside Animation");
         yield return new WaitForSeconds(waitSeconds);
         Debug.Log("Done waiting");
-        //commandMenu.transform.Translate(new Vector3(0.0f, 200.0f, 0.0f));
-        //commandBackground.transform.Translate(new Vector3(0.0f, 200.0f, 0.0f));
         runDeepSix = false;
         StartCoroutine(damageWriter.CoDrawDamage());
     }
