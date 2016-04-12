@@ -53,8 +53,9 @@ public class Enemy : MonoBehaviour {
 				GameManager.instance.activePlayer = attackablePlayer;
 				GameManager.instance.InitiateBattle (this.tile, attackablePlayer.tile);
 
-				GameManager.instance.State = 0;
-				GameManager.instance.prevState = 2;
+				Status = 0;
+				//GameManager.instance.State = 0;
+				//GameManager.instance.prevState = 2;
 				//Call Battle Animation Scene
 
 				return;
@@ -789,9 +790,10 @@ public class Enemy : MonoBehaviour {
 					GameManager.instance.activePlayer = attackablePlayer;
 					GameManager.instance.InitiateBattle (this.tile, attackablePlayer.tile);
 
-					GameManager.instance.State = 0;
-					GameManager.instance.prevState = 2;
+					//GameManager.instance.State = 0;
+					//GameManager.instance.prevState = 2;
 					//Call Battle Animation Scene
+					Status = 0;
 
 					return;
 				}            
