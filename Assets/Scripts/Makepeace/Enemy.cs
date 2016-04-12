@@ -282,6 +282,7 @@ public class Enemy : MonoBehaviour {
 		float totalMov = movement;
 		HexTile viewTile = null;
 		List<HexTile> visitedTile = new List<HexTile> ();
+		movePath = new List<HexTile> ();
 
 		this.tile.mov_dis = 0;
 
@@ -296,19 +297,22 @@ public class Enemy : MonoBehaviour {
 			}
 
 			visitedTile.Remove (viewTile);
-			FindAttackablePlayers (viewTile);
+			FindAttackableTiles (viewTile);
+			if (!movePath.Contains (viewTile)) {
+				movePath.Add (viewTile);
+			}
 
 			if (viewTile.E_Tile != null && viewTile.E_Tile.character == null && viewTile.E_Tile.mov_cost + viewTile.mov_dis <= totalMov) {
 				if (viewTile.E_Tile.mov_dis != -1 && viewTile.E_Tile.mov_dis > viewTile.mov_dis + viewTile.E_Tile.mov_cost) {
 					viewTile.E_Tile.mov_dis = viewTile.mov_dis + viewTile.E_Tile.mov_cost;
 				} else if (viewTile.E_Tile.mov_dis == -1) {
 					viewTile.E_Tile.mov_dis = viewTile.mov_dis + viewTile.E_Tile.mov_cost;
-					if (viewTile.E_Tile.transform.Find ("Possible_Move").GetComponent<ParticleSystem> ().startColor != new Color32 (0, 120, 255, 255)) {
-						viewTile.E_Tile.transform.Find ("Possible_Move").GetComponent<ParticleSystem> ().startColor = new Color32 (0, 120, 255, 255);
-					} 
-					viewTile.E_Tile.transform.Find ("Possible_Move").GetComponent<ParticleSystem> ().Play ();
-						
 					visitedTile.Add (viewTile.E_Tile);
+
+					ParticleSystem partSys = viewTile.E_Tile.transform.Find ("Possible_Move").GetComponent<ParticleSystem> ();
+					if (partSys.startColor != new Color32 (0, 120, 255, 255)) {
+						partSys.startColor = new Color32 (0, 120, 255, 255);
+					}
 				}
 			}
 
@@ -317,8 +321,12 @@ public class Enemy : MonoBehaviour {
 					viewTile.W_Tile.mov_dis = viewTile.mov_dis + viewTile.W_Tile.mov_cost;
 				} else if (viewTile.W_Tile.mov_dis == -1) {
 					viewTile.W_Tile.mov_dis = viewTile.mov_dis + viewTile.W_Tile.mov_cost;
-
 					visitedTile.Add (viewTile.W_Tile);
+
+					ParticleSystem partSys = viewTile.W_Tile.transform.Find ("Possible_Move").GetComponent<ParticleSystem> ();
+					if (partSys.startColor != new Color32 (0, 120, 255, 255)) {
+						partSys.startColor = new Color32 (0, 120, 255, 255);
+					} 
 				}
 			}
 
@@ -328,6 +336,11 @@ public class Enemy : MonoBehaviour {
 				} else if (viewTile.SE_Tile.mov_dis == -1) {
 					viewTile.SE_Tile.mov_dis = viewTile.mov_dis + viewTile.SE_Tile.mov_cost;
 					visitedTile.Add (viewTile.SE_Tile);
+
+					ParticleSystem partSys = viewTile.SE_Tile.transform.Find ("Possible_Move").GetComponent<ParticleSystem> ();
+					if (partSys.startColor != new Color32 (0, 120, 255, 255)) {
+						partSys.startColor = new Color32 (0, 120, 255, 255);
+					} 
 				}
 			}
 
@@ -337,6 +350,11 @@ public class Enemy : MonoBehaviour {
 				} else if (viewTile.SW_Tile.mov_dis == -1) {
 					viewTile.SW_Tile.mov_dis = viewTile.mov_dis + viewTile.SW_Tile.mov_cost;
 					visitedTile.Add (viewTile.SW_Tile);
+
+					ParticleSystem partSys = viewTile.SW_Tile.transform.Find ("Possible_Move").GetComponent<ParticleSystem> ();
+					if (partSys.startColor != new Color32 (0, 120, 255, 255)) {
+						partSys.startColor = new Color32 (0, 120, 255, 255);
+					} 
 				}
 			}
 
@@ -346,6 +364,11 @@ public class Enemy : MonoBehaviour {
 				} else if (viewTile.NE_Tile.mov_dis == -1) {
 					viewTile.NE_Tile.mov_dis = viewTile.mov_dis + viewTile.NE_Tile.mov_cost;
 					visitedTile.Add (viewTile.NE_Tile);
+
+					ParticleSystem partSys = viewTile.NW_Tile.transform.Find ("Possible_Move").GetComponent<ParticleSystem> ();
+					if (partSys.startColor != new Color32 (0, 120, 255, 255)) {
+						partSys.startColor = new Color32 (0, 120, 255, 255);
+					} 
 				}
 			}
 
@@ -355,10 +378,162 @@ public class Enemy : MonoBehaviour {
 				} else if (viewTile.NW_Tile.mov_dis == -1) {
 					viewTile.NW_Tile.mov_dis = viewTile.mov_dis + viewTile.NW_Tile.mov_cost;
 					visitedTile.Add (viewTile.NW_Tile);
+
+					ParticleSystem partSys = viewTile.NW_Tile.transform.Find ("Possible_Move").GetComponent<ParticleSystem> ();
+					if (partSys.startColor != new Color32 (0, 120, 255, 255)) {
+						partSys.startColor = new Color32 (0, 120, 255, 255);
+					} 
+				}
+			}
+				
+			viewTile = null;
+		}
+
+		PlayTileParticles ();
+	}
+
+	private void PlayTileParticles () {
+		foreach (HexTile tile in GameManager.instance.tileL) {
+			if (movePath.Contains(tile)) {
+				tile.transform.Find ("Possible_Move").GetComponent<ParticleSystem> ().Play ();
+			}
+		}
+	}
+
+	private void FindAttackableTiles (HexTile origin)
+	{
+		att_range = this.GetComponentInChildren<Weapon> ().Rng;
+		GameManager.instance.ResetTileAttDis ();
+		HexTile viewTile = null;
+		List<HexTile> visitedTile = new List<HexTile> ();
+
+		origin.att_dis = 0;
+
+		visitedTile.Add (origin);
+
+		while (visitedTile.Count > 0) {
+			viewTile = null;
+			foreach (HexTile tile in visitedTile) {
+				if (viewTile == null || tile.att_dis < viewTile.att_dis) {
+					viewTile = tile;
 				}
 			}
 
-			viewTile = null;
+			visitedTile.Remove (viewTile);
+
+			if (viewTile.E_Tile != null && viewTile.att_dis + 1 <= att_range.ToArray () [att_range.Count - 1]) {
+				for (int i = 0; i < att_range.Count; i++) {
+					if (viewTile.att_dis + 1 == att_range [i]) {
+						if (!movePath.Contains (viewTile.E_Tile)) {
+							movePath.Add (viewTile.E_Tile);
+							ParticleSystem partSys = viewTile.E_Tile.transform.Find ("Possible_Move").GetComponent<ParticleSystem> ();
+							partSys.startColor = new Color32 (255, 0, 0, 255);	
+						}				 
+					}
+				}
+
+				if (viewTile.E_Tile.att_dis == -1) {
+					viewTile.E_Tile.att_dis = viewTile.att_dis + 1;
+					visitedTile.Add (viewTile.E_Tile);
+				} else if (viewTile.E_Tile.att_dis > viewTile.att_dis + 1) {
+					viewTile.E_Tile.att_dis = viewTile.att_dis + 1;
+				}
+			}
+
+			if (viewTile.W_Tile != null && viewTile.att_dis + 1 <= att_range.ToArray () [att_range.Count - 1]) {
+				for (int i = 0; i < att_range.Count; i++) {
+					if (viewTile.att_dis + 1 == att_range [i]) {
+						if (!movePath.Contains (viewTile.W_Tile)) {
+							movePath.Add (viewTile.W_Tile);
+							ParticleSystem partSys = viewTile.W_Tile.transform.Find ("Possible_Move").GetComponent<ParticleSystem> ();
+							partSys.startColor = new Color32 (255, 0, 0, 255);
+						}
+					}
+				}
+
+				if (viewTile.W_Tile.att_dis == -1) {
+					viewTile.W_Tile.att_dis = viewTile.att_dis + 1;
+					visitedTile.Add (viewTile.W_Tile);
+				} else if (viewTile.W_Tile.att_dis > viewTile.att_dis + 1) {
+					viewTile.W_Tile.att_dis = viewTile.att_dis + 1;
+				}
+			}
+
+			if (viewTile.NE_Tile != null && viewTile.att_dis + 1 <= att_range.ToArray () [att_range.Count - 1]) {
+				for (int i = 0; i < att_range.Count; i++) {
+					if (viewTile.att_dis + 1 == att_range [i]) {
+						if (!movePath.Contains (viewTile.NE_Tile)) {
+							movePath.Add (viewTile.NE_Tile);
+							ParticleSystem partSys = viewTile.NE_Tile.transform.Find ("Possible_Move").GetComponent<ParticleSystem> ();
+							partSys.startColor = new Color32 (255, 0, 0, 255);
+						}
+					}
+				}
+
+				if (viewTile.NE_Tile.att_dis == -1) {
+					viewTile.NE_Tile.att_dis = viewTile.att_dis + 1;
+					visitedTile.Add (viewTile.NE_Tile);
+				} else if (viewTile.NE_Tile.att_dis > viewTile.att_dis + 1) {
+					viewTile.NE_Tile.att_dis = viewTile.att_dis + 1;
+				}
+			}
+
+			if (viewTile.NW_Tile != null && viewTile.att_dis + 1 <= att_range.ToArray () [att_range.Count - 1]) {
+				for (int i = 0; i < att_range.Count; i++) {
+					if (viewTile.att_dis + 1 == att_range [i]) {
+						if (!movePath.Contains (viewTile.NW_Tile)) {
+							movePath.Add (viewTile.NW_Tile);
+							ParticleSystem partSys = viewTile.NW_Tile.transform.Find ("Possible_Move").GetComponent<ParticleSystem> ();
+							partSys.startColor = new Color32 (255, 0, 0, 255);
+						}
+					}
+				}
+
+				if (viewTile.NW_Tile.att_dis == -1) {
+					viewTile.NW_Tile.att_dis = viewTile.att_dis + 1;
+					visitedTile.Add (viewTile.NW_Tile);
+				} else if (viewTile.NW_Tile.att_dis > viewTile.att_dis + 1) {
+					viewTile.NW_Tile.att_dis = viewTile.att_dis + 1;
+				}
+			}
+
+			if (viewTile.SE_Tile != null && viewTile.att_dis + 1 <= att_range.ToArray () [att_range.Count - 1]) {
+				for (int i = 0; i < att_range.Count; i++) {
+					if (viewTile.att_dis + 1 == att_range [i]) {
+						if (!movePath.Contains (viewTile.SE_Tile)) {
+							movePath.Add (viewTile.SE_Tile);
+							ParticleSystem partSys = viewTile.SE_Tile.transform.Find ("Possible_Move").GetComponent<ParticleSystem> ();
+							partSys.startColor = new Color32 (255, 0, 0, 255);
+						}
+					}
+				}
+
+				if (viewTile.SE_Tile.att_dis == -1) {
+					viewTile.SE_Tile.att_dis = viewTile.att_dis + 1;
+					visitedTile.Add (viewTile.SE_Tile);
+				} else if (viewTile.SE_Tile.att_dis > viewTile.att_dis + 1) {
+					viewTile.SE_Tile.att_dis = viewTile.att_dis + 1;
+				}
+			}
+
+			if (viewTile.SW_Tile != null && viewTile.att_dis + 1 <= att_range.ToArray () [att_range.Count - 1]) {
+				for (int i = 0; i < att_range.Count; i++) {
+					if (viewTile.att_dis + 1 == att_range [i]) {
+						if (!movePath.Contains (viewTile.SW_Tile)) {
+							movePath.Add (viewTile.SW_Tile);
+							ParticleSystem partSys = viewTile.SW_Tile.transform.Find ("Possible_Move").GetComponent<ParticleSystem> ();
+							partSys.startColor = new Color32 (255, 0, 0, 255);
+						}
+					}
+				}
+
+				if (viewTile.SW_Tile.att_dis == -1) {
+					viewTile.SW_Tile.att_dis = viewTile.att_dis + 1;
+					visitedTile.Add (viewTile.SW_Tile);
+				} else if (viewTile.SW_Tile.att_dis > viewTile.att_dis + 1) {
+					viewTile.SW_Tile.att_dis = viewTile.att_dis + 1;
+				}
+			}
 		}
 	}
 

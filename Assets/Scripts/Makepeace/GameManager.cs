@@ -303,6 +303,7 @@ public class GameManager : MonoBehaviour {
 				PlayerUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
 				activePlayer = null;
 			} else if (activeEnemy != null) {
+				ResetTileParticles ();
 				EnemyUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
 				activeEnemy = null;
 			}
