@@ -258,6 +258,7 @@ public class GameManager : MonoBehaviour {
 
 					if (activeEnemy != null) {
 						activeEnemy = null;
+						ResetTileParticles ();
 						EnemyUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
 					}
 
@@ -274,11 +275,13 @@ public class GameManager : MonoBehaviour {
 						PlayerUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
 					}
 
+					ResetTileParticles ();
 					if (activeEnemy == null) {
 						EnemyUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
 					}
 
 					activeEnemy = hit.collider.gameObject.GetComponent<Enemy> ();
+					activeEnemy.FindMoveTiles ();
 					EnemyUI.GetComponent<EnemyUI> ().UpdateUI (activeEnemy.enemy_stats);
 				}
 
@@ -288,6 +291,7 @@ public class GameManager : MonoBehaviour {
 						PlayerUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
 						activePlayer = null;
 					} else if (activeEnemy != null) {
+						ResetTileParticles ();
 						EnemyUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
 						activeEnemy = null;
 					}
@@ -448,7 +452,7 @@ public class GameManager : MonoBehaviour {
 	private void ResetPlayerPar() {
 		foreach (Unit unit in playerL) {
 			unit.GetComponentInChildren<ParticleSystem> ().Stop (true);
-			unit.GetComponentInChildren<ParticleSystem> ().startColor = new Color (255, 255, 255);
+			unit.GetComponentInChildren<ParticleSystem> ().startColor = new Color32 (255, 255, 255, 255);
 		}
 	}
 
@@ -617,7 +621,7 @@ public class GameManager : MonoBehaviour {
 				a_xp = xp;
 			}
 
-			battleAnimation [2] = a_dm;
+			battleAnimation [2] = (int)a_dm;
 			dStat.cHP -= a_dm;
 		} else {
 			battleAnimation [1] = 0;
@@ -662,7 +666,7 @@ public class GameManager : MonoBehaviour {
 				d_xp = xp;
 			}
 
-			battleAnimation [5] = d_dm;
+			battleAnimation [5] = (int)d_dm;
 			aStat.cHP -= d_dm;
 		} else {
 			battleAnimation [4] = 0;
@@ -708,7 +712,7 @@ public class GameManager : MonoBehaviour {
 					a_xp += xp;
 				}
 
-				battleAnimation [5 + offset] = a_dm;
+				battleAnimation [5 + offset] = (int)a_dm;
 				dStat.cHP -= a_dm;
 			} else {
 				battleAnimation [4 + offset] = 0;
@@ -752,7 +756,7 @@ public class GameManager : MonoBehaviour {
 					d_xp += xp;
 				}
 
-				battleAnimation [5 + offset] = d_dm;
+				battleAnimation [5 + offset] = (int)d_dm;
 				aStat.cHP -= d_dm;
 			} else {
 				battleAnimation [4 + offset] = 0;
