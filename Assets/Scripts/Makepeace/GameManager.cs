@@ -34,6 +34,8 @@ public class GameManager : MonoBehaviour {
 	public Enemy activeEnemy = null;
 	public Unit interactPlayer = null;
 
+	public int[] battleAnimation;
+
 	public int State;
 	public int prevState;
 	public int level;
@@ -127,27 +129,11 @@ public class GameManager : MonoBehaviour {
 					InitiateBattle (activePlayer.tile, activeEnemy.tile);
 					ResetEnemyPar ();
 					activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
-					if (activePlayer.GetComponentInChildren<Stats> ().Xp >= 100) {
-						float[] lvStats = new float[8];
-						string className = "";
-						foreach (Transform child in activePlayer.transform) {
-							if (child.tag == "Class") {
-								className = child.name;
-								break;
-							}
-						}
+					prevState = 1;
+					State = 0;
 
-						lvStats = xpGrowthRate.GetGrowthRates (className);
-						activePlayer.GetComponentInChildren<Stats> ().LevelUp (lvStats);
-					}
-
-					activePlayer.Status = 0;
-					activePlayer = null;
-					activeEnemy = null;
-
-					if (State == 0) {
-						return;
-					}
+					//Call Battle Animation Scene
+					return;
 				}
 			}
 
@@ -204,6 +190,33 @@ public class GameManager : MonoBehaviour {
 			StartCoroutine (TimerEnumerator (3, 1));
 		} 
 
+		if (State == 5) {
+			CheckForDeaths ();
+
+			if (activePlayer.GetComponentInChildren<Stats> ().Xp >= 100) {
+				float[] lvStats = new float[8];
+				string className = "";
+				foreach (Transform child in activePlayer.transform) {
+					if (child.tag == "Class") {
+						className = child.name;
+						break;
+					}
+				}
+
+				lvStats = xpGrowthRate.GetGrowthRates (className);
+				activePlayer.GetComponentInChildren<Stats> ().LevelUp (lvStats);
+			}
+
+			CheckWinOrLoseCondition ();
+
+			activePlayer.Status = 0;
+			activeEnemy.Status = 0;
+			activePlayer = null;
+			activeEnemy = null;
+
+			State = prevState;
+		}
+
 		if (State != 0 && State != 3 && State != 4) {
 			if (activePlayer != null) {
 				playerInput.CameraAction ();
@@ -218,13 +231,11 @@ public class GameManager : MonoBehaviour {
 			} else {
 				playerInput.CameraAction ();
 			}
-		}
 
-		if (State != 0) {
 			playerInput.GlobalAction ();
 		}
 	}
-		
+
 	void CameraFocusPlayer() {
 		if (playerL.Count > 0) {
 			GameObject camera = GameObject.Find ("Main Camera");
@@ -486,6 +497,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void InitiateBattle (HexTile attacker, HexTile defender) {
+		int arrayLoc = 0;
 		Weapon aWep = attacker.character.GetComponentInChildren<Weapon> ();
 		Weapon dWep = defender.character.GetComponentInChildren<Weapon> ();
 		Stats aStat = attacker.character.GetComponentInChildren<Stats> ();
@@ -503,7 +515,7 @@ public class GameManager : MonoBehaviour {
 		} else {
 			d_as = dStat.Spd - (dWep.Wt - dStat.Str);
 		}
-		 
+
 		int[] repAtt = {0,0};
 		if (a_as - d_as >= 4) {
 			repAtt [0] = 1;
@@ -512,12 +524,12 @@ public class GameManager : MonoBehaviour {
 		}
 
 		float a_hr, d_hr;
-		a_hr = aWep.Hit + aStat.Skl * 2 + aStat.Lck /*+ Support Bonus + Biorythym Bonus*/;
-		d_hr = dWep.Hit + dStat.Skl * 2 + aStat.Lck /*+ Support Bonus + Biorythym Bonus*/;
+		a_hr = aWep.Hit + aStat.Skl * 2 + aStat.Lck;
+		d_hr = dWep.Hit + dStat.Skl * 2 + aStat.Lck;
 
 		float a_ev, d_ev;
-		a_ev = a_as + aStat.Lck + attacker.terrainBonus /*+ Support Bonus + Biorythym Bonus*/;
-		d_ev = d_as + dStat.Lck + defender.terrainBonus /*+ Support Bonus + Biorythym Bonus*/;
+		a_ev = a_as + aStat.Lck + attacker.terrainBonus;
+		d_ev = d_as + dStat.Lck + defender.terrainBonus;
 
 		float a_ac, d_ac;
 		a_ac = a_hr - d_ev;
@@ -568,18 +580,25 @@ public class GameManager : MonoBehaviour {
 		}
 
 		float a_cr, d_cr;
-		a_cr = aWep.Crit + aStat.Skl / 2 /*+ Bond Bonus + Class Critical*/;
-		d_cr = dWep.Crit + dStat.Skl / 2 /*+ Bond Bonus + Class Critical*/;
+		a_cr = aWep.Crit + aStat.Skl / 2;
+		d_cr = dWep.Crit + dStat.Skl / 2;
 
 		float a_ce, d_ce;
-		a_ce = aStat.Lck /*+ Bond Bonus*/;
-		d_ce = dStat.Lck /*+ Bond Bonus*/;
+		a_ce = aStat.Lck;
+		d_ce = dStat.Lck;
 
 		float a_cc, d_cc;
 		a_cc = a_cr - d_ce;
 		d_cc = d_cr - a_ce;
 
 		float a_xp, d_xp;
+
+		if (attacker.character.tag == "Unit") {
+			battleAnimation [arrayLoc] = 0;
+		} else {
+			battleAnimation [arrayLoc] = 1;
+		}
+		arrayLoc++;
 
 		float x = Random.Range(0,100);
 		if (a_cc>=x) {
@@ -606,7 +625,6 @@ public class GameManager : MonoBehaviour {
 				a_xp += 40 * defender.character.GetComponent<Enemy> ().special;
 			}
 			UpdateXp (aStat,a_xp,dStat,0);
-			CheckForDeaths (attacker, defender);
 			return;
 		}
 
@@ -635,7 +653,6 @@ public class GameManager : MonoBehaviour {
 				d_xp += 40 * attacker.character.GetComponent<Enemy> ().special;
 			}
 			UpdateXp (aStat,a_xp,dStat,d_xp);
-			CheckForDeaths (attacker, defender);
 			return;
 		}
 
@@ -665,7 +682,6 @@ public class GameManager : MonoBehaviour {
 					a_xp += 40 * defender.character.GetComponent<Enemy> ().special;
 				}
 				UpdateXp (aStat,a_xp,dStat,d_xp);
-				CheckForDeaths (attacker, defender);
 				return;
 			}
 		} else if (repAtt[1] == 1) {
@@ -694,7 +710,6 @@ public class GameManager : MonoBehaviour {
 					d_xp += 40 * defender.character.GetComponent<Enemy> ().special;
 				}
 				UpdateXp (aStat,a_xp,dStat,d_xp);
-				CheckForDeaths (attacker, defender);
 				return;
 			}
 		}
@@ -707,24 +722,13 @@ public class GameManager : MonoBehaviour {
 		dStat.Xp += d_xp;
 	}
 
-	private void CheckForDeaths(HexTile attacker, HexTile defender) {
-		Stats aStat = attacker.character.GetComponentInChildren<Stats> ();
-		Stats dStat = defender.character.GetComponentInChildren<Stats> ();
-
-		if (aStat.cHP <= 0) {
-			if (attacker.character.CompareTag ("Unit")) {
-				attacker.character.GetComponentInChildren<Unit> ().Death ();
-			} else {
-				attacker.character.GetComponentInChildren<Enemy> ().Death ();
-			}
+	private void CheckForDeaths() {
+		if (activePlayer.char_stats.cHP <= 0) {
+			activePlayer.Death ();
 		}
 
-		if (dStat.cHP <= 0) {
-			if (defender.character.CompareTag ("Unit")) {
-				defender.character.GetComponentInChildren<Unit> ().Death ();;
-			} else {
-				defender.character.GetComponentInChildren<Enemy> ().Death ();
-			}
+		if (activeEnemy.enemy_stats.cHP <= 0) {
+			activeEnemy.Death ();
 		}
 
 		CheckWinOrLoseCondition ();

@@ -15,8 +15,8 @@ public class Enemy : MonoBehaviour {
 	public List<float> att_range;
 	public List<Unit> attackablePlayers;
 	private Unit attackablePlayer;
-    public Animator animEnemy;
-    public float currRotation;
+	public Animator animEnemy;
+	public float currRotation;
 
 	private List<HexTile> movePath;
 
@@ -49,13 +49,19 @@ public class Enemy : MonoBehaviour {
 			FindAttackablePlayers (this.tile);
 
 			if (attackablePlayers.Contains (attackablePlayer)) {
+				animEnemy.Play("Idle");
+				GameManager.instance.activePlayer = attackablePlayer;
 				GameManager.instance.InitiateBattle (this.tile, attackablePlayer.tile);
-				Status = 0;
-                animEnemy.Play("Idle");
+
+				GameManager.instance.State = 0;
+				GameManager.instance.prevState = 2;
+				//Call Battle Animation Scene
+
+				return;
 			} else {
 				MoveTowardsPlayer (attackablePlayer);
 				Status = 2;
-                animEnemy.Play("Walk");
+				animEnemy.Play("Walk");
 			}
 		} else {
 			Status = 0;
@@ -355,10 +361,10 @@ public class Enemy : MonoBehaviour {
 					visitedTile.Add (viewTile.NW_Tile);
 				}
 			}
-				
+
 			viewTile = null;
 		}
-			
+
 		while (true) {
 			if (viewTile.parent != this.tile) {
 				movePath.Add (viewTile);
@@ -483,7 +489,7 @@ public class Enemy : MonoBehaviour {
 		movement--;
 	}
 
-    void Update(){
+	void Update(){
 		if (Status == 2 && (this.transform.position.x != tile.transform.position.x || this.transform.position.z != tile.transform.position.z)) {
 			this.transform.position = Vector3.MoveTowards (this.transform.position, new Vector3(tile.transform.position.x, this.transform.position.y, tile.transform.position.z), 3 * Time.deltaTime);
 			if (this.transform.position.x == tile.transform.position.x && this.transform.position.z == tile.transform.position.z) {
@@ -492,13 +498,19 @@ public class Enemy : MonoBehaviour {
 					movePath.RemoveAt (movePath.Count - 1);
 					MoveTile (nextTile);
 				} else {
-					GameManager.instance.InitiateBattle (this.tile, attackablePlayer.tile);
-					Status = 0;
 					animEnemy.Play("Idle");
 					this.transform.Rotate(new Vector3(0.0f, -currRotation, 0.0f));
 					currRotation = 0;
+					GameManager.instance.activePlayer = attackablePlayer;
+					GameManager.instance.InitiateBattle (this.tile, attackablePlayer.tile);
+
+					GameManager.instance.State = 0;
+					GameManager.instance.prevState = 2;
+					//Call Battle Animation Scene
+
+					return;
 				}            
-            }        
+			}        
 		}
 	}
 
