@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour {
 		tileL = new List<HexTile> ();
 		playerL = new List<Unit> ();
 		enemyL = new List<Enemy> ();
+		battleAnimation = new int[10];
 
 		xpGrowthRate = this.gameObject.GetComponent<XpGrowthRate> ();
 		playerInput = this.gameObject.GetComponent<PlayerKeyBoardInput> ();
@@ -191,6 +192,7 @@ public class GameManager : MonoBehaviour {
 		} 
 
 		if (State == 5) {
+			battleAnimation = new int[9];
 			CheckForDeaths ();
 
 			if (activePlayer.GetComponentInChildren<Stats> ().Xp >= 100) {
@@ -497,7 +499,6 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void InitiateBattle (HexTile attacker, HexTile defender) {
-		int arrayLoc = 0;
 		Weapon aWep = attacker.character.GetComponentInChildren<Weapon> ();
 		Weapon dWep = defender.character.GetComponentInChildren<Weapon> ();
 		Stats aStat = attacker.character.GetComponentInChildren<Stats> ();
@@ -594,17 +595,18 @@ public class GameManager : MonoBehaviour {
 		float a_xp, d_xp;
 
 		if (attacker.character.tag == "Unit") {
-			battleAnimation [arrayLoc] = 0;
+			battleAnimation [0] = 1;
 		} else {
-			battleAnimation [arrayLoc] = 1;
+			battleAnimation [0] = 2;
 		}
-		arrayLoc++;
 
 		float x = Random.Range(0,100);
 		if (a_cc>=x) {
 			a_dm = a_dm * 3;
 		}
 		if (a_ac >= x) {
+			battleAnimation [1] = 0;
+
 			if (a_dm == 0) {
 				a_xp = 1;
 			} else {
@@ -614,12 +616,17 @@ public class GameManager : MonoBehaviour {
 				}
 				a_xp = xp;
 			}
+
+			battleAnimation [2] = a_dm;
 			dStat.cHP -= a_dm;
 		} else {
+			battleAnimation [1] = 0;
 			a_xp = 1;
 		}
 
 		if (dStat.cHP <= 0) {
+			battleAnimation [3] = -1;
+
 			a_xp += (dStat.Lv - aStat.Lv) + 15 + 5;
 			if (defender.character.CompareTag ("Enemy")) {
 				a_xp += 40 * defender.character.GetComponent<Enemy> ().special;
@@ -628,11 +635,23 @@ public class GameManager : MonoBehaviour {
 			return;
 		}
 
+		if (dWep.Rng.Contains (defender.att_dis)) {
+			if (attacker.character.tag == "Unit") {
+				battleAnimation [3] = 1;
+			} else {
+				battleAnimation [3] = 2;
+			}
+		} else {
+			battleAnimation [3] = 0;
+		}
+
 		x = Random.Range(0,100);
 		if (d_cc>=x) {
 			d_dm = d_dm * 3;
 		}
 		if (d_ac >= x && dWep.Rng.Contains (defender.att_dis) && dWep.type >= 0) {
+			battleAnimation [4] = 1;
+
 			if (d_dm == 0) {
 				d_xp = 1;
 			} else {
@@ -642,12 +661,16 @@ public class GameManager : MonoBehaviour {
 				}
 				d_xp = xp;
 			}
+
+			battleAnimation [5] = d_dm;
 			aStat.cHP -= d_dm;
 		} else {
+			battleAnimation [4] = 0;
 			d_xp = 1;
 		}
 
 		if (aStat.cHP <= 0) {
+			battleAnimation [6] = -1;
 			d_xp += (aStat.Lv - dStat.Lv) + 15 + 5;
 			if (attacker.character.CompareTag ("Enemy")) {
 				d_xp += 40 * attacker.character.GetComponent<Enemy> ().special;
@@ -656,12 +679,25 @@ public class GameManager : MonoBehaviour {
 			return;
 		}
 
+		int offset = 3;
+		if (battleAnimation [3] == 0) {
+			offset = 0;
+		}
+
 		if (repAtt[0] == 1) {
+			if (attacker.character.tag == "Unit") {
+				battleAnimation [3+offset] = 1;
+			} else {
+				battleAnimation [3+offset] = 2;
+			}
+
 			x = Random.Range(0,100);
 			if (a_cc>=x) {
 				a_dm = a_dm * 3;
 			}
 			if (a_ac >= x) {
+				battleAnimation [4 + offset] = 1;
+
 				if (a_dm == 0) {
 					a_xp += 1;
 				} else {
@@ -671,12 +707,16 @@ public class GameManager : MonoBehaviour {
 					}
 					a_xp += xp;
 				}
+
+				battleAnimation [5 + offset] = a_dm;
 				dStat.cHP -= a_dm;
 			} else {
+				battleAnimation [4 + offset] = 0;
 				a_xp += 1;
 			}
 
 			if (dStat.cHP <= 0) {
+				battleAnimation [6 + offset] = -1;
 				a_xp += (dStat.Lv - aStat.Lv) + 15 + 5;
 				if (defender.character.CompareTag ("Enemy")) {
 					a_xp += 40 * defender.character.GetComponent<Enemy> ().special;
@@ -685,11 +725,23 @@ public class GameManager : MonoBehaviour {
 				return;
 			}
 		} else if (repAtt[1] == 1) {
+			if (dWep.Rng.Contains (defender.att_dis)) {
+				if (attacker.character.tag == "Unit") {
+					battleAnimation [3 + offset] = 1;
+				} else {
+					battleAnimation [3 + offset] = 2;
+				}
+			} else {
+				battleAnimation [3 + offset] = 0;
+			}
+
 			x = Random.Range(0,100);
 			if (d_cc>=x) {
 				d_dm = d_dm * 3;
 			}
 			if (d_ac >= x && dWep.Rng.Contains (defender.att_dis) && dWep.type >= 0) {
+				battleAnimation [4 + offset] = 1;
+
 				if (d_dm == 0) {
 					d_xp += 1;
 				} else {
@@ -699,12 +751,16 @@ public class GameManager : MonoBehaviour {
 					}
 					d_xp += xp;
 				}
+
+				battleAnimation [5 + offset] = d_dm;
 				aStat.cHP -= d_dm;
 			} else {
+				battleAnimation [4 + offset] = 0;
 				d_xp += 1;
 			}
 
 			if (aStat.cHP <= 0) {
+				battleAnimation [6 + offset] = -1;
 				d_xp += (aStat.Lv - dStat.Lv) + 15 + 5;
 				if (attacker.character.CompareTag ("Enemy")) {
 					d_xp += 40 * defender.character.GetComponent<Enemy> ().special;
