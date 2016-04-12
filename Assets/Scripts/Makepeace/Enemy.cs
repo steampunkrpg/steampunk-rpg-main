@@ -301,9 +301,6 @@ public class Enemy : MonoBehaviour {
 			if (viewTile.character == null || viewTile == this.tile) {
 				FindAttackableTiles (viewTile);
 			}
-			if (!movePath.Contains (viewTile)) {
-				movePath.Add (viewTile);
-			}
 
 			if (viewTile.E_Tile != null && (viewTile.E_Tile.character == null || viewTile.E_Tile.character.tag == "Enemy") && viewTile.E_Tile.mov_cost + viewTile.mov_dis <= totalMov) {
 				if (viewTile.E_Tile.mov_dis != -1 && viewTile.E_Tile.mov_dis > viewTile.mov_dis + viewTile.E_Tile.mov_cost) {
@@ -311,6 +308,10 @@ public class Enemy : MonoBehaviour {
 				} else if (viewTile.E_Tile.mov_dis == -1) {
 					viewTile.E_Tile.mov_dis = viewTile.mov_dis + viewTile.E_Tile.mov_cost;
 					visitedTile.Add (viewTile.E_Tile);
+
+					if (!movePath.Contains (viewTile.E_Tile)) {
+						movePath.Add (viewTile.E_Tile);
+					}
 
 					ParticleSystem partSys = viewTile.E_Tile.transform.Find ("Possible_Move").GetComponent<ParticleSystem> ();
 					if (partSys.startColor != new Color32 (0, 120, 255, 255)) {
@@ -326,6 +327,10 @@ public class Enemy : MonoBehaviour {
 					viewTile.W_Tile.mov_dis = viewTile.mov_dis + viewTile.W_Tile.mov_cost;
 					visitedTile.Add (viewTile.W_Tile);
 
+					if (!movePath.Contains (viewTile.W_Tile)) {
+						movePath.Add (viewTile.W_Tile);
+					}
+
 					ParticleSystem partSys = viewTile.W_Tile.transform.Find ("Possible_Move").GetComponent<ParticleSystem> ();
 					if (partSys.startColor != new Color32 (0, 120, 255, 255)) {
 						partSys.startColor = new Color32 (0, 120, 255, 255);
@@ -339,6 +344,10 @@ public class Enemy : MonoBehaviour {
 				} else if (viewTile.SE_Tile.mov_dis == -1) {
 					viewTile.SE_Tile.mov_dis = viewTile.mov_dis + viewTile.SE_Tile.mov_cost;
 					visitedTile.Add (viewTile.SE_Tile);
+
+					if (!movePath.Contains (viewTile.SE_Tile)) {
+						movePath.Add (viewTile.SE_Tile);
+					}
 
 					ParticleSystem partSys = viewTile.SE_Tile.transform.Find ("Possible_Move").GetComponent<ParticleSystem> ();
 					if (partSys.startColor != new Color32 (0, 120, 255, 255)) {
@@ -354,6 +363,10 @@ public class Enemy : MonoBehaviour {
 					viewTile.SW_Tile.mov_dis = viewTile.mov_dis + viewTile.SW_Tile.mov_cost;
 					visitedTile.Add (viewTile.SW_Tile);
 
+					if (!movePath.Contains (viewTile.SW_Tile)) {
+						movePath.Add (viewTile.SW_Tile);
+					}
+
 					ParticleSystem partSys = viewTile.SW_Tile.transform.Find ("Possible_Move").GetComponent<ParticleSystem> ();
 					if (partSys.startColor != new Color32 (0, 120, 255, 255)) {
 						partSys.startColor = new Color32 (0, 120, 255, 255);
@@ -368,6 +381,10 @@ public class Enemy : MonoBehaviour {
 					viewTile.NE_Tile.mov_dis = viewTile.mov_dis + viewTile.NE_Tile.mov_cost;
 					visitedTile.Add (viewTile.NE_Tile);
 
+					if (!movePath.Contains (viewTile.NE_Tile)) {
+						movePath.Add (viewTile.NE_Tile);
+					}
+
 					ParticleSystem partSys = viewTile.NE_Tile.transform.Find ("Possible_Move").GetComponent<ParticleSystem> ();
 					if (partSys.startColor != new Color32 (0, 120, 255, 255)) {
 						partSys.startColor = new Color32 (0, 120, 255, 255);
@@ -381,6 +398,10 @@ public class Enemy : MonoBehaviour {
 				} else if (viewTile.NW_Tile.mov_dis == -1) {
 					viewTile.NW_Tile.mov_dis = viewTile.mov_dis + viewTile.NW_Tile.mov_cost;
 					visitedTile.Add (viewTile.NW_Tile);
+
+					if (!movePath.Contains (viewTile.NW_Tile)) {
+						movePath.Add (viewTile.NW_Tile);
+					}
 
 					ParticleSystem partSys = viewTile.NW_Tile.transform.Find ("Possible_Move").GetComponent<ParticleSystem> ();
 					if (partSys.startColor != new Color32 (0, 120, 255, 255)) {
