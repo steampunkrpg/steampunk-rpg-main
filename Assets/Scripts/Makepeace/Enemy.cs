@@ -365,7 +365,7 @@ public class Enemy : MonoBehaviour {
 					viewTile.NE_Tile.mov_dis = viewTile.mov_dis + viewTile.NE_Tile.mov_cost;
 					visitedTile.Add (viewTile.NE_Tile);
 
-					ParticleSystem partSys = viewTile.NW_Tile.transform.Find ("Possible_Move").GetComponent<ParticleSystem> ();
+					ParticleSystem partSys = viewTile.NE_Tile.transform.Find ("Possible_Move").GetComponent<ParticleSystem> ();
 					if (partSys.startColor != new Color32 (0, 120, 255, 255)) {
 						partSys.startColor = new Color32 (0, 120, 255, 255);
 					} 
@@ -394,14 +394,13 @@ public class Enemy : MonoBehaviour {
 
 	private void PlayTileParticles () {
 		foreach (HexTile tile in GameManager.instance.tileL) {
-			if (movePath.Contains(tile)) {
+			if (movePath.Contains(tile) && tile != this.tile) {
 				tile.transform.Find ("Possible_Move").GetComponent<ParticleSystem> ().Play ();
 			}
 		}
 	}
 
-	private void FindAttackableTiles (HexTile origin)
-	{
+	private void FindAttackableTiles (HexTile origin) {
 		att_range = this.GetComponentInChildren<Weapon> ().Rng;
 		GameManager.instance.ResetTileAttDis ();
 		HexTile viewTile = null;
