@@ -11,12 +11,10 @@ public class InventoryManager : MonoBehaviour {
 	public GameObject inventoryWindow, inventoryEntry;
 	InventoryLUT lookup;
 
-	private Vector3 heightOffset;
 	private Text buttonText;
 
 	public void CreateDefault() {
 		lookup = new InventoryLUT ();
-		heightOffset = new Vector3(0.0f, 80.0f, 0.0f);
 		itemsAndCounts = new List<KeyValuePair<string, int>> ();
 
 		//testing item
@@ -46,7 +44,6 @@ public class InventoryManager : MonoBehaviour {
 		
 		buttonText = inventoryEntryGO.GetComponentInChildren<Text> ();
 		buttonText.text = item + ": " + value;
-		heightOffset.y -= 40.0f;
 	}
 
 	//handles use of the item
