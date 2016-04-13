@@ -99,6 +99,10 @@ public class GameManager : MonoBehaviour {
 				MoveSelect ();
 			}
 
+			if (activePlayer != null && activePlayer.Status == 7) {
+				InventorySelect ();
+			}
+
 			if (activePlayer != null && activePlayer.Status == 5) {
 				InteractSelect ();
 				if (interactPlayer != null) {
@@ -245,7 +249,7 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-	void PlayerSelect() {
+	private void PlayerSelect() {
 		if (Input.GetMouseButtonDown (0)) {
 			mouseRay = Camera.main.ScreenPointToRay (Input.mousePosition);
 
@@ -309,7 +313,7 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-	void EnemySelect() {
+	private void EnemySelect() {
 		if (Input.GetMouseButtonDown (0)) {
 			mouseRay = Camera.main.ScreenPointToRay (Input.mousePosition);
 
@@ -327,7 +331,7 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-	void InteractSelect() {
+	private void InteractSelect() {
 		if (Input.GetMouseButtonDown (0)) {
 			mouseRay = Camera.main.ScreenPointToRay (Input.mousePosition);
 
@@ -345,7 +349,7 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-	void MoveSelect() {
+	private void MoveSelect() {
 		if (Input.GetMouseButtonDown (0)) {
 			mouseRay = Camera.main.ScreenPointToRay (Input.mousePosition);
 
@@ -367,6 +371,14 @@ public class GameManager : MonoBehaviour {
 		} else if (Input.GetMouseButtonDown (1)) {
 			ResetTileParticles ();
 			PlayerUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
+		}
+	}
+
+	private void InventorySelect() {
+		if (Input.GetMouseButton(1)) {
+			InvUI.GetComponentInChildren<Animator> ().SetTrigger("UI_Trigger");
+			PlayerUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
+			activePlayer.Status = 1;
 		}
 	}
 
