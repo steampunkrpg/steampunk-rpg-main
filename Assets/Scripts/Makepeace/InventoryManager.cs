@@ -8,18 +8,17 @@ using System.Collections;
 public class InventoryManager : MonoBehaviour {
 	
 	public static List<KeyValuePair<string, int>> itemsAndCounts;
-	public GameObject inventoryWindow, inventoryEntry;
-	InventoryLUT lookup;
+	public GameObject inventoryWindow;
+	private GameObject inventoryEntry;
 
 	private Text buttonText;
 
 	public void CreateDefault() {
-		lookup = new InventoryLUT ();
 		itemsAndCounts = new List<KeyValuePair<string, int>> ();
 
 		//testing item
 		//AddItem("Potion", 10);
-		AddItem ("Sword", 1);
+		AddItem ("WoodSword", 1);
 		//AddItem ("Potion", 1);
 		for (int i = 1; i <= 20; i++) {
 			AddItem ("Potion" + i, 1);
@@ -40,6 +39,7 @@ public class InventoryManager : MonoBehaviour {
 	}
 
 	void ButtonCreator (string item, int value) {
+		inventoryEntry = (GameObject)Resources.Load ("Prefabs/inventoryEntry", typeof(GameObject));
 		GameObject inventoryEntryGO = Instantiate (inventoryEntry);
 		inventoryEntryGO.transform.SetParent (inventoryWindow.transform);
 		inventoryEntryGO.name = item;
@@ -58,10 +58,11 @@ public class InventoryManager : MonoBehaviour {
 
 		/*SECTION 2*/
 		//use of items
-		var apsScript =	GameManager.instance.activePlayer.GetComponent<Stats> ();
-		var apwScript = GameManager.instance.activePlayer.GetComponent<Weapon> ();
+		var apsScript =	GameManager.instance.activePlayer.GetComponentInChildren<Stats> ();
+		var apwScript = GameManager.instance.activePlayer.GetComponentInChildren<Weapon> ();
 
 		//get type of item (Weapon/Consumable)
+		InventoryLUT lookup = new InventoryLUT();
 		Item targetItem = lookup.Lookup(pressedItem);
 
 		//not many consumables so just handle cases here
