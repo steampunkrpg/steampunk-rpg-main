@@ -19,7 +19,7 @@ public class InventoryManager : MonoBehaviour {
 
 		//testing item
 		AddItem("Potion", 10);
-		//AddItem ("Sword", 1);
+		AddItem ("Sword", 1);
 		AddItem ("Potion", 1);
 	}
 
@@ -38,13 +38,8 @@ public class InventoryManager : MonoBehaviour {
 
 	void ButtonCreator (string item, int value) {
 		GameObject inventoryEntryGO = Instantiate (inventoryEntry);
-		if (itemsAndCounts.Count % 2 == 1) {
-			inventoryEntryGO.transform.SetParent (inventoryWindow.transform.Find ("LeftWindow"));
-		} else {
-			inventoryEntryGO.transform.SetParent (inventoryWindow.transform.Find ("RightWindow"));
-		}
+		inventoryEntryGO.transform.SetParent (inventoryWindow.transform);
 		inventoryEntryGO.name = item;
-		inventoryEntryGO.transform.position = heightOffset;
 		inventoryEntryGO.transform.localScale = new Vector3 (1.0f, 1.0f, 1.0f);
 		
 		buttonText = inventoryEntryGO.GetComponentInChildren<Text> ();
