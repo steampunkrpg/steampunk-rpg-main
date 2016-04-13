@@ -9,11 +9,13 @@ public class InventoryManager : MonoBehaviour {
 	
 	public static List<KeyValuePair<string, int>> itemsAndCounts;
 	public GameObject inventoryWindow, inventoryEntry;
+	InventoryLUT lookup;
 
 	private Vector3 heightOffset;
 	private Text buttonText;
 
 	public void CreateDefault() {
+		lookup = new InventoryLUT ();
 		heightOffset = new Vector3(0.0f, 80.0f, 0.0f);
 		itemsAndCounts = new List<KeyValuePair<string, int>> ();
 
@@ -56,9 +58,12 @@ public class InventoryManager : MonoBehaviour {
 
 		for (int i = 0; i < itemsAndCounts.Count; i++) {
 			if (itemsAndCounts [i].Key == pressedItem) {
-				itemsAndCounts [i] = new KeyValuePair<string, int> (pressedItem, itemsAndCounts [i].Value + 1);
-				GameObject.Destroy (GameObject.Find (pressedItem));
-				ButtonCreator (pressedItem, itemsAndCounts [i].Value - 1);
+				itemsAndCounts [i] = new KeyValuePair<string, int> (pressedItem, itemsAndCounts [i].Value - 1);
+				if (itemsAndCounts [i].Value == 0) {
+					GameObject.Destroy (GameObject.Find (pressedItem));
+				} else {
+					GameObject.Find (pressedItem).GetComponentInChildren<Text> ().text = pressedItem + ": " + itemsAndCounts [i].Value;
+				}
 				break;
 			}
 		}
@@ -67,7 +72,6 @@ public class InventoryManager : MonoBehaviour {
 		//use of items
 		var apsScript =	GameManager.instance.activePlayer.GetComponent<Stats> ();
 		var apwScript = GameManager.instance.activePlayer.GetComponent<Weapon> ();
-		InventoryLUT lookup = new InventoryLUT ();
 
 		//get type of item (Weapon/Consumable)
 		Item targetItem = lookup.Lookup(pressedItem);
@@ -83,8 +87,11 @@ public class InventoryManager : MonoBehaviour {
 		}
 
 		//weapon type stat assignments
-		else if (targetItem.iType == 1){
-			apwScript.Mt = targetItem.Mt ;
+		else if (targetItem.iType == 1) {
+			AddItem (apwScript.wName, 1);
+
+			apwScript.wName = targetItem.iName;
+			apwScript.Mt = targetItem.Mt;
 			apwScript.Hit = targetItem.Hit;
 			apwScript.Crit = targetItem.Crit;
 			apwScript.Wt = targetItem.Wt;
