@@ -60,6 +60,7 @@ public class Enemy : MonoBehaviour {
 
 				return;
 			} else {
+				this.tile.character = null;
 				MoveTowardsPlayer (attackablePlayer);
 				Status = 2;
 				animEnemy.Play("Walk");
@@ -90,9 +91,11 @@ public class Enemy : MonoBehaviour {
 			}
 
 			visitedTile.Remove (viewTile);
-			FindAttackablePlayers (viewTile);
+			if (viewTile.character == null || viewTile == this.tile) {
+				FindAttackablePlayers (viewTile);
+			}
 
-			if (viewTile.E_Tile != null && viewTile.E_Tile.character == null && viewTile.E_Tile.mov_cost + viewTile.mov_dis <= totalMov) {
+			if (viewTile.E_Tile != null && (viewTile.E_Tile.character == null || viewTile.E_Tile.character.tag == "Enemy") && viewTile.E_Tile.mov_cost + viewTile.mov_dis <= totalMov) {
 				if (viewTile.E_Tile.mov_dis != -1 && viewTile.E_Tile.mov_dis > viewTile.mov_dis + viewTile.E_Tile.mov_cost) {
 					viewTile.E_Tile.mov_dis = viewTile.mov_dis + viewTile.E_Tile.mov_cost;
 				} else if (viewTile.E_Tile.mov_dis == -1) {
@@ -101,7 +104,7 @@ public class Enemy : MonoBehaviour {
 				}
 			}
 
-			if (viewTile.W_Tile != null && viewTile.W_Tile.character == null && viewTile.W_Tile.mov_cost + viewTile.mov_dis <= totalMov) {
+			if (viewTile.W_Tile != null && (viewTile.W_Tile.character == null || viewTile.W_Tile.character.tag == "Enemy") && viewTile.W_Tile.mov_cost + viewTile.mov_dis <= totalMov) {
 				if (viewTile.W_Tile.mov_dis != -1 && viewTile.W_Tile.mov_dis > viewTile.mov_dis + viewTile.W_Tile.mov_cost) {
 					viewTile.W_Tile.mov_dis = viewTile.mov_dis + viewTile.W_Tile.mov_cost;
 				} else if (viewTile.W_Tile.mov_dis == -1) {
@@ -110,7 +113,7 @@ public class Enemy : MonoBehaviour {
 				}
 			}
 
-			if (viewTile.SE_Tile != null && viewTile.SE_Tile.character == null && viewTile.SE_Tile.mov_cost + viewTile.mov_dis <= totalMov) {
+			if (viewTile.SE_Tile != null && (viewTile.SE_Tile.character == null || viewTile.SE_Tile.character.tag == "Enemy") && viewTile.SE_Tile.mov_cost + viewTile.mov_dis <= totalMov) {
 				if (viewTile.SE_Tile.mov_dis != -1 && viewTile.SE_Tile.mov_dis > viewTile.mov_dis + viewTile.SE_Tile.mov_cost) {
 					viewTile.SE_Tile.mov_dis = viewTile.mov_dis + viewTile.SE_Tile.mov_cost;
 				} else if (viewTile.SE_Tile.mov_dis == -1) {
@@ -119,7 +122,7 @@ public class Enemy : MonoBehaviour {
 				}
 			}
 
-			if (viewTile.SW_Tile != null && viewTile.SW_Tile.character == null && viewTile.SW_Tile.mov_cost + viewTile.mov_dis <= totalMov) {
+			if (viewTile.SW_Tile != null && (viewTile.SW_Tile.character == null || viewTile.SW_Tile.character.tag == "Enemy") && viewTile.SW_Tile.mov_cost + viewTile.mov_dis <= totalMov) {
 				if (viewTile.SW_Tile.mov_dis != -1 && viewTile.SW_Tile.mov_dis > viewTile.mov_dis + viewTile.SW_Tile.mov_cost) {
 					viewTile.SW_Tile.mov_dis = viewTile.mov_dis + viewTile.SW_Tile.mov_cost;
 				} else if (viewTile.SW_Tile.mov_dis == -1) {
@@ -128,7 +131,7 @@ public class Enemy : MonoBehaviour {
 				}
 			}
 
-			if (viewTile.NE_Tile != null && viewTile.NE_Tile.character == null && viewTile.NE_Tile.mov_cost + viewTile.mov_dis <= totalMov) {
+			if (viewTile.NE_Tile != null && (viewTile.NE_Tile.character == null || viewTile.NE_Tile.character.tag == "Enemy") && viewTile.NE_Tile.mov_cost + viewTile.mov_dis <= totalMov) {
 				if (viewTile.NE_Tile.mov_dis != -1 && viewTile.NE_Tile.mov_dis > viewTile.mov_dis + viewTile.NE_Tile.mov_cost) {
 					viewTile.NE_Tile.mov_dis = viewTile.mov_dis + viewTile.NE_Tile.mov_cost;
 				} else if (viewTile.NE_Tile.mov_dis == -1) {
@@ -137,7 +140,7 @@ public class Enemy : MonoBehaviour {
 				}
 			}
 
-			if (viewTile.NW_Tile != null && viewTile.NW_Tile.character == null && viewTile.NW_Tile.mov_cost + viewTile.mov_dis <= totalMov) {
+			if (viewTile.NW_Tile != null && (viewTile.NW_Tile.character == null || viewTile.NW_Tile.character.tag == "Enemy") && viewTile.NW_Tile.mov_cost + viewTile.mov_dis <= totalMov) {
 				if (viewTile.NW_Tile.mov_dis != -1 && viewTile.NW_Tile.mov_dis > viewTile.mov_dis + viewTile.NW_Tile.mov_cost) {
 					viewTile.NW_Tile.mov_dis = viewTile.mov_dis + viewTile.NW_Tile.mov_cost;
 				} else if (viewTile.NW_Tile.mov_dis == -1) {
@@ -583,12 +586,14 @@ public class Enemy : MonoBehaviour {
 
 			visitedTile.Remove (viewTile);
 			attackablePlayers = new List<Unit> ();
-			FindAttackablePlayers (viewTile);
+			if (viewTile.character == null || viewTile == this.tile) {
+				FindAttackablePlayers (viewTile);
+			}
 			if(attackablePlayers.Contains(player)) {
 				break;
 			}
 
-			if (viewTile.E_Tile != null && viewTile.E_Tile.character == null && viewTile.E_Tile.mov_cost + viewTile.mov_dis <= totalMov) {
+			if (viewTile.E_Tile != null && (viewTile.E_Tile.character == null || viewTile.E_Tile.character.tag == "Enemy") && viewTile.E_Tile.mov_cost + viewTile.mov_dis <= totalMov) {
 				if (viewTile.E_Tile.mov_dis != -1 && viewTile.E_Tile.mov_dis > viewTile.mov_dis + viewTile.E_Tile.mov_cost) {
 					viewTile.E_Tile.mov_dis = viewTile.mov_dis + viewTile.E_Tile.mov_cost;
 				} else if (viewTile.E_Tile.mov_dis == -1) {
@@ -598,7 +603,7 @@ public class Enemy : MonoBehaviour {
 				}
 			}
 
-			if (viewTile.W_Tile != null && viewTile.W_Tile.character == null && viewTile.W_Tile.mov_cost + viewTile.mov_dis <= totalMov) {
+			if (viewTile.W_Tile != null && (viewTile.W_Tile.character == null || viewTile.W_Tile.character.tag == "Enemy") && viewTile.W_Tile.mov_cost + viewTile.mov_dis <= totalMov) {
 				if (viewTile.W_Tile.mov_dis != -1 && viewTile.W_Tile.mov_dis > viewTile.mov_dis + viewTile.W_Tile.mov_cost) {
 					viewTile.W_Tile.mov_dis = viewTile.mov_dis + viewTile.W_Tile.mov_cost;
 				} else if (viewTile.W_Tile.mov_dis == -1) {
@@ -608,7 +613,7 @@ public class Enemy : MonoBehaviour {
 				}
 			}
 
-			if (viewTile.SE_Tile != null && viewTile.SE_Tile.character == null && viewTile.SE_Tile.mov_cost + viewTile.mov_dis <= totalMov) {
+			if (viewTile.SE_Tile != null && (viewTile.SE_Tile.character == null || viewTile.SE_Tile.character.tag == "Enemy") && viewTile.SE_Tile.mov_cost + viewTile.mov_dis <= totalMov) {
 				if (viewTile.SE_Tile.mov_dis != -1 && viewTile.SE_Tile.mov_dis > viewTile.mov_dis + viewTile.SE_Tile.mov_cost) {
 					viewTile.SE_Tile.mov_dis = viewTile.mov_dis + viewTile.SE_Tile.mov_cost;
 				} else if (viewTile.SE_Tile.mov_dis == -1) {
@@ -618,7 +623,7 @@ public class Enemy : MonoBehaviour {
 				}
 			}
 
-			if (viewTile.SW_Tile != null && viewTile.SW_Tile.character == null && viewTile.SW_Tile.mov_cost + viewTile.mov_dis <= totalMov) {
+			if (viewTile.SW_Tile != null && (viewTile.SW_Tile.character == null || viewTile.SW_Tile.character.tag == "Enemy") && viewTile.SW_Tile.mov_cost + viewTile.mov_dis <= totalMov) {
 				if (viewTile.SW_Tile.mov_dis != -1 && viewTile.SW_Tile.mov_dis > viewTile.mov_dis + viewTile.SW_Tile.mov_cost) {
 					viewTile.SW_Tile.mov_dis = viewTile.mov_dis + viewTile.SW_Tile.mov_cost;
 				} else if (viewTile.SW_Tile.mov_dis == -1) {
@@ -628,7 +633,7 @@ public class Enemy : MonoBehaviour {
 				}
 			}
 
-			if (viewTile.NE_Tile != null && viewTile.NE_Tile.character == null && viewTile.NE_Tile.mov_cost + viewTile.mov_dis <= totalMov) {
+			if (viewTile.NE_Tile != null && (viewTile.NE_Tile.character == null || viewTile.NE_Tile.character.tag == "Enemy") && viewTile.NE_Tile.mov_cost + viewTile.mov_dis <= totalMov) {
 				if (viewTile.NE_Tile.mov_dis != -1 && viewTile.NE_Tile.mov_dis > viewTile.mov_dis + viewTile.NE_Tile.mov_cost) {
 					viewTile.NE_Tile.mov_dis = viewTile.mov_dis + viewTile.NE_Tile.mov_cost;
 				} else if (viewTile.NE_Tile.mov_dis == -1) {
@@ -638,7 +643,7 @@ public class Enemy : MonoBehaviour {
 				}
 			}
 
-			if (viewTile.NW_Tile != null && viewTile.NW_Tile.character == null && viewTile.NW_Tile.mov_cost + viewTile.mov_dis <= totalMov) {
+			if (viewTile.NW_Tile != null && (viewTile.NW_Tile.character == null || viewTile.NW_Tile.character.tag == "Enemy") && viewTile.NW_Tile.mov_cost + viewTile.mov_dis <= totalMov) {
 				if (viewTile.NW_Tile.mov_dis != -1 && viewTile.NW_Tile.mov_dis > viewTile.mov_dis + viewTile.NW_Tile.mov_cost) {
 					viewTile.NW_Tile.mov_dis = viewTile.mov_dis + viewTile.NW_Tile.mov_cost;
 				} else if (viewTile.NW_Tile.mov_dis == -1) {
@@ -650,7 +655,7 @@ public class Enemy : MonoBehaviour {
 
 			viewTile = null;
 		}
-
+			
 		while (true) {
 			if (viewTile.parent != this.tile) {
 				movePath.Add (viewTile);
@@ -769,9 +774,11 @@ public class Enemy : MonoBehaviour {
 
 		this.transform.Rotate (new Vector3 (0.0f, newRotation, 0.0f));
 		currRotation += newRotation;
-		this.tile.character = null;
 		this.tile = nextTile;
-		this.tile.character = this.gameObject;
+
+		if (movePath.Count == 0) {
+			this.tile.character = this.gameObject;
+		}
 		movement--;
 	}
 
