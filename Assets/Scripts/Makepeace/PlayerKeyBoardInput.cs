@@ -119,7 +119,8 @@ public class PlayerKeyBoardInput : MonoBehaviour {
 		GameObject camera = GameObject.Find ("Main Camera");
 		CameraBounds bounds = camera.GetComponentInChildren<CameraBounds> ();
 
-		if (Input.GetKey (KeyCode.LeftArrow)) {
+
+		if (Input.GetKey (KeyCode.A)) {
 			bounds.locked = false;
 			Vector3 pos = new Vector3 (camera.transform.position.x - 0.5F, camera.transform.position.y, camera.transform.position.z);
 			if (pos.x < bounds.minX) {
@@ -127,7 +128,7 @@ public class PlayerKeyBoardInput : MonoBehaviour {
 			}
 			camera.transform.position = pos;
 		}
-		if (Input.GetKey (KeyCode.RightArrow)) {
+		if (Input.GetKey (KeyCode.D)) {
 			bounds.locked = false;
 			Vector3 pos = new Vector3 (camera.transform.position.x + 0.5F, camera.transform.position.y, camera.transform.position.z);
 			if (pos.x > bounds.maxX) {
@@ -135,7 +136,7 @@ public class PlayerKeyBoardInput : MonoBehaviour {
 			}
 			camera.transform.position = pos;
 		}
-		if (Input.GetKey (KeyCode.UpArrow)) {
+		if (Input.GetKey (KeyCode.W)) {
 			bounds.locked = false;
 			Vector3 pos = new Vector3 (camera.transform.position.x, camera.transform.position.y, camera.transform.position.z + 0.5F);
 			if (pos.z > bounds.maxZ) {
@@ -143,13 +144,21 @@ public class PlayerKeyBoardInput : MonoBehaviour {
 			}
 			camera.transform.position = pos;
 		}
-		if (Input.GetKey (KeyCode.DownArrow)) {
+		if (Input.GetKey (KeyCode.S)) {
 			bounds.locked = false;
 			Vector3 pos = new Vector3 (camera.transform.position.x, camera.transform.position.y, camera.transform.position.z - 0.5F);
 			if (pos.z < bounds.minZ) {
 				pos.z = bounds.minZ;
 			}
 			camera.transform.position = pos;
+		}
+
+		if (Input.GetKey (KeyCode.Q)) {
+			//Rotate clockwise
+		}
+
+		if (Input.GetKey (KeyCode.E)) {
+			//Rotate counter clockwise
 		}
 
 		if (Input.GetAxis("Mouse ScrollWheel") != 0) {
@@ -160,6 +169,7 @@ public class PlayerKeyBoardInput : MonoBehaviour {
 
 		if (Input.GetKey (KeyCode.R)) {
 			camera.transform.position = new Vector3 (camera.transform.position.x, camera.transform.position.y + bounds.zoom, camera.transform.position.z - bounds.zoom);
+			//Rotate back to center
 			bounds.zoom = 0;
 		}
 	}
