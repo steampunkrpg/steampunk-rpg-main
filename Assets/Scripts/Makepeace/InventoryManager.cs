@@ -19,7 +19,7 @@ public class InventoryManager : MonoBehaviour {
 
 		//testing item
 		//AddItem("Potion", 10);
-		//AddItem ("Sword", 1);
+		AddItem ("Sword", 1);
 		//AddItem ("Potion", 1);
 		for (int i = 1; i <= 20; i++) {
 			AddItem ("Potion" + i, 1);
