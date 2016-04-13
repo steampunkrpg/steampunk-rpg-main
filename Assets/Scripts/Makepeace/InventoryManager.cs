@@ -71,7 +71,10 @@ public class InventoryManager : MonoBehaviour {
 				}
 			}
 			if (targetItem.iName == "FuryElixir") {
-				apwScript.Mt = apwScript.Mt * 1.4f;
+				apwScript.Mt *= 1.4f;
+			}
+			if (targetItem.iName == "IronhideElixir") {
+				apsScript.Def *= 1.4f;
 			}
 		}
 

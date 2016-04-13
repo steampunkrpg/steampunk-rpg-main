@@ -35,6 +35,10 @@ public class InventoryLUT : MonoBehaviour {
 			returnedItem = new Item (0, "FuryElixir");
 			break;
 
+		case "IronhideElixir":
+			returnedItem = new Item (0, "IronhideElixir");
+			break;
+
 		default:
 			returnedItem = null;
 			break;
