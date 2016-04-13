@@ -782,7 +782,7 @@ public class GameManager : MonoBehaviour {
 		dStat.Xp += d_xp;
 	}
 
-	private void CheckForDeaths() {
+	public void CheckForDeaths() {
 		if (activePlayer.char_stats.cHP <= 0) {
 			activePlayer.Death ();
 		}

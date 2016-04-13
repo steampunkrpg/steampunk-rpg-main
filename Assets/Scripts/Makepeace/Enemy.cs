@@ -53,6 +53,9 @@ public class Enemy : MonoBehaviour {
 				GameManager.instance.activePlayer = attackablePlayer;
 				GameManager.instance.InitiateBattle (this.tile, attackablePlayer.tile);
 
+				GameManager.instance.CheckForDeaths ();
+				GameManager.instance.activePlayer = null;
+
 				Status = 0;
 				//GameManager.instance.State = 0;
 				//GameManager.instance.prevState = 2;
@@ -797,6 +800,9 @@ public class Enemy : MonoBehaviour {
 					GameManager.instance.activePlayer = attackablePlayer;
 					GameManager.instance.InitiateBattle (this.tile, attackablePlayer.tile);
 
+					GameManager.instance.CheckForDeaths ();
+					GameManager.instance.activePlayer = null;
+
 					//GameManager.instance.State = 0;
 					//GameManager.instance.prevState = 2;
 					//Call Battle Animation Scene
@@ -809,6 +815,13 @@ public class Enemy : MonoBehaviour {
 	}
 
 	public void Death() {
+		Item[] dropItems = this.GetComponents<Item> ();
+		if (dropItems != null) {
+			foreach (Item item in dropItems) {
+				GameManager.instance.InvUI.GetComponent<InventoryManager> ().AddItem (item.iName, 1);
+			}
+		}
+
 		GameManager.instance.enemyL.Remove (this);
 		Destroy (this.gameObject);
 	}

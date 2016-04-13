@@ -7431,6 +7431,44 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 2, z: 1}
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &975475626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 975475621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69f77d90885f14d549b84fe24e0105f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  iType: 0
+  iName: Potion
+  Mt: 0
+  Hit: 0
+  Crit: 0
+  Wt: 0
+  Rng: []
+  type: 0
+--- !u!114 &975475627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 975475621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69f77d90885f14d549b84fe24e0105f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  iType: 0
+  iName: Blah
+  Mt: 0
+  Hit: 0
+  Crit: 0
+  Wt: 0
+  Rng: []
+  type: 0
 --- !u!1 &1000646097
 GameObject:
   m_ObjectHideFlags: 0
@@ -8309,8 +8347,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wName: 
-  Mt: 0
-  Hit: 0
+  Mt: 20
+  Hit: 100
   Crit: 0
   Wt: 7
   Rng:
