@@ -53,18 +53,6 @@ public class InventoryManager : MonoBehaviour {
 		//decrements the count on the inventory button
 		string pressedItem = button.transform.name.ToString ();
 
-		for (int i = 0; i < itemsAndCounts.Count; i++) {
-			if (itemsAndCounts [i].Key == pressedItem) {
-				itemsAndCounts [i] = new KeyValuePair<string, int> (pressedItem, itemsAndCounts [i].Value - 1);
-				if (itemsAndCounts [i].Value == 0) {
-					GameObject.Destroy (GameObject.Find (pressedItem));
-				} else {
-					GameObject.Find (pressedItem).GetComponentInChildren<Text> ().text = pressedItem + ": " + itemsAndCounts [i].Value;
-				}
-				break;
-			}
-		}
-
 		/*SECTION 2*/
 		//use of items
 		var apsScript =	GameManager.instance.activePlayer.GetComponent<Stats> ();
@@ -76,7 +64,11 @@ public class InventoryManager : MonoBehaviour {
 		//not many consumables so just handle cases here
 		if (targetItem.iType == 0) {
 			if (targetItem.iName == "Potion") {
-				apsScript.cHP += apsScript.mHP * 0.40f;
+				if (apsScript.cHP != apsScript.mHP) {
+					return;
+				} else {
+					apsScript.cHP += apsScript.mHP * 0.40f;
+				}
 			}
 			if (targetItem.iName == "FuryElixir") {
 				apwScript.Mt = apwScript.Mt * 1.4f;
@@ -94,6 +86,18 @@ public class InventoryManager : MonoBehaviour {
 			apwScript.Wt = targetItem.Wt;
 			apwScript.Rng = targetItem.Rng;
 			apwScript.type = targetItem.type;
+		}
+
+		for (int i = 0; i < itemsAndCounts.Count; i++) {
+			if (itemsAndCounts [i].Key == pressedItem) {
+				itemsAndCounts [i] = new KeyValuePair<string, int> (pressedItem, itemsAndCounts [i].Value - 1);
+				if (itemsAndCounts [i].Value == 0) {
+					GameObject.Destroy (GameObject.Find (pressedItem));
+				} else {
+					GameObject.Find (pressedItem).GetComponentInChildren<Text> ().text = pressedItem + ": " + itemsAndCounts [i].Value;
+				}
+				break;
+			}
 		}
 	}
 }
