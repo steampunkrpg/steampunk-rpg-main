@@ -18,9 +18,12 @@ public class InventoryManager : MonoBehaviour {
 		itemsAndCounts = new List<KeyValuePair<string, int>> ();
 
 		//testing item
-		AddItem("Potion", 10);
-		AddItem ("Sword", 1);
-		AddItem ("Potion", 1);
+		//AddItem("Potion", 10);
+		//AddItem ("Sword", 1);
+		//AddItem ("Potion", 1);
+		for (int i = 1; i <= 20; i++) {
+			AddItem ("Potion" + i, 1);
+		}
 	}
 
 	public void AddItem(string item, int count) {
