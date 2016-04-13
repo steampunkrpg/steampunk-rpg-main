@@ -27,7 +27,7 @@ public class InventoryManager : MonoBehaviour {
 		for (int i = 0; i < itemsAndCounts.Count; i++) {
 			if (itemsAndCounts [i].Key == item) {
 				itemsAndCounts [i] = new KeyValuePair<string, int> (item, itemsAndCounts [i].Value + count);
-				GameObject.Find (item).GetComponentInChildren<Text>().text = " " + item + ": " + (itemsAndCounts [i].Value + count);
+				GameObject.Find (item).GetComponentInChildren<Text> ().text = item + ": " + itemsAndCounts [i].Value;
 				return;
 			} 
 		}
@@ -43,7 +43,7 @@ public class InventoryManager : MonoBehaviour {
 		inventoryEntryGO.transform.localScale = new Vector3 (1.0f, 1.0f, 1.0f);
 		
 		buttonText = inventoryEntryGO.GetComponentInChildren<Text> ();
-		buttonText.text = " " + item + ": " + value;
+		buttonText.text = item + ": " + value;
 		heightOffset.y -= 40.0f;
 	}
 
