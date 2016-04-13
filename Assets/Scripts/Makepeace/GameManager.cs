@@ -60,7 +60,6 @@ public class GameManager : MonoBehaviour {
 		TurnUI.SetActive (false);
 		StatsUI.SetActive (false);
 		InvUI.GetComponent<InventoryManager> ().CreateDefault ();
-		InvUI.SetActive (false);
 
 		level = 0;
 		State = 0;

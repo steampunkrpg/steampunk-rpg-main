@@ -16,7 +16,7 @@ public class InventoryManager : MonoBehaviour {
 	public void CreateDefault() {
 		heightOffset = new Vector3(0.0f, 80.0f, 0.0f);
 		itemsAndCounts = new List<KeyValuePair<string, int>> ();
-		inventoryWindow = this.transform.Find ("InventoryWindow").gameObject;
+		inventoryWindow = GameObject.Find ("InventoryWindow");
 
 		//testing item
 		AddItem("Potion", 10);
