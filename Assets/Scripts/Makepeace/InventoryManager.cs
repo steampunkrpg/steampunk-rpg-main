@@ -16,7 +16,6 @@ public class InventoryManager : MonoBehaviour {
 	public void CreateDefault() {
 		heightOffset = new Vector3(0.0f, 80.0f, 0.0f);
 		itemsAndCounts = new List<KeyValuePair<string, int>> ();
-		inventoryWindow = GameObject.Find ("InventoryWindow");
 
 		//testing item
 		AddItem("Potion", 10);
@@ -41,7 +40,8 @@ public class InventoryManager : MonoBehaviour {
 		GameObject inventoryEntryGO = Instantiate (inventoryEntry);
 		inventoryEntryGO.transform.SetParent (inventoryWindow.transform);
 		inventoryEntryGO.name = item;
-		inventoryEntryGO.transform.position = inventoryWindow.transform.position + heightOffset;
+		inventoryEntryGO.transform.position = heightOffset;
+		inventoryEntryGO.transform.localScale = new Vector3 (1.0f, 1.0f, 1.0f);
 		
 		buttonText = inventoryEntryGO.transform.FindChild ("Text").GetComponent<Text> ();
 		buttonText.text = " " + item + ": " + value;
