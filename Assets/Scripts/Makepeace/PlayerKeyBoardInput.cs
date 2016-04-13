@@ -3,32 +3,23 @@ using System.Collections;
 
 public class PlayerKeyBoardInput : MonoBehaviour {
 
-	public void UnitAction(Unit activePlayer) {
-		if (Input.GetKey (KeyCode.W)) {
-			activePlayer.Move (1);
-			return;
-		}
-		if (Input.GetKey (KeyCode.E)) {
-			activePlayer.Move (2);
-			return;
-		}
-		if (Input.GetKey (KeyCode.D)) {
-			activePlayer.Move (3);
-			return;
-		}
-		if (Input.GetKey (KeyCode.X)) {
-			activePlayer.Move (4);
-			return;
-		}
-		if (Input.GetKey (KeyCode.Z)) {
-			activePlayer.Move (5);
-			return;
-		}
-		if (Input.GetKey (KeyCode.A)) {
-			activePlayer.Move (6);
-			return;
-		}
-		if (Input.GetKey (KeyCode.F) && activePlayer.GetComponentInChildren<Weapon> ().type >= 0) {
+	public bool tabReset;
+	public bool statReset;
+	public bool invReset;
+	public int prevActiveState;
+
+	void Start() {
+		tabReset = true;
+		statReset = true;
+		invReset = true;
+	}
+
+	public void UnitAction(Unit activePlayer) {	
+		/*if (Input.GetKey (KeyCode.F) && activePlayer.GetComponentInChildren<Weapon> ().type >= 0) {
+			if (GameManager.instance.activeEnemy != null) {
+				GameManager.instance.activeEnemy = null;
+			}
+
 			activePlayer.possibleAttack ();
 			activePlayer.Status = 3;
 			return;
@@ -39,17 +30,41 @@ public class PlayerKeyBoardInput : MonoBehaviour {
 			return;
 		}
 		if (Input.GetKey (KeyCode.T)) {
+			if (GameManager.instance.StatsUI.activeSelf) {
+				GameManager.instance.StatsUI.SetActive (false);
+			}
 			activePlayer.Status = 0;
 			return;
 		}
-		if (Input.GetKey (KeyCode.Y)) {
+		if (Input.GetKeyDown (KeyCode.I) && invReset) {
+			invReset = false;
+			if (GameManager.instance.InvUI.activeSelf) {
+				GameManager.instance.InvUI.SetActive (false);
+				activePlayer.Status = prevActiveState;
+			} else {
+				prevActiveState = activePlayer.Status;
+				activePlayer.Status = 7;
+				GameManager.instance.InvUI.SetActive (true);
+			}
+		} else if (Input.GetKeyUp (KeyCode.I)) {
+			invReset = true;
+		}*/
+		if (Input.GetKeyDown (KeyCode.Y) && statReset) {
+			statReset = false;
 			GameManager.instance.StatsUI.GetComponent<StatsMenu> ().UpdateMenu (activePlayer.char_stats);
 			if (GameManager.instance.StatsUI.activeSelf) {
 				GameManager.instance.StatsUI.SetActive (false);
 			} else {
 				GameManager.instance.StatsUI.SetActive (true);
 			}
+		} else if (Input.GetKeyUp (KeyCode.Y)) {
+			statReset = true;
 		}
+		/*if (Input.GetKey (KeyCode.M)) {
+			GameManager.instance.activePlayer.Status = 6;
+			activePlayer.possibleMoves ();
+			return;
+		}*/
 	}
 
 	public void GlobalAction() {
@@ -57,6 +72,46 @@ public class PlayerKeyBoardInput : MonoBehaviour {
 			GameManager.instance.prevState = GameManager.instance.State;
 			GameManager.instance.State = 0;
 			GameManager.instance.PauseUI.SetActive(true);
+		}
+	}
+
+	public void PlayerTurn() {
+			if (Input.GetKeyUp (KeyCode.Tab)) {
+			tabReset = true;
+		} else if (Input.GetKey (KeyCode.Tab) && tabReset) {
+			tabReset = false;
+			if (GameManager.instance.activePlayer == null) {
+				for (int i = 0; i < GameManager.instance.playerL.Count; i++) {
+					if (GameManager.instance.playerL [i].Status == 1) {
+						GameManager.instance.activePlayer = GameManager.instance.playerL [i];
+						break;
+					}
+				}
+			} else {
+				for (int i = 0; i < GameManager.instance.playerL.Count; i++) {
+					if (GameManager.instance.activePlayer == GameManager.instance.playerL [i]) {
+						if (i == GameManager.instance.playerL.Count - 1) {
+							for (int j = 0; j < GameManager.instance.playerL.Count; j++) {
+								if (GameManager.instance.playerL [j].Status == 1 && GameManager.instance.playerL [j] != GameManager.instance.activePlayer) {
+									GameManager.instance.activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
+									GameManager.instance.activePlayer = GameManager.instance.playerL [j];
+									break;
+								}
+							}
+							break;
+						} else {
+							for (int j = 0; j < GameManager.instance.playerL.Count; j++) {
+								if (GameManager.instance.playerL [(j+i+1)%GameManager.instance.playerL.Count].Status == 1 && GameManager.instance.playerL [(j+i+1)%GameManager.instance.playerL.Count] != GameManager.instance.activePlayer) {
+									GameManager.instance.activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
+									GameManager.instance.activePlayer = GameManager.instance.playerL [(j+i+1)%GameManager.instance.playerL.Count];
+									break;
+								}
+							}
+							break;
+						}
+					}
+				}
+			}
 		}
 	}
 

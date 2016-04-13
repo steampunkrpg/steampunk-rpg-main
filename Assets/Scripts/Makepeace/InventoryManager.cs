@@ -6,74 +6,97 @@ using UnityEngine.EventSystems;
 using System.Collections;
 
 public class InventoryManager : MonoBehaviour {
-	public static Dictionary<string, int> itemsAndCounts;
+	
+	public static List<KeyValuePair<string, int>> itemsAndCounts;
 	public GameObject inventoryWindow, inventoryEntry, inventoryEntryGO;
 
 	private List<GameObject> buttonsInMenu;
 	private Vector3 heightOffset;
-	private int buttonCount = 0, hasClicked = 0;
 	private Text buttonText;
 
-	void Start() {
+	public void CreateDefault() {
 		buttonsInMenu = new List<GameObject> ();
 		heightOffset = new Vector3(0.0f, 80.0f, 0.0f);
-		itemsAndCounts = new Dictionary<string, int> ();
+		itemsAndCounts = new List<KeyValuePair<string, int>> ();
 		inventoryWindow = GameObject.Find ("InventoryWindow");
-		inventoryWindow.SetActive (false);
+		//inventoryWindow.SetActive (false);
 
 		//testing item
 		AddItem("Potion", 10);
-		AddItem ("Ether", 5);
-
-		//generate some "weapons" for testing
-		Weapon WoodSword = new Weapon(5, 95, 20, 5, new List<float>{2, 1, 2}, 0);
-		Weapon Crossbow = new Weapon (7, 90, 20, 3, new List<float> {2, 1, 2}, 0);
-		Weapon PyroFlame = new Weapon (9, 70, 10, 1, new List<float> {2, 1, 2}, 1);
-		Weapon HealingHand = new Weapon (3, 100, 10, 1, new List<float> {2, 1, 2}, -1);
+		AddItem ("Sword", 1);
 	}
 
 	public void AddItem(string item, int count) {
-		if (itemsAndCounts.ContainsKey (item) == false) {
-			itemsAndCounts.Add (item, count);
-			ButtonCreator (item, count);
-		} else {
-			itemsAndCounts [item] += 1;
+		
+		for (int i = 0; i < itemsAndCounts.Count; i++) {
+			if (itemsAndCounts [i].Key == item) {
+				itemsAndCounts [i] = new KeyValuePair<string, int> (item, itemsAndCounts [i].Value + 1);
+				GameObject.Destroy (GameObject.Find (item));
+				ButtonCreator (item, itemsAndCounts [i].Value + 1);
+				break;
+			} 
+			else if (i == itemsAndCounts.Count - 1 && itemsAndCounts [i].Key != item) {
+				itemsAndCounts.Add (new KeyValuePair<string, int> (item, count));
+				ButtonCreator (item, count);
+			}
 		}
+	}
+
+	void ButtonCreator (string item, int value) {
+		inventoryEntryGO = Instantiate (inventoryEntry);
+		inventoryEntryGO.transform.SetParent (inventoryWindow.transform);
+		inventoryEntryGO.name = item;
+		inventoryEntryGO.transform.position = inventoryWindow.transform.position + heightOffset;
+		buttonsInMenu.Add (inventoryEntryGO);
+		
+		buttonText = inventoryEntryGO.transform.FindChild ("Text").GetComponent<Text> ();
+		buttonText.text = " " + item + ": " + value;
+		heightOffset.y -= 40.0f;
 	}
 
 	//handles use of the item
-	public void UseItem(Button button)
+	public void UseItem (Button button)
 	{	
-		Regex rgx = new Regex("[^a-zA-Z]+");
+		/*SECTION 1*/
+		//decrements the count on the inventory button
+		string pressedItem = button.transform.name.ToString ();
 
-		Text pressedText = button.GetComponentInChildren<Text> ();
-		string pressedTextKey = rgx.Replace (pressedText.text, "");
-
-		itemsAndCounts [pressedTextKey] -= 1;
-		pressedText.text = " " + pressedTextKey + ": " + itemsAndCounts [pressedTextKey];
-	}
-
-	public void InventoryToggler() {
-		if (hasClicked == 0) {
-			inventoryWindow.SetActive (true);
-			hasClicked = 1;
-		} else if (hasClicked == 1){
-			inventoryWindow.SetActive (false);
-			hasClicked = 0;
+		for (int i = 0; i < itemsAndCounts.Count; i++) {
+			if (itemsAndCounts [i].Key == pressedItem) {
+				itemsAndCounts [i] = new KeyValuePair<string, int> (pressedItem, itemsAndCounts [i].Value + 1);
+				GameObject.Destroy (GameObject.Find (pressedItem));
+				ButtonCreator (pressedItem, itemsAndCounts [i].Value - 1);
+				break;
+			}
 		}
-	}
 
-	void ButtonCreator (string item, int count) {
-		inventoryEntryGO = Instantiate (inventoryEntry);
-		inventoryEntryGO.transform.SetParent(inventoryWindow.transform);
-		inventoryEntryGO.name = "Inventory Entry " + buttonCount;
-		inventoryEntryGO.transform.position = inventoryWindow.transform.position + heightOffset;
-		buttonsInMenu.Add (inventoryEntryGO);
+		/*SECTION 2*/
+		//use of items
+		var apsScript =	GameManager.instance.activePlayer.GetComponent<Stats> ();
+		var apwScript = GameManager.instance.activePlayer.GetComponent<Weapon> ();
+		InventoryLUT lookup = new InventoryLUT ();
 
-		buttonText = inventoryEntryGO.transform.FindChild("Text").GetComponent<Text>();
-		buttonText.text = " " + item + ": " + count;
+		//get type of item (Weapon/Consumable)
+		Item targetItem = lookup.Lookup(pressedItem);
 
-		buttonCount += 1;
-		heightOffset.y -= 40.0f;
+		//not many consumables so just handle cases here
+		if (targetItem.iType == 0) {
+			if (targetItem.iName == "Potion") {
+				apsScript.cHP += apsScript.mHP * 0.40f;
+			}
+			if (targetItem.iName == "FuryElixir") {
+				apwScript.Mt = apwScript.Mt * 1.4f;
+			}
+		}
+
+		//weapon type stat assignments
+		else if (targetItem.iType == 1){
+			apwScript.Mt = targetItem.Mt ;
+			apwScript.Hit = targetItem.Hit;
+			apwScript.Crit = targetItem.Crit;
+			apwScript.Wt = targetItem.Wt;
+			apwScript.Rng = targetItem.Rng;
+			apwScript.type = targetItem.type;
+		}
 	}
 }

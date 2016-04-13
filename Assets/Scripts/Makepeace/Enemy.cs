@@ -15,12 +15,13 @@ public class Enemy : MonoBehaviour {
 	public List<float> att_range;
 	public List<Unit> attackablePlayers;
 	private Unit attackablePlayer;
-	public EnemyMenu menu;
+    public Animator animEnemy;
+    public float currRotation;
+
+	private List<HexTile> movePath;
 
 	void Start() {
 		enemy_stats = this.GetComponentInChildren<Stats> ();
-		menu = this.GetComponentInChildren<EnemyMenu> ();
-		menu.InitializeMenu (enemy_stats);
 		Status = 0;
 	}
 
@@ -50,9 +51,11 @@ public class Enemy : MonoBehaviour {
 			if (attackablePlayers.Contains (attackablePlayer)) {
 				GameManager.instance.InitiateBattle (this.tile, attackablePlayer.tile);
 				Status = 0;
+                animEnemy.Play("Idle");
 			} else {
 				MoveTowardsPlayer (attackablePlayer);
 				Status = 2;
+                animEnemy.Play("Walk");
 			}
 		} else {
 			Status = 0;
@@ -144,7 +147,7 @@ public class Enemy : MonoBehaviour {
 	private void FindAttackablePlayers(HexTile origin) {
 		att_range = this.GetComponentInChildren<Weapon> ().Rng;
 		GameManager.instance.ResetTileAttDis ();
-		GameManager.instance.ResetTilePar ();
+		GameManager.instance.ResetTileParticles ();
 		HexTile viewTile = null;
 		List<HexTile> visitedTile = new List<HexTile> ();
 
@@ -272,6 +275,7 @@ public class Enemy : MonoBehaviour {
 		float totalMov = movement;
 		HexTile viewTile = null;
 		List<HexTile> visitedTile = new List<HexTile> ();
+		movePath = new List<HexTile> ();
 
 		this.tile.mov_dis = 0;
 
@@ -354,27 +358,147 @@ public class Enemy : MonoBehaviour {
 				
 			viewTile = null;
 		}
-
+			
 		while (true) {
-			if (viewTile.parent == this.tile) {
-				this.tile.character = null;
-				this.tile = viewTile;
-				this.tile.character = this.gameObject;
-				movement--;
-				break;
-			} else {
+			if (viewTile.parent != this.tile) {
+				movePath.Add (viewTile);
 				viewTile = viewTile.parent;
+			} else {
+				viewTile.parent = this.tile;
+				MoveTile (viewTile);
+				break;
 			}
 		}
+	}
+
+	void MoveTile(HexTile nextTile) {
+		float newRotation = 0.0f;
+		if (this.tile.parent == null) {
+			if (this.tile.E_Tile == nextTile) {
+				newRotation = -90.0f;
+			} else if (this.tile.W_Tile == nextTile) {
+				newRotation = 90.0f;
+			} else if (this.tile.NE_Tile == nextTile) {
+				newRotation = -150.0f;
+			} else if (this.tile.NW_Tile == nextTile) {
+				newRotation = 150.0f;
+			} else if (this.tile.SE_Tile == nextTile) {
+				newRotation = -30.0f;
+			} else if (this.tile.SW_Tile == nextTile) {
+				newRotation = 30.0f;
+			}
+		} else {
+			if (this.tile.parent.E_Tile == this.tile) {
+				if (nextTile == this.tile.E_Tile) {
+					newRotation = 0.0f;
+				} else if (nextTile == this.tile.W_Tile) {
+					newRotation = 180.0f;
+				} else if (nextTile == this.tile.NE_Tile) {
+					newRotation = -60.0f;
+				} else if (nextTile == this.tile.NW_Tile) {
+					newRotation = -120.0f;
+				} else if (nextTile == this.tile.SE_Tile) {
+					newRotation = 60.0f;
+				} else if (nextTile == this.tile.SW_Tile) {
+					newRotation = 120.0f;
+				} 
+			} else if (this.tile.parent.W_Tile == this.tile) {
+				if (nextTile == this.tile.E_Tile) {
+					newRotation = 180.0f;
+				} else if (nextTile == this.tile.W_Tile) {
+					newRotation = 0.0f;
+				} else if (nextTile == this.tile.NE_Tile) {
+					newRotation = 120.0f;
+				} else if (nextTile == this.tile.NW_Tile) {
+					newRotation = 60.0f;
+				} else if (nextTile == this.tile.SE_Tile) {
+					newRotation = -120.0f;
+				} else if (nextTile == this.tile.SW_Tile) {
+					newRotation = -60.0f;
+				} 
+			} else if (this.tile.parent.NE_Tile == this.tile) {
+				if (nextTile == this.tile.E_Tile) {
+					newRotation = -120.0f;
+				} else if (nextTile == this.tile.W_Tile) {
+					newRotation = 60.0f;
+				} else if (nextTile == this.tile.NE_Tile) {
+					newRotation = 0.0f;
+				} else if (nextTile == this.tile.NW_Tile) {
+					newRotation = -60.0f;
+				} else if (nextTile == this.tile.SE_Tile) {
+					newRotation = 120.0f;
+				} else if (nextTile == this.tile.SW_Tile) {
+					newRotation = 180.0f;
+				} 
+			} else if (this.tile.parent.NW_Tile == this.tile) {
+				if (nextTile == this.tile.E_Tile) {
+					newRotation = 120.0f;
+				} else if (nextTile == this.tile.W_Tile) {
+					newRotation = -60.0f;
+				} else if (nextTile == this.tile.NE_Tile) {
+					newRotation = 60.0f;
+				} else if (nextTile == this.tile.NW_Tile) {
+					newRotation = 0.0f;
+				} else if (nextTile == this.tile.SE_Tile) {
+					newRotation = 180.0f;
+				} else if (nextTile == this.tile.SW_Tile) {
+					newRotation = -120.0f;
+				} 
+			} else if (this.tile.parent.SE_Tile == this.tile) {
+				if (nextTile == this.tile.E_Tile) {
+					newRotation = -60.0f;
+				} else if (nextTile == this.tile.W_Tile) {
+					newRotation = 120.0f;
+				} else if (nextTile == this.tile.NE_Tile) {
+					newRotation = -120.0f;
+				} else if (nextTile == this.tile.NW_Tile) {
+					newRotation = 180.0f;
+				} else if (nextTile == this.tile.SE_Tile) {
+					newRotation = 0.0f;
+				} else if (nextTile == this.tile.SW_Tile) {
+					newRotation = 60.0f;
+				} 
+			} else if (this.tile.parent.SW_Tile == this.tile) {
+				if (nextTile == this.tile.E_Tile) {
+					newRotation = -120.0f;
+				} else if (nextTile == this.tile.W_Tile) {
+					newRotation = 60.0f;
+				} else if (nextTile == this.tile.NE_Tile) {
+					newRotation = 120.0f;
+				} else if (nextTile == this.tile.NW_Tile) {
+					newRotation = 180.0f;
+				} else if (nextTile == this.tile.SE_Tile) {
+					newRotation = -60.0f;
+				} else if (nextTile == this.tile.SW_Tile) {
+					newRotation = 0.0f;
+				} 
+			}
+		}
+
+		this.transform.Rotate (new Vector3 (0.0f, newRotation, 0.0f));
+		currRotation += newRotation;
+		this.tile.character = null;
+		this.tile = nextTile;
+		this.tile.character = this.gameObject;
+		movement--;
 	}
 
     void Update(){
 		if (Status == 2 && (this.transform.position.x != tile.transform.position.x || this.transform.position.z != tile.transform.position.z)) {
 			this.transform.position = Vector3.MoveTowards (this.transform.position, new Vector3(tile.transform.position.x, this.transform.position.y, tile.transform.position.z), 3 * Time.deltaTime);
 			if (this.transform.position.x == tile.transform.position.x && this.transform.position.z == tile.transform.position.z) {
-				Status = 1;
-				GameManager.instance.activeEnemy = null;
-			}
+				if (movePath.Count > 0) {
+					HexTile nextTile = movePath[movePath.Count - 1];
+					movePath.RemoveAt (movePath.Count - 1);
+					MoveTile (nextTile);
+				} else {
+					GameManager.instance.InitiateBattle (this.tile, attackablePlayer.tile);
+					Status = 0;
+					animEnemy.Play("Idle");
+					this.transform.Rotate(new Vector3(0.0f, -currRotation, 0.0f));
+					currRotation = 0;
+				}            
+            }        
 		}
 	}
 

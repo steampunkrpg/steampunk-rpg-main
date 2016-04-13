@@ -54,6 +54,7 @@ public class ForestManager : MonoBehaviour {
         {
             Vector3 pos = RandomPosGenerator(go);
             GameObject tree = Instantiate(go, pos, Quaternion.Euler(-90,0,0)) as GameObject;
+            tree.transform.parent = this.transform;
             tree.name = "tree";
         }
     }

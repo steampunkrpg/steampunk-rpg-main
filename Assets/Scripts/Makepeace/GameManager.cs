@@ -1,14 +1,20 @@
-﻿using UnityEngine;using System.Collections;
+﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class GameManager : MonoBehaviour {
 
 	public GameObject PauseUI;
 	public GameObject TurnUI;
 	public Text turnText;
+	public Image turnImage;
 	public GameObject StatsUI;
+	public GameObject InvUI;
+	public GameObject PlayerUI;
+	public GameObject EnemyUI;
 
 	public static GameManager instance = null;
 	public float turnDelay = 0.1f;
@@ -19,6 +25,7 @@ public class GameManager : MonoBehaviour {
 
 	private Ray mouseRay;
 	private RaycastHit hit;
+	private RaycastHit vertHit;
 
 	public List<HexTile> tileL;
 	public List<Unit> playerL;
@@ -49,6 +56,8 @@ public class GameManager : MonoBehaviour {
 		PauseUI.SetActive (false);
 		TurnUI.SetActive (false);
 		StatsUI.SetActive (false);
+		InvUI.GetComponent<InventoryManager> ().CreateDefault ();
+		InvUI.SetActive (false);
 
 		level = 0;
 		State = 0;
@@ -58,6 +67,8 @@ public class GameManager : MonoBehaviour {
 		enemyL = new List<Enemy> ();
 		tileL = new List<HexTile> ();
 
+		activePlayer = null;
+		activeEnemy = null;
 		LoadLists ();
 		State = 4;
 	}
@@ -71,33 +82,27 @@ public class GameManager : MonoBehaviour {
 			if (activePlayer != null && activePlayer.Status == 1) {
 				if (!activePlayer.GetComponentInChildren<ParticleSystem> ().isPlaying) {
 					activePlayer.GetComponentInChildren<ParticleSystem> ().Play (true);
-					activePlayer.menu.gameObject.SetActive (true);
-					activePlayer.possibleMoves ();
 				}
 				playerInput.UnitAction (activePlayer);
-			} 
+			}
 
 			if (activePlayer != null && activePlayer.Status == 0) {
 				activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
-				activePlayer.menu.gameObject.SetActive (false);
-				ResetTilePar ();
+				PlayerUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
+				ResetTileParticles ();
 				activePlayer = null;
 			}
 
 			if (activePlayer != null && activePlayer.Status == 6) {
-				activePlayer.menu.gameObject.SetActive (false);
-				activePlayer.possibleMoves ();
-				playerInput.UnitAction (activePlayer);
+				MoveSelect ();
 			}
 
 			if (activePlayer != null && activePlayer.Status == 5) {
-				activePlayer.menu.gameObject.SetActive (false);
 				InteractSelect ();
 				if (interactPlayer != null) {
 					InitiateInteraction (activePlayer.tile, interactPlayer.tile);
 					ResetPlayerPar ();
 					activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
-					interactPlayer.menu.UpdateMenu (interactPlayer.char_stats);
 					interactPlayer = null;
 					activePlayer.Status = 0;
 					if (activePlayer.GetComponentInChildren<Stats> ().Xp >= 100) {
@@ -117,15 +122,11 @@ public class GameManager : MonoBehaviour {
 			}
 
 			if (activePlayer != null && activePlayer.Status == 3) {
-				activePlayer.menu.gameObject.SetActive (false);
 				EnemySelect ();
 				if (activeEnemy != null) {
 					InitiateBattle (activePlayer.tile, activeEnemy.tile);
 					ResetEnemyPar ();
 					activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
-					activePlayer.menu.UpdateMenu (activePlayer.char_stats);
-					activeEnemy.menu.UpdateMenu (activeEnemy.enemy_stats);
-
 					if (activePlayer.GetComponentInChildren<Stats> ().Xp >= 100) {
 						float[] lvStats = new float[8];
 						string className = "";
@@ -240,30 +241,53 @@ public class GameManager : MonoBehaviour {
 				if (hit.collider.tag.Equals ("Unit")) {
 					if (activePlayer != null && activePlayer != hit.collider.gameObject.GetComponent<Unit> ()) {
 						activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
-						ResetTilePar ();
-						activePlayer.menu.gameObject.SetActive (false);
 					}
-					activePlayer = hit.collider.gameObject.GetComponent<Unit> ();
-					activePlayer.menu.gameObject.SetActive (true);
-				} else if (hit.collider.tag.Equals ("Enemy")) {
-					if (activeEnemy != null && activePlayer != hit.collider.gameObject.GetComponent<Enemy> ()) {
-						activeEnemy.menu.gameObject.SetActive (false);
-					}
-					activeEnemy = hit.collider.gameObject.GetComponent<Enemy> ();
-					activeEnemy.menu.gameObject.SetActive (true);
-				}
 
-				if (hit.collider.tag.Equals ("Terrain") && (activePlayer != null || activeEnemy != null)) {
+					if (activeEnemy != null) {
+						activeEnemy = null;
+						EnemyUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
+					}
+
+					if (activePlayer == null) {
+						PlayerUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
+					}
+
+					activePlayer = hit.collider.gameObject.GetComponent<Unit> ();
+					PlayerUI.GetComponent<PlayerUI> ().UpdateUI (activePlayer.char_stats);
+				} else if (hit.collider.tag.Equals ("Enemy")) {
 					if (activePlayer != null) {
 						activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
-						activePlayer.menu.gameObject.SetActive (false);
 						activePlayer = null;
-						ResetTilePar ();
-					} else {
-						activeEnemy.menu.gameObject.SetActive (false);
+						PlayerUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
+					}
+
+					if (activeEnemy == null) {
+						EnemyUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
+					}
+
+					activeEnemy = hit.collider.gameObject.GetComponent<Enemy> ();
+					EnemyUI.GetComponent<EnemyUI> ().UpdateUI (activeEnemy.enemy_stats);
+				}
+
+				if (hit.collider.tag.Equals ("Terrain") && (activePlayer != null || activeEnemy != null) && !EventSystem.current.IsPointerOverGameObject()) {
+					if (activePlayer != null) {
+						activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
+						PlayerUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
+						activePlayer = null;
+					} else if (activeEnemy != null) {
+						EnemyUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
 						activeEnemy = null;
 					}
 				}
+			}
+		} else if (Input.GetMouseButtonDown (1)) {
+			if (activePlayer != null) {
+				activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
+				PlayerUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
+				activePlayer = null;
+			} else if (activeEnemy != null) {
+				EnemyUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
+				activeEnemy = null;
 			}
 		}
 	}
@@ -278,12 +302,11 @@ public class GameManager : MonoBehaviour {
 						activeEnemy = hit.collider.gameObject.GetComponent<Enemy> ();
 					}
 				}
-				if (hit.collider.tag.Equals ("Terrain") || hit.collider.tag.Equals ("Unit")) {
-					activePlayer.Status = 1;
-					activePlayer.menu.gameObject.SetActive (true);
-					ResetEnemyPar ();
-				}
 			}
+		} else if (Input.GetMouseButtonDown (1)) {
+			ResetEnemyPar ();
+			PlayerUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
+			ResetTileParticles ();
 		}
 	}
 
@@ -297,12 +320,36 @@ public class GameManager : MonoBehaviour {
 						interactPlayer = hit.collider.gameObject.GetComponent<Unit> ();
 					}
 				}
-				if (hit.collider.tag.Equals ("Terrain") || hit.collider.tag.Equals ("Enemy")) {
-					activePlayer.Status = 1;
-					activePlayer.menu.gameObject.SetActive (true);
-					ResetPlayerPar ();
+			}
+		} else if (Input.GetMouseButtonDown (1)) {
+			ResetPlayerPar ();
+			PlayerUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
+			ResetTileParticles ();
+		}
+	}
+
+	void MoveSelect() {
+		if (Input.GetMouseButtonDown (0)) {
+			mouseRay = Camera.main.ScreenPointToRay (Input.mousePosition);
+
+			if (Physics.Raycast (mouseRay, out hit)) {
+				if (hit.collider.tag.Equals ("Terrain")) {
+					if (Physics.Raycast (hit.point, Vector3.down, out vertHit)) {
+						Debug.DrawLine (hit.point, vertHit.point);
+						if (vertHit.collider.tag.Equals ("GridTile")) {
+							GameObject tile = vertHit.collider.gameObject;
+
+							if (tile.transform.Find ("Possible_Move").gameObject.activeSelf) {
+								activePlayer.MoveTo (tile.GetComponent<HexTile> ());
+								Debug.Log ("Possible Move: " + vertHit.collider.gameObject.GetComponent<HexTile> ());
+							}
+						}
+					}
 				}
 			}
+		} else if (Input.GetMouseButtonDown (1)) {
+			ResetTileParticles ();
+			PlayerUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
 		}
 	}
 
@@ -311,6 +358,7 @@ public class GameManager : MonoBehaviour {
 		foreach (GameObject tile in tiles) {
 			HexTile tempTile = tile.GetComponent<HexTile> ();
 			tempTile.FindNeighbors ();
+			tempTile.transform.Find ("Possible_Move").GetComponent<ParticleSystem> ().Stop (true);
 			tileL.Add (tempTile);	
 		}
 
@@ -365,9 +413,10 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-	public void ResetTilePar() {
+	public void ResetTileParticles() {
 		foreach (HexTile tile in tileL) {
-			tile.transform.Find ("Possible_Move").gameObject.SetActive (false);
+			tile.transform.Find ("Possible_Move").GetComponent<ParticleSystem> ().Stop ();
+			tile.transform.Find ("Possible_Move").GetComponent<ParticleSystem>().startColor = new Color32(0,120,255,255);
 		}
 	}
 
@@ -395,12 +444,16 @@ public class GameManager : MonoBehaviour {
 
 		TurnUI.SetActive (true);
 		if (nextState == 1) {
+			turnImage.color = new Color32(0,255,100,255);
 			turnText.text = "PLAYER'S TURN";
 		} else if (nextState == 2) {
+			turnImage.color = new Color32(255,0,100,255);
 			turnText.text = "ENEMY'S TURN";
 		} else if (nextState == -1) {
+			turnImage.color = new Color32(37,38,38,123);
 			turnText.text = "GAME OVER";
 		} else if (nextState == -2) {
+			turnImage.color = new Color32(37,38,38,123);
 			turnText.text = "VICTORY";
 		}
 
