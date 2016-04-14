@@ -8,46 +8,40 @@ using System.Collections;
 public class InventoryManager : MonoBehaviour {
 	
 	public static List<KeyValuePair<string, int>> itemsAndCounts;
-	public GameObject inventoryWindow, inventoryEntry, inventoryEntryGO;
+	public GameObject inventoryWindow, inventoryEntry;
 
-	private List<GameObject> buttonsInMenu;
 	private Vector3 heightOffset;
 	private Text buttonText;
 
 	public void CreateDefault() {
-		buttonsInMenu = new List<GameObject> ();
 		heightOffset = new Vector3(0.0f, 80.0f, 0.0f);
 		itemsAndCounts = new List<KeyValuePair<string, int>> ();
 		inventoryWindow = GameObject.Find ("InventoryWindow");
-		//inventoryWindow.SetActive (false);
 
 		//testing item
 		AddItem("Potion", 10);
 		AddItem ("Sword", 1);
+		AddItem ("Potion", 1);
 	}
 
 	public void AddItem(string item, int count) {
-		
 		for (int i = 0; i < itemsAndCounts.Count; i++) {
 			if (itemsAndCounts [i].Key == item) {
-				itemsAndCounts [i] = new KeyValuePair<string, int> (item, itemsAndCounts [i].Value + 1);
-				GameObject.Destroy (GameObject.Find (item));
-				ButtonCreator (item, itemsAndCounts [i].Value + 1);
-				break;
+				itemsAndCounts [i] = new KeyValuePair<string, int> (item, itemsAndCounts [i].Value + count);
+				GameObject.Find (item).GetComponentInChildren<Text>().text = " " + item + ": " + (itemsAndCounts [i].Value + count);
+				return;
 			} 
-			else if (i == itemsAndCounts.Count - 1 && itemsAndCounts [i].Key != item) {
-				itemsAndCounts.Add (new KeyValuePair<string, int> (item, count));
-				ButtonCreator (item, count);
-			}
 		}
+
+		itemsAndCounts.Add (new KeyValuePair<string, int> (item, count));
+		ButtonCreator (item, count);
 	}
 
 	void ButtonCreator (string item, int value) {
-		inventoryEntryGO = Instantiate (inventoryEntry);
+		GameObject inventoryEntryGO = Instantiate (inventoryEntry);
 		inventoryEntryGO.transform.SetParent (inventoryWindow.transform);
 		inventoryEntryGO.name = item;
 		inventoryEntryGO.transform.position = inventoryWindow.transform.position + heightOffset;
-		buttonsInMenu.Add (inventoryEntryGO);
 		
 		buttonText = inventoryEntryGO.transform.FindChild ("Text").GetComponent<Text> ();
 		buttonText.text = " " + item + ": " + value;

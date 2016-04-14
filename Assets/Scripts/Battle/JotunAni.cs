@@ -26,6 +26,7 @@ using System.Collections;
     {
                 if (BattleCommands.runJotun)
                     {
+            WriteMovelist.currentMove = "Jotun";
                         if (player.transform.localScale.x <= 8.6f)
                             {
                 player.transform.localScale += Vector3.one * Time.deltaTime;
@@ -37,7 +38,7 @@ using System.Collections;
                             }
                         if (player.transform.localScale.x >= 8.5f)
                             {
-                animPlayer.Play("Attack(4)");
+                GameManager.instance.activePlayer.GetComponent<Animator>().Play("Attack(4)");
                                 if (!hit)
                                     {
                     StartCoroutine(enemyReact());
@@ -49,9 +50,11 @@ using System.Collections;
      IEnumerator enemyReact()
      {
          yield return new WaitForSeconds(.5f);
-         animEnemy.Play("Get hit");
-         hit = true;
+        GameManager.instance.activeEnemy.transform.localScale = new Vector3(1.0f, .1f, 1.0f);
+        //GameManager.instance.activeEnemy.GetComponent<Animator>().Play("break_through_the_block");
+        hit = true;
          yield return new WaitForSeconds(1.0f);
-         animEnemy.Play("Idel");
+        
+        //GameManager.instance.activeEnemy.GetComponent<Animator>().Play("Idle");
      }
  }

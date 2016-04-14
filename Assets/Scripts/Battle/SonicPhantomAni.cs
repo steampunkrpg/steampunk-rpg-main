@@ -41,6 +41,7 @@ public class SonicPhantomAni : MonoBehaviour {
 	void Update () {
         if (BattleCommands.runSonicPhantom)
         {
+            WriteMovelist.currentMove = "Sonic Phantom";
             if (!inMotion)
             {
                 GameManager.instance.activePlayer.GetComponent<Animator>().Play("Jamp");
