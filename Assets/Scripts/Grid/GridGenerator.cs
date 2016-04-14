@@ -78,6 +78,7 @@ public class GridGenerator : MonoBehaviour {
 	void Start () {
         setSizes();
         createGrid();
+
     }
 	
 	// Update is called once per frame
