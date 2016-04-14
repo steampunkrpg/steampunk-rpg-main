@@ -298,8 +298,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexTile: {fileID: 179998, guid: fd1e1b3901e601748a93f1566785ee76, type: 2}
   tileList: []
-  gridWidth: 25
-  gridHeight: 25
+  gridWidth: 30
+  gridHeight: 30
 --- !u!114 &717499892
 MonoBehaviour:
   m_ObjectHideFlags: 0
