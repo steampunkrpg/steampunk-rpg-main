@@ -138,6 +138,7 @@ public class GameManager : MonoBehaviour {
 					State = 0;
 
 					//Call Battle Animation Scene
+					LoadScene("BattleView");
 					return;
 				}
 			}

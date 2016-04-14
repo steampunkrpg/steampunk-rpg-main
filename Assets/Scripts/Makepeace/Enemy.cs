@@ -53,13 +53,12 @@ public class Enemy : MonoBehaviour {
 				GameManager.instance.activePlayer = attackablePlayer;
 				GameManager.instance.InitiateBattle (this.tile, attackablePlayer.tile);
 
-				GameManager.instance.CheckForDeaths ();
-				GameManager.instance.activePlayer = null;
-
 				Status = 0;
-				//GameManager.instance.State = 0;
-				//GameManager.instance.prevState = 2;
+				GameManager.instance.State = 0;
+				GameManager.instance.prevState = 2;
+
 				//Call Battle Animation Scene
+				GameManager.instance.LoadScene("BattleView");
 
 				return;
 			} else {
@@ -800,13 +799,13 @@ public class Enemy : MonoBehaviour {
 					GameManager.instance.activePlayer = attackablePlayer;
 					GameManager.instance.InitiateBattle (this.tile, attackablePlayer.tile);
 
-					GameManager.instance.CheckForDeaths ();
-					GameManager.instance.activePlayer = null;
-
-					//GameManager.instance.State = 0;
-					//GameManager.instance.prevState = 2;
-					//Call Battle Animation Scene
 					Status = 0;
+
+					GameManager.instance.State = 0;
+					GameManager.instance.prevState = 2;
+
+					//Call Battle Animation Scene
+					GameManager.instance.LoadScene("BattleView");
 
 					return;
 				}            
