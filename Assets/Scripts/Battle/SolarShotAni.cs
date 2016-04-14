@@ -103,6 +103,7 @@ public class SolarShotAni : MonoBehaviour {
         // else
 
         StartCoroutine(shadow.GetComponent<EnemyCounterattack>().counter());
+        WriteMovelist.currentMove = "Scumbag in the Shadows";
         //GameManager.instance.activeEnemy.GetComponent<Animator>().Play("Dead");
         //startCounter.invokeCo();
     }
