@@ -17,9 +17,9 @@ public class PlayerUI : MonoBehaviour {
 		playerHealth.text = "Health: " + playerStats.cHP + "/" + playerStats.mHP;
 
 		if (playerStats.gameObject.transform.parent.GetComponentInChildren<Weapon> ().type < 0) {
-			playerIntAtt.text = "Interact";
+			playerIntAtt.text = "I N T E R A C T";
 		} else {
-			playerIntAtt.text = "Attack";
+			playerIntAtt.text = "A T T A C K";
 		}
 
 		if (playerStats.GetComponentInParent<Unit> ().movement == 0) {
@@ -36,10 +36,10 @@ public class PlayerUI : MonoBehaviour {
 	}
 
 	public void Attack_Button() {
-		if (playerIntAtt.text == "Interact") {
+		if (playerIntAtt.text == "I N T E R A C T") {
 			GameManager.instance.activePlayer.Status = 5;
 			GameManager.instance.activePlayer.possibleInteract ();
-		} else if (playerIntAtt.text == "Attack") {
+		} else if (playerIntAtt.text == "A T T A C K") {
 			GameManager.instance.activePlayer.Status = 3;
 			GameManager.instance.activePlayer.possibleAttack ();
 		}
