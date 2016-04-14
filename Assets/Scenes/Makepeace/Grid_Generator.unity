@@ -307,8 +307,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HexTile: {fileID: 179998, guid: fd1e1b3901e601748a93f1566785ee76, type: 2}
-  gridWidth: 35
-  gridHeight: 35
+  gridWidth: 25
+  gridHeight: 25
 --- !u!114 &717499893
 MonoBehaviour:
   m_ObjectHideFlags: 0
