@@ -13,7 +13,13 @@ public class InventoryManager : MonoBehaviour {
 
 	private Text buttonText;
 
+	void Start() {
+		//inventoryEntry = (GameObject)Resources.Load ("Prefabs/inventoryEntry", typeof(GameObject));
+		//itemsAndCounts = new List<KeyValuePair<string, int>> ();
+	}
+
 	public void CreateDefault() {
+		inventoryEntry = (GameObject)Resources.Load ("Prefabs/inventoryEntry", typeof(GameObject));
 		itemsAndCounts = new List<KeyValuePair<string, int>> ();
 
 		//testing item
@@ -40,7 +46,7 @@ public class InventoryManager : MonoBehaviour {
 
 	void ButtonCreator (string item, int value) {
 		inventoryEntry = (GameObject)Resources.Load ("Prefabs/inventoryEntry", typeof(GameObject));
-		GameObject inventoryEntryGO = Instantiate (inventoryEntry);
+		GameObject inventoryEntryGO = Instantiate (inventoryEntry) as GameObject;
 		inventoryEntryGO.transform.SetParent (inventoryWindow.transform);
 		inventoryEntryGO.name = item;
 		inventoryEntryGO.transform.localScale = new Vector3 (1.0f, 1.0f, 1.0f);
@@ -84,7 +90,7 @@ public class InventoryManager : MonoBehaviour {
 
 		//weapon type stat assignments
 		else if (targetItem.iType == 1) {
-			AddItem (apwScript.wName, 1);
+			//AddItem (apwScript.wName, 1);
 
 			apwScript.wName = targetItem.iName;
 			apwScript.Mt = targetItem.Mt;
