@@ -623,7 +623,7 @@ public class GameManager : MonoBehaviour {
 			a_dm = a_dm * 3;
 		}
 		if (a_ac >= x) {
-			battleAnimation [1] = 0;
+			battleAnimation [1] = 1;
 
 			if (a_dm == 0) {
 				a_xp = 1;
