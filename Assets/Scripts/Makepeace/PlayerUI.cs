@@ -50,6 +50,7 @@ public class PlayerUI : MonoBehaviour {
 	public void Item_Button() {
 		GameManager.instance.PlayerUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
 		GameManager.instance.InvUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
+		GameManager.instance.activePlayer.Status = 7;
 	}
 
 	public void End_Button() {
