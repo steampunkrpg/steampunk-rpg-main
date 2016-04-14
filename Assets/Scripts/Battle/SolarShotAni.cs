@@ -15,6 +15,8 @@ public class SolarShotAni : MonoBehaviour {
     public Animator animPlayer;
     public Animator animEnemy;
     public ParticleSystem burst;
+    public ParticleSystem shadow;
+    public EnemyCounterattack startCounter;
 
     // Use this for initialization
     void Start() {
@@ -35,6 +37,7 @@ public class SolarShotAni : MonoBehaviour {
         ray6.GetComponent<Renderer>().enabled = false;
         burst.GetComponent<Renderer>().enabled = false;
         GameManager.instance.activeEnemy.GetComponent<Animator>().Play("Idle_block");
+        startCounter = new EnemyCounterattack();
     }
 
     // Update is called once per frame
@@ -62,7 +65,7 @@ public class SolarShotAni : MonoBehaviour {
             }
             else
             {
-                if (sphere.transform.position.z > 4.5f)
+                if (sphere.transform.position.z > -2.0f)
                 {
                     sphere.transform.Translate(.1f, 0.0f, -.1f);
 
@@ -79,12 +82,8 @@ public class SolarShotAni : MonoBehaviour {
                     emitted = true;
                     StartCoroutine(waiter());
                     GameManager.instance.activeEnemy.GetComponent<Animator>().Play("break_through_the_block");
-                    StartCoroutine(enemyReact());
+                    StartCoroutine("enemyReact");
                     this.SunBurst();
-                    /* ParticleSystem.EmissionModule em = burst.emission;
-                     em.enabled = true;
-                     burst.Play(); */
-                    //ParticleBurst.isBursting = true;
                 }
             }
         }
@@ -100,7 +99,14 @@ public class SolarShotAni : MonoBehaviour {
     {
         yield return new WaitForSeconds(.6f);
         enemy.transform.Translate(new Vector3(-1.2f, 1.0f, 0.0f));
-        GameManager.instance.activeEnemy.GetComponent<Animator>().Play("Dead");
+        GameManager.instance.activeEnemy.GetComponent<Animator>().Play("break_through_the_block");
+        // Pseudocode for new actions
+        // if (health <= 0) {
+        //  play("death animation")
+        // else
+
+        StartCoroutine(shadow.GetComponent<EnemyCounterattack>().counter2());
+        //startCounter.invokeCo();
     }
 
     public IEnumerator waiter()
@@ -112,7 +118,8 @@ public class SolarShotAni : MonoBehaviour {
         ray4.Stop();
         ray5.Stop();
         ray6.Stop();
-        sphere.SetActive(false);
+        //sphere.SetActive(false);
+        sphere.transform.Translate(new Vector3(500.0f, 500.0f, 500.0f));
         //burst.enableEmission = true;
         //ShakeScreen.shaking = true;
         //ParticleBurst.isBursting = true;
