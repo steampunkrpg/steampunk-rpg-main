@@ -4,10 +4,13 @@ using System.Collections;
 public class GrasslandManager : MonoBehaviour {
 
     public int numOfBushes;
+    public int numOfTrees;
     public GameObject bush1;
     public GameObject bush2;
     public GameObject bush3;
     public GameObject bush4;
+    public GameObject tree1;
+    public GameObject tree2;
 
     public Terrain terrain;
 
@@ -20,7 +23,8 @@ public class GrasslandManager : MonoBehaviour {
             InstantiateVegetation(bush2, (numOfBushes / 4));
             InstantiateVegetation(bush3, (numOfBushes / 4));
             InstantiateVegetation(bush4, (numOfBushes / 4));
-
+            InstantiateTrees(tree1, (numOfTrees / 2));
+            InstantiateTrees(tree2, (numOfTrees / 2));
         }
     }
 
@@ -43,6 +47,24 @@ public class GrasslandManager : MonoBehaviour {
         return randPos;
     }
 
+    Vector3 RandomTreeGenerator(GameObject go)
+    {
+        float randX = Random.Range(5f, 195f);
+        float randZ = Random.Range(5f, 195f);
+        float randY = terrain.SampleHeight(new Vector3(randX, 0f, randZ)) + go.transform.lossyScale.y - 1.5f;
+
+
+        while (Distribute(randX, randZ) == false)
+        {
+            randX = Random.Range(3f, 197f);
+            randZ = Random.Range(3f, 197f);
+            randY = terrain.SampleHeight(new Vector3(randX, 0f, randZ)) + go.transform.lossyScale.y - 1.5f;
+        }
+
+       Vector3 randPos = new Vector3(randX, randY, randZ);
+        return randPos;
+    }
+
     bool DistributeGrass(float y)
     {
         if (y > 1.5f)
@@ -61,6 +83,14 @@ public class GrasslandManager : MonoBehaviour {
         return false;
     }
 
+    bool Distribute(float x, float y)
+    {
+        if (((x < 75) || (x > 130)) || ((y < 75) || (y > 130)))
+        {
+            return true;
+        }
+        return false;
+    }
 
     float Decider(float x, float y)
     {
@@ -80,6 +110,18 @@ public class GrasslandManager : MonoBehaviour {
             
             bush.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
             
+        }
+    }
+
+    void InstantiateTrees(GameObject go, int count)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            Vector3 pos = RandomTreeGenerator(go);
+            GameObject tree = Instantiate(go, pos, Quaternion.Euler(0, 0, 0)) as GameObject;
+            tree.transform.parent = this.transform;
+            tree.name = "tree";
+
         }
     }
 
