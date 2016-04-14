@@ -42,10 +42,10 @@ public class BattleCommands : MonoBehaviour {
                 ShakeScreen.timeElapsed = 0.0f;
                 StartCoroutine(AnimationMenuMove(5.5f));
                 //runGrittySlap = true;
-                //runSolarShot = true;
+                runSolarShot = true;
                 //runSonicPhantom = true;
                 //runJotun = true;
-                runSuddenDeath = true;
+                //runSuddenDeath = true;
             }
             else
             {
