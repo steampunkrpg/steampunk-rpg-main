@@ -17,8 +17,6 @@ public class WriteMovelist : MonoBehaviour {
         //attack2.font = (Font)Resources.Load("911Fonts.com_ComicSansMSRegular__-_911fonts.com-fonts-BpCS");
         attack1.font = (Font)Resources.Load("True Lies");
         attack1.fontSize = 20;
-        //attack2.fontSize = 20;
-        //attack2.enabled = true;
     }
 	
 	// Update is called once per frame

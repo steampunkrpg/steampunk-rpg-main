@@ -78,6 +78,7 @@ public class SolarShotAni : MonoBehaviour {
                     ray5.Play();
                     ray6.Play();
                     emitted = true;
+                    StartCoroutine(BattleCommands.damageWriter.CoDrawDamageEn());
                     StartCoroutine(waiter());
                     GameManager.instance.activeEnemy.GetComponent<Animator>().Play("break_through_the_block");
                     StartCoroutine("enemyReact");
@@ -95,17 +96,25 @@ public class SolarShotAni : MonoBehaviour {
     public IEnumerator enemyReact()
     {
         yield return new WaitForSeconds(.6f);
-        enemy.transform.Translate(new Vector3(-1.2f, 0.0f, 0.0f));
-        GameManager.instance.activeEnemy.GetComponent<Animator>().Play("break_through_the_block");
-        // Pseudocode for new actions
-        // if (health <= 0) {
-        //  play("death animation")
-        // else
+        if (GameManager.instance.battleAnimation[3] == -1)
+        {
+            GameManager.instance.activeEnemy.GetComponent<Animator>().Play("Dead");
+        }
+        else
+        {
+            enemy.transform.Translate(new Vector3(-1.2f, 0.0f, 0.0f));
+            GameManager.instance.activeEnemy.GetComponent<Animator>().Play("break_through_the_block");
+            // Pseudocode for new actions
+            // if (health <= 0) {
+            //  play("death animation")
+            // else
 
-        StartCoroutine(shadow.GetComponent<EnemyCounterattack>().counter());
-        WriteMovelist.currentMove = "Scumbag in the Shadows";
-        //GameManager.instance.activeEnemy.GetComponent<Animator>().Play("Dead");
-        //startCounter.invokeCo();
+            WriteMovelist.currentMove = "Scumbag in the Shadows";
+            StartCoroutine(shadow.GetComponent<EnemyCounterattack>().counter());
+            
+            //GameManager.instance.activeEnemy.GetComponent<Animator>().Play("Dead");
+            //startCounter.invokeCo();
+        }
     }
 
     public IEnumerator waiter()

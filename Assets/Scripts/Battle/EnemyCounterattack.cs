@@ -39,7 +39,7 @@ public class EnemyCounterattack : MonoBehaviour {
         {
             GameManager.instance.activeEnemy.transform.Translate(-0.02f, 0.0f, -.1f);
             hole.transform.Translate(0.1f, 0.0f, -0.02f);
-            if (GameManager.instance.activeEnemy.transform.position.x < 0)
+            if (GameManager.instance.activeEnemy.transform.position.x > 0)
             {
                 backwards = false;
             }
@@ -65,6 +65,7 @@ public class EnemyCounterattack : MonoBehaviour {
             GameManager.instance.activeEnemy.transform.Translate(0.0f, 0.1f, 0.0f);
             if (GameManager.instance.activeEnemy.transform.position.y > 1)
             {
+                GameManager.instance.activeEnemy.transform.Translate(new Vector3(-0.2f, 0.0f, -0.2f));
                 GameManager.instance.activeEnemy.GetComponent<Animator>().Play("Airstrike");
                 upward = false;
             }
@@ -79,13 +80,15 @@ public class EnemyCounterattack : MonoBehaviour {
     public IEnumerator counter()
     {
         yield return new WaitForSeconds(1.2f);
+        WriteMovelist.currentMove = "Scumbag in the Shadows";
         GameManager.instance.activePlayer.GetComponent<Animator>().Play("Idle");
         hole.GetComponent<Renderer>().enabled = true;
         down = true;
         expanding = true;
         //forward = true;
        // GameManager.instance.activeEnemy.transform.Translate(new Vector3(0.0f, 0.0f, 7.0f));
-        //BattleCommands.runSolarShot = false;
+        BattleCommands.runSolarShot = false;
+        BattleCommands.damageWriter.setPlayerDamText(GameManager.instance.battleAnimation[5]);
         //shadow.GetComponent<Renderer>().enabled = true;
         //shadowBurst.GetComponent<Renderer>().enabled = true;
         shadow.Play();
@@ -112,12 +115,34 @@ public class EnemyCounterattack : MonoBehaviour {
     public IEnumerator counter4()
     {
         yield return new WaitForSeconds(1.2f);
-        GameManager.instance.activePlayer.GetComponent<Animator>().Play("Get Hit");
+        if (GameManager.instance.battleAnimation[6] == -1)
+        {
+            GameManager.instance.activePlayer.GetComponent<Animator>().Play("Dead");
+        } else
+        {
+            GameManager.instance.activePlayer.GetComponent<Animator>().Play("Get Hit");
+        }
+        StartCoroutine(counter5());
+        StartCoroutine(BattleCommands.damageWriter.CoDrawDamagePl());
     }
 
     public IEnumerator counter5()
     {
         yield return new WaitForSeconds(1.2f);
+        down = true;
+        StartCoroutine(counter6());
+    }
+
+    public IEnumerator counter6()
+    {
+        yield return new WaitForSeconds(1.2f);
         backwards = true;
+        StartCoroutine(counterEnd());
+    }
+
+    public IEnumerator counterEnd()
+    {
+        yield return new WaitForSeconds(1.2f);
+        upward = true;
     }
 }

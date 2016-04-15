@@ -17,14 +17,15 @@ public class BattleCommands : MonoBehaviour {
     public static bool runSuddenDeath = false;
     public bool walking = false;
     public Text damageText;
-    DrawDamage damageWriter;
+    public Text playerDamText;
+    public static DrawDamage damageWriter;
 
 	// Use this for initialization
 	void Start () {
         arrow1.enabled = true;
         onFirst = true;
         runDeepSix = false;
-        damageWriter = new DrawDamage(damageText);
+        damageWriter = new DrawDamage(damageText, playerDamText);
         GameManager.instance.activePlayer.transform.position = new Vector3(-7.55f, 1f, 1.5f);
         GameManager.instance.activeEnemy.transform.position = new Vector3(0.0f, 1.0f, 1.5f);
 	}
@@ -38,30 +39,56 @@ public class BattleCommands : MonoBehaviour {
             //commandBackground.transform.Translate(new Vector3(0.0f, -200.0f, 0.0f));
             if (onFirst)
             {
-                Debug.Log("onFirst");
-                ShakeScreen.timeElapsed = 0.0f;
-                StartCoroutine(AnimationMenuMove(5.5f));
-                //runGrittySlap = true;
-                runSolarShot = true;
+                // TEST CASES FOR BATTLE ANIMATION
+                // #1: Player attacks, enemy instantly dies
+                /*GameManager.instance.battleAnimation[0] = 1;
+                GameManager.instance.battleAnimation[1] = 1;
+                GameManager.instance.battleAnimation[2] = 25;
+                GameManager.instance.battleAnimation[3] = -1;
+                // #2: Player attacks, hits, enemy counters, end
+                /*GameManager.instance.battleAnimation[0] = 1;
+                GameManager.instance.battleAnimation[1] = 1;
+                GameManager.instance.battleAnimation[2] = 27;
+                GameManager.instance.battleAnimation[3] = 2;
+                GameManager.instance.battleAnimation[4] = 1;
+                GameManager.instance.battleAnimation[5] = 14; */
+                // #3: Player attacks, hits, enemy counter kills
+               /* GameManager.instance.battleAnimation[0] = 1;
+                GameManager.instance.battleAnimation[1] = 1;
+                GameManager.instance.battleAnimation[2] = 27;
+                GameManager.instance.battleAnimation[3] = 2;
+                GameManager.instance.battleAnimation[4] = 1;
+                GameManager.instance.battleAnimation[5] = 102;
+                GameManager.instance.battleAnimation[6] = -1; */
+                if (GameManager.instance.battleAnimation[0] == 1)
+                {
+                    damageWriter.setEnemyDamText(GameManager.instance.battleAnimation[2]);
+                    runSolarShot = true;
+                }
+
                 //runSonicPhantom = true;
                 //runJotun = true;
                 //runSuddenDeath = true;
+
+                ShakeScreen.timeElapsed = 0.0f;
+                //StartCoroutine(AnimationMenuMove(5.5f));
+                //runGrittySlap = true;
             }
             else
             {
                 Debug.Log("onSecond");
                 ShakeScreen.timeElapsed = 0.0f;
-                StartCoroutine(AnimationMenuMove(5.0f));
+                //StartCoroutine(AnimationMenuMove(5.0f));
                 runDeepSix = true;
             }
         }
 	}
-    IEnumerator AnimationMenuMove(float waitSeconds)
+    /*IEnumerator AnimationMenuMove(float waitSeconds)
     {
         Debug.Log("Inside Animation");
         yield return new WaitForSeconds(waitSeconds);
         Debug.Log("Done waiting");
         runDeepSix = false;
-        StartCoroutine(damageWriter.CoDrawDamage());
-    }
+        StartCoroutine(damageWriter.CoDrawDamageEn());
+    } */
 }
