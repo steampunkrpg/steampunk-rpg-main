@@ -144,5 +144,15 @@ public class EnemyCounterattack : MonoBehaviour {
     {
         yield return new WaitForSeconds(1.2f);
         upward = true;
+        StartCoroutine(startAttack3());
+    }
+
+    public IEnumerator startAttack3()
+    {
+        yield return new WaitForSeconds(1.2f);
+        if (GameManager.instance.battleAnimation[6] == 1)
+        {
+            BattleCommands.runSonicPhantom = true;
+        }
     }
 }

@@ -110,7 +110,7 @@ public class SonicPhantomAni : MonoBehaviour {
     IEnumerator enemyReaction()
     {
         yield return new WaitForSeconds(.8f);
-        //animEnemy.Play("break_through_the_block");
+        animEnemy.Play("break_through_the_block");
         animEnemy.enabled = false;
     }
 

@@ -103,7 +103,10 @@ public class SolarShotAni : MonoBehaviour {
         else
         {
             enemy.transform.Translate(new Vector3(-1.2f, 0.0f, 0.0f));
-            GameManager.instance.activeEnemy.GetComponent<Animator>().Play("break_through_the_block");
+            if (GameManager.instance.battleAnimation[1] == 1)
+            {
+                GameManager.instance.activeEnemy.GetComponent<Animator>().Play("break_through_the_block");
+            } 
             // Pseudocode for new actions
             // if (health <= 0) {
             //  play("death animation")

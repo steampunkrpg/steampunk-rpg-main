@@ -24,8 +24,9 @@ public class DrawDamage : MonoBehaviour {
     void Start() {
         damageText.text = "42";
         playerDamText.text = "42";
-        startPos = damageText.transform.position;
-        startPos2 = playerDamText.transform.position;
+        Debug.Log(damageText.transform.position);
+        startPos = new Vector3(259.0f, 118.9f, 0.0f);
+        startPos2 = new Vector3(-150.0f, 50.0f, 0.0f);
     }
 
     // Update is called once per frame

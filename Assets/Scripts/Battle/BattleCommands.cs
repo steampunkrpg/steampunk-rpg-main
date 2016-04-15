@@ -44,7 +44,7 @@ public class BattleCommands : MonoBehaviour {
                 /*GameManager.instance.battleAnimation[0] = 1;
                 GameManager.instance.battleAnimation[1] = 1;
                 GameManager.instance.battleAnimation[2] = 25;
-                GameManager.instance.battleAnimation[3] = -1;
+                GameManager.instance.battleAnimation[3] = -1; */
                 // #2: Player attacks, hits, enemy counters, end
                 /*GameManager.instance.battleAnimation[0] = 1;
                 GameManager.instance.battleAnimation[1] = 1;
@@ -53,19 +53,42 @@ public class BattleCommands : MonoBehaviour {
                 GameManager.instance.battleAnimation[4] = 1;
                 GameManager.instance.battleAnimation[5] = 14; */
                 // #3: Player attacks, hits, enemy counter kills
-               /* GameManager.instance.battleAnimation[0] = 1;
-                GameManager.instance.battleAnimation[1] = 1;
-                GameManager.instance.battleAnimation[2] = 27;
+                /* GameManager.instance.battleAnimation[0] = 1;
+                 GameManager.instance.battleAnimation[1] = 1;
+                 GameManager.instance.battleAnimation[2] = 27;
+                 GameManager.instance.battleAnimation[3] = 2;
+                 GameManager.instance.battleAnimation[4] = 1;
+                 GameManager.instance.battleAnimation[5] = 102;
+                 GameManager.instance.battleAnimation[6] = -1; */
+                // #4: Player attacks, misses, enemy counters
+                /*GameManager.instance.battleAnimation[0] = 1;
+                GameManager.instance.battleAnimation[1] = 0;
+                GameManager.instance.battleAnimation[2] = 0;
                 GameManager.instance.battleAnimation[3] = 2;
                 GameManager.instance.battleAnimation[4] = 1;
                 GameManager.instance.battleAnimation[5] = 102;
-                GameManager.instance.battleAnimation[6] = -1; */
-                if (GameManager.instance.battleAnimation[0] == 1)
+                GameManager.instance.battleAnimation[6] = 0; */
+                // #5: Player attacks, enemy counters, player attacks again
+                GameManager.instance.battleAnimation[0] = 1;
+                GameManager.instance.battleAnimation[1] = 1;
+                GameManager.instance.battleAnimation[2] = 25;
+                GameManager.instance.battleAnimation[3] = 2;
+                GameManager.instance.battleAnimation[4] = 1;
+                GameManager.instance.battleAnimation[5] = 2;
+                GameManager.instance.battleAnimation[6] = 1;
+                GameManager.instance.battleAnimation[7] = 1;
+                GameManager.instance.battleAnimation[8] = 57;
+                // player one shots the enemy
+                if (GameManager.instance.battleAnimation[0] == 1 && GameManager.instance.battleAnimation[3] == -1)
                 {
+                    damageWriter.setEnemyDamText(GameManager.instance.battleAnimation[2]);
+                    runJotun = true;
+                }
+                // player attacks enemy, enemy counters
+                else if (GameManager.instance.battleAnimation[0] == 1 && GameManager.instance.battleAnimation[3] == 2) { 
                     damageWriter.setEnemyDamText(GameManager.instance.battleAnimation[2]);
                     runSolarShot = true;
                 }
-
                 //runSonicPhantom = true;
                 //runJotun = true;
                 //runSuddenDeath = true;
