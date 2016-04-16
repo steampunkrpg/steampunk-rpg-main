@@ -57,11 +57,23 @@ public class DropBricks : MonoBehaviour {
         {
             WriteMovelist.currentMove = "Lay the Foundation";
         }
-        yield return new WaitForSeconds(1.2f);
-        brick1.GetComponent<Renderer>().enabled = true;
-        brick1.GetComponent<Rigidbody>().useGravity = true;
-        GameManager.instance.activePlayer.GetComponent<Collider>().enabled = false;
-        StartCoroutine(reactBrick1());
+        if (GameManager.instance.battleAnimation[1] != 1)
+        {
+            brick1.transform.Translate(-2.5f, 0.0f, 3f);
+            yield return new WaitForSeconds(1.2f);
+            brick1.GetComponent<Renderer>().enabled = true;
+            brick1.GetComponent<Rigidbody>().useGravity = true;
+            GameManager.instance.activePlayer.GetComponent<Collider>().enabled = false;
+            StartCoroutine(reactMiss1());
+        }
+        else
+        {
+            yield return new WaitForSeconds(1.2f);
+            brick1.GetComponent<Renderer>().enabled = true;
+            brick1.GetComponent<Rigidbody>().useGravity = true;
+            GameManager.instance.activePlayer.GetComponent<Collider>().enabled = false;
+            StartCoroutine(reactBrick1());
+        }
     }
 
     public IEnumerator reactBrick1()
@@ -73,6 +85,19 @@ public class DropBricks : MonoBehaviour {
             StartCoroutine(pyramidScheme());
         }
         else if (GameManager.instance.battleAnimation[3] == 0)
+        {
+            // GO TO END CODE
+        }
+        else if (GameManager.instance.battleAnimation[3] == 2)
+        {
+            StartCoroutine(dropBrick2());
+        }
+    }
+
+    public IEnumerator reactMiss1()
+    {
+        yield return new WaitForSeconds(.6f);
+        if (GameManager.instance.battleAnimation[3] == 0)
         {
             // GO TO END CODE
         }
