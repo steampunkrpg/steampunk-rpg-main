@@ -87,7 +87,7 @@ public class BattleCommands : MonoBehaviour {
                 /*GameManager.instance.battleAnimation[0] = 2;
                 GameManager.instance.battleAnimation[1] = 1;
                 GameManager.instance.battleAnimation[2] = 24;
-                GameManager.instance.battleAnimation[3] = -1; */
+                GameManager.instance.battleAnimation[3] = -1;*/
                 // #8: Enemy attacks once and that's all
                 /*GameManager.instance.battleAnimation[0] = 2;
                 GameManager.instance.battleAnimation[1] = 1;
@@ -155,6 +155,44 @@ public class BattleCommands : MonoBehaviour {
                 GameManager.instance.battleAnimation[1] = 0;
                 GameManager.instance.battleAnimation[2] = 0;
                 GameManager.instance.battleAnimation[3] = 0;*/
+                //#18: Player hits twice (long range)
+                /*GameManager.instance.battleAnimation[0] = 1;
+                GameManager.instance.battleAnimation[1] = 1;
+                GameManager.instance.battleAnimation[2] = 25;
+                GameManager.instance.battleAnimation[3] = 1;
+                GameManager.instance.battleAnimation[4] = 1;
+                GameManager.instance.battleAnimation[5] = 27;*/
+                //#19: Player hits first, second misses
+                /*GameManager.instance.battleAnimation[0] = 1;
+                GameManager.instance.battleAnimation[1] = 1;
+                GameManager.instance.battleAnimation[2] = 25;
+                GameManager.instance.battleAnimation[3] = 1;
+                GameManager.instance.battleAnimation[4] = 0;
+                GameManager.instance.battleAnimation[5] = 0; */
+                //#20: Player misses both
+                /*GameManager.instance.battleAnimation[0] = 1;
+                GameManager.instance.battleAnimation[1] = 0;
+                GameManager.instance.battleAnimation[2] = 0;
+                GameManager.instance.battleAnimation[3] = 1;
+                GameManager.instance.battleAnimation[4] = 0;
+                GameManager.instance.battleAnimation[5] = 0; */
+                //#21: Player hits both, second kills
+                /*GameManager.instance.battleAnimation[0] = 1;
+                GameManager.instance.battleAnimation[1] = 1;
+                GameManager.instance.battleAnimation[2] = 25;
+                GameManager.instance.battleAnimation[3] = 1;
+                GameManager.instance.battleAnimation[4] = 1;
+                GameManager.instance.battleAnimation[5] = 27;
+                GameManager.instance.battleAnimation[6] = -1;*/
+                //#22: Player hits ranged, enemy counters
+                GameManager.instance.battleAnimation[0] = 1;
+                GameManager.instance.battleAnimation[1] = 1;
+                GameManager.instance.battleAnimation[2] = 25;
+                GameManager.instance.battleAnimation[3] = 2;
+                GameManager.instance.battleAnimation[4] = 1;
+                GameManager.instance.battleAnimation[5] = 27;
+                GameManager.instance.battleAnimation[6] = -1;
+
                 // player one shots the enemy
                 if (GameManager.instance.battleAnimation[0] == 1 && GameManager.instance.battleAnimation[3] == -1)
                 {
@@ -164,9 +202,9 @@ public class BattleCommands : MonoBehaviour {
                 // player attacks enemy, enemy counters
                 else if (GameManager.instance.battleAnimation[0] == 1 && GameManager.instance.battleAnimation[3] == 2) { 
                     damageWriter.setEnemyDamText(GameManager.instance.battleAnimation[2]);
-                    runSolarShot = true;
+                    runDominoTheory = true;
                 }
-                else if (GameManager.instance.battleAnimation[0] == 1 && GameManager.instance.battleAnimation[3] == 0)
+                else if (GameManager.instance.battleAnimation[0] == 1 && (GameManager.instance.battleAnimation[3] == 0 || GameManager.instance.battleAnimation[3] == 1))
                 {
                     runDominoTheory = true;
                 }
@@ -175,7 +213,7 @@ public class BattleCommands : MonoBehaviour {
                     runDropBricks = true;
                 }
 
-                runDominoTheory = true;
+                //runDominoTheory = true;
                 //runSonicPhantom = true;
                 //runJotun = true;
                 //runSuddenDeath = true;

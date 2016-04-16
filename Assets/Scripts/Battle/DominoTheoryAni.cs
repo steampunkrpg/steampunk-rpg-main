@@ -9,6 +9,7 @@ public class DominoTheoryAni : MonoBehaviour {
     public GameObject domino4;
     public GameObject domino5;
     public GameObject domino6;
+    public GameObject bigDomino;
     public bool atStart;
     public bool dom1rising;
     public bool dom2rising;
@@ -17,6 +18,7 @@ public class DominoTheoryAni : MonoBehaviour {
     public bool dom5rising;
     public bool dom6rising;
     public bool decompressing;
+    public ParticleSystem shadow;
 
     // Use this for initialization
     void Start () {
@@ -26,12 +28,14 @@ public class DominoTheoryAni : MonoBehaviour {
         domino4.GetComponent<Rigidbody>().useGravity = false;
         domino5.GetComponent<Rigidbody>().useGravity = false;
         domino6.GetComponent<Rigidbody>().useGravity = false;
+        bigDomino.GetComponent<Rigidbody>().useGravity = false;
         domino1.GetComponent<BoxCollider>().enabled = false;
         domino2.GetComponent<BoxCollider>().enabled = false;
         domino3.GetComponent<BoxCollider>().enabled = false;
         domino4.GetComponent<BoxCollider>().enabled = false;
         domino5.GetComponent<BoxCollider>().enabled = false;
         domino6.GetComponent<BoxCollider>().enabled = false;
+        bigDomino.GetComponent<Renderer>().enabled = false;
         dom1rising = false;
         dom2rising = false;
         dom3rising = false;
@@ -161,17 +165,49 @@ public class DominoTheoryAni : MonoBehaviour {
         }
         yield return new WaitForSeconds(1.1f);
         domino1.transform.Translate(500.0f, 500.0f, 500.0f);
-        yield return new WaitForSeconds(.6f);
+        yield return new WaitForSeconds(.4f);
         domino2.transform.Translate(500.0f, 500.0f, 500.0f);
-        yield return new WaitForSeconds(.6f);
+        yield return new WaitForSeconds(.4f);
         domino3.transform.Translate(500.0f, 500.0f, 500.0f);
-        yield return new WaitForSeconds(.6f);
+        yield return new WaitForSeconds(.4f);
         domino4.transform.Translate(500.0f, 500.0f, 500.0f);
-        yield return new WaitForSeconds(.6f);
+        yield return new WaitForSeconds(.4f);
         domino5.transform.Translate(500.0f, 500.0f, 500.0f);
-        yield return new WaitForSeconds(.6f);
+        yield return new WaitForSeconds(.4f);
         domino6.transform.Translate(500.0f, 500.0f, 500.0f);
         yield return new WaitForSeconds(.3f);
         decompressing = true;
+        if (GameManager.instance.battleAnimation[3] == 1)
+        {
+            StartCoroutine(startOhDomiNo());
+        }
+        else if (GameManager.instance.battleAnimation[3] == 2)
+        {
+            WriteMovelist.currentMove = "Scumbag in the Shadows";
+            StartCoroutine(shadow.GetComponent<EnemyCounterattack>().counter());
+        }
+    }
+
+    public IEnumerator startOhDomiNo()
+    {
+        yield return new WaitForSeconds(1.0f);
+        WriteMovelist.currentMove = "Oh Domi-No!";
+        if (GameManager.instance.battleAnimation[4] != 1)
+        {
+            bigDomino.transform.Translate(7.0f, 0.0f, -5.0f);
+        }
+        bigDomino.GetComponent<Rigidbody>().useGravity = true;
+        bigDomino.GetComponent<Renderer>().enabled = true;
+        yield return new WaitForSeconds(1.4f);
+        if (GameManager.instance.battleAnimation[4] == 1)
+        {
+            GameManager.instance.activeEnemy.transform.localScale -= new Vector3(0.0f, .9f, 0.0f);
+        }
+        yield return new WaitForSeconds(1.2f);
+        bigDomino.transform.Translate(new Vector3(500.0f, 500.0f, 500.0f));
+        if (GameManager.instance.battleAnimation[6] != -1)
+        {
+            decompressing = true;
+        }
     }
 }
