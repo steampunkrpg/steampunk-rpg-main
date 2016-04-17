@@ -86,11 +86,20 @@ public class DropBricks : MonoBehaviour {
         }
         else if (GameManager.instance.battleAnimation[3] == 0)
         {
+            // end of attack
             // GO TO END CODE
         }
         else if (GameManager.instance.battleAnimation[3] == 2)
         {
             StartCoroutine(dropBrick2());
+        }
+        else if (GameManager.instance.battleAnimation[3] == 1)
+        {
+            yield return new WaitForSeconds(1.5f);
+            decompressing = true;
+            brick1.transform.Translate(new Vector3(500.0f, 500.0f, 500.0f));
+            yield return new WaitForSeconds(.9f);
+            BattleCommands.runScorchingSniper = true;
         }
     }
 
@@ -104,6 +113,13 @@ public class DropBricks : MonoBehaviour {
         else if (GameManager.instance.battleAnimation[3] == 2)
         {
             StartCoroutine(dropBrick2());
+        }
+        else if (GameManager.instance.battleAnimation[3] == 1)
+        {
+            yield return new WaitForSeconds(1.5f);
+            brick1.transform.Translate(new Vector3(500.0f, 500.0f, 500.0f));
+            yield return new WaitForSeconds(.9f);
+            BattleCommands.runScorchingSniper = true;
         }
     }
 
@@ -137,7 +153,7 @@ public class DropBricks : MonoBehaviour {
             brick2.transform.Translate(500.0f, 500.0f, 500.0f);
             if (GameManager.instance.battleAnimation[6] == -1)
             {
-                // GO TO END, CHARACTER REMAINS FLATTENED
+                // GO TO END, CHARACTER REMAINS FLATTENED (DEAD)
             }
             else if (GameManager.instance.battleAnimation[6] == 0)
             {

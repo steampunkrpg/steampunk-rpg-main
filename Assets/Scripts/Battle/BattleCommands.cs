@@ -18,6 +18,7 @@ public class BattleCommands : MonoBehaviour {
     public static bool runSwarm = false;
     public static bool runDropBricks = false;
     public static bool runDominoTheory = false;
+    public static bool runScorchingSniper = false;
     public bool walking = false;
     public Text damageText;
     public Text playerDamText;
@@ -31,7 +32,8 @@ public class BattleCommands : MonoBehaviour {
         damageWriter = new DrawDamage(damageText, playerDamText);
         GameManager.instance.activePlayer.transform.position = new Vector3(-7.55f, 1f, 1.5f);
         GameManager.instance.activeEnemy.transform.position = new Vector3(0.0f, 1.0f, 1.5f);
-	}
+        //crosshairs.GetComponent<Renderer>().enabled = false;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -80,7 +82,7 @@ public class BattleCommands : MonoBehaviour {
                 GameManager.instance.battleAnimation[5] = 2;
                 GameManager.instance.battleAnimation[6] = 1;
                 GameManager.instance.battleAnimation[7] = 1;
-                GameManager.instance.battleAnimation[8] = 57; */
+                GameManager.instance.battleAnimation[8] = 57;*/
                 // #6: Enemy attacks, wipes out player
                 //GameManager.instance.battleAnimation[0] = 2;
                 // #7: Enemy one shots player
@@ -185,13 +187,57 @@ public class BattleCommands : MonoBehaviour {
                 GameManager.instance.battleAnimation[5] = 27;
                 GameManager.instance.battleAnimation[6] = -1;*/
                 //#22: Player hits ranged, enemy counters
-                GameManager.instance.battleAnimation[0] = 1;
+                /*GameManager.instance.battleAnimation[0] = 1;
                 GameManager.instance.battleAnimation[1] = 1;
                 GameManager.instance.battleAnimation[2] = 25;
                 GameManager.instance.battleAnimation[3] = 2;
                 GameManager.instance.battleAnimation[4] = 1;
                 GameManager.instance.battleAnimation[5] = 27;
-                GameManager.instance.battleAnimation[6] = -1;
+                GameManager.instance.battleAnimation[6] = -1;*/
+                //#23: Enemy attacks, player counters twice, second kills
+                GameManager.instance.battleAnimation[0] = 2;
+                GameManager.instance.battleAnimation[1] = 1;
+                GameManager.instance.battleAnimation[2] = 24;
+                GameManager.instance.battleAnimation[3] = 1;
+                GameManager.instance.battleAnimation[4] = 1;
+                GameManager.instance.battleAnimation[5] = 24;
+                GameManager.instance.battleAnimation[6] = 1;
+                GameManager.instance.battleAnimation[7] = 1;
+                GameManager.instance.battleAnimation[8] = 24;
+                GameManager.instance.battleAnimation[9] = -1;
+                //#24: Enemy attacks, player counters twice, first misses, second kills
+                GameManager.instance.battleAnimation[0] = 2;
+                GameManager.instance.battleAnimation[1] = 1;
+                GameManager.instance.battleAnimation[2] = 24;
+                GameManager.instance.battleAnimation[3] = 1;
+                GameManager.instance.battleAnimation[4] = 0;
+                GameManager.instance.battleAnimation[5] = 0;
+                GameManager.instance.battleAnimation[6] = 1;
+                GameManager.instance.battleAnimation[7] = 1;
+                GameManager.instance.battleAnimation[8] = 24;
+                GameManager.instance.battleAnimation[9] = -1;
+                //#25: Enemy attacks, player counters twice, both hurt
+                GameManager.instance.battleAnimation[0] = 2;
+                GameManager.instance.battleAnimation[1] = 1;
+                GameManager.instance.battleAnimation[2] = 24;
+                GameManager.instance.battleAnimation[3] = 1;
+                GameManager.instance.battleAnimation[4] = 1;
+                GameManager.instance.battleAnimation[5] = 1;
+                GameManager.instance.battleAnimation[6] = 1;
+                GameManager.instance.battleAnimation[7] = 1;
+                GameManager.instance.battleAnimation[8] = 24;
+                GameManager.instance.battleAnimation[9] = 0;
+                //#25: Enemy attacks, player counters twice, neither hit
+                GameManager.instance.battleAnimation[0] = 2;
+                GameManager.instance.battleAnimation[1] = 1;
+                GameManager.instance.battleAnimation[2] = 24;
+                GameManager.instance.battleAnimation[3] = 1;
+                GameManager.instance.battleAnimation[4] = 0;
+                GameManager.instance.battleAnimation[5] = 0;
+                GameManager.instance.battleAnimation[6] = 1;
+                GameManager.instance.battleAnimation[7] = 0;
+                GameManager.instance.battleAnimation[8] = 0;
+                GameManager.instance.battleAnimation[9] = 0;
 
                 // player one shots the enemy
                 if (GameManager.instance.battleAnimation[0] == 1 && GameManager.instance.battleAnimation[3] == -1)
@@ -202,7 +248,8 @@ public class BattleCommands : MonoBehaviour {
                 // player attacks enemy, enemy counters
                 else if (GameManager.instance.battleAnimation[0] == 1 && GameManager.instance.battleAnimation[3] == 2) { 
                     damageWriter.setEnemyDamText(GameManager.instance.battleAnimation[2]);
-                    runDominoTheory = true;
+                    //runDominoTheory = true;
+                    runSolarShot = true;
                 }
                 else if (GameManager.instance.battleAnimation[0] == 1 && (GameManager.instance.battleAnimation[3] == 0 || GameManager.instance.battleAnimation[3] == 1))
                 {
@@ -212,7 +259,7 @@ public class BattleCommands : MonoBehaviour {
                 {
                     runDropBricks = true;
                 }
-
+                //runScorchingSniper = true;
                 //runDominoTheory = true;
                 //runSonicPhantom = true;
                 //runJotun = true;
