@@ -149,10 +149,12 @@ public class EnemyCounterattack : MonoBehaviour {
 
     public IEnumerator startAttack3()
     {
+        hole.GetComponent<Renderer>().enabled = false;
+        SolarShotAni.runNum = 2;
         yield return new WaitForSeconds(1.2f);
         if (GameManager.instance.battleAnimation[6] == 1)
         {
-            BattleCommands.runSonicPhantom = true;
+            BattleCommands.runSolarShot = true;
         }
     }
 }

@@ -19,6 +19,7 @@ public class DominoTheoryAni : MonoBehaviour {
     public bool dom6rising;
     public bool decompressing;
     public ParticleSystem shadow;
+    public static int runNum;
 
     // Use this for initialization
     void Start () {
@@ -44,6 +45,7 @@ public class DominoTheoryAni : MonoBehaviour {
         dom6rising = false;
         atStart = true;
         decompressing = false;
+        runNum = 0;
     }
 	
 	// Update is called once per frame
@@ -159,7 +161,7 @@ public class DominoTheoryAni : MonoBehaviour {
     public IEnumerator enemyReact()
     {
         yield return new WaitForSeconds(3.9f);
-        if (GameManager.instance.battleAnimation[1] == 1)
+        if (GameManager.instance.battleAnimation[1] == 1 || GameManager.instance.battleAnimation[7] == 1)
         {
             GameManager.instance.activeEnemy.transform.localScale -= new Vector3(0.0f, .9f, 0.0f);
         }
@@ -177,11 +179,11 @@ public class DominoTheoryAni : MonoBehaviour {
         domino6.transform.Translate(500.0f, 500.0f, 500.0f);
         yield return new WaitForSeconds(.3f);
         decompressing = true;
-        if (GameManager.instance.battleAnimation[3] == 1)
+        if (GameManager.instance.battleAnimation[3] == 1 && runNum != 2)
         {
             StartCoroutine(startOhDomiNo());
         }
-        else if (GameManager.instance.battleAnimation[3] == 2)
+        else if (GameManager.instance.battleAnimation[3] == 2 && runNum != 2)
         {
             WriteMovelist.currentMove = "Scumbag in the Shadows";
             StartCoroutine(shadow.GetComponent<EnemyCounterattack>().counter());

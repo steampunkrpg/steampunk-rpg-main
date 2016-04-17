@@ -16,6 +16,7 @@ public class SolarShotAni : MonoBehaviour {
     public Animator animEnemy;
     public ParticleSystem burst;
     public ParticleSystem shadow;
+    public static int runNum;
 
     // Use this for initialization
     void Start() {
@@ -36,6 +37,7 @@ public class SolarShotAni : MonoBehaviour {
         ray6.GetComponent<Renderer>().enabled = false;
         burst.GetComponent<Renderer>().enabled = false;
         GameManager.instance.activeEnemy.GetComponent<Animator>().Play("Idle_block");
+        runNum = 0;
     }
 
     // Update is called once per frame
@@ -96,14 +98,15 @@ public class SolarShotAni : MonoBehaviour {
     public IEnumerator enemyReact()
     {
         yield return new WaitForSeconds(.6f);
-        if (GameManager.instance.battleAnimation[3] == -1)
+        if (GameManager.instance.battleAnimation[9] == -1)
         {
             GameManager.instance.activeEnemy.GetComponent<Animator>().Play("Dead");
+            // GO TO END
         }
         else
         {
             enemy.transform.Translate(new Vector3(-1.2f, 0.0f, 0.0f));
-            if (GameManager.instance.battleAnimation[1] == 1)
+            if (GameManager.instance.battleAnimation[7] == 1)
             {
                 GameManager.instance.activeEnemy.GetComponent<Animator>().Play("break_through_the_block");
             } 
@@ -111,10 +114,14 @@ public class SolarShotAni : MonoBehaviour {
             // if (health <= 0) {
             //  play("death animation")
             // else
-
-            WriteMovelist.currentMove = "Scumbag in the Shadows";
-            StartCoroutine(shadow.GetComponent<EnemyCounterattack>().counter());
-            
+            if (runNum != 2)
+            {
+                WriteMovelist.currentMove = "Scumbag in the Shadows";
+                StartCoroutine(shadow.GetComponent<EnemyCounterattack>().counter());
+            } else
+            {
+                // GO TO END
+            }
             //GameManager.instance.activeEnemy.GetComponent<Animator>().Play("Dead");
             //startCounter.invokeCo();
         }
