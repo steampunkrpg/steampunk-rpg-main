@@ -9,7 +9,7 @@ public class BattleCommands : MonoBehaviour {
     public bool onFirst;
     public GameObject commandMenu;
     public GameObject commandBackground;
-    public static bool runDeepSix = false;
+    // STILL IN PRODUCTION public static bool runDeepSix = false;
     public static bool runGrittySlap = false;
     public static bool runSolarShot = false;
     public static bool runSonicPhantom = false;
@@ -19,6 +19,7 @@ public class BattleCommands : MonoBehaviour {
     public static bool runDropBricks = false;
     public static bool runDominoTheory = false;
     public static bool runScorchingSniper = false;
+    // STILL IN PRODUCTION public static bool runThaBigGuy = false;
     public bool walking = false;
     public Text damageText;
     public Text playerDamText;
@@ -28,7 +29,7 @@ public class BattleCommands : MonoBehaviour {
 	void Start () {
         arrow1.enabled = true;
         onFirst = true;
-        runDeepSix = false;
+        //runDeepSix = false;
         damageWriter = new DrawDamage(damageText, playerDamText);
         GameManager.instance.activePlayer.transform.position = new Vector3(-7.55f, 1f, 1.5f);
         GameManager.instance.activeEnemy.transform.position = new Vector3(0.0f, 1.0f, 1.5f);
@@ -195,7 +196,7 @@ public class BattleCommands : MonoBehaviour {
                 GameManager.instance.battleAnimation[5] = 27;
                 GameManager.instance.battleAnimation[6] = -1;*/
                 //#23: Enemy attacks, player counters twice, second kills
-                GameManager.instance.battleAnimation[0] = 2;
+                /*GameManager.instance.battleAnimation[0] = 2;
                 GameManager.instance.battleAnimation[1] = 1;
                 GameManager.instance.battleAnimation[2] = 24;
                 GameManager.instance.battleAnimation[3] = 1;
@@ -204,7 +205,7 @@ public class BattleCommands : MonoBehaviour {
                 GameManager.instance.battleAnimation[6] = 1;
                 GameManager.instance.battleAnimation[7] = 1;
                 GameManager.instance.battleAnimation[8] = 24;
-                GameManager.instance.battleAnimation[9] = -1;
+                GameManager.instance.battleAnimation[9] = -1; */
                 //#24: Enemy attacks, player counters twice, first misses, second kills
                 GameManager.instance.battleAnimation[0] = 2;
                 GameManager.instance.battleAnimation[1] = 1;
@@ -238,6 +239,16 @@ public class BattleCommands : MonoBehaviour {
                 GameManager.instance.battleAnimation[7] = 0;
                 GameManager.instance.battleAnimation[8] = 0;
                 GameManager.instance.battleAnimation[9] = 0;
+                //#26: Enemy attacks, player counters, enemy attacks again
+                GameManager.instance.battleAnimation[0] = 2;
+                GameManager.instance.battleAnimation[1] = 1;
+                GameManager.instance.battleAnimation[2] = 24;
+                GameManager.instance.battleAnimation[3] = 1;
+                GameManager.instance.battleAnimation[4] = 1;
+                GameManager.instance.battleAnimation[5] = 8;
+                GameManager.instance.battleAnimation[6] = 2;
+                GameManager.instance.battleAnimation[7] = 1;
+                GameManager.instance.battleAnimation[8] = 23;
 
                 // player one shots the enemy
                 if (GameManager.instance.battleAnimation[0] == 1 && GameManager.instance.battleAnimation[3] == -1)
@@ -274,7 +285,7 @@ public class BattleCommands : MonoBehaviour {
                 Debug.Log("onSecond");
                 ShakeScreen.timeElapsed = 0.0f;
                 //StartCoroutine(AnimationMenuMove(5.0f));
-                runDeepSix = true;
+                //runDeepSix = true;
             }
         }
 	}

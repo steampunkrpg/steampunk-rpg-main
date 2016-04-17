@@ -60,7 +60,7 @@ public class ScorchingSniperAni : MonoBehaviour {
             {
                 crosshairs.GetComponent<Renderer>().enabled = true;
                 GameManager.instance.activeEnemy.transform.Translate(new Vector3(0.0f, -.3f, 0.0f));
-                WriteMovelist.currentMove = "Blood Diamond";
+                WriteMovelist.currentMove = "Possibly American Sniper";
                 atStart = false;
                 cam1.enabled = false;
                 cam2.enabled = true;
@@ -276,8 +276,9 @@ public class ScorchingSniperAni : MonoBehaviour {
                     sniperBoxW.GetComponent<Renderer>().enabled = false;
                     sniperBoxNW.GetComponent<Renderer>().enabled = false;
                     crosshairs.GetComponent<Renderer>().enabled = false;
+                    cam1.enabled = true;
                     cam2.enabled = false;
-                    // ************ ADD IN BOMB CODE ****************
+                    BattleCommands.runDropBricks = true;
                 } 
             }
             // HIT
@@ -328,7 +329,8 @@ public class ScorchingSniperAni : MonoBehaviour {
                         sniperBoxNW.GetComponent<Renderer>().enabled = false;
                         crosshairs.GetComponent<Renderer>().enabled = false;
                         cam2.enabled = false;
-                        // ************ ADD IN BOMB CODE ****************
+                        cam1.enabled = true;
+                        BattleCommands.runDropBricks = true;
                     }
                 }
             }
