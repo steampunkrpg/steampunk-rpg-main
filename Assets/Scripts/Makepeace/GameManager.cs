@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour {
 	public int State;
 	public int prevState;
 	public int level;
+	public bool inLevel;
 
 	void Awake() {
 		if (instance == null)
@@ -73,6 +74,7 @@ public class GameManager : MonoBehaviour {
 		activeEnemy = null;
 		LoadLists ();
 		State = 4;
+		inLevel = true;
 	}
 
 	void Update() {
@@ -395,6 +397,7 @@ public class GameManager : MonoBehaviour {
 
 		GameObject[] enemies = GameObject.FindGameObjectsWithTag ("Enemy");
 		foreach (GameObject enemy in enemies) {
+			enemy.GetComponent<Enemy> ().DontDestroy ();
 			enemyL.Add (enemy.GetComponent<Enemy> ());
 		}
 
@@ -815,6 +818,7 @@ public class GameManager : MonoBehaviour {
 
 		if (enemyL.Count == 0) {
 			level++;
+			inLevel = false;
 			StartCoroutine(TimerEnumerator(5,-2));
 		}
 	}

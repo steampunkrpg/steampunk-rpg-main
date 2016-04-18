@@ -4,8 +4,12 @@ using System.Collections;
 public class InitializeGame : MonoBehaviour {
 
 	void Awake() {
-		GameManager.instance.InitGame ();
-		InitializeLists ();
+		if (GameManager.instance.inLevel) {
+			GameManager.instance.InitGame ();
+			InitializeLists ();
+		} else {
+
+		}
 	}
 
 	public void InitializeLists() {

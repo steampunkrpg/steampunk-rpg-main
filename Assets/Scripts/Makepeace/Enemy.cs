@@ -813,6 +813,10 @@ public class Enemy : MonoBehaviour {
 		}
 	}
 
+	public void DontDestroy() {
+		DontDestroyOnLoad (this);
+	}
+
 	public void Death() {
 		Item[] dropItems = this.GetComponents<Item> ();
 		if (dropItems != null) {
