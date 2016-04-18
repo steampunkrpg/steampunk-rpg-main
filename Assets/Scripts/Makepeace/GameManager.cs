@@ -63,6 +63,7 @@ public class GameManager : MonoBehaviour {
 		InvUI.GetComponent<InventoryManager> ().CreateDefault ();
 
 		level = 0;
+		inLevel = false;
 		State = 0;
 	}
 

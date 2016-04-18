@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour {
 	private List<HexTile> movePath;
 
 	void Start() {
+		animEnemy = this.GetComponent<Animator> ();
 		enemy_stats = this.GetComponentInChildren<Stats> ();
 		Status = 0;
 	}

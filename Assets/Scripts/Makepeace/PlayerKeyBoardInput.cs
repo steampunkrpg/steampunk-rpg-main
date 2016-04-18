@@ -84,6 +84,8 @@ public class PlayerKeyBoardInput : MonoBehaviour {
 				for (int i = 0; i < GameManager.instance.playerL.Count; i++) {
 					if (GameManager.instance.playerL [i].Status == 1) {
 						GameManager.instance.activePlayer = GameManager.instance.playerL [i];
+						GameManager.instance.PlayerUI.GetComponent<PlayerUI> ().UpdateUI (GameManager.instance.activePlayer.char_stats);
+						GameManager.instance.PlayerUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
 						break;
 					}
 				}
@@ -95,6 +97,7 @@ public class PlayerKeyBoardInput : MonoBehaviour {
 								if (GameManager.instance.playerL [j].Status == 1 && GameManager.instance.playerL [j] != GameManager.instance.activePlayer) {
 									GameManager.instance.activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
 									GameManager.instance.activePlayer = GameManager.instance.playerL [j];
+									GameManager.instance.PlayerUI.GetComponent<PlayerUI> ().UpdateUI (GameManager.instance.activePlayer.char_stats);
 									break;
 								}
 							}
@@ -104,6 +107,7 @@ public class PlayerKeyBoardInput : MonoBehaviour {
 								if (GameManager.instance.playerL [(j+i+1)%GameManager.instance.playerL.Count].Status == 1 && GameManager.instance.playerL [(j+i+1)%GameManager.instance.playerL.Count] != GameManager.instance.activePlayer) {
 									GameManager.instance.activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
 									GameManager.instance.activePlayer = GameManager.instance.playerL [(j+i+1)%GameManager.instance.playerL.Count];
+									GameManager.instance.PlayerUI.GetComponent<PlayerUI> ().UpdateUI (GameManager.instance.activePlayer.char_stats);
 									break;
 								}
 							}

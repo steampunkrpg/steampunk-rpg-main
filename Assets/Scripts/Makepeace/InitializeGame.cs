@@ -4,7 +4,7 @@ using System.Collections;
 public class InitializeGame : MonoBehaviour {
 
 	void Awake() {
-		if (GameManager.instance.inLevel) {
+		if (!GameManager.instance.inLevel) {
 			GameManager.instance.InitGame ();
 			InitializeLists ();
 		} else {
