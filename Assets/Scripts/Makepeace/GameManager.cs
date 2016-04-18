@@ -658,7 +658,7 @@ public class GameManager : MonoBehaviour {
 		}
 
 		if (dWep.Rng.Contains (defender.att_dis)) {
-			if (attacker.character.tag == "Unit") {
+			if (defender.character.tag == "Unit") {
 				battleAnimation [3] = 1;
 			} else {
 				battleAnimation [3] = 2;
@@ -748,7 +748,7 @@ public class GameManager : MonoBehaviour {
 			}
 		} else if (repAtt[1] == 1) {
 			if (dWep.Rng.Contains (defender.att_dis)) {
-				if (attacker.character.tag == "Unit") {
+				if (defender.character.tag == "Unit") {
 					battleAnimation [3 + offset] = 1;
 				} else {
 					battleAnimation [3 + offset] = 2;
