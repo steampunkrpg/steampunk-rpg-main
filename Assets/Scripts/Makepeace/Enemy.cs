@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour {
 
 	public int Status;
 	public float movement;
-	public int special;
+	public float special;
 	public List<float> att_range;
 	public List<Unit> attackablePlayers;
 	private Unit attackablePlayer;
@@ -24,6 +24,7 @@ public class Enemy : MonoBehaviour {
 		animEnemy = this.GetComponent<Animator> ();
 		enemy_stats = this.GetComponentInChildren<Stats> ();
 		Status = 0;
+		special = 0.5f;
 	}
 
 	public void InitPosition () {

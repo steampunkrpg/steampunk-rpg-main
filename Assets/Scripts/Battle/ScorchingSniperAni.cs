@@ -247,7 +247,7 @@ public class ScorchingSniperAni : MonoBehaviour {
                 {
                     if (GameManager.instance.battleAnimation[7]!=1)
                     {
-                        // DOUBLE MISS, GO TO END
+						AllDone ();
                     }
                     else
                     {
@@ -255,12 +255,12 @@ public class ScorchingSniperAni : MonoBehaviour {
                         if (GameManager.instance.battleAnimation[9]== -1)
                         {
                             GameManager.instance.activeEnemy.GetComponent<Animator>().Play("Dead");
-                            // GO TO END
+							AllDone ();
                         }
                         else
                         {
                             GameManager.instance.activeEnemy.GetComponent<Animator>().Play("break_through_the_block");
-                            // GO TO END
+							AllDone ();
                         }
                     }
                 }
@@ -288,7 +288,7 @@ public class ScorchingSniperAni : MonoBehaviour {
                 if (GameManager.instance.battleAnimation[6]==-1)
                 {
                     GameManager.instance.activeEnemy.GetComponent<Animator>().Play("Dead");
-                    // GO TO END
+					AllDone ();
                 }
                 else
                 {
@@ -299,7 +299,7 @@ public class ScorchingSniperAni : MonoBehaviour {
                     {
                         if (GameManager.instance.battleAnimation[7] != 1)
                         {
-                            // MISS, GO TO END
+							AllDone ();
                         }
                         else
                         {
@@ -307,12 +307,12 @@ public class ScorchingSniperAni : MonoBehaviour {
                             if (GameManager.instance.battleAnimation[9] == -1)
                             {
                                 GameManager.instance.activeEnemy.GetComponent<Animator>().Play("Dead");
-                                // GO TO END
+								AllDone ();
                             }
                             else
                             {
                                 GameManager.instance.activeEnemy.GetComponent<Animator>().Play("break_through_the_block", -1, 0f);
-                                // GO TO END
+								AllDone ();
                             }
                         }
                     }
@@ -336,4 +336,8 @@ public class ScorchingSniperAni : MonoBehaviour {
             }
         }
     }
+
+	private void AllDone() {
+		GameManager.instance.LoadScene (GameManager.instance.level);
+	}
 }

@@ -398,6 +398,8 @@ public class GameManager : MonoBehaviour {
 			tileL.Add (tempTile);	
 		}
 
+		DontDestroyOnLoad (tileL [0].transform.parent.gameObject);
+
 		GameObject[] enemies = GameObject.FindGameObjectsWithTag ("Enemy");
 		foreach (GameObject enemy in enemies) {
 			enemy.GetComponent<Enemy> ().DontDestroy ();
