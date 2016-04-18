@@ -8,7 +8,7 @@ public class InitializeGame : MonoBehaviour {
 			GameManager.instance.InitGame ();
 			InitializeLists ();
 		} else {
-
+			GameManager.instance.State = 5;
 		}
 	}
 

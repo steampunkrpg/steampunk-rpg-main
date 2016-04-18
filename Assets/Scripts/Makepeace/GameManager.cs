@@ -224,10 +224,12 @@ public class GameManager : MonoBehaviour {
 			activePlayer = null;
 			activeEnemy = null;
 
-			State = prevState;
+			if (State != -1) {
+				State = prevState;
+			}
 		}
 
-		if (State != 0 && State != 3 && State != 4) {
+		if (State != 0 && State != 3 && State != 4 && State != -1) {
 			if (activePlayer != null) {
 				playerInput.CameraAction ();
 				GameObject camera = GameObject.Find ("Main Camera");
@@ -475,7 +477,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	IEnumerator TimerEnumerator(float secs, int nextState) {
-		State = 0;
+		State = -1;
 
 		TurnUI.SetActive (true);
 		if (nextState == 1) {
@@ -808,8 +810,6 @@ public class GameManager : MonoBehaviour {
 		if (activeEnemy.enemy_stats.cHP <= 0) {
 			activeEnemy.Death ();
 		}
-
-		CheckWinOrLoseCondition ();
 	}
 
 	private void CheckWinOrLoseCondition() {
@@ -827,6 +827,13 @@ public class GameManager : MonoBehaviour {
 	public void LoadScene(string scene) 
 	{
 		StartCoroutine(LoadLevelWithBar(scene));
+	}
+
+	public void LoadScene(int level) 
+	{
+		if (level == 0) {
+			StartCoroutine (LoadLevelWithBar ("Plains_Scene"));
+		}
 	}
 
 	IEnumerator LoadLevelWithBar (string sceneName)

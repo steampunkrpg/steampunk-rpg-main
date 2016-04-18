@@ -115,6 +115,7 @@ public class DropBricks : MonoBehaviour {
         {
             if (GameManager.instance.battleAnimation[3] == 0)
             {
+				AllDone ();
                 // end of attack
                 // GO TO END CODE
             }
@@ -137,6 +138,7 @@ public class DropBricks : MonoBehaviour {
         }
         else if (runNum == 2)
         {
+			AllDone ();
             // GO TO END
         }
     }
@@ -148,7 +150,7 @@ public class DropBricks : MonoBehaviour {
         {
             if (GameManager.instance.battleAnimation[3] == 0)
             {
-                // GO TO END CODE
+				AllDone ();
             }
             else if (GameManager.instance.battleAnimation[3] == 2)
             {
@@ -168,7 +170,7 @@ public class DropBricks : MonoBehaviour {
         }
         else if (runNum == 2)
         {
-            // GO TO END CODE
+			AllDone ();
         }
     }
 
@@ -187,7 +189,7 @@ public class DropBricks : MonoBehaviour {
             yield return new WaitForSeconds(1.2f);
             brick2.GetComponent<Renderer>().enabled = true;
             brick2.GetComponent<Rigidbody>().useGravity = true;
-            // GO TO END
+			AllDone ();
         }
         else
         {
@@ -202,7 +204,7 @@ public class DropBricks : MonoBehaviour {
             brick2.transform.Translate(500.0f, 500.0f, 500.0f);
             if (GameManager.instance.battleAnimation[6] == -1)
             {
-                // GO TO END, CHARACTER REMAINS FLATTENED (DEAD)
+				AllDone ();
             }
             else if (GameManager.instance.battleAnimation[6] == 0)
             {
@@ -228,4 +230,8 @@ public class DropBricks : MonoBehaviour {
         brick4.GetComponent<Renderer>().enabled = true;
         brick4.GetComponent<Rigidbody>().useGravity = true;
     }
+
+	private void AllDone() {
+		GameManager.instance.LoadScene (GameManager.instance.level);
+	}
 }
