@@ -100,6 +100,7 @@ public class SolarShotAni : MonoBehaviour {
         if (GameManager.instance.battleAnimation[9] == -1)
         {
             GameManager.instance.activeEnemy.GetComponent<Animator>().Play("Dead");
+            yield return new WaitForSeconds(1.5f);
             GameManager.instance.LoadScene(GameManager.instance.level);
         }
         else
@@ -119,6 +120,7 @@ public class SolarShotAni : MonoBehaviour {
                 StartCoroutine(shadow.GetComponent<EnemyCounterattack>().counter());
             } else
             {
+                yield return new WaitForSeconds(1.5f);
                 GameManager.instance.LoadScene(GameManager.instance.level);
             }
             //GameManager.instance.activeEnemy.GetComponent<Animator>().Play("Dead");
