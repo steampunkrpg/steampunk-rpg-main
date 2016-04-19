@@ -23,7 +23,6 @@ public class Enemy : MonoBehaviour {
 	void Start() {
 		animEnemy = this.GetComponent<Animator> ();
 		enemy_stats = this.GetComponentInChildren<Stats> ();
-		this.transform.FindChild ("Particle shadow").GetComponent<ParticleSystem> ().Stop (true);
 		Status = 0;
 		special = 0.5f;
 	}
