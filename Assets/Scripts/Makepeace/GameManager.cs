@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour {
 	public int State;
 	public int prevState;
 	public int level;
+	public bool inLevel;
 
 	void Awake() {
 		if (instance == null)
@@ -62,6 +63,7 @@ public class GameManager : MonoBehaviour {
 		InvUI.GetComponent<InventoryManager> ().CreateDefault ();
 
 		level = 0;
+		inLevel = false;
 		State = 0;
 	}
 
@@ -73,6 +75,7 @@ public class GameManager : MonoBehaviour {
 		activeEnemy = null;
 		LoadLists ();
 		State = 4;
+		inLevel = true;
 	}
 
 	void Update() {
@@ -134,6 +137,7 @@ public class GameManager : MonoBehaviour {
 					InitiateBattle (activePlayer.tile, activeEnemy.tile);
 					ResetEnemyPar ();
 					activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
+					activePlayer.Status = 0;
 					prevState = 1;
 					State = 0;
 
@@ -197,7 +201,7 @@ public class GameManager : MonoBehaviour {
 		} 
 
 		if (State == 5) {
-			battleAnimation = new int[9];
+			battleAnimation = new int[10];
 			CheckForDeaths ();
 
 			if (activePlayer.GetComponentInChildren<Stats> ().Xp >= 100) {
@@ -215,16 +219,16 @@ public class GameManager : MonoBehaviour {
 			}
 
 			CheckWinOrLoseCondition ();
-
-			activePlayer.Status = 0;
-			activeEnemy.Status = 0;
+				
 			activePlayer = null;
 			activeEnemy = null;
 
-			State = prevState;
+			if (State != -1) {
+				State = prevState;
+			}
 		}
 
-		if (State != 0 && State != 3 && State != 4) {
+		if (State != 0 && State != 3 && State != 4 && State != -1) {
 			if (activePlayer != null) {
 				playerInput.CameraAction ();
 				GameObject camera = GameObject.Find ("Main Camera");
@@ -393,8 +397,11 @@ public class GameManager : MonoBehaviour {
 			tileL.Add (tempTile);	
 		}
 
+		DontDestroyOnLoad (tileL [0].transform.parent.gameObject);
+
 		GameObject[] enemies = GameObject.FindGameObjectsWithTag ("Enemy");
 		foreach (GameObject enemy in enemies) {
+			enemy.GetComponent<Enemy> ().DontDestroy ();
 			enemyL.Add (enemy.GetComponent<Enemy> ());
 		}
 
@@ -471,7 +478,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	IEnumerator TimerEnumerator(float secs, int nextState) {
-		State = 0;
+		State = -1;
 
 		TurnUI.SetActive (true);
 		if (nextState == 1) {
@@ -654,7 +661,7 @@ public class GameManager : MonoBehaviour {
 		}
 
 		if (dWep.Rng.Contains (defender.att_dis)) {
-			if (attacker.character.tag == "Unit") {
+			if (defender.character.tag == "Unit") {
 				battleAnimation [3] = 1;
 			} else {
 				battleAnimation [3] = 2;
@@ -744,7 +751,7 @@ public class GameManager : MonoBehaviour {
 			}
 		} else if (repAtt[1] == 1) {
 			if (dWep.Rng.Contains (defender.att_dis)) {
-				if (attacker.character.tag == "Unit") {
+				if (defender.character.tag == "Unit") {
 					battleAnimation [3 + offset] = 1;
 				} else {
 					battleAnimation [3 + offset] = 2;
@@ -804,8 +811,6 @@ public class GameManager : MonoBehaviour {
 		if (activeEnemy.enemy_stats.cHP <= 0) {
 			activeEnemy.Death ();
 		}
-
-		CheckWinOrLoseCondition ();
 	}
 
 	private void CheckWinOrLoseCondition() {
@@ -815,6 +820,7 @@ public class GameManager : MonoBehaviour {
 
 		if (enemyL.Count == 0) {
 			level++;
+			inLevel = false;
 			StartCoroutine(TimerEnumerator(5,-2));
 		}
 	}
@@ -822,6 +828,13 @@ public class GameManager : MonoBehaviour {
 	public void LoadScene(string scene) 
 	{
 		StartCoroutine(LoadLevelWithBar(scene));
+	}
+
+	public void LoadScene(int level) 
+	{
+		if (level == 0) {
+			StartCoroutine (LoadLevelWithBar ("Plains_Scene"));
+		}
 	}
 
 	IEnumerator LoadLevelWithBar (string sceneName)
