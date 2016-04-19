@@ -33,6 +33,7 @@ public class InitializeGame : MonoBehaviour {
 				Destroy (unit);
 			} else if (GameManager.instance.activePlayer == unit.GetComponent<Unit> ()) {
 				unit.transform.position = unit.GetComponent<Unit> ().tile.transform.position;
+				unit.GetComponent<Unit> ().animUnit.Play ("Idle");
 				unit.transform.Rotate (new Vector3 (0.0f, 90.0f, 0.0f));
 			}
 		}
@@ -42,6 +43,7 @@ public class InitializeGame : MonoBehaviour {
 				Destroy (enemy);
 			} else {
 				enemy.transform.position = enemy.GetComponent<Enemy> ().tile.transform.position;
+				enemy.GetComponent<Enemy> ().animEnemy.Play ("Idle");
 				enemy.transform.Rotate (new Vector3 (0.0f, -90.0f, 0.0f));
 			}
 		}

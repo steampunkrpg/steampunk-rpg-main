@@ -137,6 +137,7 @@ public class GameManager : MonoBehaviour {
 					InitiateBattle (activePlayer.tile, activeEnemy.tile);
 					ResetEnemyPar ();
 					activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
+					activePlayer.Status = 0;
 					prevState = 1;
 					State = 0;
 
@@ -200,7 +201,7 @@ public class GameManager : MonoBehaviour {
 		} 
 
 		if (State == 5) {
-			battleAnimation = new int[9];
+			battleAnimation = new int[10];
 			CheckForDeaths ();
 
 			if (activePlayer.GetComponentInChildren<Stats> ().Xp >= 100) {
@@ -218,9 +219,7 @@ public class GameManager : MonoBehaviour {
 			}
 
 			CheckWinOrLoseCondition ();
-
-			activePlayer.Status = 0;
-			activeEnemy.Status = 0;
+				
 			activePlayer = null;
 			activeEnemy = null;
 

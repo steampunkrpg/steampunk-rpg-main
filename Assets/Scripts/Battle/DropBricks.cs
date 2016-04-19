@@ -68,7 +68,7 @@ public class DropBricks : MonoBehaviour {
                 yield return new WaitForSeconds(1.2f);
                 brick1.GetComponent<Renderer>().enabled = true;
                 brick1.GetComponent<Rigidbody>().useGravity = true;
-                GameManager.instance.activePlayer.GetComponent<Collider>().enabled = false;
+                //GameManager.instance.activePlayer.GetComponent<Collider>().enabled = false;
                 StartCoroutine(reactMiss1());
             }
             else
@@ -76,7 +76,7 @@ public class DropBricks : MonoBehaviour {
                 yield return new WaitForSeconds(1.2f);
                 brick1.GetComponent<Renderer>().enabled = true;
                 brick1.GetComponent<Rigidbody>().useGravity = true;
-                GameManager.instance.activePlayer.GetComponent<Collider>().enabled = false;
+                //GameManager.instance.activePlayer.GetComponent<Collider>().enabled = false;
                 StartCoroutine(reactBrick1());
             }
         }
@@ -88,7 +88,7 @@ public class DropBricks : MonoBehaviour {
                 yield return new WaitForSeconds(1.2f);
                 brick1.GetComponent<Renderer>().enabled = true;
                 brick1.GetComponent<Rigidbody>().useGravity = true;
-                GameManager.instance.activePlayer.GetComponent<Collider>().enabled = false;
+                //GameManager.instance.activePlayer.GetComponent<Collider>().enabled = false;
                 StartCoroutine(reactMiss1());
             }
             else
@@ -96,7 +96,7 @@ public class DropBricks : MonoBehaviour {
                 yield return new WaitForSeconds(1.2f);
                 brick1.GetComponent<Renderer>().enabled = true;
                 brick1.GetComponent<Rigidbody>().useGravity = true;
-                GameManager.instance.activePlayer.GetComponent<Collider>().enabled = false;
+                //GameManager.instance.activePlayer.GetComponent<Collider>().enabled = false;
                 StartCoroutine(reactBrick1());
             }
         }
