@@ -229,12 +229,12 @@ public class GameManager : MonoBehaviour {
 		}
 
 		if (State != 0 && State != 3 && State != 4 && State != -1) {
-			if (activePlayer != null) {
+			if (activePlayer != null && activePlayer.Status != 6) {
 				playerInput.CameraAction ();
 				GameObject camera = GameObject.Find ("Main Camera");
 				CameraBounds bounds = camera.GetComponent<CameraBounds> ();
 				camera.transform.position = new Vector3 (activePlayer.transform.position.x, activePlayer.transform.position.y + bounds.offset - bounds.zoom, activePlayer.transform.position.z - bounds.offset + bounds.zoom);
-			} else if (activeEnemy != null) {
+			} else if (activeEnemy != null && State != 1) {
 				playerInput.CameraAction ();
 				GameObject camera = GameObject.Find ("Main Camera");
 				CameraBounds bounds = camera.GetComponent<CameraBounds> ();
