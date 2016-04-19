@@ -30,6 +30,17 @@ public class BattleCommands : MonoBehaviour {
         arrow1.enabled = true;
         onFirst = true;
         //runDeepSix = false;
+
+		runGrittySlap = false;
+		runSolarShot = false;
+		runSonicPhantom = false;
+		runJotun = false;
+		runSuddenDeath = false;
+		runSwarm = false;
+		runDropBricks = false;
+		runDominoTheory = false;
+		runScorchingSniper = false;
+
         damageWriter = new DrawDamage(damageText, playerDamText);
         GameManager.instance.activePlayer.transform.position = new Vector3(-7.55f, 1f, 1.5f);
 		GameManager.instance.activePlayer.transform.Rotate(new Vector3 (0.0f, -90.0f, 0.0f));
