@@ -167,8 +167,12 @@ public class PlayerKeyBoardInput : MonoBehaviour {
 
 		if (Input.GetAxis("Mouse ScrollWheel") != 0) {
 			float zoom = Input.GetAxis ("Mouse ScrollWheel");
-			bounds.zoom += zoom;
-			camera.transform.position = new Vector3 (camera.transform.position.x, camera.transform.position.y - zoom, camera.transform.position.z + zoom);
+			if (bounds.zoom + zoom <= 6) {
+				bounds.zoom += zoom;
+				camera.transform.position = new Vector3 (camera.transform.position.x, camera.transform.position.y - zoom, camera.transform.position.z + zoom);
+			} else {
+				//do nothing
+			}
 		}
 
 		if (Input.GetKey (KeyCode.R)) {
