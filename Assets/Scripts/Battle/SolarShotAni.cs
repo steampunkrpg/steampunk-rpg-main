@@ -4,7 +4,6 @@ using System.Collections;
 public class SolarShotAni : MonoBehaviour {
 
     public GameObject sphere;
-    public GameObject enemy;
     public ParticleSystem ray1;
     public ParticleSystem ray2;
     public ParticleSystem ray3;
@@ -101,11 +100,11 @@ public class SolarShotAni : MonoBehaviour {
         if (GameManager.instance.battleAnimation[9] == -1)
         {
             GameManager.instance.activeEnemy.GetComponent<Animator>().Play("Dead");
-            // GO TO END
+            GameManager.instance.LoadScene(GameManager.instance.level);
         }
         else
         {
-            enemy.transform.Translate(new Vector3(-1.2f, 0.0f, 0.0f));
+            GameManager.instance.activeEnemy.transform.Translate(new Vector3(-1.2f, 0.0f, 0.0f));
             if (GameManager.instance.battleAnimation[7] == 1)
             {
                 GameManager.instance.activeEnemy.GetComponent<Animator>().Play("break_through_the_block");
@@ -120,7 +119,7 @@ public class SolarShotAni : MonoBehaviour {
                 StartCoroutine(shadow.GetComponent<EnemyCounterattack>().counter());
             } else
             {
-                // GO TO END
+                GameManager.instance.LoadScene(GameManager.instance.level);
             }
             //GameManager.instance.activeEnemy.GetComponent<Animator>().Play("Dead");
             //startCounter.invokeCo();

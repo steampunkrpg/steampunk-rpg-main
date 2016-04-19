@@ -17,7 +17,7 @@ using System.Collections;
     {
         cam1.enabled = true;
         cam2.enabled = false;
-        origPos = player.transform.localScale;
+        origPos = GameManager.instance.activePlayer.transform.localScale;
         hit = false;
     }
  	
@@ -25,14 +25,14 @@ using System.Collections;
  	void Update() {
 		if (BattleCommands.runJotun) {
 			WriteMovelist.currentMove = "Jotun";
-			if (player.transform.localScale.x <= 8.6f) {
-				player.transform.localScale += Vector3.one * Time.deltaTime;
+			if (GameManager.instance.activePlayer.transform.localScale.x <= 8.6f) {
+                GameManager.instance.activePlayer.transform.localScale += Vector3.one * Time.deltaTime;
 			}
-			if (player.transform.localScale.x >= 1.8f) {
+			if (GameManager.instance.activePlayer.transform.localScale.x >= 1.8f) {
 				cam2.enabled = true;
 				cam1.enabled = false;
 			}
-			if (player.transform.localScale.x >= 8.5f) {
+			if (GameManager.instance.activePlayer.transform.localScale.x >= 8.5f) {
 				GameManager.instance.activePlayer.GetComponent<Animator> ().Play ("Attack(4)");
 				if (!hit) {
 					StartCoroutine (enemyReact ());
@@ -53,6 +53,7 @@ using System.Collections;
 	}
 
 	private void AllDone() {
+        GameManager.instance.activePlayer.transform.localScale = origPos;
 		GameManager.instance.LoadScene (GameManager.instance.level);
 	}
 }

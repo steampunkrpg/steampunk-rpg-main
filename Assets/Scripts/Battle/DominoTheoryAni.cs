@@ -186,7 +186,7 @@ public class DominoTheoryAni : MonoBehaviour {
         else if (GameManager.instance.battleAnimation[3] == 2 && runNum != 2)
         {
             WriteMovelist.currentMove = "Scumbag in the Shadows";
-            StartCoroutine(shadow.GetComponent<EnemyCounterattack>().counter());
+            BattleCommands.runScumbagShadow = true;
         }
     }
 

@@ -3,21 +3,17 @@ using System.Collections;
 
 public class EnemyCounterattack : MonoBehaviour {
 
-    public ParticleSystem shadow;
-    public ParticleSystem shadowBurst;
     public bool down;
     public bool forward;
     public bool upward;
     public bool expanding;
     public bool backwards;
     public GameObject hole;
+    public bool atStart;
 
     // Use this for initialization
     void Start() {
-        shadow.Pause();
-        shadowBurst.Pause();
-        shadow.GetComponent<Renderer>().enabled = false;
-        shadowBurst.GetComponent<Renderer>().enabled = false;
+        atStart = true;
         forward = false;
         hole.GetComponent<Renderer>().enabled = false;
         down = false;
@@ -26,48 +22,56 @@ public class EnemyCounterattack : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (forward)
+        if (BattleCommands.runScumbagShadow)
         {
-            GameManager.instance.activeEnemy.transform.Translate(0.02f, 0.0f, .1f);
-            hole.transform.Translate(-0.1f, 0.0f, 0.02f);
-            if (GameManager.instance.activeEnemy.transform.position.x < -6.5)
+            if (atStart)
             {
-                forward = false;
+                atStart = false;
+                StartCoroutine(counter());
             }
-        }
-        if (backwards)
-        {
-            GameManager.instance.activeEnemy.transform.Translate(-0.02f, 0.0f, -.1f);
-            hole.transform.Translate(0.1f, 0.0f, -0.02f);
-            if (GameManager.instance.activeEnemy.transform.position.x > 0)
+            if (forward)
             {
-                backwards = false;
+                GameManager.instance.activeEnemy.transform.Translate(0.02f, 0.0f, .1f);
+                hole.transform.Translate(-0.1f, 0.0f, 0.02f);
+                if (GameManager.instance.activeEnemy.transform.position.x < -6.5)
+                {
+                    forward = false;
+                }
             }
-        }
-        if (down)
-        {
-            GameManager.instance.activeEnemy.transform.Translate(0.0f, -0.03f, 0.0f);
-            if (GameManager.instance.activeEnemy.transform.position.y < -2)
+            if (backwards)
             {
-                down = false;
+                GameManager.instance.activeEnemy.transform.Translate(-0.02f, 0.0f, -.1f);
+                hole.transform.Translate(0.1f, 0.0f, -0.02f);
+                if (GameManager.instance.activeEnemy.transform.position.x > 0)
+                {
+                    backwards = false;
+                }
             }
-        }
-        if (expanding)
-        {
-            hole.transform.localScale += new Vector3(.02f, 0.0f, .02f);
-            if (hole.transform.localScale.x >= 3)
+            if (down)
             {
-                expanding = false;
+                GameManager.instance.activeEnemy.transform.Translate(0.0f, -0.03f, 0.0f);
+                if (GameManager.instance.activeEnemy.transform.position.y < -2)
+                {
+                    down = false;
+                }
             }
-        }
-        if (upward)
-        {
-            GameManager.instance.activeEnemy.transform.Translate(0.0f, 0.1f, 0.0f);
-            if (GameManager.instance.activeEnemy.transform.position.y > 1)
+            if (expanding)
             {
-                GameManager.instance.activeEnemy.transform.Translate(new Vector3(-0.2f, 0.0f, -0.2f));
-                GameManager.instance.activeEnemy.GetComponent<Animator>().Play("Airstrike");
-                upward = false;
+                hole.transform.localScale += new Vector3(.02f, 0.0f, .02f);
+                if (hole.transform.localScale.x >= 3)
+                {
+                    expanding = false;
+                }
+            }
+            if (upward)
+            {
+                GameManager.instance.activeEnemy.transform.Translate(0.0f, 0.1f, 0.0f);
+                if (GameManager.instance.activeEnemy.transform.position.y > 1)
+                {
+                    GameManager.instance.activeEnemy.transform.Translate(new Vector3(-0.2f, 0.0f, -0.2f));
+                    GameManager.instance.activeEnemy.GetComponent<Animator>().Play("Airstrike");
+                    upward = false;
+                }
             }
         }
     }
@@ -91,8 +95,6 @@ public class EnemyCounterattack : MonoBehaviour {
         BattleCommands.damageWriter.setPlayerDamText(GameManager.instance.battleAnimation[5]);
         //shadow.GetComponent<Renderer>().enabled = true;
         //shadowBurst.GetComponent<Renderer>().enabled = true;
-        shadow.Play();
-        shadowBurst.Play();
         
 
         StartCoroutine(counter2());
