@@ -86,6 +86,7 @@ public class EnemyCounterattack : MonoBehaviour {
         yield return new WaitForSeconds(1.2f);
         WriteMovelist.currentMove = "Scumbag in the Shadows";
         GameManager.instance.activePlayer.GetComponent<Animator>().Play("Idle");
+        GameManager.instance.activeEnemy.transform.Translate(-1.0f, 0.0f, -0.5f);
         hole.GetComponent<Renderer>().enabled = true;
         down = true;
         expanding = true;
