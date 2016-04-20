@@ -2,10 +2,18 @@
 using UnityEngine.SceneManagement;
 using System.Collections;
 
-public class MusicManager : MonoBehaviour {
+public class MusicManager : MonoBehaviour
+{
 
-	void Start () {
-		DontDestroyOnLoad (gameObject);
-	}
+    private GameObject sourceGO;
+
+    void Start()
+    {
+        sourceGO = gameObject;
+        if (!sourceGO.GetComponent<AudioSource>().isPlaying)
+        {
+            sourceGO.GetComponent<AudioSource>().Play();
+        }
+        DontDestroyOnLoad(gameObject);
+    }
 }
-
