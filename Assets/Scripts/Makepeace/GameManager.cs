@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour {
 	public GameObject InvUI;
 	public GameObject PlayerUI;
 	public GameObject EnemyUI;
+    public GameObject StoryUI;
 
 	public static GameManager instance = null;
 	public float turnDelay = 0.1f;
@@ -74,7 +75,8 @@ public class GameManager : MonoBehaviour {
 		activePlayer = null;
 		activeEnemy = null;
 		LoadLists ();
-		State = 4;
+        //Initially set to 4
+		State = 6;
 		inLevel = true;
 	}
 
@@ -227,6 +229,16 @@ public class GameManager : MonoBehaviour {
 				State = prevState;
 			}
 		}
+
+        if (State == 6)
+        {
+            StoryUI.SetActive(true);
+            if (Input.GetMouseButtonDown(0))
+            {
+                StoryUI.SetActive(false);
+                State = 4;
+            }
+        }
 
 		if (State != 0 && State != 3 && State != 4 && State != -1) {
 			if (activePlayer != null && activePlayer.Status != 6) {
