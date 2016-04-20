@@ -115,6 +115,11 @@ public class DropBricks : MonoBehaviour {
         {
             if (GameManager.instance.battleAnimation[3] == 0)
             {
+                yield return new WaitForSeconds(1.0f);
+                brick1.transform.Translate(500.0f, 500.0f, 500.0f);
+                yield return new WaitForSeconds(.8f);
+                decompressing = true;
+                yield return new WaitForSeconds(1.2f);
 				AllDone ();
                 // end of attack
                 // GO TO END CODE
@@ -209,6 +214,8 @@ public class DropBricks : MonoBehaviour {
             else if (GameManager.instance.battleAnimation[6] == 0)
             {
                 decompressing = true;
+                yield return new WaitForSeconds(1.2f);
+                AllDone();
             }
         }
         
@@ -229,6 +236,8 @@ public class DropBricks : MonoBehaviour {
         yield return new WaitForSeconds(1.2f);
         brick4.GetComponent<Renderer>().enabled = true;
         brick4.GetComponent<Rigidbody>().useGravity = true;
+        yield return new WaitForSeconds(1.7f);
+        AllDone();
     }
 
 	private void AllDone() {

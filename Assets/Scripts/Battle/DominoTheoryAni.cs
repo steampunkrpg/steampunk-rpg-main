@@ -160,7 +160,7 @@ public class DominoTheoryAni : MonoBehaviour {
 
     public IEnumerator enemyReact()
     {
-        yield return new WaitForSeconds(3.9f);
+        yield return new WaitForSeconds(3.8f);
         if (GameManager.instance.battleAnimation[1] == 1 || GameManager.instance.battleAnimation[7] == 1)
         {
             GameManager.instance.activeEnemy.transform.localScale -= new Vector3(0.0f, .9f, 0.0f);
@@ -200,7 +200,7 @@ public class DominoTheoryAni : MonoBehaviour {
         }
         bigDomino.GetComponent<Rigidbody>().useGravity = true;
         bigDomino.GetComponent<Renderer>().enabled = true;
-        yield return new WaitForSeconds(1.4f);
+        yield return new WaitForSeconds(2.4f);
         if (GameManager.instance.battleAnimation[4] == 1)
         {
             GameManager.instance.activeEnemy.transform.localScale -= new Vector3(0.0f, .9f, 0.0f);
@@ -211,5 +211,7 @@ public class DominoTheoryAni : MonoBehaviour {
         {
             decompressing = true;
         }
+        yield return new WaitForSeconds(1.2f);
+        GameManager.instance.LoadScene(GameManager.instance.level);
     }
 }
