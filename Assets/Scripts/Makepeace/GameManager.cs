@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour {
 	public GameObject InvUI;
 	public GameObject PlayerUI;
 	public GameObject EnemyUI;
-    public GameObject StoryUI;
+    //public GameObject StoryUI;
 
 	public static GameManager instance = null;
 	public float turnDelay = 0.1f;
@@ -61,6 +61,7 @@ public class GameManager : MonoBehaviour {
 		PauseUI.SetActive (false);
 		TurnUI.SetActive (false);
 		StatsUI.SetActive (false);
+		//StoryUI.SetActive (false);
 		InvUI.GetComponent<InventoryManager> ().CreateDefault ();
 
 		level = 0;
@@ -75,8 +76,10 @@ public class GameManager : MonoBehaviour {
 		activePlayer = null;
 		activeEnemy = null;
 		LoadLists ();
-        //Initially set to 4
-		State = 6;
+        
+		//State = 6;
+		State = 4;
+
 		inLevel = true;
 	}
 
@@ -232,10 +235,10 @@ public class GameManager : MonoBehaviour {
 
         if (State == 6)
         {
-            StoryUI.SetActive(true);
+            //StoryUI.SetActive(true);
             if (Input.GetMouseButtonDown(0))
             {
-                StoryUI.SetActive(false);
+                //StoryUI.SetActive(false);
                 State = 4;
             }
         }
