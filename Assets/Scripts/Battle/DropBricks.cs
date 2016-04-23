@@ -64,19 +64,19 @@ public class DropBricks : MonoBehaviour {
         {
             if (GameManager.instance.battleAnimation[1] != 1)
             {
+                GameManager.instance.activePlayer.GetComponent<BoxCollider>().enabled = false;
                 brick1.transform.Translate(-2.5f, 0.0f, 3f);
                 yield return new WaitForSeconds(1.2f);
                 brick1.GetComponent<Renderer>().enabled = true;
                 brick1.GetComponent<Rigidbody>().useGravity = true;
-                //GameManager.instance.activePlayer.GetComponent<Collider>().enabled = false;
                 StartCoroutine(reactMiss1());
             }
             else
             {
+                GameManager.instance.activePlayer.GetComponent<BoxCollider>().enabled = false;
                 yield return new WaitForSeconds(1.2f);
                 brick1.GetComponent<Renderer>().enabled = true;
                 brick1.GetComponent<Rigidbody>().useGravity = true;
-                //GameManager.instance.activePlayer.GetComponent<Collider>().enabled = false;
                 StartCoroutine(reactBrick1());
             }
         }
@@ -88,7 +88,7 @@ public class DropBricks : MonoBehaviour {
                 yield return new WaitForSeconds(1.2f);
                 brick1.GetComponent<Renderer>().enabled = true;
                 brick1.GetComponent<Rigidbody>().useGravity = true;
-                GameManager.instance.activePlayer.GetComponent<Collider>().enabled = false;
+                GameManager.instance.activePlayer.GetComponent<BoxCollider>().enabled = false;
                 StartCoroutine(reactMiss1());
             }
             else
@@ -96,7 +96,7 @@ public class DropBricks : MonoBehaviour {
                 yield return new WaitForSeconds(1.2f);
                 brick1.GetComponent<Renderer>().enabled = true;
                 brick1.GetComponent<Rigidbody>().useGravity = true;
-                GameManager.instance.activePlayer.GetComponent<Collider>().enabled = false;
+                GameManager.instance.activePlayer.GetComponent<BoxCollider>().enabled = false;
                 StartCoroutine(reactBrick1());
             }
         }
@@ -121,8 +121,6 @@ public class DropBricks : MonoBehaviour {
                 decompressing = true;
                 yield return new WaitForSeconds(1.2f);
 				AllDone ();
-                // end of attack
-                // GO TO END CODE
             }
             else if (GameManager.instance.battleAnimation[3] == 2)
             {
@@ -241,6 +239,7 @@ public class DropBricks : MonoBehaviour {
     }
 
 	private void AllDone() {
-		GameManager.instance.LoadScene (GameManager.instance.level);
+        GameManager.instance.activePlayer.GetComponent<Collider>().enabled = true;
+        GameManager.instance.LoadScene (GameManager.instance.level);
 	}
 }

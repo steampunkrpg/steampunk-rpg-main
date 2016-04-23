@@ -1894,7 +1894,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 182598513}
   - 33: {fileID: 182598512}
-  - 65: {fileID: 182598511}
   - 23: {fileID: 182598510}
   m_Layer: 0
   m_Name: 'bottomRightSniperBox '
@@ -1929,18 +1928,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!65 &182598511
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 182598509}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &182598512
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2343,7 +2330,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 344252873}
   - 33: {fileID: 344252872}
-  - 65: {fileID: 344252871}
   - 23: {fileID: 344252870}
   - 114: {fileID: 344252874}
   m_Layer: 0
@@ -2379,18 +2365,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!65 &344252871
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 344252869}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &344252872
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4081,7 +4055,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 492685598}
   - 33: {fileID: 492685601}
-  - 65: {fileID: 492685600}
   - 23: {fileID: 492685599}
   m_Layer: 0
   m_Name: MazeWarCeiling
@@ -4128,18 +4101,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!65 &492685600
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 492685597}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &492685601
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4353,7 +4314,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 592179372}
   - 33: {fileID: 592179371}
-  - 65: {fileID: 592179370}
   - 23: {fileID: 592179369}
   m_Layer: 0
   m_Name: leftSniperBox
@@ -4388,18 +4348,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!65 &592179370
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 592179368}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &592179371
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4724,7 +4672,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 812264548}
   - 33: {fileID: 812264551}
-  - 65: {fileID: 812264550}
   - 23: {fileID: 812264549}
   m_Layer: 0
   m_Name: MazeWarLine4
@@ -4771,18 +4718,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!65 &812264550
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 812264547}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &812264551
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4965,7 +4900,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 991010094}
   - 33: {fileID: 991010093}
-  - 135: {fileID: 991010092}
   - 23: {fileID: 991010091}
   - 114: {fileID: 991010095}
   m_Layer: 0
@@ -5001,18 +4935,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!135 &991010092
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 991010090}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &991010093
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -8354,7 +8276,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1026921161}
   - 33: {fileID: 1026921164}
-  - 65: {fileID: 1026921163}
   - 23: {fileID: 1026921162}
   m_Layer: 0
   m_Name: MazeWarLeftWall
@@ -8401,18 +8322,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!65 &1026921163
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1026921160}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1026921164
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -8429,7 +8338,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1053644082}
   - 33: {fileID: 1053644081}
-  - 65: {fileID: 1053644080}
   - 23: {fileID: 1053644079}
   m_Layer: 0
   m_Name: bottomLeftSniperBox
@@ -8464,18 +8372,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!65 &1053644080
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1053644078}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1053644081
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -11829,7 +11725,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1267779761}
   - 33: {fileID: 1267779760}
-  - 65: {fileID: 1267779759}
   - 23: {fileID: 1267779758}
   m_Layer: 0
   m_Name: rightSniperBox
@@ -11864,18 +11759,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!65 &1267779759
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1267779757}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1267779760
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -15453,7 +15336,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1514545591}
   - 33: {fileID: 1514545594}
-  - 65: {fileID: 1514545593}
   - 23: {fileID: 1514545592}
   m_Layer: 0
   m_Name: MazeWarLine1
@@ -15500,18 +15382,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!65 &1514545593
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1514545590}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1514545594
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -15528,7 +15398,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1530884397}
   - 33: {fileID: 1530884400}
-  - 65: {fileID: 1530884399}
   - 23: {fileID: 1530884398}
   m_Layer: 0
   m_Name: MazeWarRightWall
@@ -15575,18 +15444,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!65 &1530884399
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1530884396}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1530884400
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -17182,6 +17039,8 @@ MonoBehaviour:
   animEnemy: {fileID: 0}
   origPos: {x: 0, y: 0, z: 0}
   hit: 0
+  atStart: 0
+  preAttack: 0
 --- !u!1 &1644261414
 GameObject:
   m_ObjectHideFlags: 0
@@ -18760,7 +18619,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1648588754}
   - 33: {fileID: 1648588753}
-  - 65: {fileID: 1648588752}
   - 23: {fileID: 1648588751}
   m_Layer: 0
   m_Name: topRightSniperBox
@@ -18795,18 +18653,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!65 &1648588752
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1648588750}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1648588753
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -18893,7 +18739,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1686571120}
   - 33: {fileID: 1686571123}
-  - 65: {fileID: 1686571122}
   - 23: {fileID: 1686571121}
   m_Layer: 0
   m_Name: MazeWarLine3
@@ -18940,18 +18785,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!65 &1686571122
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1686571119}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1686571123
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -18968,7 +18801,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1718485372}
   - 33: {fileID: 1718485375}
-  - 65: {fileID: 1718485374}
   - 23: {fileID: 1718485373}
   m_Layer: 0
   m_Name: MazeWarFloor
@@ -18984,8 +18816,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1718485371}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.49400002, z: -0}
-  m_LocalScale: {x: 1200, y: 0.020000001, z: 1}
+  m_LocalPosition: {x: 260, y: -0.49400002, z: -0}
+  m_LocalScale: {x: 700, y: 0.020000001, z: 1}
   m_Children: []
   m_Father: {fileID: 2001321331}
   m_RootOrder: 2
@@ -19015,18 +18847,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!65 &1718485374
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1718485371}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1718485375
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -19600,7 +19420,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1899846838}
   - 33: {fileID: 1899846837}
-  - 65: {fileID: 1899846836}
   - 23: {fileID: 1899846835}
   m_Layer: 0
   m_Name: bottomSniperBox
@@ -19635,18 +19454,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!65 &1899846836
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1899846834}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1899846837
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -19885,7 +19692,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1926771300}
   - 33: {fileID: 1926771303}
-  - 65: {fileID: 1926771302}
   - 23: {fileID: 1926771301}
   m_Layer: 0
   m_Name: MazeWarLine2
@@ -19932,18 +19738,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!65 &1926771302
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1926771299}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1926771303
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -21529,7 +21323,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1936099055}
   - 33: {fileID: 1936099054}
-  - 65: {fileID: 1936099053}
   - 23: {fileID: 1936099052}
   m_Layer: 0
   m_Name: topLeftSniperBox
@@ -21564,18 +21357,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!65 &1936099053
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1936099051}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1936099054
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -21679,7 +21460,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 2001321331}
   - 33: {fileID: 2001321330}
-  - 65: {fileID: 2001321329}
   - 23: {fileID: 2001321328}
   m_Layer: 0
   m_Name: MazeWarBackWall
@@ -21714,18 +21494,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!65 &2001321329
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2001321327}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &2001321330
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -22090,75 +21858,75 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22498548, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22498548, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22498548, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 101.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22498548, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 51
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22490800, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22490800, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22490800, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 153
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22490800, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 46.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22490800, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 51
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22466078, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22466078, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22466078, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 99.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22466078, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 49.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22471474, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22471474, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22471474, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 153
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22471474, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 48.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22471474, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 49.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22446628, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_AnchoredPosition.y
@@ -22166,7 +21934,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22446628, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_SizeDelta.y
-      value: -259
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22478838, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_AnchorMax.x
@@ -22174,7 +21942,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22478838, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22478838, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_AnchorMin.y
@@ -22182,195 +21950,195 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22422072, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22422072, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22422072, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 81.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22422072, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -25.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22422072, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 153
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22422072, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 51
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22459964, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22459964, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22459964, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22459964, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -56
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22459964, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 153
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22459964, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 51
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22489778, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22489778, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22489778, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 81.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22489778, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -24.75
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22489778, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 153
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22489778, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 49.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22416774, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22416774, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22416774, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22416774, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -54.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22416774, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 153
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22416774, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 45.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22485914, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22485914, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22485914, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 81.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22485914, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -26.25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22485914, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 153
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22485914, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 52.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22486740, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22486740, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22486740, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 81.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22486740, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -83.75
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22486740, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 153
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22486740, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 52.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22459758, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22459758, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22459758, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 81.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22459758, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -141.25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22459758, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 153
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22459758, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 52.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22460024, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22460024, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22460024, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 81.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22460024, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -198.75
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22460024, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 153
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22460024, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 52.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11484520, guid: 10afd45b27c2722489a64c2bd3ce49f5, type: 2}
       propertyPath: activePlayer
