@@ -41,10 +41,10 @@ public class InitializeGame : MonoBehaviour {
 		foreach (GameObject enemy in enemies) {
 			if (!GameManager.instance.enemyL.Contains (enemy.GetComponent<Enemy> ())) {
 				Destroy (enemy);
-			} else {
+			} else if (GameManager.instance.activeEnemy == enemy.GetComponent<Enemy>()) {
 				enemy.transform.position = enemy.GetComponent<Enemy> ().tile.transform.position;
 				enemy.GetComponent<Enemy> ().animEnemy.Play ("Idle");
-				enemy.transform.Rotate (new Vector3 (0.0f, 0.0f, 0.0f));
+				enemy.transform.Rotate (new Vector3 (0.0f, -90.0f, 0.0f));
 			}
 		}
 

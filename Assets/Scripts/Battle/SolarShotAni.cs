@@ -109,12 +109,12 @@ public class SolarShotAni : MonoBehaviour {
             if (GameManager.instance.battleAnimation[7] == 1)
             {
                 GameManager.instance.activeEnemy.GetComponent<Animator>().Play("break_through_the_block");
-            } 
+            }
             // Pseudocode for new actions
             // if (health <= 0) {
             //  play("death animation")
             // else
-            if (runNum != 2)
+            /*if (runNum != 2)
             {
                 WriteMovelist.currentMove = "Scumbag in the Shadows";
                 StartCoroutine(shadow.GetComponent<EnemyCounterattack>().counter());
@@ -122,9 +122,9 @@ public class SolarShotAni : MonoBehaviour {
             {
                 yield return new WaitForSeconds(1.5f);
                 GameManager.instance.LoadScene(GameManager.instance.level);
-            }
-            //GameManager.instance.activeEnemy.GetComponent<Animator>().Play("Dead");
-            //startCounter.invokeCo();
+            }*/
+            yield return new WaitForSeconds(1.5f);
+            GameManager.instance.LoadScene(GameManager.instance.level);
         }
     }
 
