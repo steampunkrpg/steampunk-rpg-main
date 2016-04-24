@@ -20,6 +20,7 @@ public class BattleCommands : MonoBehaviour {
     public static bool runDominoTheory = false;
     public static bool runScorchingSniper = false;
     public static bool runScumbagShadow = false;
+    public static bool runMazeWar;
     // STILL IN PRODUCTION public static bool runThaBigGuy = false;
     public bool walking = false;
     public Text damageText;
@@ -42,6 +43,7 @@ public class BattleCommands : MonoBehaviour {
 		runDominoTheory = false;
 		runScorchingSniper = false;
         runScumbagShadow = false;
+        runMazeWar = false;
 
         damageWriter = new DrawDamage(damageText, playerDamText);
         GameManager.instance.activePlayer.transform.position = new Vector3(-7.55f, 1f, 1.5f);
@@ -273,6 +275,7 @@ public class BattleCommands : MonoBehaviour {
                 {
                     damageWriter.setEnemyDamText(GameManager.instance.battleAnimation[2]);
                     runJotun = true;
+                    //runMazeWar = true;
                 }
                 // player attacks enemy, enemy counters
                 else if (GameManager.instance.battleAnimation[0] == 1 && GameManager.instance.battleAnimation[3] == 2) { 

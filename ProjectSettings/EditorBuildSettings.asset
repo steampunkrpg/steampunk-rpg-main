@@ -24,4 +24,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Makepeace/Winter_Scene.unity
   - enabled: 1
-    path: Assets/Scenes/BattleView.unity
+    path: Assets/Scenes/H-Bomb/BattleView.unity
+  - enabled: 1
+    path: Assets/Scenes/character-creation.unity

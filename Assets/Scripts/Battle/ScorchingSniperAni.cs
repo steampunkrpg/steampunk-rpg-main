@@ -88,7 +88,7 @@ public class ScorchingSniperAni : MonoBehaviour {
                 {
                     moveS = false;
                 }
-                sniperBoxS.transform.Translate(new Vector3(0.0f, -0.03f, 0.0f));
+                sniperBoxS.transform.Translate(new Vector3(0.0f, -0.04f, 0.0f));
             }
             if (moveN)
             {
@@ -96,7 +96,7 @@ public class ScorchingSniperAni : MonoBehaviour {
                 {
                     moveN = false;
                 }
-                sniperBoxN.transform.Translate(new Vector3(0.0f, -0.02f, 0.0f));
+                sniperBoxN.transform.Translate(new Vector3(0.0f, -0.04f, 0.0f));
             }
             if (moveW)
             {
@@ -104,7 +104,7 @@ public class ScorchingSniperAni : MonoBehaviour {
                 {
                     moveW = false;
                 }
-                sniperBoxW.transform.Translate(new Vector3(0.0f, -0.02f, 0.0f));
+                sniperBoxW.transform.Translate(new Vector3(0.0f, -0.04f, 0.0f));
             }
             if (moveE)
             {
@@ -112,7 +112,7 @@ public class ScorchingSniperAni : MonoBehaviour {
                 {
                     moveE = false;
                 }
-                sniperBoxE.transform.Translate(new Vector3(0.0f, 0.02f, 0.0f));
+                sniperBoxE.transform.Translate(new Vector3(0.0f, 0.04f, 0.0f));
             }
             if (moveNE)
             {
@@ -122,11 +122,11 @@ public class ScorchingSniperAni : MonoBehaviour {
                 }
                 if (sniperBoxNE.transform.position.z <= .5)
                 {
-                    sniperBoxNE.transform.Translate(new Vector3(0.0f, 0.0f, 0.02f));
+                    sniperBoxNE.transform.Translate(new Vector3(0.0f, 0.0f, 0.04f));
                 }
                 if (sniperBoxNE.transform.position.y >= 2.53)
                 {
-                    sniperBoxNE.transform.Translate(new Vector3(0.0f, 0.02f, 0.0f));
+                    sniperBoxNE.transform.Translate(new Vector3(0.0f, 0.04f, 0.0f));
                 }
             }
             if (moveSE)
@@ -137,11 +137,11 @@ public class ScorchingSniperAni : MonoBehaviour {
                 }
                 if (sniperBoxSE.transform.position.z <= .37)
                 {
-                    sniperBoxSE.transform.Translate(new Vector3(0.0f, 0.0f, 0.02f));
+                    sniperBoxSE.transform.Translate(new Vector3(0.0f, 0.0f, 0.04f));
                 }
                 if (sniperBoxSE.transform.position.y <= 1.24)
                 {
-                    sniperBoxSE.transform.Translate(new Vector3(0.0f, 0.0f, 0.02f));
+                    sniperBoxSE.transform.Translate(new Vector3(0.0f, 0.0f, 0.04f));
                 }
             }
             if (moveSW)
@@ -152,11 +152,11 @@ public class ScorchingSniperAni : MonoBehaviour {
                 }
                 if (sniperBoxSW.transform.position.z >= 2.41)
                 {
-                    sniperBoxSW.transform.Translate(new Vector3(0.0f, 0.0f, -0.02f));
+                    sniperBoxSW.transform.Translate(new Vector3(0.0f, 0.0f, -0.04f));
                 }
                 if (sniperBoxSW.transform.position.y <= 1.24)
                 {
-                    sniperBoxSW.transform.Translate(new Vector3(0.0f, 0.0f, -0.02f));
+                    sniperBoxSW.transform.Translate(new Vector3(0.0f, 0.0f, -0.04f));
                 }
             }
             if (moveNW)
@@ -167,11 +167,11 @@ public class ScorchingSniperAni : MonoBehaviour {
                 }
                 if (sniperBoxNW.transform.position.z >= 2.32)
                 {
-                    sniperBoxNW.transform.Translate(new Vector3(0.0f, 0.0f, -0.02f));
+                    sniperBoxNW.transform.Translate(new Vector3(0.0f, 0.0f, -0.04f));
                 }
                 if (sniperBoxNE.transform.position.y >= 2.53)
                 {
-                    sniperBoxNE.transform.Translate(new Vector3(0.0f, -0.02f, 0.0f));
+                    sniperBoxNE.transform.Translate(new Vector3(0.0f, -0.04f, 0.0f));
                 }
             }
         }
@@ -331,6 +331,11 @@ public class ScorchingSniperAni : MonoBehaviour {
                         cam2.enabled = false;
                         cam1.enabled = true;
                         BattleCommands.runDropBricks = true;
+                    }
+                    // no special case; go back to map
+                    else
+                    {
+                        AllDone();
                     }
                 }
             }

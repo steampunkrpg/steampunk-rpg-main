@@ -11,6 +11,8 @@ using System.Collections;
     public Animator animEnemy;
     public Vector3 origPos;
     public bool hit;
+    public bool atStart;
+    public bool preAttack;
  
  	// Use this for initialization
  	void Start()
@@ -19,13 +21,20 @@ using System.Collections;
         cam2.enabled = false;
         origPos = GameManager.instance.activePlayer.transform.localScale;
         hit = false;
+        atStart = true;
+        preAttack = true;
     }
  	
  	// Update is called once per frame
  	void Update() {
 		if (BattleCommands.runJotun) {
+            if (atStart)
+            {
+                atStart = false;
+                GameManager.instance.activePlayer.transform.Translate(0.0f, -0.2f, 0.0f);
+            }
 			WriteMovelist.currentMove = "Jotun";
-			if (GameManager.instance.activePlayer.transform.localScale.x <= 8.6f) {
+			if (GameManager.instance.activePlayer.transform.localScale.x <= 8.6f && preAttack) {
                 GameManager.instance.activePlayer.transform.localScale += Vector3.one * Time.deltaTime;
 			}
 			if (GameManager.instance.activePlayer.transform.localScale.x >= 1.8f) {
@@ -44,6 +53,7 @@ using System.Collections;
 	IEnumerator enemyReact() {
 		hit = true;
 		yield return new WaitForSeconds(.5f);
+        GameManager.instance.activeEnemy.transform.Translate(0.0f, -.2f, 0.0f);
 		GameManager.instance.activeEnemy.transform.localScale = new Vector3(1.0f, .1f, 1.0f);
 		//GameManager.instance.activeEnemy.GetComponent<Animator>().Play("break_through_the_block");
 		yield return new WaitForSeconds(1.0f);
@@ -53,6 +63,7 @@ using System.Collections;
 	}
 
 	private void AllDone() {
+        preAttack = false;
         GameManager.instance.activePlayer.transform.localScale = origPos;
 		GameManager.instance.LoadScene (GameManager.instance.level);
 	}
