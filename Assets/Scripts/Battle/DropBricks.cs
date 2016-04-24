@@ -167,6 +167,7 @@ public class DropBricks : MonoBehaviour {
                 brick1.transform.position = new Vector3(-5.99f, 5.25f, 2.27f);
                 BattleCommands.runDropBricks = false;
                 atStart = true;
+                GameManager.instance.activePlayer.GetComponent<BoxCollider>().enabled = true; 
                 yield return new WaitForSeconds(.9f);
                 BattleCommands.runScorchingSniper = true;
             }
@@ -239,7 +240,7 @@ public class DropBricks : MonoBehaviour {
     }
 
 	private void AllDone() {
-        GameManager.instance.activePlayer.GetComponent<Collider>().enabled = true;
+        GameManager.instance.activePlayer.GetComponent<BoxCollider>().enabled = true;
         GameManager.instance.LoadScene (GameManager.instance.level);
 	}
 }
