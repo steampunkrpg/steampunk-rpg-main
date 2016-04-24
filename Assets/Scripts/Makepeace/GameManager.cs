@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEditor;
+using System.IO;
 
 public class GameManager : MonoBehaviour {
 
@@ -16,7 +18,7 @@ public class GameManager : MonoBehaviour {
 	public GameObject PlayerUI;
 	public GameObject EnemyUI;
     public GameObject StoryUI;
-    public TextAsset storyText;
+    private TextAsset storyText;
 
 	public static GameManager instance = null;
 	public float turnDelay = 0.1f;
@@ -42,6 +44,8 @@ public class GameManager : MonoBehaviour {
 	public int prevState;
 	public int level;
 	public bool inLevel;
+    public bool visitedForest = false;
+    private string storyFile;
 
 	void Awake() {
 		if (instance == null)
@@ -236,6 +240,22 @@ public class GameManager : MonoBehaviour {
 
         if (State == 6)
         {
+            storyFile = "StoryTexts/" + Application.loadedLevelName;
+            if (Application.loadedLevelName == "Forest_Scene")
+            {
+                visitedForest = true;
+            } else if (Application.loadedLevelName == "Winter_Scene")
+            {
+                if (visitedForest)
+                {
+                    storyFile = storyFile + "1";
+                } else
+                {
+                    storyFile = storyFile + "0";
+                }
+            }
+
+            storyText = Resources.Load(storyFile) as TextAsset;
             StoryUI.GetComponentInChildren<Text>().text = storyText.text;
             StoryUI.SetActive(true);
             if (Input.GetMouseButtonDown(0))
