@@ -185,8 +185,10 @@ public class DominoTheoryAni : MonoBehaviour {
         }
         else if (GameManager.instance.battleAnimation[3] == 2 && runNum != 2)
         {
-            WriteMovelist.currentMove = "Scumbag in the Shadows";
-            BattleCommands.runScumbagShadow = true;
+            //WriteMovelist.currentMove = "Scumbag in the Shadows";
+            //BattleCommands.runScumbagShadow = true;
+            WriteMovelist.currentMove = "Maze Wars";
+            BattleCommands.runMazeWar = true;
         }
     }
 

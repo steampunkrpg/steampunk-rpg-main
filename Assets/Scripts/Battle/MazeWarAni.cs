@@ -93,8 +93,8 @@ public class MazeWarAni : MonoBehaviour {
         line2.GetComponent<Renderer>().enabled = false;
         line3.GetComponent<Renderer>().enabled = false;
         line4.GetComponent<Renderer>().enabled = false;
-        GameManager.instance.activeEnemy.GetComponent<Animator>().Play("Get Hit");
+        GameManager.instance.activePlayer.GetComponent<Animator>().Play("Get Hit");
         yield return new WaitForSeconds(.8f);
-        GameManager.instance.LoadScene(GameManager.instance.level);
+        BattleCommands.runSolarShot = true;
     }
 }

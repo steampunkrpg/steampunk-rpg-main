@@ -133,6 +133,7 @@ public class DropBricks : MonoBehaviour {
                 brick1.GetComponent<Rigidbody>().useGravity = false;
                 brick1.transform.position = new Vector3(-5.99f, 5.25f, 2.27f);
                 decompressing = true;
+                GameManager.instance.activePlayer.GetComponent<BoxCollider>().enabled = true;
                 yield return new WaitForSeconds(1.4f);
                 atStart = true;
                 BattleCommands.runDropBricks = false;
