@@ -92,7 +92,7 @@ public class ScorchingSniperAni : MonoBehaviour {
             }
             if (moveN)
             {
-                if (sniperBoxN.transform.position.y <= 3.36)
+                if (sniperBoxN.transform.position.y <= 3.7)
                 {
                     moveN = false;
                 }
@@ -288,6 +288,7 @@ public class ScorchingSniperAni : MonoBehaviour {
                 if (GameManager.instance.battleAnimation[6]==-1)
                 {
                     GameManager.instance.activeEnemy.GetComponent<Animator>().Play("Dead");
+                    yield return new WaitForSeconds(1.2f);
 					AllDone ();
                 }
                 else
