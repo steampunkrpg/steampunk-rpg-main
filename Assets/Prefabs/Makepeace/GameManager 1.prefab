@@ -1355,7 +1355,6 @@ MonoBehaviour:
   PlayerUI: {fileID: 102158}
   EnemyUI: {fileID: 105612}
   StoryUI: {fileID: 131774}
-  storyText: {fileID: 0}
   turnDelay: 0.1
   tileL: []
   playerL: []
@@ -1368,6 +1367,7 @@ MonoBehaviour:
   prevState: 0
   level: 0
   inLevel: 0
+  visitedForest: 0
 --- !u!114 &11406044
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5222,7 +5222,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: m_Name
-      value: GameManager
+      value: GameManager 1 old
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

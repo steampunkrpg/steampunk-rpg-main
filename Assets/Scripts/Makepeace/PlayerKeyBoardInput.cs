@@ -68,10 +68,18 @@ public class PlayerKeyBoardInput : MonoBehaviour {
 	}
 
 	public void GlobalAction() {
-		if (Input.GetKey (KeyCode.Escape)) {
-			GameManager.instance.prevState = GameManager.instance.State;
-			GameManager.instance.State = 0;
-			GameManager.instance.PauseUI.SetActive(true);
+		if (Input.GetKeyDown(KeyCode.Escape)) {
+            if (!GameManager.instance.PauseUI.active)
+            {
+                GameManager.instance.prevState = GameManager.instance.State;
+                GameManager.instance.State = 0;
+                GameManager.instance.PauseUI.SetActive(true);
+            } else
+            {
+                GameManager.instance.prevState = GameManager.instance.State;
+                GameManager.instance.State = GameManager.instance.prevState;
+                GameManager.instance.PauseUI.SetActive(false);
+            }
 		}
 	}
 

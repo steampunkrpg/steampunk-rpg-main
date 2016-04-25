@@ -265,6 +265,11 @@ public class GameManager : MonoBehaviour {
             }
         }
 
+        //if (State == 0)
+        //{
+        //    playerInput.GlobalAction();
+        //}
+
 		if (State != 0 && State != 3 && State != 4 && State != -1) {
 			if (activePlayer != null && activePlayer.Status != 6) {
 				playerInput.CameraAction ();
@@ -280,9 +285,10 @@ public class GameManager : MonoBehaviour {
 				playerInput.CameraAction ();
 			}
 
-			playerInput.GlobalAction ();
+			//playerInput.GlobalAction ();
 		}
-	}
+        playerInput.GlobalAction();
+    }
 
 	void CameraFocusPlayer() {
 		if (playerL.Count > 0) {
