@@ -552,6 +552,7 @@ public class GameManager : MonoBehaviour {
             StoryUI.SetActive(true);
             if (Input.GetMouseButtonDown(0))
             {
+                StoryUI.SetActive(false);
                 LoadScene("World_Map");
             }
 		}
