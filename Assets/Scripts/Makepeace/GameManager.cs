@@ -540,7 +540,14 @@ public class GameManager : MonoBehaviour {
 		} else if (nextState == -1) {
 			LoadScene ("New_Menu_Scene");
 		} else if (nextState == -2) {
-			LoadScene ("World_Map");
+            storyFile = storyFile + "_End";
+            storyText = Resources.Load(storyFile) as TextAsset;
+            StoryUI.GetComponentInChildren<Text>().text = storyText.text;
+            StoryUI.SetActive(true);
+            if (Input.GetMouseButtonDown(0))
+            {
+                LoadScene("World_Map");
+            }
 		}
 
 		State = nextState;
