@@ -298,6 +298,7 @@ public class GameManager : MonoBehaviour {
 		if (State == -2) {
 			if (Input.GetMouseButtonDown (0)) {
 				StoryUI.SetActive (false);
+				StopMusic ();
 				LoadScene ("World_Map");
 			}
 		}
