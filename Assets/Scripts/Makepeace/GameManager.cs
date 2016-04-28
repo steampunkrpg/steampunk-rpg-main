@@ -146,6 +146,7 @@ public class GameManager : MonoBehaviour {
 				if (activeEnemy != null) {
 					InitiateBattle (activePlayer.tile, activeEnemy.tile);
 					ResetEnemyPar ();
+					ResetTileParticles ();
 					activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
 					activePlayer.Status = 0;
 					prevState = 1;
