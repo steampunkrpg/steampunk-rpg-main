@@ -74,13 +74,14 @@ public class PlayerKeyBoardInput : MonoBehaviour {
                 GameManager.instance.prevState = GameManager.instance.State;
                 GameManager.instance.State = 0;
                 GameManager.instance.PauseUI.SetActive(true);
-            } else
-            {
-                GameManager.instance.prevState = GameManager.instance.State;
-                GameManager.instance.State = GameManager.instance.prevState;
-                GameManager.instance.PauseUI.SetActive(false);
             }
 		}
+	}
+
+	public void UnPause() {
+		GameManager.instance.prevState = GameManager.instance.State;
+		GameManager.instance.State = GameManager.instance.prevState;
+		GameManager.instance.PauseUI.SetActive (false);
 	}
 
 	public void PlayerTurn() {
