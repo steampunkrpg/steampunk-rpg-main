@@ -216,6 +216,7 @@ public class GameManager : MonoBehaviour {
 
 		if (State == 5) {
 			battleAnimation = new int[10];
+			ResetTileParticles ();
 			CheckForDeaths ();
 
 			if (activePlayer.GetComponentInChildren<Stats> ().Xp >= 100) {
@@ -922,5 +923,12 @@ public class GameManager : MonoBehaviour {
 		}
 
 		Destroy (this.gameObject);
+	}
+
+	public void StopMusic () {
+		GameObject music = GameObject.Find ("MusicPlayer");
+		if (music != null) {
+			Destroy (music);
+		}
 	}
 }
