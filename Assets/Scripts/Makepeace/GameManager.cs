@@ -146,6 +146,7 @@ public class GameManager : MonoBehaviour {
 				if (activeEnemy != null) {
 					InitiateBattle (activePlayer.tile, activeEnemy.tile);
 					ResetEnemyPar ();
+					ResetTileParticles ();
 					activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
 					activePlayer.Status = 0;
 					prevState = 1;
@@ -270,7 +271,7 @@ public class GameManager : MonoBehaviour {
         //    playerInput.GlobalAction();
         //}
 
-		if (State != 0 && State != 3 && State != 4 && State != -1) {
+		if (State != 0 && State != 3 && State != 4 && State != -1 && State != -2) {
 			if (activePlayer != null && activePlayer.Status != 6) {
 				playerInput.CameraAction ();
 				GameObject camera = GameObject.Find ("Main Camera");
@@ -287,7 +288,15 @@ public class GameManager : MonoBehaviour {
 
 			//playerInput.GlobalAction ();
 		}
+			
         playerInput.GlobalAction();
+
+		if (State == -2) {
+			if (Input.GetMouseButtonDown (0)) {
+				StoryUI.SetActive (false);
+				LoadScene ("World_Map");
+			}
+		}
     }
 
 	void CameraFocusPlayer() {
@@ -368,7 +377,7 @@ public class GameManager : MonoBehaviour {
 
 			if (Physics.Raycast (mouseRay, out hit)) {
 				if (hit.collider.tag.Equals ("Enemy")) {
-					if (hit.collider.gameObject.transform.Find ("Particle").gameObject.activeSelf) {
+					if (hit.collider.gameObject.GetComponentInChildren<ParticleSystem> ().isPlaying) {
 						activeEnemy = hit.collider.gameObject.GetComponent<Enemy> ();
 					}
 				}
@@ -899,8 +908,15 @@ public class GameManager : MonoBehaviour {
 
 	public void DestroyThis () {
 		foreach (Unit player in playerL) {
-			player.Death ();
+			Destroy (player.gameObject);
 		}
+		foreach (Enemy enemy in enemyL) {
+			Destroy (enemy.gameObject);
+		}
+		foreach (HexTile tile in tileL) {
+			Destroy (tile.gameObject);
+		}
+
 		Destroy (this.gameObject);
 	}
 }

@@ -11,8 +11,8 @@ public class InventoryLUT : MonoBehaviour {
 
 		switch (used) {
 
-		case "WoodSword":
-			returnedItem = new Item (1, "WoodSword", 5, 95, 20, 5, new List<float>{ 1 }, 0);
+		case "Wood Sword":
+			returnedItem = new Item (1, "Wood Sword", 5, 95, 20, 5, new List<float>{ 1 }, 0);
 			break;
 
 		case "Crossbow":
@@ -41,6 +41,10 @@ public class InventoryLUT : MonoBehaviour {
 
 		case "GodWeapons":
 			returnedItem = new Item (1, "GodWeapon", 20, 100, 0, 7, new List<float> { 1 }, 0);
+			break;
+
+		case "Iron Bow":
+			returnedItem = new Item (1, "Iron Bow", 6, 85, 0, 8, new List<float> { 2 }, 4);
 			break;
 
 		default:
