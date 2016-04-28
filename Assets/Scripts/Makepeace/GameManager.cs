@@ -368,7 +368,7 @@ public class GameManager : MonoBehaviour {
 
 			if (Physics.Raycast (mouseRay, out hit)) {
 				if (hit.collider.tag.Equals ("Enemy")) {
-					if (hit.collider.gameObject.transform.Find ("Particle").gameObject.activeSelf) {
+					if (hit.collider.gameObject.GetComponentInChildren<ParticleSystem> ().isPlaying) {
 						activeEnemy = hit.collider.gameObject.GetComponent<Enemy> ();
 					}
 				}
@@ -899,8 +899,15 @@ public class GameManager : MonoBehaviour {
 
 	public void DestroyThis () {
 		foreach (Unit player in playerL) {
-			player.Death ();
+			Destroy (player.gameObject);
 		}
+		foreach (Enemy enemy in enemyL) {
+			Destroy (enemy.gameObject);
+		}
+		foreach (HexTile tile in tileL) {
+			Destroy (tile.gameObject);
+		}
+
 		Destroy (this.gameObject);
 	}
 }
