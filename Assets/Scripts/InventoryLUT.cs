@@ -47,6 +47,10 @@ public class InventoryLUT : MonoBehaviour {
 			returnedItem = new Item (1, "Iron Bow", 6, 85, 0, 8, new List<float> { 2 }, 4);
 			break;
 
+		case "Heal":
+			returnedItem = new Item (1, "Heal", 11, 0, 0, 2, new List<float> { 1 }, -1);
+			break;
+
 		default:
 			returnedItem = null;
 			break;
