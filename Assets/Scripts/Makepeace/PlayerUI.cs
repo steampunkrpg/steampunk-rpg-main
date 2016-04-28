@@ -43,7 +43,6 @@ public class PlayerUI : MonoBehaviour {
 			GameManager.instance.activePlayer.Status = 3;
 			GameManager.instance.activePlayer.possibleAttack ();
 		}
-		GameManager.instance.activePlayer.Status = 3;
 		GameManager.instance.PlayerUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
 	}
 

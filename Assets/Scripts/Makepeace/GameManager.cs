@@ -122,6 +122,7 @@ public class GameManager : MonoBehaviour {
 				if (interactPlayer != null) {
 					InitiateInteraction (activePlayer.tile, interactPlayer.tile);
 					ResetPlayerPar ();
+					ResetTileParticles ();
 					activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
 					interactPlayer = null;
 					activePlayer.Status = 0;
@@ -138,6 +139,8 @@ public class GameManager : MonoBehaviour {
 						lvStats = xpGrowthRate.GetGrowthRates (className);
 						activePlayer.GetComponentInChildren<Stats> ().LevelUp (lvStats);
 					}
+
+					activePlayer = null;
 				}
 			}
 
@@ -402,6 +405,7 @@ public class GameManager : MonoBehaviour {
 			}
 		} else if (Input.GetMouseButtonDown (1)) {
 			ResetPlayerPar ();
+			activePlayer.GetComponentInChildren<ParticleSystem> ().Play (true);
 			PlayerUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
 			ResetTileParticles ();
 		}
