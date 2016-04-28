@@ -271,7 +271,7 @@ public class GameManager : MonoBehaviour {
         //    playerInput.GlobalAction();
         //}
 
-		if (State != 0 && State != 3 && State != 4 && State != -1) {
+		if (State != 0 && State != 3 && State != 4 && State != -1 && State != -2) {
 			if (activePlayer != null && activePlayer.Status != 6) {
 				playerInput.CameraAction ();
 				GameObject camera = GameObject.Find ("Main Camera");
@@ -288,7 +288,15 @@ public class GameManager : MonoBehaviour {
 
 			//playerInput.GlobalAction ();
 		}
+			
         playerInput.GlobalAction();
+
+		if (State == -2) {
+			if (Input.GetMouseButtonDown (0)) {
+				StoryUI.SetActive (false);
+				LoadScene ("World_Map");
+			}
+		}
     }
 
 	void CameraFocusPlayer() {
