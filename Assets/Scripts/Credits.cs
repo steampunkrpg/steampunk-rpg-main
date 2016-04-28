@@ -21,6 +21,6 @@ public class Credits : MonoBehaviour {
 		yield return new WaitForSeconds (LENGTH_OF_CREDITS);
 		gameObject.GetComponent<AudioSource> ().Stop ();
 		Application.OpenURL ("http://web.cse.ohio-state.edu/~boggus/5912/");
-		SceneManager.LoadScene ("Menu_Scene");		
+		SceneManager.LoadScene ("New_Menu_Scene");		
 	}
 }
