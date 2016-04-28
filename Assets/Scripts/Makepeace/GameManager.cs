@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using UnityEditor;
+//using UnityEditor;
 using System.IO;
 
 public class GameManager : MonoBehaviour {
