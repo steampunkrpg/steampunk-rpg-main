@@ -17,7 +17,7 @@ public class InventoryManager : MonoBehaviour {
 
 		//testing item
 		AddItem("Potion", 10);
-		AddItem ("WoodSword", 1);
+		AddItem ("Wood Sword", 1);
 		//AddItem ("Potion", 1);
 		/*for (int i = 1; i <= 20; i++) {
 			AddItem ("Potion" + i, 1);
@@ -98,6 +98,7 @@ public class InventoryManager : MonoBehaviour {
 			if (itemsAndCounts [i].Key == pressedItem) {
 				itemsAndCounts [i] = new KeyValuePair<string, int> (pressedItem, itemsAndCounts [i].Value - 1);
 				if (itemsAndCounts [i].Value == 0) {
+					itemsAndCounts.RemoveAt (i);
 					GameObject.Destroy (GameObject.Find (pressedItem));
 				} else {
 					GameObject.Find (pressedItem).GetComponentInChildren<Text> ().text = pressedItem + ": " + itemsAndCounts [i].Value;
