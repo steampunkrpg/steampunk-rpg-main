@@ -363,7 +363,7 @@ public class GameManager : MonoBehaviour {
 				}
 			}
 		} else if (Input.GetMouseButtonDown (1)) {
-			if (activePlayer != null) {
+				if (activePlayer != null) {
 				activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
 				PlayerUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
 				activePlayer = null;
@@ -388,6 +388,7 @@ public class GameManager : MonoBehaviour {
 			}
 		} else if (Input.GetMouseButtonDown (1)) {
 			ResetEnemyPar ();
+			activePlayer.Status = 1;
 			PlayerUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
 			ResetTileParticles ();
 		}
@@ -407,6 +408,7 @@ public class GameManager : MonoBehaviour {
 		} else if (Input.GetMouseButtonDown (1)) {
 			ResetPlayerPar ();
 			activePlayer.GetComponentInChildren<ParticleSystem> ().Play (true);
+			activePlayer.Status = 1;
 			PlayerUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
 			ResetTileParticles ();
 		}
@@ -433,6 +435,7 @@ public class GameManager : MonoBehaviour {
 			}
 		} else if (Input.GetMouseButtonDown (1)) {
 			ResetTileParticles ();
+			activePlayer.Status = 1;
 			PlayerUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
 		}
 	}
