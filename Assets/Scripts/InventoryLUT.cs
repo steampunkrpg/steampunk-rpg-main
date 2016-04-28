@@ -39,8 +39,8 @@ public class InventoryLUT : MonoBehaviour {
 			returnedItem = new Item (0, "IronhideElixir");
 			break;
 
-		case "GodWeapons":
-			returnedItem = new Item (1, "GodWeapon", 20, 100, 0, 7, new List<float> { 1 }, 0);
+		case "God Weapon":
+			returnedItem = new Item (1, "God Weapon", 20, 100, 0, 7, new List<float> { 1 , 2 }, 0);
 			break;
 
 		case "Iron Bow":
