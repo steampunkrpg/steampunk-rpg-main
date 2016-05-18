@@ -3,6 +3,7 @@ using System.Collections;
 
 public class LightingBOSSFlash : MonoBehaviour {
 
+
     public float minTime;
     public float flashRate;
     public float minLightningIntensity;
@@ -14,22 +15,33 @@ public class LightingBOSSFlash : MonoBehaviour {
     public AudioSource thunder;
 
     private float lastTime = 0f;
+    private float randNoise;
 
     void Start()
     {
         // Initialization of variables
         minTime = 1.8f;
-        flashRate = 0.95f;
-        minLightningIntensity = 0.3f;
-        maxLightningIntensity = 0.7f;
+        flashRate = 0.91f;
+        minLightningIntensity = 0.1f;
+        maxLightningIntensity = 0.3f;
         minLightningBreak = 1.5f;
         maxLightningBreak = 3.0f;
+        randNoise = Random.Range(0.0f, 65535.0f);
     }
 
     // Update is called once per frame
     void Update()
     {
         RandomLightningFlash();
+        //PerlinNoiseLightningFlash();
+
+    }
+
+    // Perlin Noise Lightning Strike
+    void PerlinNoiseLightningFlash()
+    {
+        float noise = Mathf.PerlinNoise(randNoise, Time.time);
+        lightningFlash.intensity = Mathf.Lerp(minLightningIntensity, maxLightningIntensity, noise);
     }
 
     // Random Lightning Strike
@@ -60,6 +72,6 @@ public class LightingBOSSFlash : MonoBehaviour {
 
             }
 
-        } 
+        }
     }
 }

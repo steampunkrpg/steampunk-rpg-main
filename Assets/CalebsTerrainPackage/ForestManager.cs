@@ -20,21 +20,21 @@ public class ForestManager : MonoBehaviour {
 
     Vector3 RandomPosGenerator(GameObject go)
     {
-        float randX = Random.Range(25f, 75f);
-        float randZ = Random.Range(5f, 45f);
+        float randX = Random.Range(60f, 140f);
+        float randZ = Random.Range(60f, 140f);
         while (Distribute(randX, randZ) == false)
         {
-            randX = Random.Range(25f, 75f);
-            randZ = Random.Range(5f, 45f);
+            randX = Random.Range(60f, 140f);
+            randZ = Random.Range(60f, 140f);
         }
-        float randY = terrain.SampleHeight(new Vector3(randX, 0f, randZ)) + go.transform.lossyScale.y -2;
+        float randY = terrain.SampleHeight(new Vector3(randX, 0f, randZ)) + go.transform.lossyScale.y - 0.5f;
         Vector3 randPos = new Vector3(randX, randY, randZ);
         return randPos;
     }
 
     bool Distribute(float x, float y)
     {
-        if (((x < 35) || (x>65)) || ((y < 4) || (y > 35)))
+        if (((x < 75) || (x>130)) || ((y < 75) || (y > 130)))
         {
             return true;
         }
@@ -53,7 +53,9 @@ public class ForestManager : MonoBehaviour {
         for (int i = 0; i < count; i++)
         {
             Vector3 pos = RandomPosGenerator(go);
-            GameObject tree = Instantiate(go, pos, Quaternion.Euler(-90,0,0)) as GameObject;
+            GameObject tree = Instantiate(go, pos, Quaternion.Euler(0,0,0)) as GameObject;
+            tree.transform.parent = this.transform;
+            tree.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
             tree.name = "tree";
         }
     }

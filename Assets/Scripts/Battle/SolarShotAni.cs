@@ -14,6 +14,8 @@ public class SolarShotAni : MonoBehaviour {
     public Animator animPlayer;
     public Animator animEnemy;
     public ParticleSystem burst;
+    public ParticleSystem shadow;
+    public static int runNum;
 
     // Use this for initialization
     void Start() {
@@ -33,12 +35,15 @@ public class SolarShotAni : MonoBehaviour {
         ray5.GetComponent<Renderer>().enabled = false;
         ray6.GetComponent<Renderer>().enabled = false;
         burst.GetComponent<Renderer>().enabled = false;
+        GameManager.instance.activeEnemy.GetComponent<Animator>().Play("Idle_block");
+        runNum = 0;
     }
 
     // Update is called once per frame
     void Update() {
         if (BattleCommands.runSolarShot)
         {
+            WriteMovelist.currentMove = "Solar Shot";
             if (sphere.GetComponent<Renderer>().enabled == false)
             {
                 sphere.GetComponent<Renderer>().enabled = true;
@@ -59,7 +64,7 @@ public class SolarShotAni : MonoBehaviour {
             }
             else
             {
-                if (sphere.transform.position.z > 4.5f)
+                if (sphere.transform.position.z > -2.0f)
                 {
                     sphere.transform.Translate(.1f, 0.0f, -.1f);
 
@@ -74,13 +79,11 @@ public class SolarShotAni : MonoBehaviour {
                     ray5.Play();
                     ray6.Play();
                     emitted = true;
+                    StartCoroutine(BattleCommands.damageWriter.CoDrawDamageEn());
                     StartCoroutine(waiter());
-                    animEnemy.Play("Get hit");
+                    GameManager.instance.activeEnemy.GetComponent<Animator>().Play("break_through_the_block");
+                    StartCoroutine("enemyReact");
                     this.SunBurst();
-                    /* ParticleSystem.EmissionModule em = burst.emission;
-                     em.enabled = true;
-                     burst.Play(); */
-                    //ParticleBurst.isBursting = true;
                 }
             }
         }
@@ -88,7 +91,41 @@ public class SolarShotAni : MonoBehaviour {
     public IEnumerator throwSun()
     {
         yield return new WaitForSeconds(1.75f);
-        animPlayer.Play("Attack(4)");
+        GameManager.instance.activePlayer.GetComponent<Animator>().Play("Attack(4)");
+    }
+
+    public IEnumerator enemyReact()
+    {
+        yield return new WaitForSeconds(.6f);
+        if (GameManager.instance.battleAnimation[9] == -1)
+        {
+            GameManager.instance.activeEnemy.GetComponent<Animator>().Play("Dead");
+            yield return new WaitForSeconds(1.5f);
+            GameManager.instance.LoadScene(GameManager.instance.level);
+        }
+        else
+        {
+            GameManager.instance.activeEnemy.transform.Translate(new Vector3(-1.2f, 0.0f, 0.0f));
+            if (GameManager.instance.battleAnimation[7] == 1)
+            {
+                GameManager.instance.activeEnemy.GetComponent<Animator>().Play("break_through_the_block");
+            }
+            // Pseudocode for new actions
+            // if (health <= 0) {
+            //  play("death animation")
+            // else
+            /*if (runNum != 2)
+            {
+                WriteMovelist.currentMove = "Scumbag in the Shadows";
+                StartCoroutine(shadow.GetComponent<EnemyCounterattack>().counter());
+            } else
+            {
+                yield return new WaitForSeconds(1.5f);
+                GameManager.instance.LoadScene(GameManager.instance.level);
+            }*/
+            yield return new WaitForSeconds(1.5f);
+            GameManager.instance.LoadScene(GameManager.instance.level);
+        }
     }
 
     public IEnumerator waiter()
@@ -100,12 +137,14 @@ public class SolarShotAni : MonoBehaviour {
         ray4.Stop();
         ray5.Stop();
         ray6.Stop();
-        sphere.SetActive(false);
+        //sphere.SetActive(false);
+        sphere.transform.Translate(new Vector3(500.0f, 500.0f, 500.0f));
         //burst.enableEmission = true;
         //ShakeScreen.shaking = true;
         //ParticleBurst.isBursting = true;
-        
-        animEnemy.Stop();
+
+        //animEnemy.Stop();
+        //animEnemy.enabled = false;
         //this.SunBurst();
     }
 

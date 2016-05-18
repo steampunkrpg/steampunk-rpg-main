@@ -13,13 +13,17 @@ EditorBuildSettings:
     path: Assets/Scenes/Demo/Character_Scene.unity
   - enabled: 1
     path: Assets/Scenes/Demo/World_Map.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Makepeace/Desert_Scene.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Makepeace/Forest_Scene.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Makepeace/Lava_Scene.unity
   - enabled: 1
     path: Assets/Scenes/Makepeace/Plains_Scene.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Makepeace/Winter_Scene.unity
+  - enabled: 1
+    path: Assets/Scenes/H-Bomb/BattleView.unity
+  - enabled: 1
+    path: Assets/Scenes/H-Bomb/character-creation.unity

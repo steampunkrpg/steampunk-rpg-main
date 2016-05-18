@@ -1,14 +1,24 @@
-﻿using UnityEngine;using System.Collections;
+﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+//using UnityEditor;
+using System.IO;
 
 public class GameManager : MonoBehaviour {
 
 	public GameObject PauseUI;
 	public GameObject TurnUI;
 	public Text turnText;
+	public Image turnImage;
 	public GameObject StatsUI;
+	public GameObject InvUI;
+	public GameObject PlayerUI;
+	public GameObject EnemyUI;
+    public GameObject StoryUI;
+    private TextAsset storyText;
 
 	public static GameManager instance = null;
 	public float turnDelay = 0.1f;
@@ -19,6 +29,7 @@ public class GameManager : MonoBehaviour {
 
 	private Ray mouseRay;
 	private RaycastHit hit;
+	private RaycastHit vertHit;
 
 	public List<HexTile> tileL;
 	public List<Unit> playerL;
@@ -27,9 +38,14 @@ public class GameManager : MonoBehaviour {
 	public Enemy activeEnemy = null;
 	public Unit interactPlayer = null;
 
+	public int[] battleAnimation;
+
 	public int State;
 	public int prevState;
 	public int level;
+	public bool inLevel;
+    public bool visitedForest = false;
+    private string storyFile;
 
 	void Awake() {
 		if (instance == null)
@@ -42,6 +58,7 @@ public class GameManager : MonoBehaviour {
 		tileL = new List<HexTile> ();
 		playerL = new List<Unit> ();
 		enemyL = new List<Enemy> ();
+		battleAnimation = new int[10];
 
 		xpGrowthRate = this.gameObject.GetComponent<XpGrowthRate> ();
 		playerInput = this.gameObject.GetComponent<PlayerKeyBoardInput> ();
@@ -49,8 +66,11 @@ public class GameManager : MonoBehaviour {
 		PauseUI.SetActive (false);
 		TurnUI.SetActive (false);
 		StatsUI.SetActive (false);
+		StoryUI.SetActive (false);
+		InvUI.GetComponent<InventoryManager> ().CreateDefault ();
 
 		level = 0;
+		inLevel = false;
 		State = 0;
 	}
 
@@ -58,46 +78,52 @@ public class GameManager : MonoBehaviour {
 		enemyL = new List<Enemy> ();
 		tileL = new List<HexTile> ();
 
+		activePlayer = null;
+		activeEnemy = null;
 		LoadLists ();
-		State = 4;
+        
+		State = 6;
+		//State = 4;
+
+		inLevel = true;
 	}
 
 	void Update() {
 		if (State == 1) {
 			if (activePlayer == null || activePlayer.Status == 1) {
 				PlayerSelect ();
+				playerInput.PlayerTurn ();
 			}
 
 			if (activePlayer != null && activePlayer.Status == 1) {
 				if (!activePlayer.GetComponentInChildren<ParticleSystem> ().isPlaying) {
 					activePlayer.GetComponentInChildren<ParticleSystem> ().Play (true);
-					activePlayer.menu.gameObject.SetActive (true);
-					activePlayer.possibleMoves ();
 				}
 				playerInput.UnitAction (activePlayer);
-			} 
+			}
 
 			if (activePlayer != null && activePlayer.Status == 0) {
 				activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
-				activePlayer.menu.gameObject.SetActive (false);
-				ResetTilePar ();
+				PlayerUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
+				ResetTileParticles ();
 				activePlayer = null;
 			}
 
 			if (activePlayer != null && activePlayer.Status == 6) {
-				activePlayer.menu.gameObject.SetActive (false);
-				activePlayer.possibleMoves ();
-				playerInput.UnitAction (activePlayer);
+				MoveSelect ();
+			}
+
+			if (activePlayer != null && activePlayer.Status == 7) {
+				InventorySelect ();
 			}
 
 			if (activePlayer != null && activePlayer.Status == 5) {
-				activePlayer.menu.gameObject.SetActive (false);
 				InteractSelect ();
 				if (interactPlayer != null) {
 					InitiateInteraction (activePlayer.tile, interactPlayer.tile);
 					ResetPlayerPar ();
+					ResetTileParticles ();
 					activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
-					interactPlayer.menu.UpdateMenu (interactPlayer.char_stats);
 					interactPlayer = null;
 					activePlayer.Status = 0;
 					if (activePlayer.GetComponentInChildren<Stats> ().Xp >= 100) {
@@ -113,40 +139,25 @@ public class GameManager : MonoBehaviour {
 						lvStats = xpGrowthRate.GetGrowthRates (className);
 						activePlayer.GetComponentInChildren<Stats> ().LevelUp (lvStats);
 					}
+
+					activePlayer = null;
 				}
 			}
 
 			if (activePlayer != null && activePlayer.Status == 3) {
-				activePlayer.menu.gameObject.SetActive (false);
 				EnemySelect ();
 				if (activeEnemy != null) {
 					InitiateBattle (activePlayer.tile, activeEnemy.tile);
 					ResetEnemyPar ();
+					ResetTileParticles ();
 					activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
-					activePlayer.menu.UpdateMenu (activePlayer.char_stats);
-					activeEnemy.menu.UpdateMenu (activeEnemy.enemy_stats);
-
-					if (activePlayer.GetComponentInChildren<Stats> ().Xp >= 100) {
-						float[] lvStats = new float[8];
-						string className = "";
-						foreach (Transform child in activePlayer.transform) {
-							if (child.tag == "Class") {
-								className = child.name;
-								break;
-							}
-						}
-
-						lvStats = xpGrowthRate.GetGrowthRates (className);
-						activePlayer.GetComponentInChildren<Stats> ().LevelUp (lvStats);
-					}
-
 					activePlayer.Status = 0;
-					activePlayer = null;
-					activeEnemy = null;
+					prevState = 1;
+					State = 0;
 
-					if (State == 0) {
-						return;
-					}
+					//Call Battle Animation Scene
+					LoadScene("BattleView");
+					return;
 				}
 			}
 
@@ -203,13 +214,74 @@ public class GameManager : MonoBehaviour {
 			StartCoroutine (TimerEnumerator (3, 1));
 		} 
 
-		if (State != 0 && State != 3 && State != 4) {
-			if (activePlayer != null) {
+		if (State == 5) {
+			battleAnimation = new int[10];
+			ResetTileParticles ();
+			CheckForDeaths ();
+
+			if (activePlayer.GetComponentInChildren<Stats> ().Xp >= 100) {
+				float[] lvStats = new float[8];
+				string className = "";
+				foreach (Transform child in activePlayer.transform) {
+					if (child.tag == "Class") {
+						className = child.name;
+						break;
+					}
+				}
+
+				lvStats = xpGrowthRate.GetGrowthRates (className);
+				activePlayer.GetComponentInChildren<Stats> ().LevelUp (lvStats);
+			}
+
+			CheckWinOrLoseCondition ();
+				
+			activePlayer = null;
+			activeEnemy = null;
+
+			if (State != -1) {
+				State = prevState;
+			}
+		}
+
+        if (State == 6)
+        {
+            storyFile = "StoryTexts/" + Application.loadedLevelName;
+            if (Application.loadedLevelName == "Forest_Scene")
+            {
+                visitedForest = true;
+            } else if (Application.loadedLevelName == "Winter_Scene")
+            {
+                if (visitedForest)
+                {
+                    storyFile = storyFile + "1";
+                } else
+                {
+                    storyFile = storyFile + "0";
+                }
+            }
+
+            storyText = Resources.Load(storyFile) as TextAsset;
+            StoryUI.GetComponentInChildren<Text>().text = storyText.text;
+            StoryUI.SetActive(true);
+            if (Input.GetMouseButtonDown(0))
+            {
+                StoryUI.SetActive(false);
+                State = 4;
+            }
+        }
+
+        //if (State == 0)
+        //{
+        //    playerInput.GlobalAction();
+        //}
+
+		if (State != 0 && State != 3 && State != 4 && State != -1 && State != -2) {
+			if (activePlayer != null && activePlayer.Status != 6) {
 				playerInput.CameraAction ();
 				GameObject camera = GameObject.Find ("Main Camera");
 				CameraBounds bounds = camera.GetComponent<CameraBounds> ();
 				camera.transform.position = new Vector3 (activePlayer.transform.position.x, activePlayer.transform.position.y + bounds.offset - bounds.zoom, activePlayer.transform.position.z - bounds.offset + bounds.zoom);
-			} else if (activeEnemy != null) {
+			} else if (activeEnemy != null && State != 1) {
 				playerInput.CameraAction ();
 				GameObject camera = GameObject.Find ("Main Camera");
 				CameraBounds bounds = camera.GetComponent<CameraBounds> ();
@@ -217,13 +289,21 @@ public class GameManager : MonoBehaviour {
 			} else {
 				playerInput.CameraAction ();
 			}
-		}
 
-		if (State != 0) {
-			playerInput.GlobalAction ();
+			//playerInput.GlobalAction ();
 		}
-	}
-		
+			
+        playerInput.GlobalAction();
+
+		if (State == -2) {
+			if (Input.GetMouseButtonDown (0)) {
+				StoryUI.SetActive (false);
+				StopMusic ();
+				LoadScene ("World_Map");
+			}
+		}
+    }
+
 	void CameraFocusPlayer() {
 		if (playerL.Count > 0) {
 			GameObject camera = GameObject.Find ("Main Camera");
@@ -232,7 +312,7 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-	void PlayerSelect() {
+	private void PlayerSelect() {
 		if (Input.GetMouseButtonDown (0)) {
 			mouseRay = Camera.main.ScreenPointToRay (Input.mousePosition);
 
@@ -240,61 +320,82 @@ public class GameManager : MonoBehaviour {
 				if (hit.collider.tag.Equals ("Unit")) {
 					if (activePlayer != null && activePlayer != hit.collider.gameObject.GetComponent<Unit> ()) {
 						activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
-						ResetTilePar ();
-						activePlayer.menu.gameObject.SetActive (false);
 					}
 
 					if (activeEnemy != null) {
-						activeEnemy.menu.gameObject.SetActive (false);
 						activeEnemy = null;
+						ResetTileParticles ();
+						EnemyUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
+					}
+
+					if (activePlayer == null) {
+						PlayerUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
 					}
 
 					activePlayer = hit.collider.gameObject.GetComponent<Unit> ();
-					activePlayer.menu.gameObject.SetActive (true);
+					PlayerUI.GetComponent<PlayerUI> ().UpdateUI (activePlayer.char_stats);
 				} else if (hit.collider.tag.Equals ("Enemy")) {
-					if (activeEnemy != null && activePlayer != hit.collider.gameObject.GetComponent<Enemy> ()) {
-						activeEnemy.menu.gameObject.SetActive (false);
-					}
-					activeEnemy = hit.collider.gameObject.GetComponent<Enemy> ();
-					activeEnemy.menu.gameObject.SetActive (true);
-				}
-
-				if (hit.collider.tag.Equals ("Terrain") && (activePlayer != null || activeEnemy != null)) {
 					if (activePlayer != null) {
 						activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
-						activePlayer.menu.gameObject.SetActive (false);
 						activePlayer = null;
-						ResetTilePar ();
-					} else {
-						activeEnemy.menu.gameObject.SetActive (false);
+						PlayerUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
+					}
+
+					ResetTileParticles ();
+					if (activeEnemy == null) {
+						EnemyUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
+					}
+
+					activeEnemy = hit.collider.gameObject.GetComponent<Enemy> ();
+					activeEnemy.FindMoveTiles ();
+					EnemyUI.GetComponent<EnemyUI> ().UpdateUI (activeEnemy.enemy_stats);
+				}
+
+				if (hit.collider.tag.Equals ("Terrain") && (activePlayer != null || activeEnemy != null) && !EventSystem.current.IsPointerOverGameObject()) {
+					if (activePlayer != null) {
+						activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
+						PlayerUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
+						activePlayer = null;
+					} else if (activeEnemy != null) {
+						ResetTileParticles ();
+						EnemyUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
 						activeEnemy = null;
 					}
 				}
 			}
+		} else if (Input.GetMouseButtonDown (1)) {
+				if (activePlayer != null) {
+				activePlayer.GetComponentInChildren<ParticleSystem> ().Stop (true);
+				PlayerUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
+				activePlayer = null;
+			} else if (activeEnemy != null) {
+				ResetTileParticles ();
+				EnemyUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
+				activeEnemy = null;
+			}
 		}
 	}
 
-	void EnemySelect() {
+	private void EnemySelect() {
 		if (Input.GetMouseButtonDown (0)) {
 			mouseRay = Camera.main.ScreenPointToRay (Input.mousePosition);
 
 			if (Physics.Raycast (mouseRay, out hit)) {
 				if (hit.collider.tag.Equals ("Enemy")) {
-					if (hit.collider.gameObject.transform.Find ("Particle").gameObject.activeSelf) {
+					if (hit.collider.gameObject.GetComponentInChildren<ParticleSystem> ().isPlaying) {
 						activeEnemy = hit.collider.gameObject.GetComponent<Enemy> ();
 					}
 				}
-				if (hit.collider.tag.Equals ("Terrain") || hit.collider.tag.Equals ("Unit")) {
-					activePlayer.Status = 1;
-					activePlayer.possibleMoves ();
-					activePlayer.menu.gameObject.SetActive (true);
-					ResetEnemyPar ();
-				}
 			}
+		} else if (Input.GetMouseButtonDown (1)) {
+			ResetEnemyPar ();
+			activePlayer.Status = 1;
+			PlayerUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
+			ResetTileParticles ();
 		}
 	}
 
-	void InteractSelect() {
+	private void InteractSelect() {
 		if (Input.GetMouseButtonDown (0)) {
 			mouseRay = Camera.main.ScreenPointToRay (Input.mousePosition);
 
@@ -304,13 +405,47 @@ public class GameManager : MonoBehaviour {
 						interactPlayer = hit.collider.gameObject.GetComponent<Unit> ();
 					}
 				}
-				if (hit.collider.tag.Equals ("Terrain") || hit.collider.tag.Equals ("Enemy")) {
-					activePlayer.Status = 1;
-					activePlayer.possibleMoves ();
-					activePlayer.menu.gameObject.SetActive (true);
-					ResetPlayerPar ();
+			}
+		} else if (Input.GetMouseButtonDown (1)) {
+			ResetPlayerPar ();
+			activePlayer.GetComponentInChildren<ParticleSystem> ().Play (true);
+			activePlayer.Status = 1;
+			PlayerUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
+			ResetTileParticles ();
+		}
+	}
+
+	private void MoveSelect() {
+		if (Input.GetMouseButtonDown (0)) {
+			mouseRay = Camera.main.ScreenPointToRay (Input.mousePosition);
+
+			if (Physics.Raycast (mouseRay, out hit)) {
+				if (hit.collider.tag.Equals ("Terrain")) {
+					if (Physics.Raycast (hit.point, Vector3.down, out vertHit)) {
+						Debug.DrawLine (hit.point, vertHit.point);
+						if (vertHit.collider.tag.Equals ("GridTile")) {
+							GameObject tile = vertHit.collider.gameObject;
+
+							if (tile.transform.Find ("Possible_Move").gameObject.activeSelf) {
+								activePlayer.MoveTo (tile.GetComponent<HexTile> ());
+								Debug.Log ("Possible Move: " + vertHit.collider.gameObject.GetComponent<HexTile> ());
+							}
+						}
+					}
 				}
 			}
+		} else if (Input.GetMouseButtonDown (1)) {
+			ResetTileParticles ();
+			activePlayer.Status = 1;
+			PlayerUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
+		}
+	}
+
+	private void InventorySelect() {
+		if (Input.GetMouseButton(1)) {
+			InvUI.GetComponentInChildren<Animator> ().SetTrigger("UI_Trigger");
+			PlayerUI.GetComponentInChildren<Animator> ().SetTrigger ("UI_Trigger");
+			activePlayer.Status = 1;
 		}
 	}
 
@@ -319,11 +454,15 @@ public class GameManager : MonoBehaviour {
 		foreach (GameObject tile in tiles) {
 			HexTile tempTile = tile.GetComponent<HexTile> ();
 			tempTile.FindNeighbors ();
+			tempTile.transform.Find ("Possible_Move").GetComponent<ParticleSystem> ().Stop (true);
 			tileL.Add (tempTile);	
 		}
 
+		DontDestroyOnLoad (tileL [0].transform.parent.gameObject);
+
 		GameObject[] enemies = GameObject.FindGameObjectsWithTag ("Enemy");
 		foreach (GameObject enemy in enemies) {
+			enemy.GetComponent<Enemy> ().DontDestroy ();
 			enemyL.Add (enemy.GetComponent<Enemy> ());
 		}
 
@@ -373,9 +512,10 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-	public void ResetTilePar() {
+	public void ResetTileParticles() {
 		foreach (HexTile tile in tileL) {
-			tile.transform.Find ("Possible_Move").gameObject.SetActive (false);
+			tile.transform.Find ("Possible_Move").GetComponent<ParticleSystem> ().Stop ();
+			tile.transform.Find ("Possible_Move").GetComponent<ParticleSystem>().startColor = new Color32(0,120,255,255);
 		}
 	}
 
@@ -394,21 +534,25 @@ public class GameManager : MonoBehaviour {
 	private void ResetPlayerPar() {
 		foreach (Unit unit in playerL) {
 			unit.GetComponentInChildren<ParticleSystem> ().Stop (true);
-			unit.GetComponentInChildren<ParticleSystem> ().startColor = new Color (255, 255, 255);
+			unit.GetComponentInChildren<ParticleSystem> ().startColor = new Color32 (255, 255, 255, 255);
 		}
 	}
 
 	IEnumerator TimerEnumerator(float secs, int nextState) {
-		State = 0;
+		State = -1;
 
 		TurnUI.SetActive (true);
 		if (nextState == 1) {
+			turnImage.color = new Color32(0,255,100,255);
 			turnText.text = "PLAYER'S TURN";
 		} else if (nextState == 2) {
+			turnImage.color = new Color32(255,0,100,255);
 			turnText.text = "ENEMY'S TURN";
 		} else if (nextState == -1) {
+			turnImage.color = new Color32(37,38,38,123);
 			turnText.text = "GAME OVER";
 		} else if (nextState == -2) {
+			turnImage.color = new Color32(37,38,38,123);
 			turnText.text = "VICTORY";
 		}
 
@@ -420,7 +564,15 @@ public class GameManager : MonoBehaviour {
 		} else if (nextState == -1) {
 			LoadScene ("New_Menu_Scene");
 		} else if (nextState == -2) {
-			LoadScene ("World_Map");
+            storyFile = storyFile + "_End";
+            storyText = Resources.Load(storyFile) as TextAsset;
+            StoryUI.GetComponentInChildren<Text>().text = storyText.text;
+            StoryUI.SetActive(true);
+            if (Input.GetMouseButtonDown(0))
+            {
+                StoryUI.SetActive(false);
+                LoadScene("World_Map");
+            }
 		}
 
 		State = nextState;
@@ -458,7 +610,7 @@ public class GameManager : MonoBehaviour {
 		} else {
 			d_as = dStat.Spd - (dWep.Wt - dStat.Str);
 		}
-		 
+
 		int[] repAtt = {0,0};
 		if (a_as - d_as >= 4) {
 			repAtt [0] = 1;
@@ -467,12 +619,12 @@ public class GameManager : MonoBehaviour {
 		}
 
 		float a_hr, d_hr;
-		a_hr = aWep.Hit + aStat.Skl * 2 + aStat.Lck /*+ Support Bonus + Biorythym Bonus*/;
-		d_hr = dWep.Hit + dStat.Skl * 2 + aStat.Lck /*+ Support Bonus + Biorythym Bonus*/;
+		a_hr = aWep.Hit + aStat.Skl * 2 + aStat.Lck;
+		d_hr = dWep.Hit + dStat.Skl * 2 + aStat.Lck;
 
 		float a_ev, d_ev;
-		a_ev = a_as + aStat.Lck + attacker.terrainBonus /*+ Support Bonus + Biorythym Bonus*/;
-		d_ev = d_as + dStat.Lck + defender.terrainBonus /*+ Support Bonus + Biorythym Bonus*/;
+		a_ev = a_as + aStat.Lck + attacker.terrainBonus;
+		d_ev = d_as + dStat.Lck + defender.terrainBonus;
 
 		float a_ac, d_ac;
 		a_ac = a_hr - d_ev;
@@ -523,12 +675,12 @@ public class GameManager : MonoBehaviour {
 		}
 
 		float a_cr, d_cr;
-		a_cr = aWep.Crit + aStat.Skl / 2 /*+ Bond Bonus + Class Critical*/;
-		d_cr = dWep.Crit + dStat.Skl / 2 /*+ Bond Bonus + Class Critical*/;
+		a_cr = aWep.Crit + aStat.Skl / 2;
+		d_cr = dWep.Crit + dStat.Skl / 2;
 
 		float a_ce, d_ce;
-		a_ce = aStat.Lck /*+ Bond Bonus*/;
-		d_ce = dStat.Lck /*+ Bond Bonus*/;
+		a_ce = aStat.Lck;
+		d_ce = dStat.Lck;
 
 		float a_cc, d_cc;
 		a_cc = a_cr - d_ce;
@@ -536,11 +688,19 @@ public class GameManager : MonoBehaviour {
 
 		float a_xp, d_xp;
 
+		if (attacker.character.tag == "Unit") {
+			battleAnimation [0] = 1;
+		} else {
+			battleAnimation [0] = 2;
+		}
+
 		float x = Random.Range(0,100);
 		if (a_cc>=x) {
 			a_dm = a_dm * 3;
 		}
 		if (a_ac >= x) {
+			battleAnimation [1] = 1;
+
 			if (a_dm == 0) {
 				a_xp = 1;
 			} else {
@@ -550,19 +710,33 @@ public class GameManager : MonoBehaviour {
 				}
 				a_xp = xp;
 			}
+
+			battleAnimation [2] = (int)a_dm;
 			dStat.cHP -= a_dm;
 		} else {
+			battleAnimation [1] = 0;
 			a_xp = 1;
 		}
 
 		if (dStat.cHP <= 0) {
+			battleAnimation [3] = -1;
+
 			a_xp += (dStat.Lv - aStat.Lv) + 15 + 5;
 			if (defender.character.CompareTag ("Enemy")) {
 				a_xp += 40 * defender.character.GetComponent<Enemy> ().special;
 			}
 			UpdateXp (aStat,a_xp,dStat,0);
-			CheckForDeaths (attacker, defender);
 			return;
+		}
+
+		if (dWep.Rng.Contains (defender.att_dis)) {
+			if (defender.character.tag == "Unit") {
+				battleAnimation [3] = 1;
+			} else {
+				battleAnimation [3] = 2;
+			}
+		} else {
+			battleAnimation [3] = 0;
 		}
 
 		x = Random.Range(0,100);
@@ -570,6 +744,8 @@ public class GameManager : MonoBehaviour {
 			d_dm = d_dm * 3;
 		}
 		if (d_ac >= x && dWep.Rng.Contains (defender.att_dis) && dWep.type >= 0) {
+			battleAnimation [4] = 1;
+
 			if (d_dm == 0) {
 				d_xp = 1;
 			} else {
@@ -579,27 +755,43 @@ public class GameManager : MonoBehaviour {
 				}
 				d_xp = xp;
 			}
+
+			battleAnimation [5] = (int)d_dm;
 			aStat.cHP -= d_dm;
 		} else {
+			battleAnimation [4] = 0;
 			d_xp = 1;
 		}
 
 		if (aStat.cHP <= 0) {
+			battleAnimation [6] = -1;
 			d_xp += (aStat.Lv - dStat.Lv) + 15 + 5;
 			if (attacker.character.CompareTag ("Enemy")) {
 				d_xp += 40 * attacker.character.GetComponent<Enemy> ().special;
 			}
 			UpdateXp (aStat,a_xp,dStat,d_xp);
-			CheckForDeaths (attacker, defender);
 			return;
 		}
 
+		int offset = 3;
+		if (battleAnimation [3] == 0) {
+			offset = 0;
+		}
+
 		if (repAtt[0] == 1) {
+			if (attacker.character.tag == "Unit") {
+				battleAnimation [3+offset] = 1;
+			} else {
+				battleAnimation [3+offset] = 2;
+			}
+
 			x = Random.Range(0,100);
 			if (a_cc>=x) {
 				a_dm = a_dm * 3;
 			}
 			if (a_ac >= x) {
+				battleAnimation [4 + offset] = 1;
+
 				if (a_dm == 0) {
 					a_xp += 1;
 				} else {
@@ -609,26 +801,41 @@ public class GameManager : MonoBehaviour {
 					}
 					a_xp += xp;
 				}
+
+				battleAnimation [5 + offset] = (int)a_dm;
 				dStat.cHP -= a_dm;
 			} else {
+				battleAnimation [4 + offset] = 0;
 				a_xp += 1;
 			}
 
 			if (dStat.cHP <= 0) {
+				battleAnimation [6 + offset] = -1;
 				a_xp += (dStat.Lv - aStat.Lv) + 15 + 5;
 				if (defender.character.CompareTag ("Enemy")) {
 					a_xp += 40 * defender.character.GetComponent<Enemy> ().special;
 				}
 				UpdateXp (aStat,a_xp,dStat,d_xp);
-				CheckForDeaths (attacker, defender);
 				return;
 			}
 		} else if (repAtt[1] == 1) {
+			if (dWep.Rng.Contains (defender.att_dis)) {
+				if (defender.character.tag == "Unit") {
+					battleAnimation [3 + offset] = 1;
+				} else {
+					battleAnimation [3 + offset] = 2;
+				}
+			} else {
+				battleAnimation [3 + offset] = 0;
+			}
+
 			x = Random.Range(0,100);
 			if (d_cc>=x) {
 				d_dm = d_dm * 3;
 			}
 			if (d_ac >= x && dWep.Rng.Contains (defender.att_dis) && dWep.type >= 0) {
+				battleAnimation [4 + offset] = 1;
+
 				if (d_dm == 0) {
 					d_xp += 1;
 				} else {
@@ -638,18 +845,21 @@ public class GameManager : MonoBehaviour {
 					}
 					d_xp += xp;
 				}
+
+				battleAnimation [5 + offset] = (int)d_dm;
 				aStat.cHP -= d_dm;
 			} else {
+				battleAnimation [4 + offset] = 0;
 				d_xp += 1;
 			}
 
 			if (aStat.cHP <= 0) {
+				battleAnimation [6 + offset] = -1;
 				d_xp += (aStat.Lv - dStat.Lv) + 15 + 5;
 				if (attacker.character.CompareTag ("Enemy")) {
 					d_xp += 40 * defender.character.GetComponent<Enemy> ().special;
 				}
 				UpdateXp (aStat,a_xp,dStat,d_xp);
-				CheckForDeaths (attacker, defender);
 				return;
 			}
 		}
@@ -662,27 +872,14 @@ public class GameManager : MonoBehaviour {
 		dStat.Xp += d_xp;
 	}
 
-	private void CheckForDeaths(HexTile attacker, HexTile defender) {
-		Stats aStat = attacker.character.GetComponentInChildren<Stats> ();
-		Stats dStat = defender.character.GetComponentInChildren<Stats> ();
-
-		if (aStat.cHP <= 0) {
-			if (attacker.character.CompareTag ("Unit")) {
-				attacker.character.GetComponentInChildren<Unit> ().Death ();
-			} else {
-				attacker.character.GetComponentInChildren<Enemy> ().Death ();
-			}
+	public void CheckForDeaths() {
+		if (activePlayer.char_stats.cHP <= 0) {
+			activePlayer.Death ();
 		}
 
-		if (dStat.cHP <= 0) {
-			if (defender.character.CompareTag ("Unit")) {
-				defender.character.GetComponentInChildren<Unit> ().Death ();;
-			} else {
-				defender.character.GetComponentInChildren<Enemy> ().Death ();
-			}
+		if (activeEnemy.enemy_stats.cHP <= 0) {
+			activeEnemy.Death ();
 		}
-
-		CheckWinOrLoseCondition ();
 	}
 
 	private void CheckWinOrLoseCondition() {
@@ -692,6 +889,7 @@ public class GameManager : MonoBehaviour {
 
 		if (enemyL.Count == 0) {
 			level++;
+			inLevel = false;
 			StartCoroutine(TimerEnumerator(5,-2));
 		}
 	}
@@ -699,6 +897,13 @@ public class GameManager : MonoBehaviour {
 	public void LoadScene(string scene) 
 	{
 		StartCoroutine(LoadLevelWithBar(scene));
+	}
+
+	public void LoadScene(int level) 
+	{
+		if (level == 0) {
+			StartCoroutine (LoadLevelWithBar ("Plains_Scene"));
+		}
 	}
 
 	IEnumerator LoadLevelWithBar (string sceneName)
@@ -712,8 +917,22 @@ public class GameManager : MonoBehaviour {
 
 	public void DestroyThis () {
 		foreach (Unit player in playerL) {
-			player.Death ();
+			Destroy (player.gameObject);
 		}
+		foreach (Enemy enemy in enemyL) {
+			Destroy (enemy.gameObject);
+		}
+		foreach (HexTile tile in tileL) {
+			Destroy (tile.gameObject);
+		}
+
 		Destroy (this.gameObject);
+	}
+
+	public void StopMusic () {
+		GameObject music = GameObject.Find ("MusicPlayer");
+		if (music != null) {
+			Destroy (music);
+		}
 	}
 }

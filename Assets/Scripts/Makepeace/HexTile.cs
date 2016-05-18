@@ -67,12 +67,18 @@ public class HexTile : MonoBehaviour {
 			y++;
 			x--;
 			tileName = "HexTile [" + y + "," + x + "]";
-			SE_Tile = GameObject.Find (tileName).GetComponent<HexTile> ();
+            if (GameObject.Find (tileName) != null)
+            {
+			    SE_Tile = GameObject.Find (tileName).GetComponent<HexTile> ();
+            }
 
 			x--;
 			tileName = "HexTile [" + y + "," + x + "]";
 			if (pos [1] != 0) {
-				SW_Tile = GameObject.Find (tileName).GetComponent<HexTile> ();
+                if (GameObject.Find (tileName) != null)
+                {
+				    SW_Tile = GameObject.Find (tileName).GetComponent<HexTile> ();
+                }
 			}
 
 			y--;
